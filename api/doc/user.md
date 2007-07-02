@@ -77,10 +77,6 @@ CREATE TABLE IF NOT EXISTS users (
 
     CHECK ((points_total >= 0) AND (games_total >= 0))
 );
-
-ALTER TABLE users
-ADD games_total INTEGER NOT NULL DEFAULT 0
-CONSTRAINT CHECK  (games_total >= 0);
 ```
 
 ## Sanitised User data
