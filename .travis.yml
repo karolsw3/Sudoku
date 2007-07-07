@@ -34,8 +34,8 @@ script:
       cargo clippy;
     fi
   -
+    # Diesel denies warnings, even in documentation, which produces them, meaning we can *not* build the documentation w/o patching that out
   - if [ "$LANGUAGE" == "Rust-doc" ]; then
-      # Diesel denies warnings, even in documentation, which produces them, meaning we can *not* build the documentation w/o patching that out
       sed "s;#!\[deny;//;" -i "$HOME/.cargo/registry/src/github.com-1ecc6299db9ec823/diesel-1.3.2/src/lib.rs";
       cargo doc;
     fi
