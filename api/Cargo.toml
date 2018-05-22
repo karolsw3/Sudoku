@@ -1,0 +1,20 @@
+[package]
+name = "sudoku-backend"
+description = "Generate a blogue from Markdown (again)"
+repository = "https://github.com/Galactim/sudoku-backend"
+documentation = "https://cdn.rawgit.com/Galactim/Sudoku/backend-doc/sudoku_backend/index.html"
+readme = "README.md"
+keywords = ["sudoku", "server", "web"]
+license = "MIT"
+# Remember to also update in appveyor.yml
+version = "0.1.0"
+# Remember to also update in sudoku-backend.md
+authors = ["nabijaczleweli <nabijaczleweli@gmail.com>"]
+
+[dependencies]
+
+
+[[bin]]
+name = "sudoku-backend"
+test = false
+doc = false

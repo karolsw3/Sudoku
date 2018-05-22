@@ -1,0 +1,47 @@
+version: 0.1.0-{build}
+skip_tags: false
+
+platform: x64
+configuration: Release
+
+clone_folder: C:\sudoku-backend
+
+install:
+  - set PATH=C:\msys64\mingw64\bin;C:\msys64\usr\bin;%PATH%;C:\Users\appveyor\.cargo\bin
+  - bash -lc "pacman --needed --noconfirm -Sy pacman-mirrors"
+  - bash -lc "pacman --noconfirm -Sy"
+  - bash -lc "pacman --noconfirm -S mingw-w64-x86_64-toolchain"
+  -
+  - curl -SL https://win.rustup.rs/ -oC:\rustup-init.exe
+  - C:\rustup-init.exe -y --default-host="x86_64-pc-windows-gnu" --default-toolchain="nightly"
+
+build: off
+build_script:
+  - git submodule update --init --recursive
+  - pushd api
+  - cargo build --verbose --release
+  - cp target\release\sudoku-backend.exe ../sudoku-backend-v0.1.0.exe
+  - strip --strip-all --remove-section=.comment --remove-section=.note ../sudoku-backend-v0.1.0.exe
+  - popd
+
+test: off
+test_script:
+  - cargo test --verbose --release
+
+artifacts:
+  - path: sudoku-backend-v0.1.0.exe
+
+deploy:
+  provider: GitHub
+  artifact: sudoku-backend-v0.1.0.exe
+  auth_token:
+    secure: 8IJ+W2xEbPByiz3O1iZX8ZYVgGZdyKNe4vXXhe1/6LeROCcSih6apJ8PxoBtuXYu
+  on:
+    appveyor_repo_tag: true
+
+notifications:
+  - provider: Email
+    to:
+      - nabijaczleweli@gmail.com
+    on_build_status_changed: true
+    on_build_success: false

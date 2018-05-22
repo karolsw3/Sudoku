@@ -1,0 +1,117 @@
+sudo: false
+language: generic
+cache: cargo
+
+matrix:
+  include:
+    - env: LANGUAGE=Rust STARTING_DIR="api/" CLIPPY=true DEPLOY=true DEPLOY_FILE="$TRAVIS_BUILD_DIR/../sudoku-backend-$TRAVIS_TAG"
+      language: rust
+      rust: nightly
+    - env: LANGUAGE=Ruby STARTING_DIR="api/" DEPLOY=true DEPLOY_FILE="$TRAVIS_BUILD_DIR/../sudoku-backend-man-$TRAVIS_TAG.tbz2"
+      language: ruby
+      rvm: "2.2"
+    - env: LANGUAGE=Rust-doc STARTING_DIR="api/" DEPLOY=true DEPLOY_FILE="$TRAVIS_BUILD_DIR/../sudoku-backend-doc-$TRAVIS_TAG.tbz2"
+      language: rust
+      rust: nightly
+
+before_install:
+  - if [ "$TRAVIS_SECURE_ENV_VARS" == "true" ]; then
+      openssl aes-256-cbc -K $encrypted_cbe65774419e_key -iv $encrypted_cbe65774419e_iv -in gh_rsa.enc -out gh_rsa -d;
+    fi
+
+install:
+  - if [ "$LANGUAGE" == "Ruby" ]; then gem install ronn; fi
+
+script:
+  - cd "$STARTING_DIR"
+  -
+  - if [ "$LANGUAGE" == "Rust" ]; then cargo build --verbose; fi
+  - if [ "$LANGUAGE" == "Rust" ]; then cargo test --verbose; fi
+  - if [ "$LANGUAGE" == "Rust" ] && [ "$DEPLOY" ] && [ "$TRAVIS_TAG" ]; then cargo build --verbose --release; fi
+  -
+  - if [ "$LANGUAGE" == "Rust" ] && [ "$CLIPPY" ]; then
+      cargo install -f clippy;
+      cargo clippy;
+    fi
+  -
+  - if [ "$LANGUAGE" == "Ruby" ]; then
+      mkdir man; pushd man;
+      cp ../sudoku.md sudoku.md;
+      ronn --organization="sudoku developers" sudoku.md;
+      popd;
+    fi
+
+after_success:
+  - if [ "$LANGUAGE" == "Rust" ] && [ "$DEPLOY" ] && [ "$TRAVIS_TAG" ]; then
+      cp target/release/sudoku "$DEPLOY_FILE";
+      strip --strip-all --remove-section=.comment --remove-section=.note "$DEPLOY_FILE";
+    fi
+  - if [ "$LANGUAGE" == "Rust-doc" ] && ( [ "$TRAVIS_BRANCH" = "master" ] || [ "$TRAVIS_BRANCH" = "develop" ] ) && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && [ "$TRAVIS_RUST_VERSION" = "stable" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
+      (
+        echo "Update docs for commits $TRAVIS_COMMIT_RANGE";
+        echo;
+        git log "$TRAVIS_COMMIT_RANGE" --pretty=oneline;
+      ) >> "$TRAVIS_BUILD_DIR/../DOC_UPDATE_MSG";
+      mkdir -p ~/.ssh && cp "$TRAVIS_BUILD_DIR/gh_rsa" ~/.ssh/id_rsa && chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa;
+      git clone -b backend-doc "git@github.com:$TRAVIS_REPO_SLUG.git" "$TRAVIS_BUILD_DIR-backend-doc";
+      mkdir -p target;
+      cargo doc;
+      cp -rf target/doc/* "$TRAVIS_BUILD_DIR-backend-doc"
+      pushd "$TRAVIS_BUILD_DIR-backend-doc";
+      git config --global user.email "nabijaczleweli@gmail.com";
+      git config --global user.name "Nabijaczleweli Autouploader Bot";
+      git config --global push.default simple;
+      git add -- *;
+      git commit -F "$TRAVIS_BUILD_DIR/../DOC_UPDATE_MSG";
+      git push;
+      popd;
+    fi
+  - if [ "$LANGUAGE" == "Rust-doc" ] && [ "$TRAVIS_TAG" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ]; then
+      cp -r target/doc "$TRAVIS_BUILD_DIR/../sudoku-backend-doc-$TRAVIS_TAG";
+      pushd "$TRAVIS_BUILD_DIR/..";
+      tar -caf "sudoku-backend-doc-$TRAVIS_TAG.tbz2" "sudoku-backend-doc-$TRAVIS_TAG";
+      rm -rf "sudoku-backend-doc-$TRAVIS_TAG";
+      popd;
+    fi
+  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && [ "$TRAVIS_RUST_VERSION" = "stable" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
+      cp -r target/doc "$TRAVIS_BUILD_DIR/../sudoku-doc-$TRAVIS_TAG";
+      pushd "$TRAVIS_BUILD_DIR/..";
+      tar -caf "sudoku-doc-$TRAVIS_TAG.tbz2" "sudoku-doc-$TRAVIS_TAG";
+      rm -rf "sudoku-doc-$TRAVIS_TAG";
+      popd;
+    fi
+  - if [ "$LANGUAGE" == "Ruby" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
+      (
+        echo "Update Rust manual for commits $TRAVIS_COMMIT_RANGE";
+        echo;
+        git log $TRAVIS_COMMIT_RANGE --pretty=oneline;
+      ) >> $TRAVIS_BUILD_DIR/../MAN_UPDATE_MSG;
+      mkdir -p ~/.ssh && cp "$TRAVIS_BUILD_DIR/gh_rsa" ~/.ssh/id_rsa && chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa;
+      git clone -b backend-man git@github.com:nabijaczleweli/sudoku.git "$TRAVIS_BUILD_DIR-backend-man";
+      cp -f man/* "$TRAVIS_BUILD_DIR-backend-man";
+      pushd "$TRAVIS_BUILD_DIR-backend-man";
+      git config --global user.email "nabijaczleweli@gmail.com";
+      git config --global user.name "Nabijaczleweli Autouploader Bot";
+      git config --global push.default simple;
+      git add *;
+      git commit -F $TRAVIS_BUILD_DIR/../MAN_UPDATE_MSG;
+      git push;
+      popd;
+    fi
+  - if [ "$LANGUAGE" == "Ruby" ] && [ "$TRAVIS_TAG" ]; then
+      cp -r man "$TRAVIS_BUILD_DIR/../sudoku-backend-man-$TRAVIS_TAG";
+      pushd "$TRAVIS_BUILD_DIR/..";
+      tar -caf "sudoku-backend-man-$TRAVIS_TAG.tbz2" "sudoku-backend-man-$TRAVIS_TAG";
+      rm -rf "sudoku-backend-man-$TRAVIS_TAG";
+      popd;
+    fi
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "KA9GWkx7UfBIWEqY88SxtAdMGKJV7X3ft+pRCiNfLpxOeTiFTeHAFfnGQl1PmoV0jfsSDuU+PIxMxODKquuv67AzljCqZXXnV/azZJTfVtTpY/Ya+0/GFKROV4O0TcgvK4rEJ9QVvOYLanDJtDk0aYAMpSTok0vhF/GXxlqNnYKNjTEFoaBUkA4MGmy7fV15Mb6FNJUY/vQ4SIksv8jhj6NROHNVLqz131s2blYi3/QUbfpAF93LrQ+2g4c6bp58m2YiCsmeRAO+148y6Z9r4gA0/XmbsJx6Ah+qOb1FHHYwNNTNoRybyDrLpSBjSnj7c5pwBFa8NvppxVNxYK8Yl9M3haYuq7eR9CUtyuBv/hLNC49Y06CF5llnTwTVj8sdrsvUkTNvteiLRyENrOgY598ZBQKvrfwNRYeewU3SXvkJt+CoUTn+seZYorftf2aUqZEm9n/WldLysPg/ocEHvTGx8oQHLfeEaEFV/Yl6NKxkIzUWWHKcF6qZnwz4Qs5TRwWZApeILiG8n1bGM9utqOIZfRqn7wBPKYs49NM1/Cs6kWnmBw4hXssshqNMlGC0k/wP/xRo5gDBrfT8k/IYFBt+Q3F9eiidx+eoWnAqSAxzc37ed5H7xzOX+nrmNy1FQTJpFigeCw6L5jJQ0JNAr0zLq1BrX04VmOam31L1HkI="
+  file: "$DEPLOY_FILE"
+  skip_cleanup: true
+  on:
+    tags: true
+    condition: $DEPLOY = true
