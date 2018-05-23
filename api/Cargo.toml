@@ -1,6 +1,6 @@
 [package]
 name = "sudoku-backend"
-description = "Generate a blogue from Markdown (again)"
+description = "The back-end of the \"modern, API-based sudoku app\""
 repository = "https://github.com/Galactim/sudoku-backend"
 documentation = "https://cdn.rawgit.com/Galactim/Sudoku/backend-doc/sudoku_backend/index.html"
 readme = "README.md"
@@ -12,6 +12,7 @@ version = "0.1.0"
 authors = ["nabijaczleweli <nabijaczleweli@gmail.com>"]
 
 [dependencies]
+clap = "2.32"
 
 
 [[bin]]
