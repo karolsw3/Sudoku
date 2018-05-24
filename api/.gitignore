@@ -5,6 +5,7 @@
 !*Makefile
 !*.sublime-project
 !*.md
+!build.rs
 !Cargo.toml
 !rustfmt.toml
 !LICENSE

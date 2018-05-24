@@ -36,17 +36,17 @@ script:
   -
   - if [ "$LANGUAGE" == "Ruby" ]; then
       mkdir man; pushd man;
-      cp ../sudoku.md sudoku.md;
-      ronn --organization="sudoku developers" sudoku.md;
+      cp ../sudoku-backend.md sudoku-backend.md;
+      ronn --organization="Galactim" sudoku-backend.md;
       popd;
     fi
 
 after_success:
   - if [ "$LANGUAGE" == "Rust" ] && [ "$DEPLOY" ] && [ "$TRAVIS_TAG" ]; then
-      cp target/release/sudoku "$DEPLOY_FILE";
+      cp target/release/sudoku-backend "$DEPLOY_FILE";
       strip --strip-all --remove-section=.comment --remove-section=.note "$DEPLOY_FILE";
     fi
-  - if [ "$LANGUAGE" == "Rust-doc" ] && ( [ "$TRAVIS_BRANCH" = "master" ] || [ "$TRAVIS_BRANCH" = "develop" ] ) && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && [ "$TRAVIS_RUST_VERSION" = "stable" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
+  - if [ "$LANGUAGE" == "Rust-doc" ] && ( [ "$TRAVIS_BRANCH" = "master" ] || [ "$TRAVIS_BRANCH" = "develop" ] ) && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
       (
         echo "Update docs for commits $TRAVIS_COMMIT_RANGE";
         echo;
@@ -71,13 +71,6 @@ after_success:
       pushd "$TRAVIS_BUILD_DIR/..";
       tar -caf "sudoku-backend-doc-$TRAVIS_TAG.tbz2" "sudoku-backend-doc-$TRAVIS_TAG";
       rm -rf "sudoku-backend-doc-$TRAVIS_TAG";
-      popd;
-    fi
-  - if [ "$TRAVIS_BRANCH" = "master" ] && [ "$TRAVIS_SECURE_ENV_VARS" = "true" ] && [ "$TRAVIS_RUST_VERSION" = "stable" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
-      cp -r target/doc "$TRAVIS_BUILD_DIR/../sudoku-doc-$TRAVIS_TAG";
-      pushd "$TRAVIS_BUILD_DIR/..";
-      tar -caf "sudoku-doc-$TRAVIS_TAG.tbz2" "sudoku-doc-$TRAVIS_TAG";
-      rm -rf "sudoku-doc-$TRAVIS_TAG";
       popd;
     fi
   - if [ "$LANGUAGE" == "Ruby" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
