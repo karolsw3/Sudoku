@@ -11,6 +11,8 @@
 !LICENSE
 !src
 !src/**
+!doc
+!doc/**
 !tests
 !tests/**
 !assets

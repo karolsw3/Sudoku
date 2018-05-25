@@ -80,7 +80,7 @@ after_success:
         git log $TRAVIS_COMMIT_RANGE --pretty=oneline;
       ) >> $TRAVIS_BUILD_DIR/../MAN_UPDATE_MSG;
       mkdir -p ~/.ssh && cp "$TRAVIS_BUILD_DIR/gh_rsa" ~/.ssh/id_rsa && chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa;
-      git clone -b backend-man git@github.com:nabijaczleweli/sudoku.git "$TRAVIS_BUILD_DIR-backend-man";
+      git clone -b backend-man git@github.com:$TRAVIS_REPO_SLUG.git "$TRAVIS_BUILD_DIR-backend-man";
       cp -f man/* "$TRAVIS_BUILD_DIR-backend-man";
       pushd "$TRAVIS_BUILD_DIR-backend-man";
       git config --global user.email "nabijaczleweli@gmail.com";
