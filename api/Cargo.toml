@@ -14,8 +14,11 @@ authors = ["nabijaczleweli <nabijaczleweli@gmail.com>"]
 
 [dependencies]
 rocket_codegen = "0.3"
+serde_derive = "1.0"
 r2d2-diesel = "0.16"
+serde_json = "1.0"
 rocket = "0.3"
+serde = "1.0"
 clap = "2.32"
 r2d2 = "0.7"
 
@@ -23,12 +26,13 @@ r2d2 = "0.7"
 version = "0.16"
 features = ["sqlite"]
 
+[dependencies.chrono]
+version = "0.4"
+features = ["serde"]
+
 [dependencies.diesel]
 version = "0.16"
 features = ["large-tables", "sqlite", "chrono"]
-
-[build-dependencies]
-reqwest = "0.8"
 
 
 [[bin]]

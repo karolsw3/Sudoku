@@ -22,11 +22,11 @@ install:
 build: off
 build_script:
   - git submodule update --init --recursive
-  - pushd api
+  - cd api
   - cargo build --verbose --release
   - cp target\release\sudoku-backend.exe ../sudoku-backend-v0.1.0.exe
   - strip --strip-all --remove-section=.comment --remove-section=.note ../sudoku-backend-v0.1.0.exe
-  - popd
+  - cd ..
 
 test: off
 test_script:

@@ -36,6 +36,11 @@
 			"path": "assets"
 		},
 		{
+            "follow_symlinks": true,
+            "name": "Documentation",
+            "path": "doc"
+        },
+		{
 			"file_include_patterns":
 			[
 				"*Makefile*",

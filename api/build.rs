@@ -1,5 +1,3 @@
-extern crate reqwest;
-
 use std::io::{BufReader, BufRead, Write};
 use std::path::{PathBuf, Path};
 use std::fs::{self, File};
@@ -15,15 +13,14 @@ fn main() {
 }
 
 fn query(out_dir: &Path) {
-    let dest_path = Path::new(&out_dir).join("query.rs");
+    let dest_path = out_dir.join("query.rs");
     let mut f = File::create(&dest_path).unwrap();
 
     f.write_all("/// Query to run to set up the database.\n".as_bytes()).unwrap();
     f.write_all("pub static INITIALISE_DATABASE: &str = r#####\"\n".as_bytes()).unwrap();
     for doc_f in doc_files() {
         let mut copying = false;
-        for l in BufReader::new(File::open(doc_f).unwrap()).lines() {
-            let l = l.unwrap();
+        for l in BufReader::new(File::open(doc_f).unwrap()).lines().map(Result::unwrap) {
             if l == "```sql" {
                 copying = true;
             } else if l == "```" {
