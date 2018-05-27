@@ -30,7 +30,9 @@ build_script:
 
 test: off
 test_script:
+  - cd api
   - cargo test --verbose --release
+  - cd ..
 
 artifacts:
   - path: sudoku-backend-v0.1.0.exe

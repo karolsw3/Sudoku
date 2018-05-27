@@ -26,7 +26,7 @@ pub struct User {
     /// Whether the user has administrative privileges.
     pub is_admin: bool,
 
-    /// Sum total of the user's points, calculated according to `doc/scoring.md#endgame-formula`, `CHECK`ed to nonnegativity
+    /// Sum total of the user's points, calculated according to `doc/scoring.md#endgame-formula`, `CHECK`ed to nonnegativity.
     pub points_total: i32,
 }
 

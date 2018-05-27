@@ -19,7 +19,7 @@ Nota bene: these values **must** be consistent once and for all, as other values
 
 That value is then hex-string-encoded (case irrelevant), a JSON-stringified form is constructed, then base64-encoded as "data" and that is sent in a form.
 
-In other words, with `data` being the key and value:
+In other words, with `data` being the key and value, and doubling as <span id="user-login-data">User Login data</span> (all keys `string`s):
 ```js
 let data = base64(JSON.stringify({
     login: raw_login,
