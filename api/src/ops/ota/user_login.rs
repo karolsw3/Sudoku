@@ -11,16 +11,16 @@
 /// assert_eq!(serde_json::from_str(r#"{
 ///                                        "login": "karolsw3",
 ///                                        "password": "0d0d4a3483976b409ad7 &c."
-///                                    }"#),
-///            UserLoginData {
-///                username: "karolsw3".to_string(),
+///                                    }"#).ok(),
+///            Some(UserLoginData {
+///                login: "karolsw3".to_string(),
 ///                password: "0d0d4a3483976b409ad7 &c.".to_string(),
-///            });
+///            }));
 /// ```
-#[derive(Serialize, Deserialize, Debug, Clone, Eq, PartialEq, Ord, PartialOrd)]
+#[derive(Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub struct UserLoginData {
     /// User's name or "login" or whatever.
-    pub username: String,
+    pub login: String,
 
     /// Singly `scrypt`ed user password, to be lowercased before re-deriving.
     pub password: String,

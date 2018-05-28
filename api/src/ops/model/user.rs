@@ -3,7 +3,7 @@ use chrono::{NaiveDateTime, Utc};
 
 
 /// Refer to `doc/user.md` for more details.
-#[derive(Queryable, Insertable, AsChangeset, Serialize, Deserialize, Debug, Clone, PartialEq, PartialOrd)]
+#[derive(Queryable, Insertable, AsChangeset, Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[table_name="users"]
 pub struct User {
     /// Unique user ID.
