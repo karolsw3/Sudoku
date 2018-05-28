@@ -42,17 +42,17 @@ The returned value shall be [Sanitised User data](#sanitised-user-data) on corre
 The returned bundle shall *not* distinguish between any two cases of incorrect verification.
 
 ### Server-side entry creation
-If a user with the specified username doesn't exist in the database,
+If a user with the specified username or e-mail doesn't exist in the database,
 the server lower-cases the key-derived password, then derives it *again* with parameters as guessed via `util::SCRYPT_IDEAL_PARAMS`.
-Finally, the server stores that username, doubly-derived password in the [`rscrypt format`](https://docs.rs/rust-crypto/0.2.36/crypto/scrypt/fn.scrypt_simple.html#format),
-and, if the user is logged in as an administrator, `true` in the `is_admin` column, in the `users` table.
+Finally, the server stores that username, e-mail, and
+doubly-derived password in the [`rscrypt format`](https://docs.rs/rust-crypto/0.2.36/crypto/scrypt/fn.scrypt_simple.html#format) in the `users` table.
 
 The returned status shall be `201 Created` on correct creation,
-                             `409 Conflict` if a user with that name already exists,
+                             `409 Conflict` if a user with that name/e-mail already exists,
                          and an otherwise implementation-defined relevant status on other errors.
 
 The returned value shall be [Sanitised User data](#sanitised-user-data) on correct creation,
-                         an appropriately filled out [Generic Error](errors.md#generic-error) if a user with that name already exists,
+                         an appropriately filled out [Generic Error](errors.md#generic-error) if a user with that name/e-mail already exists,
                      and an otherwise implementation-defined relevant [Error](errors.md) on other errors.
 
 ## SQL table def
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS users (
     id           INTEGER PRIMARY KEY ASC,     -- Unique user ID
     username     TEXT NOT NULL UNIQUE,        -- User's name or "login" or whatever you want to call it
     password     TEXT NOT NULL,               -- Doubly scrypted password text, see above.
-    email        TEXT NOT NULL,               -- User's contact e-mail
+    email        TEXT NOT NULL UNIQUE,        -- User's contact e-mail
     created_at   DATETIME NOT NULL,           -- Time user was created
     is_admin     BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges
     points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user's points, calculated according to scoring.md#endgame-formula, non-negative
@@ -82,3 +82,16 @@ CREATE TABLE IF NOT EXISTS users (
     "points_total": "number"
 }
 ```
+
+## Admins
+
+Admins are assigned manually, where `$1` is the username whose adminness to set:
+
+<!-- no_run -->
+```sql
+UPDATE users
+    SET is_admin = 1
+    WHERE username = "$1";
+```
+
+Other keys will of course, per analogiam, work.

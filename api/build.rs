@@ -17,12 +17,16 @@ fn query(out_dir: &Path) {
     let mut f = File::create(&dest_path).unwrap();
 
     f.write_all("/// Query to run to set up the database.\n".as_bytes()).unwrap();
-    f.write_all("pub static INITIALISE_DATABASE: &str = r#####\"\n".as_bytes()).unwrap();
+    f.write_all("pub const INITIALISE_DATABASE: &str = r#####\"\n".as_bytes()).unwrap();
     for doc_f in doc_files() {
         let mut copying = false;
+        let mut no_run = false;
         for l in BufReader::new(File::open(doc_f).unwrap()).lines().map(Result::unwrap) {
-            if l == "```sql" {
-                copying = true;
+            if l == "<!-- no_run -->" {
+                no_run = true;
+            } else if l == "```sql" {
+                copying = !no_run;
+                no_run = false;
             } else if l == "```" {
                 copying = false;
                 f.write_all("\n".as_bytes()).unwrap();
