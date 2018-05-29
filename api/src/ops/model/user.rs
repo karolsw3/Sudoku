@@ -14,7 +14,7 @@ pub struct User {
     /// User's name or "login" or whatever.
     pub username: String,
 
-    /// Doubly scrypted password, see doc/user.md for details.
+    /// Doubly scrypted password, see `doc/user.md` for details.
     pub password: String,
 
     /// User's contact e-mail

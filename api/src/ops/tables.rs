@@ -2,6 +2,18 @@
 
 
 table! {
+    /// See `doc/session.md`
+    sessions {
+        /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
+        id         -> Nullable<Integer>,
+        expiry     -> Timestamp,
+        is_admin   -> Bool,
+        user_id    -> Nullable<Integer>,
+        // product_id -> Nullable<Integer>,
+    }
+}
+
+table! {
     /// See `doc/user.md`
     users {
         /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
