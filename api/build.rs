@@ -19,6 +19,8 @@ fn query(out_dir: &Path) {
     f.write_all("/// Query to run to set up the database.\n".as_bytes()).unwrap();
     f.write_all("pub const INITIALISE_DATABASE: &str = r#####\"\n".as_bytes()).unwrap();
     for doc_f in doc_files() {
+        println!("cargo:rerun-if-changed={}", doc_f.display());
+
         let mut copying = false;
         let mut no_run = false;
         for l in BufReader::new(File::open(doc_f).unwrap()).lines().map(Result::unwrap) {
