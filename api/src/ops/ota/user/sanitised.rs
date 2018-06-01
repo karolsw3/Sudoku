@@ -1,4 +1,4 @@
-use self::super::super::User;
+use self::super::super::super::User;
 use chrono::{FixedOffset, DateTime};
 
 

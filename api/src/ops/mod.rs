@@ -6,4 +6,4 @@ pub mod routes;
 pub mod tables;
 
 pub use self::model::{Session, User};
-pub use self::ota::{SanitisedUserData, GenericError, LoginError};
+pub use self::ota::{SanitisedUserData, UserLoginData, GenericError, LoginError};
