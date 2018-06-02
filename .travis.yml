@@ -73,7 +73,7 @@ after_success:
       rm -rf "sudoku-backend-doc-$TRAVIS_TAG";
       popd;
     fi
-  - if [ "$LANGUAGE" == "Ruby" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_COMMIT_RANGE" ] && ! [ "$TRAVIS_TAG" ]; then
+  - if [ "$LANGUAGE" == "Ruby" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_COMMIT_RANGE" ] && [ "$(git diff "$TRAVIS_COMMIT_RANGE" "$TRAVIS_BUILD_DIR/.travis.yml" | wc -l)" != "0" ] && ! [ "$TRAVIS_TAG" ]; then
       (
         echo "Update Rust manual for commits $TRAVIS_COMMIT_RANGE";
         echo;
