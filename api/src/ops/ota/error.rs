@@ -1,3 +1,6 @@
+use std::borrow::Cow;
+
+
 /// Use this for most non-specific errors.
 ///
 /// Refer to `doc/user.md` for more details.
@@ -18,7 +21,7 @@
 /// #[get("/endpoint")]
 /// fn endpoint() -> Result<String, Json<GenericError>> {
 ///     work().map_err(|e| Json(GenericError {
-///         reason: format!("couldn't finish work: {}", e),
+///         reason: format!("couldn't finish work: {}", e).into(),
 ///     }))
 /// }
 ///
@@ -33,7 +36,7 @@ pub struct GenericError {
     /// In all-lowercase past-tense finishing-punctuation-free form.
     ///
     /// For example: "failed to apply diff", "user with that name exists".
-    pub reason: String,
+    pub reason: Cow<'static, str>,
 }
 
 /// Security ⇒ no data.
@@ -67,3 +70,9 @@ pub struct GenericError {
 /// ```
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub struct LoginError {}
+
+impl From<()> for LoginError {
+    fn from(_: ()) -> LoginError {
+        LoginError {}
+    }
+}

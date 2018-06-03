@@ -1,6 +1,7 @@
 //! Various utility functions.
 
 
+use std::iter;
 use time::Duration;
 use crypto::scrypt::{ScryptParams, scrypt_simple};
 
@@ -29,3 +30,16 @@ lazy_static! {
 
 
 include!(concat!(env!("OUT_DIR"), "/query.rs"));
+
+
+/// Create a string consisting of `n` repetitions of `what`.
+///
+/// # Examples
+///
+/// ```
+/// # use sudoku_backend::util::mul_str;
+/// assert_eq!(&mul_str("Го! ", 3), "Го! Го! Го! ");
+/// ```
+pub fn mul_str(what: &str, n: usize) -> String {
+    iter::repeat(what).take(n).collect()
+}

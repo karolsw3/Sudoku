@@ -9,6 +9,7 @@ extern crate r2d2_diesel;
 #[macro_use]
 extern crate lazy_static;
 extern crate serde_json;
+extern crate base64;
 extern crate chrono;
 extern crate crypto;
 extern crate rocket;
