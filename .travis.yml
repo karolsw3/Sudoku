@@ -34,6 +34,8 @@ script:
       cargo clippy;
     fi
   -
+  - if [ "$LANGUAGE" == "Rust-doc" ]; then cargo doc; fi
+  -
   - if [ "$LANGUAGE" == "Ruby" ]; then
       mkdir man; pushd man;
       cp ../sudoku-backend.md sudoku-backend.md;
@@ -55,7 +57,6 @@ after_success:
       mkdir -p ~/.ssh && cp "$TRAVIS_BUILD_DIR/gh_rsa" ~/.ssh/id_rsa && chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa;
       git clone -b backend-doc "git@github.com:$TRAVIS_REPO_SLUG.git" "$TRAVIS_BUILD_DIR-backend-doc";
       mkdir -p target;
-      cargo doc;
       cp -rf target/doc/* "$TRAVIS_BUILD_DIR-backend-doc"
       pushd "$TRAVIS_BUILD_DIR-backend-doc";
       git config --global user.email "nabijaczleweli@gmail.com";
@@ -73,7 +74,7 @@ after_success:
       rm -rf "sudoku-backend-doc-$TRAVIS_TAG";
       popd;
     fi
-  - if [ "$LANGUAGE" == "Ruby" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_COMMIT_RANGE" ] && [ "$(git diff "$TRAVIS_COMMIT_RANGE" "$TRAVIS_BUILD_DIR/.travis.yml" | wc -l)" != "0" ] && ! [ "$TRAVIS_TAG" ]; then
+  - if [ "$LANGUAGE" == "Ruby" ] && [ "$TRAVIS_SECURE_ENV_VARS" == "true" ] && [ "$TRAVIS_COMMIT_RANGE" ] && [ "$(git diff "$TRAVIS_COMMIT_RANGE" "$TRAVIS_BUILD_DIR/api/sudoku-backend.md" | wc -l)" != "0" ] && ! [ "$TRAVIS_TAG" ]; then
       (
         echo "Update Rust manual for commits $TRAVIS_COMMIT_RANGE";
         echo;
