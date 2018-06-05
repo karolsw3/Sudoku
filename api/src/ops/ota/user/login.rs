@@ -1,16 +1,19 @@
 use self::super::super::super::constraints::{SCrypt64Length, StringLength, HexString, NonEmpty, EMail};
 use self::super::super::super::super::util::{SCRYPT_IDEAL_PARAMS, mul_str};
 use self::super::super::super::{tables, GenericError, LoginError, User};
-use diesel::{ExpressionMethods, FilterDsl, FirstDsl};
+use diesel::expression_methods::ExpressionMethods;
 use crypto::scrypt::{scrypt_simple, scrypt_check};
 use rocket::request::{FormItems, FromForm};
+use diesel::query_dsl::methods::FilterDsl;
 use diesel::sqlite::SqliteConnection;
 use rocket::request::FromFormValue;
 use std::marker::PhantomData;
 use rocket::http::RawStr;
+use diesel::RunQueryDsl;
 use std::borrow::Cow;
 use serde_json;
 use base64;
+
 
 
 /// Log-in *and* user-create form – refer to `doc/user.md`.

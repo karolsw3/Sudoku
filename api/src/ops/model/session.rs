@@ -1,7 +1,10 @@
-use diesel::{self, ExpressionMethods, ExecuteDsl, FilterDsl};
+use diesel::expression_methods::ExpressionMethods;
 use chrono::{NaiveDateTime, Duration, Utc};
+use diesel::query_dsl::methods::FilterDsl;
 use self::super::super::tables::sessions;
 use diesel::sqlite::SqliteConnection;
+use diesel::query_dsl::RunQueryDsl;
+use diesel;
 
 
 /// Refer to `doc/session.md` for more details.

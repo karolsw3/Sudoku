@@ -1,11 +1,11 @@
 #![feature(plugin)]
 #![plugin(rocket_codegen)]
 
+// `diesel` will generate these erorrs no mater how hard we try, so
+#![allow(proc_macro_derive_resolution_fallback)]
+
 #[macro_use]
-extern crate diesel_codegen;
-// #[macro_use]
-// extern crate serde_derive;
-extern crate r2d2_diesel;
+extern crate serde_derive;
 #[macro_use]
 extern crate lazy_static;
 extern crate serde_json;
@@ -15,11 +15,9 @@ extern crate crypto;
 extern crate rocket;
 #[macro_use]
 extern crate diesel;
-#[macro_use]
 extern crate serde;
 #[macro_use]
 extern crate clap;
-extern crate r2d2;
 extern crate time;
 
 mod options;

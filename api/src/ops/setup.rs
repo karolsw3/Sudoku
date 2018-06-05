@@ -3,14 +3,13 @@
 
 use rocket::request::{FromRequest, Outcome as RequestOutcome};
 use self::super::super::util::INITIALISE_DATABASE;
+use diesel::r2d2::{self, ConnectionManager};
 use diesel::connection::SimpleConnection;
 use rocket::{Request, Outcome, State};
 use diesel::sqlite::SqliteConnection;
-use r2d2_diesel::ConnectionManager;
 use rocket::http::Status;
 use std::path::PathBuf;
 use std::ops::Deref;
-use r2d2;
 
 
 /// Connection request guard type: a wrapper around an r2d2 pooled connection.
@@ -55,9 +54,8 @@ impl DatabaseConnection {
     /// Set up a connection to the main database located in the specified file and initialise it with
     /// [`util::INITIALISE_DATABASE`](../../../util/static.INITIALISE_DATABASE.html).
     pub fn initialise(db_file: &(String, PathBuf)) -> r2d2::Pool<ConnectionManager<SqliteConnection>> {
-        let cfg = r2d2::Config::default();
         let mgr = ConnectionManager::new(db_file.1.display().to_string().replace('\\', "/"));
-        let pool: r2d2::Pool<ConnectionManager<SqliteConnection>> = r2d2::Pool::new(cfg, mgr).expect("Failed to open database");
+        let pool: r2d2::Pool<ConnectionManager<SqliteConnection>> = r2d2::Pool::new(mgr).expect("Failed to open database");
         pool.get().unwrap().batch_execute(INITIALISE_DATABASE).unwrap();
         pool
     }
