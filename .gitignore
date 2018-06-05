@@ -1,0 +1,14 @@
+*
+!*.enc
+!.git*
+!*.yml
+!*.md
+!LICENSE
+!api
+!api/**
+!design
+!design/**
+!images
+!images/**
+!web_app
+!web_app/**
