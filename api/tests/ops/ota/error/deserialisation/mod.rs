@@ -1,4 +1,7 @@
-use sudoku_backend::ops::LoginError;
+mod generic_severity;
+mod generic;
+
+use sudoku_backend::ops::errors::LoginError;
 use serde_json;
 
 

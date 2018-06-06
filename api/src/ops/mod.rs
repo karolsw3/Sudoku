@@ -7,4 +7,10 @@ pub mod tables;
 pub mod constraints;
 
 pub use self::model::{Session, User};
-pub use self::ota::{SanitisedUserData, GenericError, LoginError, LoginForm};
+pub use self::ota::{SanitisedUserData, LoginForm};
+
+pub mod errors {
+    //! Various API errors.
+
+    pub use self::super::ota::{GenericErrorSeverity, GenericError, LoginError};
+}

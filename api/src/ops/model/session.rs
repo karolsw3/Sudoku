@@ -27,9 +27,8 @@ pub struct Session {
 
     /// The logged-in user ID, or `None` for unauthed access.
     pub user_id: Option<i32>,
-
-    // pub product_id: Option<i32>,
 }
+// pub product_id: Option<i32>,
 
 impl Session {
     /// Create an empty session expiring a day from the creation datetime.
@@ -41,8 +40,8 @@ impl Session {
             expiry: NaiveDateTime::from_timestamp((Utc::now() + Duration::days(1)).naive_utc().timestamp(), 0),
             is_admin: false,
             user_id: None,
-            // product_id: None,
         }
+        // product_id: None,
     }
 
     // pub fn set_product(&mut self, pid: i32, db: &SqliteConnection) -> Result<(), &'static str> {

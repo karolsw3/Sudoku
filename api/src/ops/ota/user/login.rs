@@ -1,8 +1,9 @@
 use self::super::super::super::constraints::{SCrypt64Length, StringLength, HexString, NonEmpty, EMail};
+use self::super::super::super::errors::{GenericErrorSeverity, GenericError, LoginError};
 use self::super::super::super::super::util::{SCRYPT_IDEAL_PARAMS, mul_str};
-use self::super::super::super::{tables, GenericError, LoginError, User};
 use diesel::expression_methods::ExpressionMethods;
 use crypto::scrypt::{scrypt_simple, scrypt_check};
+use self::super::super::super::{tables, User};
 use rocket::request::{FormItems, FromForm};
 use diesel::query_dsl::methods::FilterDsl;
 use diesel::sqlite::SqliteConnection;
@@ -30,10 +31,11 @@ use base64;
 /// # use std::fs;
 /// # use std::env::temp_dir;
 /// # use rocket::request::Form;
+/// # use sudoku_backend::ops::LoginForm;
 /// # use rocket::response::content::Json;
 /// # use diesel::sqlite::SqliteConnection;
 /// # use sudoku_backend::ops::setup::DatabaseConnection;
-/// # use sudoku_backend::ops::{GenericError, LoginError, LoginForm};
+/// # use sudoku_backend::ops::errors::{GenericError, LoginError};
 /// # fn work(_: &SqliteConnection, _: i32, _: bool) -> Result<String, GenericError> {
 /// #     Ok("henlo".to_string())
 /// # }
@@ -89,14 +91,21 @@ impl LoginForm {
         self.password
             .as_ref()
             .err()
-            .map(|e| GenericError { reason: match e {
-                Some(Some(s)) => format!("derived password of invalid length {}, please report to administrator", s).into(), // FlashMessageClass::Danger
-                Some(None) => "Derived password contained non-hexadecimal character, please contact administrator".into(), // FlashMessageClass::Danger
-                None => "couldn't parse password; try again".into(), // FlashMessageClass::Warning
-            }})
+            .map(|e| match e {
+                Some(Some(s)) => (format!("derived password of invalid length {}, please report to administrator", s), GenericErrorSeverity::Danger).into(),
+                Some(None) => ("Derived password contained non-hexadecimal character, please contact administrator", GenericErrorSeverity::Danger).into(),
+                None => ("couldn't parse password; try again", GenericErrorSeverity::Warning).into(),
+            })
             .into_iter()
-            .chain(self.ext_error.as_ref().err().map(|&(ref s, _e)| {
-                GenericError { reason: s.clone() } // if e { FlashMessageClass::Danger } else { FlashMessageClass::Warning }
+            .chain(self.ext_error.as_ref().err().map(|&(ref s, e)| {
+                GenericError {
+                    reason: s.clone(),
+                    severity: if e {
+                        GenericErrorSeverity::Danger
+                    } else {
+                        GenericErrorSeverity::Warning
+                    },
+                }
             }))
             .collect()
     }
