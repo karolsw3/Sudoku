@@ -16,7 +16,6 @@ use serde_json;
 use base64;
 
 
-
 /// Log-in *and* user-create form – refer to `doc/user.md`.
 ///
 /// # Examples

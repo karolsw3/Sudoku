@@ -4,6 +4,7 @@
 // `diesel` will generate these erorrs no mater how hard we try, so
 #![allow(proc_macro_derive_resolution_fallback)]
 
+extern crate rocket_contrib;
 #[macro_use]
 extern crate serde_derive;
 #[macro_use]
@@ -15,7 +16,6 @@ extern crate crypto;
 extern crate rocket;
 #[macro_use]
 extern crate diesel;
-extern crate serde;
 #[macro_use]
 extern crate clap;
 extern crate time;

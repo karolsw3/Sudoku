@@ -14,6 +14,6 @@ fn main() {
 
     rocket::ignite()
         .manage(ops::setup::DatabaseConnection::initialise(&opts.database_file))
-        .mount("/sudoku/api/poc", routes![ops::routes::poc::ping])
+        .catch(catchers![ops::routes::catchers::not_found, ops::routes::catchers::internal_server_error])
         .launch();
 }
