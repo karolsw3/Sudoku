@@ -19,13 +19,17 @@ Nota bene: these values **must** be consistent once and for all, as other values
 
 That value is then hex-string-encoded (case irrelevant), a JSON-stringified form is constructed, then base64-encoded as "data" and that is sent in a form.
 
-In other words, with `data` being the key and value, and doubling as <span id="user-login-data">User Login data</span> (all keys `string`s):
+In other words, with `data` being the key and value, and doubling as <span id="user-login-data">User Login Data</span> (all keys `string`s):
 ```js
 let data = base64(JSON.stringify({
     login: raw_login,
+    email: raw_email, // See note below
     password: scrypt(raw_password, /* With ^ params */)
 }));
 ```
+
+The `email` key *shall only be present* for user registration – the form will be rejected if it contains an email and is used to log in;
+  *vice versa* – the registration request will be rejected if it doesn't contain the `email` key.
 
 ### Server-side verification
 If a user with the specified username exists in the database,
@@ -54,6 +58,9 @@ The returned status shall be `201 Created` on correct creation,
 The returned value shall be [Sanitised User data](#sanitised-user-data) on correct creation,
                          an appropriately filled out [Generic Error](errors.md#generic-error) if a user with that name/e-mail already exists,
                      and an otherwise implementation-defined relevant [Error](errors.md) on other errors.
+
+### Logging out
+Independently of whether the user is logged in, the server shall return `204 No Content`.
 
 ## SQL table def
 

@@ -1,9 +1,12 @@
+use diesel::query_dsl::methods::{FilterDsl, OrderDsl, FindDsl};
 use diesel::expression_methods::ExpressionMethods;
+use self::super::super::tables::{self, sessions};
 use chrono::{NaiveDateTime, Duration, Utc};
-use diesel::query_dsl::methods::FilterDsl;
-use self::super::super::tables::sessions;
 use diesel::sqlite::SqliteConnection;
+use rocket::http::{Cookies, Cookie};
 use diesel::query_dsl::RunQueryDsl;
+use time::{self, Timespec};
+use std::str::FromStr;
 use diesel;
 
 
@@ -42,6 +45,33 @@ impl Session {
             user_id: None,
         }
         // product_id: None,
+    }
+
+    /// Get/create a session for the specified cookieset.
+    pub fn get(db: &SqliteConnection, cookies: &mut Cookies) -> Result<Session, &'static str> {
+        if let Some(ssid) = cookies.get_private("session_id") {
+            if let Ok(s) = tables::sessions::table.find(i32::from_str(ssid.value()).map_err(|_| "session_id cookie not an int")?).first::<Session>(db) {
+                if s.expiry > Utc::now().naive_utc() {
+                    return Ok(s);
+                } else {
+                    cookies.remove_private(ssid);
+                }
+            }
+        }
+
+        let sess = Session::new();
+        diesel::insert_into(tables::sessions::table).values(&sess).execute(db).map_err(|_| "couldn't create new session")?;
+
+        // We need to round-trip to get an id
+        let sess = tables::sessions::table.filter(tables::sessions::expiry.eq(&sess.expiry))
+            .order(tables::sessions::id.desc())
+            .first::<Session>(db)
+            .map_err(|_| "couldn't re-acquire new session")?;
+        cookies.add_private(Cookie::build("session_id", sess.id.unwrap().to_string())
+            .expires(time::at_utc(Timespec::new(sess.expiry.timestamp(), sess.expiry.timestamp_subsec_nanos() as i32)))
+            .http_only(true)
+            .finish());
+        Ok(sess)
     }
 
     // pub fn set_product(&mut self, pid: i32, db: &SqliteConnection) -> Result<(), &'static str> {

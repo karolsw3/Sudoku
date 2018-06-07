@@ -1,5 +1,10 @@
-use self::super::super::tables::users;
+use diesel::expression_methods::ExpressionMethods;
+use self::super::super::tables::{self, users};
+use diesel::query_dsl::methods::FilterDsl;
+use diesel::sqlite::SqliteConnection;
+use diesel::query_dsl::RunQueryDsl;
 use chrono::{NaiveDateTime, Utc};
+use diesel;
 
 
 /// Refer to [`doc/user.md`](../doc/user/) for more details.
@@ -46,5 +51,15 @@ impl User {
             is_admin: false,
             points_total: 0,
         }
+    }
+
+    /// Pull out a user with the specified ID from the specified database.
+    pub fn get_by_id(id: i32, db: &SqliteConnection) -> Result<User, &'static str> {
+        tables::users::table.filter(tables::users::id.eq(&id)).first(db).map_err(|_| "couldn't get user")
+    }
+
+    /// Insert this user into the specified database, if possible.
+    pub fn add(&self, db: &SqliteConnection) -> Result<(), &'static str> {
+        diesel::insert_into(tables::users::table).values(self).execute(db).map(|_| ()).map_err(|_| "insert failed")
     }
 }

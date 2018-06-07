@@ -57,6 +57,12 @@ pub enum GenericErrorSeverity {
 }
 
 
+impl GenericErrorSeverity {
+    /// The currently-lowest severity, for generic code.
+    #[allow(non_upper_case_globals)]
+    pub const Lowest: GenericErrorSeverity = GenericErrorSeverity::Warning;
+}
+
 impl<R: Into<Cow<'static, str>>> From<(R, GenericErrorSeverity)> for GenericError {
     fn from((r, s): (R, GenericErrorSeverity)) -> GenericError {
         GenericError {
