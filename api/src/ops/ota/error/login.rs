@@ -1,6 +1,6 @@
 /// Security ⇒ no data.
 ///
-/// Refer to `doc/user.md` for more details.
+/// Refer to [`doc/user.md`](../../doc/user/) for more details.
 ///
 /// # Examples
 ///

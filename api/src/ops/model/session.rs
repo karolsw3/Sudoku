@@ -7,7 +7,7 @@ use diesel::query_dsl::RunQueryDsl;
 use diesel;
 
 
-/// Refer to `doc/session.md` for more details.
+/// Refer to [`doc/session.md`](../doc/session/) for more details.
 ///
 /// TODO: doc full workflow with creation, database access, etc.
 #[derive(Queryable, Insertable, AsChangeset, Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]

@@ -22,6 +22,7 @@ extern crate time;
 
 mod options;
 
+pub mod doc;
 pub mod ops;
 pub mod util;
 

@@ -16,7 +16,7 @@ use serde_json;
 use base64;
 
 
-/// Log-in *and* user-create form – refer to `doc/user.md`.
+/// Log-in *and* user-create form – refer to [`doc/user.md`](../doc/user/).
 ///
 /// # Examples
 ///
@@ -71,7 +71,7 @@ pub struct LoginForm {
     /// User's e-mail. Need exist for user creation.
     pub email: Option<Result<EMail, Option<&'static str>>>,
 
-    /// Error parsing the box, see `doc/user.md`.
+    /// Error parsing the box, see [`doc/user.md`](../doc/user/).
     pub ext_error: Result<(), (Cow<'static, str>, bool)>,
 }
 

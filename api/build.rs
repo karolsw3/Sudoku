@@ -10,14 +10,15 @@ fn main() {
     let out_dir = env::var("OUT_DIR").unwrap();
     let out_dir = Path::new(&out_dir);
     query(&out_dir);
+    doc(&out_dir);
 }
 
 fn query(out_dir: &Path) {
     let dest_path = out_dir.join("query.rs");
     let mut f = File::create(&dest_path).unwrap();
 
-    f.write_all("/// Query to run to set up the database.\n".as_bytes()).unwrap();
-    f.write_all("pub const INITIALISE_DATABASE: &str = r#####\"\n".as_bytes()).unwrap();
+    writeln!(f, "/// Query to run to set up the database.").unwrap();
+    writeln!(f, "pub const INITIALISE_DATABASE: &str = r#####\"").unwrap();
     for doc_f in doc_files() {
         println!("cargo:rerun-if-changed={}", doc_f.display());
 
@@ -31,16 +32,37 @@ fn query(out_dir: &Path) {
                 no_run = false;
             } else if l == "```" {
                 copying = false;
-                f.write_all("\n".as_bytes()).unwrap();
+                writeln!(f).unwrap();
             } else if copying {
                 f.write_all(l.as_bytes()).unwrap();
-                f.write_all("\n".as_bytes()).unwrap();
+                writeln!(f).unwrap();
             }
         }
-        f.write_all("\n".as_bytes()).unwrap();
+        writeln!(f).unwrap();
     }
-    f.write_all("\"#####;\n".as_bytes()).unwrap();
-    f.write_all("\n".as_bytes()).unwrap();
+    writeln!(f, "\"#####;").unwrap();
+    writeln!(f).unwrap();
+}
+
+fn doc(out_dir: &Path) {
+    let dest_path = out_dir.join("doc.rs");
+    let mut f = File::create(&dest_path).unwrap();
+
+    for doc_f in doc_files() {
+        println!("cargo:rerun-if-changed={}", doc_f.display());
+
+        writeln!(f, "pub mod {} {{", doc_f.file_stem().unwrap().to_str().unwrap()).unwrap();
+
+        for l in BufReader::new(File::open(doc_f).unwrap()).lines().map(Result::unwrap) {
+            write!(f, "    //! ").unwrap();
+            f.write_all(l.as_bytes()).unwrap();
+            writeln!(f).unwrap();
+        }
+        f.write_all("\n".as_bytes()).unwrap();
+
+        writeln!(f, "}}").unwrap();
+        writeln!(f).unwrap();
+    }
 }
 
 fn doc_files() -> Vec<PathBuf> {

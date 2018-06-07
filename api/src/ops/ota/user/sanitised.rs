@@ -4,7 +4,7 @@ use chrono::{FixedOffset, DateTime};
 
 /// Data returned to authenticating client, with a free conversion from a [`User`](struct.User.html).
 ///
-/// Consult `doc/user.md` for more details.
+/// Consult [`doc/user.md`](../doc/user/) for more details.
 ///
 /// # Examples
 ///
@@ -45,7 +45,7 @@ pub struct SanitisedUserData {
     /// Whether the user has administrative privileges.
     pub is_admin: bool,
 
-    /// Sum total of the user's points, calculated according to `doc/scoring.md#endgame-formula`.
+    /// Sum total of the user's points, calculated according to [`doc/scoring.md#endgame-formula`](../doc/scoring/#endgame-formula).
     pub points_total: u64,
 }
 

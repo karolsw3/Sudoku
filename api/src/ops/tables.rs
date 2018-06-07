@@ -1,8 +1,8 @@
-//! `diesel` table definitions, copied over from `doc/`umentation.
+//! `diesel` table definitions, copied over from [`doc/`](../../doc/)umentation.
 
 
 table! {
-    /// See `doc/session.md`
+    /// See [`doc/session.md`](../../doc/session/)
     sessions {
         /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
         id         -> Nullable<Integer>,
@@ -14,7 +14,7 @@ table! {
 }
 
 table! {
-    /// See `doc/user.md`
+    /// See [`doc/user.md`](../../doc/user/)
     users {
         /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
         id           -> Nullable<Integer>,

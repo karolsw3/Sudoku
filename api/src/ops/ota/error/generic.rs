@@ -3,7 +3,7 @@ use std::borrow::Cow;
 
 /// Use this for most non-specific errors.
 ///
-/// Refer to `doc/error.md` for more details.
+/// Refer to [`doc/errors.md`](../../doc/errors/) for more details.
 ///
 /// # Examples
 ///
@@ -45,7 +45,7 @@ pub struct GenericError {
 
 /// How severe an error is.
 ///
-/// Refer to `doc/error.md` for more details.
+/// Refer to [`doc/errors.md`](../../doc/errors/) for more details.
 #[derive(Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[serde(rename_all = "lowercase")]
 pub enum GenericErrorSeverity {

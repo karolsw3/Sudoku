@@ -2,7 +2,7 @@ use self::super::super::tables::users;
 use chrono::{NaiveDateTime, Utc};
 
 
-/// Refer to `doc/user.md` for more details.
+/// Refer to [`doc/user.md`](../doc/user/) for more details.
 #[derive(Queryable, Insertable, AsChangeset, Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[table_name="users"]
 pub struct User {

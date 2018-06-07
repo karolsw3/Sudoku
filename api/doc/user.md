@@ -88,6 +88,7 @@ CREATE TABLE IF NOT EXISTS users (
 Admins are assigned manually, where `$1` is the username whose adminness to set:
 
 <!-- no_run -->
+
 ```sql
 UPDATE users
     SET is_admin = 1
