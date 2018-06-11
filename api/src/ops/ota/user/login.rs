@@ -77,7 +77,7 @@ pub struct LoginForm {
 
 #[derive(Deserialize)]
 struct LoginFormData {
-    login: String,
+    username: String,
     password: String,
     email: Option<String>,
 }
@@ -190,7 +190,7 @@ impl<'f> FromForm<'f> for LoginForm {
                 };
 
                 if let Ok((l, p, e)) = serde_json::from_str::<LoginFormData>(&v).map(|d| {
-                    (NonEmpty::from_form_value(RawStr::from_str(&d.login)),
+                    (NonEmpty::from_form_value(RawStr::from_str(&d.username)),
                      HexString::<SCrypt64Length>::from_form_value(RawStr::from_str(&d.password)),
                      d.email.map(|e| EMail::from_form_value(RawStr::from_str(&e))))
                 }) {

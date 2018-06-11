@@ -22,7 +22,7 @@ That value is then hex-string-encoded (case irrelevant), a JSON-stringified form
 In other words, with `data` being the key and value, and doubling as <span id="user-login-data">User Login Data</span> (all keys `string`s):
 ```js
 let data = base64(JSON.stringify({
-    login: raw_login,
+    username: raw_username,
     email: raw_email, // See note below
     password: scrypt(raw_password, /* With ^ params */)
 }));
