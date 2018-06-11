@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS users (
     email        TEXT NOT NULL UNIQUE,        -- User's contact e-mail
     created_at   DATETIME NOT NULL,           -- Time user was created
     is_admin     BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges
-    points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user's points, calculated according to scoring.md#endgame-formula, non-negative
+    points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user's points, calculated according to sudoku.md#scoring-formula, non-negative
 
     CHECK (points_total >= 0)
 );

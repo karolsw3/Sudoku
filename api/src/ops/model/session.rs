@@ -30,8 +30,18 @@ pub struct Session {
 
     /// The logged-in user ID, or `None` for unauthed access.
     pub user_id: Option<i32>,
+
+    /// ID of board currently being solved
+    pub sudoku_board_id: Option<i32>,
+
+    /// The board skeleton sent to the user
+    ///
+    /// TODO: constrain this?
+    pub board_skeleton: Option<String>,
+
+    /// Time the solving started
+    pub solve_start: Option<NaiveDateTime>,
 }
-// pub product_id: Option<i32>,
 
 impl Session {
     /// Create an empty session expiring a day from the creation datetime.
@@ -43,8 +53,10 @@ impl Session {
             expiry: NaiveDateTime::from_timestamp((Utc::now() + Duration::days(1)).naive_utc().timestamp(), 0),
             is_admin: false,
             user_id: None,
+            sudoku_board_id: None,
+            board_skeleton: None,
+            solve_start: None,
         }
-        // product_id: None,
     }
 
     /// Get/create a session for the specified cookieset.
@@ -112,6 +124,9 @@ impl Session {
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
     ///     is_admin: false,
     ///     user_id: None,
+    ///     sudoku_board_id: None,
+    ///     board_skeleton: None,
+    ///     solve_start: None,
     /// };
     ///
     /// sess.log_in(18, true, &db).unwrap();
@@ -121,6 +136,9 @@ impl Session {
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
     ///     is_admin: true,
     ///     user_id: Some(18),
+    ///     sudoku_board_id: None,
+    ///     board_skeleton: None,
+    ///     solve_start: None,
     /// });
     /// ```
     ///
@@ -167,6 +185,9 @@ impl Session {
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
     ///     is_admin: true,
     ///     user_id: Some(18),
+    ///     sudoku_board_id: None,
+    ///     board_skeleton: None,
+    ///     solve_start: None,
     /// };
     ///
     /// sess.log_out(&db).unwrap();
@@ -176,6 +197,9 @@ impl Session {
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
     ///     is_admin: false,
     ///     user_id: None,
+    ///     sudoku_board_id: None,
+    ///     board_skeleton: None,
+    ///     solve_start: None,
     /// });
     /// ```
     ///

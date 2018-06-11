@@ -5,11 +5,13 @@ table! {
     /// See [`doc/session.md`](../../doc/session/)
     sessions {
         /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
-        id         -> Nullable<Integer>,
-        expiry     -> Timestamp,
-        is_admin   -> Bool,
-        user_id    -> Nullable<Integer>,
-        // product_id -> Nullable<Integer>,
+        id              -> Nullable<Integer>,
+        expiry          -> Timestamp,
+        is_admin        -> Bool,
+        user_id         -> Nullable<Integer>,
+        sudoku_board_id -> Nullable<Integer>,
+        board_skeleton  -> Nullable<Text>,
+        solve_start     -> Nullable<Timestamp>,
     }
 }
 
