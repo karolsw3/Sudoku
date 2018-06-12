@@ -16,6 +16,7 @@ extern crate crypto;
 extern crate rocket;
 #[macro_use]
 extern crate diesel;
+extern crate serde;
 #[macro_use]
 extern crate clap;
 extern crate time;

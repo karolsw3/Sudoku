@@ -7,7 +7,7 @@ pub mod tables;
 pub mod constraints;
 
 pub use self::model::{Session, User};
-pub use self::ota::{SanitisedUserData, LoginForm};
+pub use self::ota::{SanitisedUserData, BoardMessage, LoginForm};
 
 pub mod errors {
     //! Various API errors.
