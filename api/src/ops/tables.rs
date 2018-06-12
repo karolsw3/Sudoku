@@ -28,3 +28,14 @@ table! {
         points_total -> Integer,
     }
 }
+
+table! {
+    /// See [`doc/sudoku.md`](../../doc/sudoku/)
+    sudoku_boards {
+        /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
+        id            -> Nullable<Integer>,
+        full_board    -> Text,
+        difficulty    -> Integer,
+        creation_time -> Timestamp,
+    }
+}

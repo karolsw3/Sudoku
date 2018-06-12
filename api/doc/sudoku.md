@@ -7,9 +7,10 @@ A Sudoku board consists of the following:
 
 ```sql
 CREATE TABLE IF NOT EXISTS sudoku_boards (
-    id           INTEGER PRIMARY KEY ASC,                                                -- Unique board ID
-    full_board   TEXT NOT NULL UNIQUE,                                                   -- The full "solved" board repr
-    difficulty   INTEGER NOT NULL,                                                       -- Board "difficulty", between one and three
+    id            INTEGER PRIMARY KEY ASC,                                               -- Unique board ID
+    full_board    TEXT NOT NULL UNIQUE,                                                  -- The full "solved" board repr
+    difficulty    INTEGER NOT NULL,                                                      -- Board "difficulty", between one and three
+    creation_time DATETIME NOT NULL,                                                     -- Time the board was generated
 
     CHECK (((difficulty >= 1) AND (difficulty <= 3)) AND (LENGTH(full_board) == 9 * 9))
 );
