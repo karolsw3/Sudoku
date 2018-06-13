@@ -46,11 +46,97 @@ impl SudokuBoard {
     }
 
     /// Retrieve the board with the specified ID.
+    ///
+    /// # Examples
+    ///
+    /// Given:
+    ///
+    /// ```sql
+    /// INSERT INTO "sudoku_boards" VALUES(1, '269574813534918726781263594395846271478129365126357948857491632913682457642735189', 3, '2018-08-01 23:50:14');
+    /// ```
+    ///
+    /// The following holds:
+    ///
+    /// ```
+    /// # extern crate sudoku_backend;
+    /// # extern crate chrono;
+    /// # use sudoku_backend::ops::setup::DatabaseConnection;
+    /// # use sudoku_backend::ops::SudokuBoard;
+    /// # use std::env::temp_dir;
+    /// # use chrono::NaiveDate;
+    /// # use std::fs;
+    /// # let database_file =
+    /// #    ("$ROOT/sudoku-backend.db".to_string(),
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-insert").join("sudoku-backend.db"));
+    /// # let _ = fs::remove_file(&database_file.1);
+    /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
+    /// # let db = DatabaseConnection::initialise(&database_file);
+    /// # let db = &db.get().unwrap();
+    /// # let mut board = SudokuBoard {
+    /// #     id: None,
+    /// #     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
+    /// #     difficulty: 3,
+    /// #     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
+    /// # };
+    /// # board.insert(&db).unwrap();
+    /// let board = SudokuBoard::get(1, &db).unwrap();
+    /// assert_eq!(board, SudokuBoard {
+    ///     id: Some(1),
+    ///     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
+    ///     difficulty: 3,
+    ///     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
+    /// });
+    /// ```
     pub fn get(id: i32, db: &SqliteConnection) -> Result<SudokuBoard, &'static str> {
         tables::sudoku_boards::table.find(id).first::<SudokuBoard>(db).map_err(|_| "couldn't acquire sudoku board")
     }
 
     /// Insert this board into the specified DB, updating its id.
+    ///
+    /// # Examples
+    ///
+    /// Assuming empty table:
+    ///
+    /// ```
+    /// # extern crate sudoku_backend;
+    /// # extern crate chrono;
+    /// # use sudoku_backend::ops::{BoardDifficulty, SudokuBoard};
+    /// # use sudoku_backend::ops::setup::DatabaseConnection;
+    /// # use std::env::temp_dir;
+    /// # use chrono::NaiveDate;
+    /// # use std::fs;
+    /// # let database_file =
+    /// #    ("$ROOT/sudoku-backend.db".to_string(),
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-insert").join("sudoku-backend.db"));
+    /// # let _ = fs::remove_file(&database_file.1);
+    /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
+    /// # let db = DatabaseConnection::initialise(&database_file);
+    /// # let db = &db.get().unwrap();
+    /// # let difficulty = BoardDifficulty::Hard;
+    /// let mut board = SudokuBoard::new(difficulty);
+    /// # let mut board = SudokuBoard {
+    /// #     id: None,
+    /// #     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
+    /// #     difficulty: 3,
+    /// #     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
+    /// # };
+    /// assert!(board.id.is_none());
+    ///
+    /// board.insert(&db).unwrap();
+    /// assert_eq!(board.id, Some(1));
+    /// # assert_eq!(board, SudokuBoard {
+    /// #     id: Some(1),
+    /// #     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
+    /// #     difficulty: 3,
+    /// #     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
+    /// # });
+    /// ```
+    ///
+    /// After, example:
+    ///
+    /// ```sql
+    /// INSERT INTO "sudoku_boards" VALUES(1, '269574813534918726781263594395846271478129365126357948857491632913682457642735189', 3, '2018-08-01 23:50:14');
+    /// ```
     pub fn insert(&mut self, db: &SqliteConnection) -> Result<(), &'static str> {
         if self.id.is_some() {
             return Ok(());
@@ -67,132 +153,4 @@ impl SudokuBoard {
 
         Ok(())
     }
-
-    /*// pub fn set_product(&mut self, pid: i32, db: &SqliteConnection) -> Result<(), &'static str> {
-    // self.product_id = Some(pid);
-    // diesel::update(sudoku_boards::table.filter(sudoku_boards::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_|
-    // "update failed")
-    // }
-
-    /// Update the in-memory and in-DB model to be logged in a the specified user with the specified permissions.
-    ///
-    /// # Examples
-    ///
-    /// Before:
-    ///
-    /// ```sql
-    /// INSERT INTO "sudoku_boards" VALUES(32, '2018-07-09 12:40:26', 0, NULL);
-    /// ```
-    ///
-    /// Update:
-    ///
-    /// ```
-    /// # extern crate sudoku_backend;
-    /// # extern crate chrono;
-    /// # use sudoku_backend::ops::setup::DatabaseConnection;
-    /// # use sudoku_backend::ops::SudokuBoard;
-    /// # use std::env::temp_dir;
-    /// # use chrono::NaiveDate;
-    /// # use std::fs;
-    /// # let database_file =
-    /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-log_in").join("sudoku-backend.db"));
-    /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
-    /// # let db = DatabaseConnection::initialise(&database_file);
-    /// # let db = &db.get().unwrap();
-    /// # // TODO: actually insert the bloody thing first.
-    /// let mut sess = SudokuBoard {
-    ///     id: Some(32),
-    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
-    ///     is_admin: false,
-    ///     user_id: None,
-    ///     sudoku_board_id: None,
-    ///     board_skeleton: None,
-    ///     solve_start: None,
-    /// };
-    ///
-    /// sess.log_in(18, true, &db).unwrap();
-    ///
-    /// assert_eq!(sess, SudokuBoard {
-    ///     id: Some(32),
-    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
-    ///     is_admin: true,
-    ///     user_id: Some(18),
-    ///     sudoku_board_id: None,
-    ///     board_skeleton: None,
-    ///     solve_start: None,
-    /// });
-    /// ```
-    ///
-    /// After:
-    ///
-    /// ```sql
-    /// INSERT INTO "sudoku_boards" VALUES(32, '2018-07-09 12:40:26', 1, 18);
-    /// ```
-    pub fn log_in(&mut self, uid: i32, is_admin: bool, db: &SqliteConnection) -> Result<(), &'static str> {
-        self.user_id = Some(uid);
-        self.is_admin = is_admin;
-        diesel::update(sudoku_boards::table.filter(sudoku_boards::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
-    }
-
-    /// Update the in-memory and in-DB model to not be logged in nor be admin.
-    ///
-    /// # Examples
-    ///
-    /// Before:
-    ///
-    /// ```sql
-    /// INSERT INTO "sudoku_boards" VALUES(32, '2018-07-09 12:40:26', 1, 18);
-    /// ```
-    ///
-    /// Update:
-    ///
-    /// ```
-    /// # extern crate sudoku_backend;
-    /// # extern crate chrono;
-    /// # use sudoku_backend::ops::setup::DatabaseConnection;
-    /// # use sudoku_backend::ops::SudokuBoard;
-    /// # use std::env::temp_dir;
-    /// # use chrono::NaiveDate;
-    /// # use std::fs;
-    /// # let database_file =
-    /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-log_out").join("sudoku-backend.db"));
-    /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
-    /// # let db = DatabaseConnection::initialise(&database_file);
-    /// # let db = &db.get().unwrap();
-    /// # // TODO: actually insert the bloody thing first.
-    /// let mut sess = SudokuBoard {
-    ///     id: Some(32),
-    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
-    ///     is_admin: true,
-    ///     user_id: Some(18),
-    ///     sudoku_board_id: None,
-    ///     board_skeleton: None,
-    ///     solve_start: None,
-    /// };
-    ///
-    /// sess.log_out(&db).unwrap();
-    ///
-    /// assert_eq!(sess, SudokuBoard {
-    ///     id: Some(32),
-    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
-    ///     is_admin: false,
-    ///     user_id: None,
-    ///     sudoku_board_id: None,
-    ///     board_skeleton: None,
-    ///     solve_start: None,
-    /// });
-    /// ```
-    ///
-    /// After:
-    ///
-    /// ```sql
-    /// INSERT INTO "sudoku_boards" VALUES(32, '2018-07-09 12:40:26', 0, NULL);
-    /// ```
-    pub fn log_out(&mut self, db: &SqliteConnection) -> Result<(), &'static str> {
-        self.user_id = None;
-        self.is_admin = false;
-        diesel::update(sudoku_boards::table.filter(sudoku_boards::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
-    }*/
 }
