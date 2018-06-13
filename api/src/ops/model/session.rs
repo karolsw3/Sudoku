@@ -7,6 +7,7 @@ use rocket::http::{Cookies, Cookie};
 use diesel::query_dsl::RunQueryDsl;
 use time::{self, Timespec};
 use std::str::FromStr;
+use std::borrow::Cow;
 use diesel;
 
 
@@ -37,7 +38,7 @@ pub struct Session {
     /// The board skeleton sent to the user
     ///
     /// TODO: constrain this?
-    pub board_skeleton: Option<String>,
+    pub board_skeleton: Option<Cow<'static, str>>,
 
     /// Time the solving started
     pub solve_start: Option<NaiveDateTime>,
@@ -86,11 +87,18 @@ impl Session {
         Ok(sess)
     }
 
-    // pub fn set_product(&mut self, pid: i32, db: &SqliteConnection) -> Result<(), &'static str> {
-    // self.product_id = Some(pid);
-    // diesel::update(sessions::table.filter(sessions::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_|
-    // "update failed")
-    // }
+    /// TODO: docs
+    pub fn start_game<S: Into<Cow<'static, str>>>(&mut self, bid: i32, skeleton: S, db: &SqliteConnection) -> Result<(), &'static str> {
+        self.start_game_impl(bid, skeleton.into(), db)
+    }
+
+    fn start_game_impl(&mut self, bid: i32, skeleton: Cow<'static, str>, db: &SqliteConnection) -> Result<(), &'static str> {
+        self.sudoku_board_id = Some(bid);
+        self.board_skeleton = Some(skeleton);
+        self.solve_start = Some(NaiveDateTime::from_timestamp(Utc::now().timestamp(), 0));
+
+        diesel::update(sessions::table.filter(sessions::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
+    }
 
     /// Update the in-memory and in-DB model to be logged in a the specified user with the specified permissions.
     ///

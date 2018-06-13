@@ -14,6 +14,7 @@ extern crate base64;
 extern crate chrono;
 extern crate crypto;
 extern crate rocket;
+extern crate sudoku;
 #[macro_use]
 extern crate diesel;
 extern crate serde;

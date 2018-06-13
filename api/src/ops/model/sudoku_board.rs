@@ -1,13 +1,12 @@
 use diesel::query_dsl::methods::{FilterDsl, OrderDsl, FindDsl};
-use self::super::super::tables::{self, sudoku_boards};
 use self::super::sudoku_difficulty::BoardDifficulty;
 use diesel::expression_methods::ExpressionMethods;
-use chrono::{NaiveDateTime, Duration, Utc};
+use self::super::super::tables::sudoku_boards;
 use diesel::sqlite::SqliteConnection;
-use rocket::http::{Cookies, Cookie};
 use diesel::query_dsl::RunQueryDsl;
-use time::{self, Timespec};
-use std::str::FromStr;
+use chrono::{NaiveDateTime, Utc};
+use self::super::super::tables;
+use sudoku::Sudoku;
 use diesel;
 
 
@@ -34,46 +33,42 @@ pub struct SudokuBoard {
 }
 
 impl SudokuBoard {
-    /// Create an empty sudoku_board expiring a day from the creation datetime.
+    /// Create a new, unique, sudoku board.
     ///
-    /// Put it in the database to get an ID to put back in the cookie.
+    /// Put it in the database to get an ID.
     pub fn new(difficulty: BoardDifficulty) -> SudokuBoard {
         SudokuBoard {
             id: None,
-            full_board: "".to_string(),
+            full_board: Sudoku::generate_filled().to_str_line().to_string(),
             difficulty: difficulty.to_numeric() as i32,
             creation_time: NaiveDateTime::from_timestamp(Utc::now().timestamp(), 0),
         }
     }
 
-    /*/// Get/create a sudoku_board for the specified cookieset.
-    pub fn get(db: &SqliteConnection, cookies: &mut Cookies) -> Result<SudokuBoard, &'static str> {
-        if let Some(ssid) = cookies.get_private("sudoku_board_id") {
-            if let Ok(s) = tables::sudoku_boards::table.find(i32::from_str(ssid.value()).map_err(|_| "sudoku_board_id cookie not an int")?).first::<SudokuBoard>(db) {
-                if s.expiry > Utc::now().naive_utc() {
-                    return Ok(s);
-                } else {
-                    cookies.remove_private(ssid);
-                }
-            }
-        }
-
-        let sess = SudokuBoard::new();
-        diesel::insert_into(tables::sudoku_boards::table).values(&sess).execute(db).map_err(|_| "couldn't create new sudoku_board")?;
-
-        // We need to round-trip to get an id
-        let sess = tables::sudoku_boards::table.filter(tables::sudoku_boards::expiry.eq(&sess.expiry))
-            .order(tables::sudoku_boards::id.desc())
-            .first::<SudokuBoard>(db)
-            .map_err(|_| "couldn't re-acquire new sudoku_board")?;
-        cookies.add_private(Cookie::build("sudoku_board_id", sess.id.unwrap().to_string())
-            .expires(time::at_utc(Timespec::new(sess.expiry.timestamp(), sess.expiry.timestamp_subsec_nanos() as i32)))
-            .http_only(true)
-            .finish());
-        Ok(sess)
+    /// Retrieve the board with the specified ID.
+    pub fn get(id: i32, db: &SqliteConnection) -> Result<SudokuBoard, &'static str> {
+        tables::sudoku_boards::table.find(id).first::<SudokuBoard>(db).map_err(|_| "couldn't acquire sudoku board")
     }
 
-    // pub fn set_product(&mut self, pid: i32, db: &SqliteConnection) -> Result<(), &'static str> {
+    /// Insert this board into the specified DB, updating its id.
+    pub fn insert(&mut self, db: &SqliteConnection) -> Result<(), &'static str> {
+        if self.id.is_some() {
+            return Ok(());
+        }
+
+        diesel::insert_into(tables::sudoku_boards::table).values(&*self).execute(db).map_err(|_| "couldn't create new sudoku board")?;
+
+        // We need to round-trip to get an id
+        let board = tables::sudoku_boards::table.filter(tables::sudoku_boards::full_board.eq(&self.full_board))
+            .order(tables::sudoku_boards::id.desc())
+            .first::<SudokuBoard>(db)
+            .map_err(|_| "couldn't re-acquire new sudoku board")?;
+        self.id = board.id;
+
+        Ok(())
+    }
+
+    /*// pub fn set_product(&mut self, pid: i32, db: &SqliteConnection) -> Result<(), &'static str> {
     // self.product_id = Some(pid);
     // diesel::update(sudoku_boards::table.filter(sudoku_boards::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_|
     // "update failed")

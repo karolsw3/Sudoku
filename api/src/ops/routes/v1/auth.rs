@@ -1,6 +1,6 @@
 //! Auth-related routes.
 //!
-//! To be mounted on "/sudoku/api/v1/auth".
+//! To be mounted on "/api/v1/auth".
 //!
 //! Refer to [doc/user.md](../../../doc/user/) for the specifics.
 

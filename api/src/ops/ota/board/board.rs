@@ -1,5 +1,6 @@
 use self::super::super::super::constraints::{SudokuBoard9x9ConciseLength, SudokuString};
 use serde::de::{Deserializer, Deserialize, Error as DeserializerError};
+use serde::ser::{SerializeStruct, Serializer, Serialize};
 use std::str::FromStr;
 use std::borrow::Cow;
 
@@ -7,7 +8,7 @@ use std::borrow::Cow;
 /// The message sent to and from the client on acquisiion/submission of solved board
 ///
 /// Consult [`doc/sudoku.md`](../doc/sudoku/)
-#[derive(Serialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
+#[derive(Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub struct BoardMessage {
     /// ID of the full original board
     pub board_id: i32,
@@ -24,6 +25,18 @@ struct BoardMessageData<'s> {
     board_id: i32,
     board_skeleton: Cow<'s, str>,
     solved_board: Option<Cow<'s, str>>,
+}
+
+impl Serialize for BoardMessage {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        let mut s = serializer.serialize_struct("BoardMessage", 2 + self.solved_board.is_some() as usize)?;
+        s.serialize_field("board_id", &self.board_id)?;
+        s.serialize_field("board_skeleton", &self.board_skeleton)?;
+        if let Some(ref sb) = self.solved_board {
+            s.serialize_field("solved_board", &sb)?;
+        }
+        s.end()
+    }
 }
 
 impl<'de> Deserialize<'de> for BoardMessage {
