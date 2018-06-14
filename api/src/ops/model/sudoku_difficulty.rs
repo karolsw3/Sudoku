@@ -17,7 +17,7 @@ pub enum BoardDifficulty {
 impl BoardDifficulty {
     /// Calculate the score for a board according to [`doc/sudoku.md#scoring-formula`](../doc/sudoku/#scoring-formula)
     ///
-    /// Negative duration is out of domain and will return `0`.
+    /// Negative duration is out of domain and will return `None`.
     ///
     /// # Examples
     ///
@@ -26,16 +26,16 @@ impl BoardDifficulty {
     /// # extern crate chrono;
     /// # use sudoku_backend::ops::BoardDifficulty;
     /// # use chrono::Duration;
-    /// assert_eq!(BoardDifficulty::Easy.score(Duration::seconds(120)), 55);
-    /// assert_eq!(BoardDifficulty::Hard.score(Duration::seconds(250)), 126);
+    /// assert_eq!(BoardDifficulty::Easy.score(&Duration::seconds(120)), Some(55));
+    /// assert_eq!(BoardDifficulty::Hard.score(&Duration::seconds(250)), Some(126));
     ///
-    /// assert_eq!(BoardDifficulty::Medium.score(Duration::seconds(-65)), 0);
+    /// assert_eq!(BoardDifficulty::Medium.score(&Duration::seconds(-65)), None);
     /// ```
-    pub fn score(&self, solve_time: Duration) -> u64 {
-        if solve_time < Duration::zero() {
-            0
+    pub fn score(&self, solve_time: &Duration) -> Option<u64> {
+        if solve_time < &Duration::zero() {
+            None
         } else {
-            self.to_numeric() * (30 + (3000 / solve_time.num_seconds())) as u64
+            Some(self.to_numeric() * (30 + (3000 / solve_time.num_seconds())) as u64)
         }
     }
 
@@ -77,7 +77,8 @@ impl BoardDifficulty {
     /// assert_eq!(BoardDifficulty::Medium.to_numeric(), 2);
     /// assert_eq!(BoardDifficulty::Hard.to_numeric(), 3);
     ///
-    /// assert_eq!(BoardDifficulty::from_numeric(BoardDifficulty::Easy.to_numeric()), Some(BoardDifficulty::Easy));
+    /// assert_eq!(BoardDifficulty::from_numeric(BoardDifficulty::Easy.to_numeric()),
+    ///            Some(BoardDifficulty::Easy));
     /// ```
     pub fn to_numeric(&self) -> u64 {
         match self {

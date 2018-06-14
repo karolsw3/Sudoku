@@ -39,3 +39,18 @@ table! {
         creation_time -> Timestamp,
     }
 }
+
+table! {
+    /// See [`doc/sudoku.md`](../../doc/sudoku/)
+    sudoku_solutions {
+        /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
+        id                     -> Nullable<Integer>,
+        display_name           -> Text,
+        board_id               -> Integer,
+        skeleton                -> Text,
+        difficulty             -> Integer,
+        solution_duration_secs -> Integer,
+        score                  -> Integer,
+        solution_time          -> Timestamp,
+    }
+}

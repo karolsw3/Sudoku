@@ -80,3 +80,22 @@ Thereafter, submit the solved board as seen below.
   "solved_board": "string, last form under #board-transserialisation"  // Only present when submitting a board solve
 }
 ```
+
+## Leaderboards
+
+Or, well, just a list of solutions, because what's the difference.
+
+```sql
+CREATE TABLE IF NOT EXISTS sudoku_solutions (
+    id                     INTEGER PRIMARY KEY ASC,                                                     -- Unique solution ID
+    display_name           TEXT NOT NULL,                                                               -- Solver's display name
+    board_id               INTEGER NOT NULL REFERENCES sudoku_boards (id),                              -- The solved board ID
+    skeleton               TEXT NOT NULL,                                                               -- The solved board skeleton
+    difficulty             INTEGER NOT NULL,                                                            -- Board "difficulty", between one and three
+    solution_duration_secs INTEGER NOT NULL,                                                            -- Time in seconds taken to achieve the solution
+    score                  INTEGER NOT NULL,                                                            -- Score achieved for the solve
+    solution_time          DATETIME NOT NULL,                                                           -- Time the solution occured at
+
+    CHECK (((difficulty >= 1) AND (difficulty <= 3)) AND (solution_duration_secs > 0) AND (score > 0))
+);
+```

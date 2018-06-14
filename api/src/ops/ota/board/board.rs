@@ -9,15 +9,16 @@ use std::borrow::Cow;
 ///
 /// Consult [`doc/sudoku.md`](../doc/sudoku/)
 #[derive(Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
+#[derive_FromForm]
 pub struct BoardMessage {
     /// ID of the full original board
     pub board_id: i32,
 
     /// The skeleton to be solved by the user
-    pub board_skeleton: Cow<'static, str>,
+    pub board_skeleton: String,
 
     /// The solved board from the skeleton, to be present only on board submit
-    pub solved_board: Option<Cow<'static, str>>,
+    pub solved_board: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -57,8 +58,8 @@ impl<'de> Deserialize<'de> for BoardMessage {
 
         Ok(BoardMessage {
             board_id: data.board_id,
-            board_skeleton: data.board_skeleton,
-            solved_board: data.solved_board,
+            board_skeleton: data.board_skeleton.into(),
+            solved_board: data.solved_board.map(Into::into),
         })
     }
 }
