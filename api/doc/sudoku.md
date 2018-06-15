@@ -68,7 +68,7 @@ Effectively:
 
 Au première, get the skeleton board with of your preferred difficulty by specifying `?difficulty=<diff>`, where `diff` is within [`difficulty`'s domain](#scoring-formula).
 
-Thereafter, submit the solved board as seen below.
+Thereafter, submit the solved board as a form as seen below and get the rating.
 
 ### Board message
 
@@ -78,6 +78,23 @@ Thereafter, submit the solved board as seen below.
   "board_skeleton": "string, last form under #board-transserialisation",
 
   "solved_board": "string, last form under #board-transserialisation"  // Only present when submitting a board solve
+}
+```
+
+### Solution message
+
+Effectively the row from [below](#leaderboards):
+
+```json
+{
+  "id": "number",
+  "display_name": "string",
+  "board_id": "number",
+  "skeleton": "string",
+  "difficulty": "number",
+  "solution_duration_secs": "number",
+  "score": "number",
+  "solution_time": "RFC3339 (string)",
 }
 ```
 

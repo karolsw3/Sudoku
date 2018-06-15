@@ -21,6 +21,7 @@ fn main() {
                        ops::routes::v1::auth::create_account])
         .mount("/api/v1/play",
                routes![ops::routes::v1::play::new,
-                       ops::routes::v1::play::replay])
+                       ops::routes::v1::play::replay,
+                       ops::routes::v1::play::submit])
         .launch();
 }

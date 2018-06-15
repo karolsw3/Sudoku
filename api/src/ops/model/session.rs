@@ -87,7 +87,48 @@ impl Session {
         Ok(sess)
     }
 
-    /// TODO: docs
+    /// Update the in-memory and in-DB model to start playing the specified game.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # extern crate sudoku_backend;
+    /// # extern crate chrono;
+    /// # use sudoku_backend::ops::setup::DatabaseConnection;
+    /// # use chrono::{NaiveDateTime, NaiveDate, Utc};
+    /// # use sudoku_backend::ops::Session;
+    /// # use std::env::temp_dir;
+    /// # use std::fs;
+    /// # let database_file =
+    /// #    ("$ROOT/sudoku-backend.db".to_string(),
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-session-Session-log_in").join("sudoku-backend.db"));
+    /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
+    /// # let db = DatabaseConnection::initialise(&database_file);
+    /// # let db = &db.get().unwrap();
+    /// # // TODO: actually insert the bloody thing first.
+    /// let mut sess = Session {
+    ///     id: Some(32),
+    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
+    ///     is_admin: false,
+    ///     user_id: None,
+    ///     sudoku_board_id: None,
+    ///     board_skeleton: None,
+    ///     solve_start: None,
+    /// };
+    ///
+    /// let skeleton = "3....5....25.81.........6......4..73.3....14..1.7......8...9.12.97........2..8.54";
+    /// sess.start_game(24, skeleton, &db).unwrap();
+    ///
+    /// assert_eq!(sess, Session {
+    ///     id: Some(32),
+    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
+    ///     is_admin: false,
+    ///     user_id: None,
+    ///     sudoku_board_id: Some(24),
+    ///     board_skeleton: Some(skeleton.into()),
+    ///     solve_start: Some(NaiveDateTime::from_timestamp(Utc::now().timestamp(), 0)),
+    /// });
+    /// ```
     pub fn start_game<S: Into<Cow<'static, str>>>(&mut self, bid: i32, skeleton: S, db: &SqliteConnection) -> Result<(), &'static str> {
         self.start_game_impl(bid, skeleton.into(), db)
     }
@@ -100,14 +141,68 @@ impl Session {
         diesel::update(sessions::table.filter(sessions::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
     }
 
-    /// Update the in-memory and in-DB model to be logged in a the specified user with the specified permissions.
+    /// Update the in-memory and in-DB model to start playing the specified game.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # extern crate sudoku_backend;
+    /// # extern crate chrono;
+    /// # use sudoku_backend::ops::setup::DatabaseConnection;
+    /// # use sudoku_backend::ops::Session;
+    /// # use std::env::temp_dir;
+    /// # use chrono::NaiveDate;
+    /// # use std::fs;
+    /// # let database_file =
+    /// #    ("$ROOT/sudoku-backend.db".to_string(),
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-session-Session-log_in").join("sudoku-backend.db"));
+    /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
+    /// # let db = DatabaseConnection::initialise(&database_file);
+    /// # let db = &db.get().unwrap();
+    /// # // TODO: actually insert the bloody thing first.
+    /// let mut sess = Session {
+    ///     id: Some(32),
+    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
+    ///     is_admin: false,
+    ///     user_id: None,
+    ///     sudoku_board_id: Some(24),
+    ///     board_skeleton: Some("3....5....25.81.........6......4..73.3....14..1.7......8...9.12.97........2..8.54".into()),
+    ///     solve_start: Some(NaiveDate::from_ymd(2018, 7, 9).and_hms(2, 41, 27)),
+    /// };
+    ///
+    /// sess.stop_game(&db).unwrap();
+    ///
+    /// assert_eq!(sess, Session {
+    ///     id: Some(32),
+    ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
+    ///     is_admin: false,
+    ///     user_id: None,
+    ///     sudoku_board_id: None,
+    ///     board_skeleton: None,
+    ///     solve_start: None,
+    /// });
+    /// ```
+    pub fn stop_game(&mut self, db: &SqliteConnection) -> Result<(), &'static str> {
+        self.sudoku_board_id = None;
+        self.board_skeleton = None;
+        self.solve_start = None;
+
+        diesel::update(sessions::table.filter(sessions::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
+    }
+
+    /// Check if this session has a game going
+    pub fn game_started(&self) -> bool {
+        self.sudoku_board_id.is_some() && self.board_skeleton.is_some() && self.solve_start.is_some()
+    }
+
+    /// Update the in-memory and in-DB model to be logged in as the specified user with the specified permissions.
     ///
     /// # Examples
     ///
     /// Before:
     ///
     /// ```sql
-    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 0, NULL);
+    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 0, NULL, NULL, NULL, NULL);
     /// ```
     ///
     /// Update:
@@ -153,7 +248,7 @@ impl Session {
     /// After:
     ///
     /// ```sql
-    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 1, 18);
+    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 1, 18, NULL, NULL, NULL);
     /// ```
     pub fn log_in(&mut self, uid: i32, is_admin: bool, db: &SqliteConnection) -> Result<(), &'static str> {
         self.user_id = Some(uid);
@@ -168,7 +263,7 @@ impl Session {
     /// Before:
     ///
     /// ```sql
-    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 1, 18);
+    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 1, 18, NULL, NULL, NULL);
     /// ```
     ///
     /// Update:
@@ -214,7 +309,7 @@ impl Session {
     /// After:
     ///
     /// ```sql
-    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 0, NULL);
+    /// INSERT INTO "sessions" VALUES(32, '2018-07-09 12:40:26', 0, NULL, NULL, NULL, NULL);
     /// ```
     pub fn log_out(&mut self, db: &SqliteConnection) -> Result<(), &'static str> {
         self.user_id = None;

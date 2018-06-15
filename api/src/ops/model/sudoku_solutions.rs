@@ -89,22 +89,20 @@ impl SudokuSolution {
     /// # use std::fs;
     /// # let database_file =
     /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuSolution-insert").
-    /// join("sudoku-backend.
-    /// db"));
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuSolution-insert").join("sudoku-backend.db"));
     /// # let _ = fs::remove_file(&database_file.1);
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
     /// # let db = &db.get().unwrap();
-    /// # let mut board = SudokuSolution {
+    /// # let mut solution = SudokuSolution {
     /// #     id: None,
     /// #     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
     /// #     difficulty: 3,
     /// #     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
     /// # };
-    /// # board.insert(&db).unwrap();
-    /// let board = SudokuSolution::get(1, &db).unwrap();
-    /// assert_eq!(board, SudokuSolution {
+    /// # solution.insert(&db).unwrap();
+    /// let solution = SudokuSolution::get(1, &db).unwrap();
+    /// assert_eq!(solution, SudokuSolution {
     ///     id: Some(1),
     ///     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
     ///     difficulty: 3,
@@ -112,8 +110,8 @@ impl SudokuSolution {
     /// });
     /// ```
     pub fn get(id: i32, db: &SqliteConnection) -> Result<SudokuSolution, &'static str> {
-        tables::sudoku_solutions::table.find(id).first::<SudokuSolution>(db).map_err(|_| "couldn't acquire sudoku board")
-    }
+        tables::sudoku_solutions::table.find(id).first::<SudokuSolution>(db).map_err(|_| "couldn't acquire board solution")
+    }*/
 
     /// Insert this board into the specified DB, updating its id.
     ///
@@ -124,60 +122,70 @@ impl SudokuSolution {
     /// ```
     /// # extern crate sudoku_backend;
     /// # extern crate chrono;
-    /// # use sudoku_backend::ops::{BoardDifficulty, SudokuSolution};
+    /// # use sudoku_backend::ops::{BoardDifficulty, SudokuSolution, SudokuBoard};
     /// # use sudoku_backend::ops::setup::DatabaseConnection;
+    /// # use chrono::{NaiveDate, Duration};
     /// # use std::env::temp_dir;
-    /// # use chrono::NaiveDate;
     /// # use std::fs;
     /// # let database_file =
     /// #    ("$ROOT/sudoku-backend.db".to_string(),
     /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuSolution-insert").
-    /// join("sudoku-backend.
-    /// db"));
+    /// join("sudoku-backend.db"));
     /// # let _ = fs::remove_file(&database_file.1);
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
     /// # let db = &db.get().unwrap();
-    /// # let difficulty = BoardDifficulty::Hard;
-    /// let mut board = SudokuSolution::new(difficulty);
-    /// # let mut board = SudokuSolution {
+    /// # /*
+    /// let mut board =
+    ///     SudokuSolution::new(username, board_skeleton, &SudokuBoard::get(board_id, &db).unwrap(), Duration::seconds(25));
+    /// # */
+    /// # let mut solution = SudokuSolution {
+    /// #     id: None,
+    /// #     display_name: "benlo".to_string(),
+    /// #     board_id: 1,
+    /// #     skeleton: "2....4....34.18.........5......4..71.7....36..2.3......5...1.32.13........2..5.89".into(),
+    /// #     difficulty: BoardDifficulty::Hard.to_numeric() as i32,
+    /// #     solution_duration_secs: 25,
+    /// #     score: BoardDifficulty::Hard.score(&Duration::seconds(25)).unwrap() as i32,
+    /// #     solution_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
+    /// # };
+    /// # let mut board = SudokuBoard {
     /// #     id: None,
     /// #     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
     /// #     difficulty: 3,
     /// #     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
     /// # };
-    /// assert!(board.id.is_none());
+    /// # board.insert(&db).unwrap();
+    /// assert!(solution.id.is_none());
     ///
-    /// board.insert(&db).unwrap();
-    /// assert_eq!(board.id, Some(1));
-    /// # assert_eq!(board, SudokuSolution {
+    /// solution.insert(&db).unwrap();
+    /// assert_eq!(solution.id, Some(1));
+    /// # assert_eq!(solution, SudokuSolution {
     /// #     id: Some(1),
-    /// #     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
-    /// #     difficulty: 3,
-    /// #     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
+    /// #     display_name: "benlo".to_string(),
+    /// #     board_id: 1,
+    /// #     skeleton: "2....4....34.18.........5......4..71.7....36..2.3......5...1.32.13........2..5.89".into(),
+    /// #     difficulty: BoardDifficulty::Hard.to_numeric() as i32,
+    /// #     solution_duration_secs: 25,
+    /// #     score: BoardDifficulty::Hard.score(&Duration::seconds(25)).unwrap() as i32,
+    /// #     solution_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
     /// # });
-    /// ```
-    ///
-    /// After, example:
-    ///
-    /// ```sql
-    /// INSERT INTO "sudoku_solutions" VALUES(1,
-    /// '269574813534918726781263594395846271478129365126357948857491632913682457642735189', 3, '2018-08-01 23:50:14');
     /// ```
     pub fn insert(&mut self, db: &SqliteConnection) -> Result<(), &'static str> {
         if self.id.is_some() {
             return Ok(());
         }
 
-        diesel::insert_into(tables::sudoku_solutions::table).values(&*self).execute(db).map_err(|_| "couldn't create new sudoku board")?;
+        diesel::insert_into(tables::sudoku_solutions::table).values(&*self).execute(db).map_err(|_| "couldn't create new board solution")?;
 
         // We need to round-trip to get an id
-        let board = tables::sudoku_solutions::table.filter(tables::sudoku_solutions::full_board.eq(&self.full_board))
+        let board = tables::sudoku_solutions::table.filter(tables::sudoku_solutions::solution_time.eq(&self.solution_time))
+            .filter(tables::sudoku_solutions::display_name.eq(&self.display_name))
             .order(tables::sudoku_solutions::id.desc())
             .first::<SudokuSolution>(db)
-            .map_err(|_| "couldn't re-acquire new sudoku board")?;
+            .map_err(|_| "couldn't re-acquire new board solution")?;
         self.id = board.id;
 
         Ok(())
-    }*/
+    }
 }

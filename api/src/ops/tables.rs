@@ -47,7 +47,7 @@ table! {
         id                     -> Nullable<Integer>,
         display_name           -> Text,
         board_id               -> Integer,
-        skeleton                -> Text,
+        skeleton               -> Text,
         difficulty             -> Integer,
         solution_duration_secs -> Integer,
         score                  -> Integer,
