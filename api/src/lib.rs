@@ -21,6 +21,7 @@ extern crate serde;
 #[macro_use]
 extern crate clap;
 extern crate time;
+extern crate rand;
 
 mod options;
 

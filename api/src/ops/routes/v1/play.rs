@@ -108,7 +108,7 @@ pub fn submit(db: DatabaseConnection, mut cookies: Cookies, submitted_board: For
                                                                        Json((e.to_string(), GenericErrorSeverity::Danger).into())))?
                                                    .username
                                            } else {
-                                               random_username().to_string()
+                                               random_username()
                                            },
                                            submitted_board.board_skeleton,
                                            &SudokuBoard::get(submitted_board.board_id, &db)

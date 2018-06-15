@@ -98,6 +98,8 @@ Effectively the row from [below](#leaderboards):
 }
 ```
 
+If user not logged in, username is randomised.
+
 ## Leaderboards
 
 Or, well, just a list of solutions, because what's the difference.

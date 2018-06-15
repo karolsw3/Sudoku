@@ -1,9 +1,10 @@
 //! Various utility functions.
 
 
-use std::iter;
-use time::Duration;
 use crypto::scrypt::{ScryptParams, scrypt_simple};
+use rand::{self, Rng};
+use time::Duration;
+use std::iter;
 
 
 lazy_static! {
@@ -30,6 +31,7 @@ lazy_static! {
 
 
 include!(concat!(env!("OUT_DIR"), "/query.rs"));
+include!(concat!(env!("OUT_DIR"), "/words.rs"));
 
 
 /// Create a string consisting of `n` repetitions of `what`.
@@ -62,8 +64,10 @@ pub fn board_includes(board: &str, skeleton: &str) -> bool {
 }
 
 /// Get a random username.
-///
-/// TODO
-pub fn random_username() -> &'static str {
-    "benlo"
+pub fn random_username() -> String {
+    let mut rng = rand::thread_rng();
+    format!("{}{}{}",
+            rng.choose(ADVERBS).unwrap(),
+            rng.choose(ADJECTIVES).unwrap(),
+            rng.choose(NOUNS).unwrap())
 }

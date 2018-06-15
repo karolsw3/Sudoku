@@ -23,6 +23,7 @@ rocket = "0.3"
 sudoku = "0.6"
 serde = "1.0"
 clap = "2.32"
+rand = "0.5"
 time = "0.1"
 
 [dependencies.chrono]
@@ -36,6 +37,9 @@ features = ["32-column-tables", "sqlite", "chrono", "r2d2"]
 [dependencies.rocket_contrib]
 version = "0.3"
 features = ["json"]
+
+[build-dependencies]
+reqwest = "0.8"
 
 
 [[bin]]
