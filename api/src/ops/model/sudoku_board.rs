@@ -11,8 +11,6 @@ use diesel;
 
 
 /// Refer to [`doc/sudoku.md`](../doc/sudoku/) for more details.
-///
-/// TODO: doc full workflow with creation, database access, etc.
 #[derive(Queryable, Insertable, AsChangeset, Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[changeset_options(treat_none_as_null="true")]
 #[table_name="sudoku_boards"]

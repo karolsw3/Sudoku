@@ -12,8 +12,6 @@ use diesel;
 
 
 /// Refer to [`doc/session.md`](../doc/session/) for more details.
-///
-/// TODO: doc full workflow with creation, database access, etc.
 #[derive(Queryable, Insertable, AsChangeset, Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[changeset_options(treat_none_as_null="true")]
 #[table_name="sessions"]
@@ -36,8 +34,6 @@ pub struct Session {
     pub sudoku_board_id: Option<i32>,
 
     /// The board skeleton sent to the user
-    ///
-    /// TODO: constrain this?
     pub board_skeleton: Option<Cow<'static, str>>,
 
     /// Time the solving started
@@ -105,7 +101,6 @@ impl Session {
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
     /// # let db = &db.get().unwrap();
-    /// # // TODO: actually insert the bloody thing first.
     /// let mut sess = Session {
     ///     id: Some(32),
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
@@ -159,7 +154,6 @@ impl Session {
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
     /// # let db = &db.get().unwrap();
-    /// # // TODO: actually insert the bloody thing first.
     /// let mut sess = Session {
     ///     id: Some(32),
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
@@ -221,7 +215,6 @@ impl Session {
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
     /// # let db = &db.get().unwrap();
-    /// # // TODO: actually insert the bloody thing first.
     /// let mut sess = Session {
     ///     id: Some(32),
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
@@ -282,7 +275,6 @@ impl Session {
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
     /// # let db = &db.get().unwrap();
-    /// # // TODO: actually insert the bloody thing first.
     /// let mut sess = Session {
     ///     id: Some(32),
     ///     expiry: NaiveDate::from_ymd(2018, 7, 9).and_hms(12, 40, 26),
