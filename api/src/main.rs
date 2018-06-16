@@ -23,5 +23,7 @@ fn main() {
                routes![ops::routes::v1::play::new,
                        ops::routes::v1::play::replay,
                        ops::routes::v1::play::submit])
+        .mount("/api/v1/check",
+               routes![ops::routes::v1::check::leaderboard])
         .launch();
 }

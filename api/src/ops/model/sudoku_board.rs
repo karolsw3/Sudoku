@@ -67,7 +67,7 @@ impl SudokuBoard {
     /// # use std::fs;
     /// # let database_file =
     /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-insert").join("sudoku-backend.db"));
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-get").join("sudoku-backend.db"));
     /// # let _ = fs::remove_file(&database_file.1);
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);

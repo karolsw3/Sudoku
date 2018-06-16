@@ -1,14 +1,12 @@
-use diesel::query_dsl::methods::{FilterDsl, OrderDsl, FindDsl};
 use self::super::sudoku_difficulty::BoardDifficulty;
 use diesel::expression_methods::ExpressionMethods;
 use self::super::super::tables::sudoku_solutions;
+use diesel::query_dsl::{RunQueryDsl, QueryDsl};
 use self::super::sudoku_board::SudokuBoard;
 use diesel::sqlite::SqliteConnection;
-use diesel::query_dsl::RunQueryDsl;
 use chrono::{NaiveDateTime, Utc};
 use self::super::super::tables;
 use chrono::Duration;
-use sudoku::Sudoku;
 use diesel;
 
 
@@ -66,15 +64,32 @@ impl SudokuSolution {
         })
     }
 
-    /*/// Retrieve the board with the specified ID.
+    /// Retrieve the board with the specified ID.
     ///
     /// # Examples
     ///
     /// Given:
     ///
     /// ```sql
-    /// INSERT INTO "sudoku_solutions" VALUES(1,
-    /// '269574813534918726781263594395846271478129365126357948857491632913682457642735189', 3, '2018-08-01 23:50:14');
+    /// INSERT INTO "sudoku_solutions"
+    ///     VALUES(1, 'benlo', 104,
+    ///            '.79.2.48...5..........3762.....4627....85......4.9....48....7..5......3.1.....9..',
+    ///            3, 26, 435, '2018-08-03 18:26:35');
+    ///
+    /// INSERT INTO "sudoku_solutions"
+    ///     VALUES(2, 'EasyStudentBegonia', 104,
+    ///            '3.9..54..............937.2.9...4.27...6......21....56..8.56....5...1.8..1..3.....',
+    ///            3, 22, 498, '2018-08-03 18:42:56');
+    ///
+    /// INSERT INTO "sudoku_solutions"
+    ///     VALUES(3, 'WithoutHighBirch', 104,
+    ///            '3.9..54.1.25.8.....4.9......581...7...68.....2....35...8....7.2.......3.1......54',
+    ///            3, 14, 732, '2018-08-03 18:44:06');
+    ///
+    /// INSERT INTO "sudoku_solutions"
+    ///     VALUES(4, 'LateBrokenAppendix', 104,
+    ///            '.7...5..1...4.1...8....762.95......3..68.....21.............71....2......6.3..95.',
+    ///            3, 14, 732, '2018-08-03 18:44:25');
     /// ```
     ///
     /// The following holds:
@@ -89,29 +104,93 @@ impl SudokuSolution {
     /// # use std::fs;
     /// # let database_file =
     /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuSolution-insert").join("sudoku-backend.db"));
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuSolution-leaders")
+    /// #               .join("sudoku-backend.db"));
     /// # let _ = fs::remove_file(&database_file.1);
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
     /// # let db = &db.get().unwrap();
-    /// # let mut solution = SudokuSolution {
-    /// #     id: None,
-    /// #     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
-    /// #     difficulty: 3,
-    /// #     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
-    /// # };
-    /// # solution.insert(&db).unwrap();
-    /// let solution = SudokuSolution::get(1, &db).unwrap();
-    /// assert_eq!(solution, SudokuSolution {
-    ///     id: Some(1),
-    ///     full_board: "269574813534918726781263594395846271478129365126357948857491632913682457642735189".to_string(),
-    ///     difficulty: 3,
-    ///     creation_time: NaiveDate::from_ymd(2018, 8, 1).and_hms(23, 50, 14),
-    /// });
+    /// # let mut solutions =
+    /// #     [SudokuSolution {
+    /// #          id: None,
+    /// #          display_name: "benlo".to_string(),
+    /// #          board_id: 104,
+    /// #          skeleton: ".79.2.48...5..........3762.....4627....85......4.9....48....7..5......3.1.....9..".to_string(),
+    /// #          difficulty: 3,
+    /// #          solution_duration_secs: 26,
+    /// #          score: 435,
+    /// #          solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 26, 35),
+    /// #      },
+    /// #      SudokuSolution {
+    /// #          id: None,
+    /// #          display_name: "EasyStudentBegonia".to_string(),
+    /// #          board_id: 104,
+    /// #          skeleton: "3.9..54..............937.2.9...4.27...6......21....56..8.56....5...1.8..1..3.....".to_string(),
+    /// #          difficulty: 3,
+    /// #          solution_duration_secs: 22,
+    /// #          score: 498,
+    /// #          solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 42, 56),
+    /// #      },
+    /// #      SudokuSolution {
+    /// #          id: None,
+    /// #          display_name: "WithoutHighBirch".to_string(),
+    /// #          board_id: 104,
+    /// #          skeleton: "3.9..54.1.25.8.....4.9......581...7...68.....2....35...8....7.2.......3.1......54".to_string(),
+    /// #          difficulty: 3,
+    /// #          solution_duration_secs: 14,
+    /// #          score: 732,
+    /// #          solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 44, 06),
+    /// #      },
+    /// #      SudokuSolution {
+    /// #          id: None,
+    /// #          display_name: "LateBrokenAppendix".to_string(),
+    /// #          board_id: 104,
+    /// #          skeleton: ".7...5..1...4.1...8....762.95......3..68.....21.............71....2......6.3..95.".to_string(),
+    /// #          difficulty: 3,
+    /// #          solution_duration_secs: 14,
+    /// #          score: 732,
+    /// #          solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 44, 25),
+    /// #      }];
+    /// # for solution in &mut solutions {
+    /// #     solution.insert(&db).unwrap();
+    /// # }
+    /// let solutions = SudokuSolution::leaders(3, &db).unwrap();
+    /// assert_eq!(
+    ///     solutions,
+    ///     &[SudokuSolution {
+    ///           id: Some(3),
+    ///           display_name: "WithoutHighBirch".to_string(),
+    ///           board_id: 104,
+    ///           skeleton: "3.9..54.1.25.8.....4.9......581...7...68.....2....35...8....7.2.......3.1......54".to_string(),
+    ///           difficulty: 3,
+    ///           solution_duration_secs: 14,
+    ///           score: 732,
+    ///           solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 44, 06),
+    ///       },
+    ///       SudokuSolution {
+    ///           id: Some(4),
+    ///           display_name: "LateBrokenAppendix".to_string(),
+    ///           board_id: 104,
+    ///           skeleton: ".7...5..1...4.1...8....762.95......3..68.....21.............71....2......6.3..95.".to_string(),
+    ///           difficulty: 3,
+    ///           solution_duration_secs: 14,
+    ///           score: 732,
+    ///           solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 44, 25),
+    ///       },
+    ///       SudokuSolution {
+    ///           id: Some(2),
+    ///           display_name: "EasyStudentBegonia".to_string(),
+    ///           board_id: 104,
+    ///           skeleton: "3.9..54..............937.2.9...4.27...6......21....56..8.56....5...1.8..1..3.....".to_string(),
+    ///           difficulty: 3,
+    ///           solution_duration_secs: 22,
+    ///           score: 498,
+    ///           solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 42, 56),
+    ///       }]);
     /// ```
-    pub fn get(id: i32, db: &SqliteConnection) -> Result<SudokuSolution, &'static str> {
-        tables::sudoku_solutions::table.find(id).first::<SudokuSolution>(db).map_err(|_| "couldn't acquire board solution")
-    }*/
+    pub fn leaders(count: usize, db: &SqliteConnection) -> Result<Vec<SudokuSolution>, &'static str> {
+        tables::sudoku_solutions::table.order(tables::sudoku_solutions::score.desc()).limit(count as i64).load(db).map_err(|_| "couldn't load leaderboard")
+    }
 
     /// Insert this board into the specified DB, updating its id.
     ///
@@ -129,8 +208,8 @@ impl SudokuSolution {
     /// # use std::fs;
     /// # let database_file =
     /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuSolution-insert").
-    /// join("sudoku-backend.db"));
+    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuSolution-insert")
+    /// #               .join("sudoku-backend.db"));
     /// # let _ = fs::remove_file(&database_file.1);
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
