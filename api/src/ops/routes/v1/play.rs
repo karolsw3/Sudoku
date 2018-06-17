@@ -102,19 +102,22 @@ pub fn submit(db: DatabaseConnection, mut cookies: Cookies, submitted_board: For
         return Err(Custom(Status::PreconditionFailed, Json(("solution invalid", GenericErrorSeverity::Warning).into())));
     }
 
-    let mut solution = SudokuSolution::new(if let Some(uid) = session.user_id {
-                                               User::get_by_id(uid, &db)
-                                                   .map_err(|e| Custom(Status::InternalServerError,
-                                                                       Json((e.to_string(), GenericErrorSeverity::Danger).into())))?
-                                                   .username
-                                           } else {
-                                               random_username()
-                                           },
+    let mut user = if let Some(uid) = session.user_id {
+        Some(User::get_by_id(uid, &db).map_err(|e| Custom(Status::InternalServerError, Json((e.to_string(), GenericErrorSeverity::Danger).into())))?)
+    } else {
+        None
+    };
+
+    let mut solution = SudokuSolution::new(user.as_ref().map(|u| u.username.clone()).unwrap_or_else(random_username),
                                            submitted_board.board_skeleton,
                                            &SudokuBoard::get(submitted_board.board_id, &db)
                                                .map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?,
                                            &(Utc::now() - DateTime::from_utc(session.solve_start.unwrap(), Utc)))
         .ok_or_else(|| Custom(Status::InternalServerError, Json(("could not create solution", GenericErrorSeverity::Danger).into())))?;
+
+    if let Some(ref mut user) = user {
+        user.solve(solution.score as usize, &db).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    }
 
     solution.insert(&db).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
     session.stop_game(&db).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;

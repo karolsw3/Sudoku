@@ -62,4 +62,10 @@ impl User {
     pub fn add(&self, db: &SqliteConnection) -> Result<(), &'static str> {
         diesel::insert_into(tables::users::table).values(self).execute(db).map(|_| ()).map_err(|_| "insert failed")
     }
+
+    /// Update in-memory and in-DB repr by the specified point count.
+    pub fn solve(&mut self, for_points: usize, db: &SqliteConnection) -> Result<(), &'static str> {
+        self.points_total += for_points as i32;
+        diesel::update(tables::users::table.filter(tables::users::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
+    }
 }
