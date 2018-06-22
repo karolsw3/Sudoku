@@ -3,9 +3,9 @@
 
 extern crate sudoku_backend;
 extern crate rocket;
+extern crate toml;
 
 use sudoku_backend::{ops, Options};
-// use std::sync::Mutex;
 
 
 fn main() {
@@ -14,7 +14,22 @@ fn main() {
 
     rocket::ignite()
         .manage(ops::setup::DatabaseConnection::initialise(&opts.database_file))
-        .catch(catchers![ops::routes::catchers::not_found, ops::routes::catchers::internal_server_error])
+        .manage({
+            let leaderboard_settings = opts.leaderboard_settings_file
+                .as_ref()
+                .and_then(|f| ops::setup::LeaderboardSettings::load(f).map_err(|e| eprintln!("{}\nReverting to defaults.", e)).ok())
+                .unwrap_or_else(|| {
+                    ops::setup::LeaderboardSettings {
+                        default: ops::setup::LeaderboardConfig::DEFAULT_DEFAULT,
+                        max: ops::setup::LeaderboardConfig::DEFAULT_MAX,
+                    }
+                });
+            println!("Leaderboard settings:\n{}",
+                     toml::to_string_pretty(&leaderboard_settings).expect("leaderboard settings reserialisation error"));
+            leaderboard_settings
+        })
+        .catch(catchers![ops::routes::catchers::not_found,
+                         ops::routes::catchers::internal_server_error])
         .mount("/api/v1/auth",
                routes![ops::routes::v1::auth::login,
                        ops::routes::v1::auth::logout,

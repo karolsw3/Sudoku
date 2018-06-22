@@ -10,6 +10,9 @@ use diesel::sqlite::SqliteConnection;
 use rocket::http::Status;
 use std::path::PathBuf;
 use std::ops::Deref;
+use std::fs::File;
+use std::io::Read;
+use toml;
 
 
 /// Connection request guard type: a wrapper around an r2d2 pooled connection.
@@ -81,5 +84,38 @@ impl Deref for DatabaseConnection {
 
     fn deref(&self) -> &SqliteConnection {
         &self.0
+    }
+}
+
+
+/// Amalgam of max and default leaderboard configurations.
+#[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
+pub struct LeaderboardSettings {
+    pub default: LeaderboardConfig,
+    pub max: LeaderboardConfig,
+}
+
+/// Configuration of a leaderboard request.
+#[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
+pub struct LeaderboardConfig {
+    pub count: usize,
+}
+
+impl LeaderboardConfig {
+    /// Default no-spec return config.
+    pub const DEFAULT_DEFAULT: LeaderboardConfig = LeaderboardConfig { count: 10 };
+
+    /// Default maximal unexceedable return config.
+    pub const DEFAULT_MAX: LeaderboardConfig = LeaderboardConfig { count: 42 };
+}
+
+impl LeaderboardSettings {
+    /// Load the settings from the ones specified in the specified file.
+    pub fn load(settings_file: &(String, PathBuf)) -> Result<LeaderboardSettings, String> {
+        let mut buf = String::new();
+        File::open(&settings_file.1).map_err(|e| format!("Couldn't open leaderboard settings file: {}", e))?
+            .read_to_string(&mut buf)
+            .map_err(|e| format!("Couldn't read leaderboard settings file: {}", e))?;
+        toml::from_str(&buf).map_err(|e| format!("Failed to parse leaderboard settings: {}", e))
     }
 }
