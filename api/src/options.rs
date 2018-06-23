@@ -51,14 +51,14 @@ impl Options {
                 .map(|s| if let Ok(f) = fs::canonicalize(s) {
                     (s.to_string(), f)
                 } else {
-                    (s.to_string(), fs::canonicalize(Path::new(s).parent().unwrap()).unwrap().join("sudoku-backend.db"))
+                    (s.to_string(), fs::canonicalize(Path::new(s).parent().unwrap_or_else(|| Path::new("."))).unwrap().join("sudoku-backend.db"))
                 })
                 .unwrap_or_else(|| ("./sudoku-backend.db".to_string(), fs::canonicalize(".").unwrap().join("sudoku-backend.db"))),
             leaderboard_settings_file: matches.value_of("LEADERBOARD_SETTINGS_FILE")
                 .map(|s| if let Ok(f) = fs::canonicalize(s) {
                     (s.to_string(), f)
                 } else {
-                    (s.to_string(), fs::canonicalize(Path::new(s).parent().unwrap()).unwrap().join("leaderboard.toml"))
+                    (s.to_string(), fs::canonicalize(Path::new(s).parent().unwrap_or_else(|| Path::new("."))).unwrap().join("leaderboard.toml"))
                 })
                 .or_else(|| {
                     fs::metadata("./leaderboard.toml").ok().and_then(|m| if m.is_file() {
@@ -79,6 +79,9 @@ impl Options {
         }
 
         p.pop();
+        if p == Path::new("") {
+            p = PathBuf::from(".");
+        }
         fs::canonicalize(&p).map_err(|_| format!("{} parent directory \"{}\" nonexistant", whom, p.display())).and_then(|f| if !f.is_file() {
             Ok(())
         } else {
