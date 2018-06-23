@@ -97,6 +97,7 @@ pub struct LeaderboardSettings {
 
 /// Configuration of a leaderboard request.
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
+#[derive_FromForm]
 pub struct LeaderboardConfig {
     pub count: usize,
 }

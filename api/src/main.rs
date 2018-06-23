@@ -39,6 +39,7 @@ fn main() {
                        ops::routes::v1::play::replay,
                        ops::routes::v1::play::submit])
         .mount("/api/v1/check",
-               routes![ops::routes::v1::check::leaderboard])
+               routes![ops::routes::v1::check::leaderboard_specless,
+                       ops::routes::v1::check::leaderboard])
         .launch();
 }
