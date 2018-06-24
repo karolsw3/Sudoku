@@ -1,13 +1,15 @@
+use diesel::sqlite::{SqliteConnection, Sqlite as SqliteBackend};
+use self::super::super::tables::{self, sudoku_solutions};
 use self::super::sudoku_difficulty::BoardDifficulty;
+use diesel::query_builder::{QueryFragment, QueryId};
 use diesel::expression_methods::ExpressionMethods;
-use self::super::super::tables::sudoku_solutions;
+use self::super::super::setup::LeaderboardConfig;
 use diesel::query_dsl::{RunQueryDsl, QueryDsl};
+use diesel::{self, AppearsOnTable, Expression};
 use self::super::sudoku_board::SudokuBoard;
-use diesel::sqlite::SqliteConnection;
+use self::super::super::SolutionOrdering;
 use chrono::{NaiveDateTime, Utc};
-use self::super::super::tables;
 use chrono::Duration;
-use diesel;
 
 
 /// Refer to [`doc/sudoku.md`](../doc/sudoku/) for more details.
@@ -188,8 +190,21 @@ impl SudokuSolution {
     ///           solution_time: NaiveDate::from_ymd(2018, 8, 3).and_hms(18, 42, 56),
     ///       }]);
     /// ```
-    pub fn leaders(count: usize, db: &SqliteConnection) -> Result<Vec<SudokuSolution>, &'static str> {
-        tables::sudoku_solutions::table.order(tables::sudoku_solutions::score.desc()).limit(count as i64).load(db).map_err(|_| "couldn't load leaderboard")
+    pub fn leaders(cfg: &LeaderboardConfig, db: &SqliteConnection) -> Result<Vec<SudokuSolution>, &'static str> {
+        match cfg.ordering {
+            SolutionOrdering::BestToWorst => SudokuSolution::leaders_impl(cfg, db, tables::sudoku_solutions::score.desc()),
+            SolutionOrdering::WorstToBest => SudokuSolution::leaders_impl(cfg, db, tables::sudoku_solutions::score.asc()),
+        }
+    }
+
+    fn leaders_impl<OrderExpr>(cfg: &LeaderboardConfig, db: &SqliteConnection, ord: OrderExpr) -> Result<Vec<SudokuSolution>, &'static str>
+        where OrderExpr: Expression + AppearsOnTable<tables::sudoku_solutions::table> + QueryId + QueryFragment<SqliteBackend>
+    {
+        tables::sudoku_solutions::table.order(tables::sudoku_solutions::score.desc())
+            .limit(cfg.count as i64)
+            .order(ord)
+            .load(db)
+            .map_err(|_| "couldn't load leaderboard")
     }
 
     /// Insert this board into the specified DB, updating its id.

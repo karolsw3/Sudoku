@@ -19,20 +19,16 @@ pub fn leaderboard_specless(db: DatabaseConnection, settings: State<LeaderboardS
 }
 
 /// Get scores
-///
-/// TODO: advanced filtering
 #[get("/leaderboard?<spec>")]
 pub fn leaderboard(db: DatabaseConnection, settings: State<LeaderboardSettings>, spec: Option<LeaderboardConfig>)
                    -> Result<Json<Vec<SudokuSolution>>, Custom<Json<GenericError>>> {
-    let config = if let Some(spec) = spec.as_ref() {
+    SudokuSolution::leaders(&if let Some(spec) = spec.as_ref() {
         if spec > &settings.max {
-            &settings.max
+            LeaderboardConfig { count: settings.max.count, ..*spec }
         } else {
-            spec
+            *spec
         }
     } else {
-        &settings.default
-    };
-
-    SudokuSolution::leaders(config.count, &db).map(Json).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))
+        settings.default
+    }, &db).map(Json).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))
 }

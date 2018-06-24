@@ -3,15 +3,19 @@
 
 use rocket::request::{FromRequest, Outcome as RequestOutcome};
 use self::super::super::util::INITIALISE_DATABASE;
+use self::super::super::ops::SolutionOrdering;
 use diesel::r2d2::{self, ConnectionManager};
+use rocket::request::{FormItems, FromForm};
 use diesel::connection::SimpleConnection;
 use rocket::{Request, Outcome, State};
 use diesel::sqlite::SqliteConnection;
+use rocket::Error as RocketError;
 use rocket::http::Status;
 use std::path::PathBuf;
 use std::ops::Deref;
 use std::fs::File;
 use std::io::Read;
+use std::cmp;
 use toml;
 
 
@@ -88,26 +92,64 @@ impl Deref for DatabaseConnection {
 }
 
 
+/// Configuration of a leaderboard request.
+#[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord)]
+pub struct LeaderboardConfig {
+    pub count: usize,
+    pub ordering: SolutionOrdering,
+}
+
+#[derive_FromForm]
+struct LeaderboardConfigData {
+    pub count: Option<usize>,
+    pub ordering: Option<SolutionOrdering>,
+}
+
+impl LeaderboardConfig {
+    /// Default no-spec return config.
+    pub const DEFAULT_DEFAULT: LeaderboardConfig = LeaderboardConfig {
+        count: 10,
+        ordering: SolutionOrdering::Default,
+    };
+
+    /// Default maximal unexceedable return config.
+    pub const DEFAULT_MAX: LeaderboardConfig = LeaderboardConfig {
+        count: 42,
+        ordering: SolutionOrdering::Default,
+    };
+}
+
+impl<'f> FromForm<'f> for LeaderboardConfig {
+    // Ideally this would be
+    // type Error = <LeaderboardConfigData as FromForm<'f>>::Error;
+    // But that's "leaking a private type" so
+    type Error = RocketError;
+
+    fn from_form(items: &mut FormItems<'f>, strict: bool) -> Result<Self, Self::Error> {
+        LeaderboardConfigData::from_form(items, strict).map(Into::into)
+    }
+}
+
+impl From<LeaderboardConfigData> for LeaderboardConfig {
+    fn from(data: LeaderboardConfigData) -> LeaderboardConfig {
+        LeaderboardConfig {
+            count: data.count.unwrap_or_else(|| LeaderboardConfig::DEFAULT_DEFAULT.count),
+            ordering: data.ordering.unwrap_or_else(|| LeaderboardConfig::DEFAULT_DEFAULT.ordering),
+        }
+    }
+}
+
+impl cmp::PartialOrd for LeaderboardConfig {
+    fn partial_cmp(&self, other: &LeaderboardConfig) -> Option<cmp::Ordering> {
+        self.count.partial_cmp(&other.count)
+    }
+}
+
 /// Amalgam of max and default leaderboard configurations.
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub struct LeaderboardSettings {
     pub default: LeaderboardConfig,
     pub max: LeaderboardConfig,
-}
-
-/// Configuration of a leaderboard request.
-#[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
-#[derive_FromForm]
-pub struct LeaderboardConfig {
-    pub count: usize,
-}
-
-impl LeaderboardConfig {
-    /// Default no-spec return config.
-    pub const DEFAULT_DEFAULT: LeaderboardConfig = LeaderboardConfig { count: 10 };
-
-    /// Default maximal unexceedable return config.
-    pub const DEFAULT_MAX: LeaderboardConfig = LeaderboardConfig { count: 42 };
 }
 
 impl LeaderboardSettings {
