@@ -8,8 +8,8 @@ use std::borrow::Cow;
 /// The message sent to and from the client on acquisiion/submission of solved board
 ///
 /// Consult [`doc/sudoku.md`](../doc/sudoku/)
-#[derive(Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[derive_FromForm]
+#[derive(Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub struct BoardMessage {
     /// ID of the full original board
     pub board_id: i32,
