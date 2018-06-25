@@ -31,11 +31,6 @@
 			"path": "tests"
 		},
 		{
-			"follow_symlinks": true,
-			"name": "Assets",
-			"path": "assets"
-		},
-		{
             "follow_symlinks": true,
             "name": "Documentation",
             "path": "doc"
