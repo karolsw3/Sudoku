@@ -1,5 +1,5 @@
 # Sudoku
-
+<img src="https://image.ibb.co/gHVBAT/sudoku.png" height="150"><br>
 A modern, API-based sudoku web app.
 
 ## Introduction
@@ -17,7 +17,7 @@ It should:
     - Register a new user
       > POST ``sudoku/register``
     - Validate users login and password
-      > POST ``sudoku/login ``
+      > POST ``sudoku/login``
     - Return the number of boards solved by a user (ordered by duration and difficulty) 
       > GET ``sudoku/getScore?user=username``
     - Compare users scores in a leaderboard
