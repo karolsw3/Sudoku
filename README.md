@@ -15,20 +15,22 @@ The API will be used both by web and mobile app.
 It should:
   - USERS
     - Register a new user
-      - POST ``sudoku/register``
+      > POST ``sudoku/register``
     - Validate users login and password
-      - POST ``sudoku/login ``
+      > POST ``sudoku/login ``
     - Return the number of boards solved by a user (ordered by duration and difficulty) 
-      - GET ``sudoku/getScore?user=username``
+      > GET ``sudoku/getScore?user=username``
     - Compare users scores in a leaderboard
-      - GET ``sudoku/getLeaderboard``
+      > GET ``sudoku/getLeaderboard``
   - GAME
     - Generate new sudoku boards
-      - GET ``sudoku/generateBoard?difficulty=1&variant=0``
+      > GET ``sudoku/generateBoard?difficulty=1&variant=0``
     - Validate completed ones
-      - POST ``sudoku/validateBoard``
+      > POST ``sudoku/validateBoard``
 
+<br>
 After each game validation the server should give points to the player, calculated as follows:
+
 > points = difficulty * (3000 / solvingDuration + 30)
 
 Where difficulty = {1, 2, 3} and solvingDuration is in seconds.
@@ -39,7 +41,7 @@ All data should be returned in the <b>JSON</b> format.
 
 ### USERS
 | id | name | password | seed | email | role |
-|---|---|---|---|---|---|---|
+|---|---|---|---|---|---|
 |``0``|karolsw3|14c80afe290ba6dE1|4FaCc948fab1B2|karol.sw3@gmail.com|admin|
 |``1``|bob|44f80cfeC53Aa4d71|911Cd9D82abeC5|bob@blob.com|user|
 |``2``|sudokuPapa|5ff34cac003ca4c90|3FFaDa3fe8be47|noobfrom@minecraft.net|user|
