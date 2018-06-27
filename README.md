@@ -5,9 +5,10 @@ A modern, API-based sudoku web app.
 ## Introduction
 
 Our goal is to renew the good name of sudoku.
-We want to make it modern, secure and open to everyone.
+There are a lot of sudoku games on the web, but none of them is well built nor has a good design.
+We want to make our version modern, secure, well-designed and open to everyone. It should work on all available platforms and screens.
 
-The Sudoku project will consist of a public API, web app, and in the future - a mobile app.
+So the Sudoku project will consist of a public API, web app, and in the future - a mobile app.
 
 ## API
 
