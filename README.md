@@ -1,14 +1,15 @@
 # Sudoku
 <img src="https://image.ibb.co/gHVBAT/sudoku.png" height="150"><br>
-A modern, API-based sudoku web app.
+A modern, API-based sudoku app.
 
 ## Introduction
 
-Our goal is to renew the good name of sudoku.
+Our goal is to make the best sudoku app on the web.
+
 There are a lot of sudoku games on the web, but none of them is well built nor has a good design.
 We want to make our version modern, secure, well-designed and open to everyone. It should work on all available platforms and screens.
 
-So the Sudoku project will consist of a public API, web app, and in the future - a mobile app.
+The Sudoku project will consist of a public API, web app, and in the future - a mobile app.
 
 ## API
 
