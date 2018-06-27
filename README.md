@@ -35,28 +35,28 @@ After each game validation the server should give points to the player, calculat
 
 > points = difficulty * (3000 / solvingDuration + 30)
 
-Where difficulty = {1, 2, 3} and solvingDuration is in seconds.
+Where difficulty ϵ {1, 2, 3} and solvingDuration is in seconds.
 
 All data should be returned in the <b>JSON</b> format.
 
 ## DATABASE
 
 ### USERS
-| id | name | password | seed | email | role |
-|---|---|---|---|---|---|
-|``0``|karolsw3|14c80afe290ba6dE1|4FaCc948fab1B2|karol.sw3@gmail.com|admin|
-|``1``|bob|44f80cfeC53Aa4d71|911Cd9D82abeC5|bob@blob.com|user|
-|``2``|sudokuPapa|5ff34cac003ca4c90|3FFaDa3fe8be47|noobfrom@minecraft.net|user|
+| id | name | password | seed | email | role | points |
+|---|---|---|---|---|---|---|
+|``0``|karolsw3|14c80afe290ba6dE1|4FaCc948fab1B2|karol.sw3@gmail.com|admin|983|
+|``1``|bob|44f80cfeC53Aa4d71|911Cd9D82abeC5|bob@blob.com|user|3984|
+|``2``|sudokuPapa|5ff34cac003ca4c90|3FFaDa3fe8be47|noobfrom@minecraft.net|user|45682|
 etc..
 
 ### GAMES
 
-| id | userId | difficulty | duration | date | points |
-|---|---|---|---|---|---|
-|``0``|0|1|325|21-04-2018|39|
-|``1``|0|1|315|21-04-2018|40|
-|``2``|2|1|62|12-06-2018|78|
-|``3``|1|2|142|03-12-2017|102|
+| id | userId | difficulty | duration | date |
+|---|---|---|---|---|
+|``0``|0|1|325|21-04-2018|
+|``1``|0|1|315|21-04-2018|
+|``2``|2|1|62|12-06-2018|
+|``3``|1|2|142|03-12-2017|
 etc..
 
 ## Contributing
