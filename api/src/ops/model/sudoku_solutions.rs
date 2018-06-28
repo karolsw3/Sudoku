@@ -99,8 +99,8 @@ impl SudokuSolution {
     /// ```
     /// # extern crate sudoku_backend;
     /// # extern crate chrono;
-    /// # use sudoku_backend::ops::setup::DatabaseConnection;
-    /// # use sudoku_backend::ops::SudokuSolution;
+    /// # use sudoku_backend::ops::setup::{DatabaseConnection, LeaderboardConfig};
+    /// # use sudoku_backend::ops::{SolutionOrdering, SudokuSolution};
     /// # use std::env::temp_dir;
     /// # use chrono::NaiveDate;
     /// # use std::fs;
@@ -156,7 +156,10 @@ impl SudokuSolution {
     /// # for solution in &mut solutions {
     /// #     solution.insert(&db).unwrap();
     /// # }
-    /// let solutions = SudokuSolution::leaders(3, &db).unwrap();
+    /// let solutions = SudokuSolution::leaders(&LeaderboardConfig {
+    ///     count: 3,
+    ///     ordering: SolutionOrdering::BestToWorst,
+    /// }, &db).unwrap();
     /// assert_eq!(
     ///     solutions,
     ///     &[SudokuSolution {
