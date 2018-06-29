@@ -31,10 +31,7 @@ pub fn new(db: DatabaseConnection, mut cookies: Cookies, difficulty: NewBoardReq
     let mut board = SudokuBoard::new(difficulty);
     board.insert(&db).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
 
-    let skeleton = Sudoku::generate_unique_from(Sudoku::from_str_line(&board.full_board)
-        .map_err(|e| Custom(Status::InternalServerError, Json((e.to_string(), GenericErrorSeverity::Danger).into())))?)
-        .to_str_line()
-        .to_string();
+    let skeleton = board.generate_skeleton().map_err(|e| Custom(Status::InternalServerError, Json((e.to_string(), GenericErrorSeverity::Danger).into())))?;
     session.start_game(board.id
                         .ok_or_else(|| {
                             Custom(Status::InternalServerError,
@@ -64,10 +61,7 @@ pub fn replay(db: DatabaseConnection, mut cookies: Cookies, board_id: OldBoardRe
         .0;
 
     let board = SudokuBoard::get(board_id, &db).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
-    let skeleton = Sudoku::generate_unique_from(Sudoku::from_str_line(&board.full_board)
-        .map_err(|e| Custom(Status::InternalServerError, Json((e.to_string(), GenericErrorSeverity::Danger).into())))?)
-        .to_str_line()
-        .to_string();
+    let skeleton = board.generate_skeleton().map_err(|e| Custom(Status::InternalServerError, Json((e.to_string(), GenericErrorSeverity::Danger).into())))?;
     session.start_game(board.id.unwrap(), skeleton.clone(), &db) // Verified above
         .map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
 

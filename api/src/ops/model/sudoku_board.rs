@@ -1,3 +1,4 @@
+use sudoku::parse_errors::LineFormatParseError as SudokuLineFormatParseError;
 use diesel::query_dsl::methods::{FilterDsl, OrderDsl, FindDsl};
 use self::super::sudoku_difficulty::BoardDifficulty;
 use diesel::expression_methods::ExpressionMethods;
@@ -6,6 +7,7 @@ use diesel::sqlite::SqliteConnection;
 use diesel::query_dsl::RunQueryDsl;
 use chrono::{NaiveDateTime, Utc};
 use self::super::super::tables;
+use rand::{Rng, thread_rng};
 use sudoku::Sudoku;
 use diesel;
 
@@ -50,7 +52,12 @@ impl SudokuBoard {
     /// Given:
     ///
     /// ```sql
-    /// INSERT INTO "sudoku_boards" VALUES(1, '269574813534918726781263594395846271478129365126357948857491632913682457642735189', 3, '2018-08-01 23:50:14');
+    /// INSERT INTO "sudoku_boards"
+    ///     VALUES(
+    ///         1,
+    ///         '269574813534918726781263594395846271478129365126357948857491632913682457642735189',
+    ///         3,
+    ///         '2018-08-01 23:50:14');
     /// ```
     ///
     /// The following holds:
@@ -64,8 +71,8 @@ impl SudokuBoard {
     /// # use chrono::NaiveDate;
     /// # use std::fs;
     /// # let database_file =
-    /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-get").join("sudoku-backend.db"));
+    /// #  ("$ROOT/sudoku-backend.db".to_string(),
+    /// #   temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-get").join("sudoku-backend.db"));
     /// # let _ = fs::remove_file(&database_file.1);
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
@@ -105,7 +112,8 @@ impl SudokuBoard {
     /// # use std::fs;
     /// # let database_file =
     /// #    ("$ROOT/sudoku-backend.db".to_string(),
-    /// #     temp_dir().join("sudoku-backend-doctest").join("ops-model-sudoku_board-SudokuBoard-insert").join("sudoku-backend.db"));
+    /// #     temp_dir().join("sudoku-backend-doctest")
+    /// #               .join("ops-model-sudoku_board-SudokuBoard-insert").join("sudoku-backend.db"));
     /// # let _ = fs::remove_file(&database_file.1);
     /// # fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
     /// # let db = DatabaseConnection::initialise(&database_file);
@@ -133,7 +141,12 @@ impl SudokuBoard {
     /// After, example:
     ///
     /// ```sql
-    /// INSERT INTO "sudoku_boards" VALUES(1, '269574813534918726781263594395846271478129365126357948857491632913682457642735189', 3, '2018-08-01 23:50:14');
+    /// INSERT INTO "sudoku_boards"
+    ///     VALUES(
+    ///         1,
+    ///         '269574813534918726781263594395846271478129365126357948857491632913682457642735189',
+    ///         3,
+    ///         '2018-08-01 23:50:14');
     /// ```
     pub fn insert(&mut self, db: &SqliteConnection) -> Result<(), &'static str> {
         if self.id.is_some() {
@@ -150,5 +163,67 @@ impl SudokuBoard {
         self.id = board.id;
 
         Ok(())
+    }
+
+    /// Get а board skeleton adjusted for the difficulty.
+    ///
+    /// Quoth <del>the Raven</del> `Animu_x63`:
+    ///
+    /// > The absolute measures of sudoku difficulty are the average sparsity of squares (over all gamestates) that can
+    /// logically be resolved, and the maximum amount of logical deductions required to fill in the easiest square along states
+    /// leading to the solution.
+    ///
+    /// But that's hard. However:
+    ///
+    /// > Most other measurements of difficulty are just arbitrary and you can approximate difficult by sparsity.
+    ///
+    /// And that is what we do here: get a unique solution, then partially fill it back in according to
+    /// [`BoardDifficulty::additional_squares()`](enum.BoardDifficulty.html#method.additional_squares).
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use sudoku_backend::ops::{BoardDifficulty, SudokuBoard};
+    /// let easy_board = SudokuBoard::new(BoardDifficulty::Easy);
+    /// let easy_skeleton = easy_board.generate_skeleton().unwrap();
+    ///
+    /// let medium_board = SudokuBoard::new(BoardDifficulty::Medium);
+    /// let medium_skeleton = medium_board.generate_skeleton().unwrap();
+    ///
+    /// assert!(  easy_skeleton.chars().filter(|&c| c != '.').count() >
+    ///         medium_skeleton.chars().filter(|&c| c != '.').count());
+    ///
+    /// let hard_board = SudokuBoard::new(BoardDifficulty::Hard);
+    /// let hard_skeleton = hard_board.generate_skeleton().unwrap();
+    ///
+    /// assert!(medium_skeleton.chars().filter(|&c| c != '.').count() >
+    ///           hard_skeleton.chars().filter(|&c| c != '.').count());
+    /// ```
+    pub fn generate_skeleton(&self) -> Result<String, SudokuLineFormatParseError> {
+        let solution = Sudoku::generate_unique_from(Sudoku::from_str_line(&self.full_board)?);
+        let mut filled_in = solution.n_clues() as usize;
+        let mut patch_array = [false; 9 * 9];
+
+        let target_filled = filled_in + BoardDifficulty::from_numeric(self.difficulty as u64).unwrap_or(BoardDifficulty::Hard).additional_squares();
+        while filled_in < target_filled {
+            let which_idx: usize = thread_rng().gen_range(0, 9 * 9 - filled_in);
+            if let Some((_, patch_idx)) =
+                solution.iter()
+                    .enumerate()
+                    .filter(|(_, sq)| sq.is_none())
+                    .map(|(i, _)| i)
+                    .enumerate()
+                    .find(|&(empty_idx, _)| !patch_array[empty_idx] && empty_idx == which_idx) {
+                patch_array[patch_idx] = true;
+                filled_in += 1;
+            }
+        }
+
+        Ok(solution.to_str_line()
+            .chars()
+            .zip(self.full_board.chars())
+            .zip(patch_array.iter())
+            .map(|((sol, full), patch)| if *patch { full } else { sol })
+            .collect())
     }
 }

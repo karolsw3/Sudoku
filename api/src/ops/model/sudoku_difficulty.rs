@@ -87,6 +87,27 @@ impl BoardDifficulty {
             BoardDifficulty::Hard => 3,
         }
     }
+
+    /// How many more squares to compensate difficulty with.
+    ///
+    /// A good approximation of Sudoku difficulty is square sparsity,
+    /// so to make a board easier one can simply add more squares to the default unique solution.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use sudoku_backend::ops::BoardDifficulty;
+    /// assert_eq!(BoardDifficulty::Easy.additional_squares(), 5);
+    /// assert_eq!(BoardDifficulty::Medium.additional_squares(), 2);
+    /// assert_eq!(BoardDifficulty::Hard.additional_squares(), 0);
+    /// ```
+    pub fn additional_squares(&self) -> usize {
+        match self {
+            BoardDifficulty::Easy => 5,
+            BoardDifficulty::Medium => 2,
+            BoardDifficulty::Hard => 0,
+        }
+    }
 }
 
 impl<'v> FromFormValue<'v> for BoardDifficulty {
