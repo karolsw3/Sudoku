@@ -1,14 +1,14 @@
 <template lang="pug">
-  .componentTemplate
+.ComponentTemplate
 </template>
 
 <script>
-  export default {
-    name: 'componentTemplate'
-  }
+export default {
+  name: 'ComponentTemplate'
+}
 </script>
 
 <style scoped lang="stylus">
-  .componentTemplate
-    width 100%
+.ComponentTemplate
+  width 100%
 </style>
