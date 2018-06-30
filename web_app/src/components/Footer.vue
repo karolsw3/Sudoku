@@ -2,7 +2,7 @@
 .Footer
   .Footer__logo
   p An open-source app by <b>Galactim</b>
-  
+
 </template>
 
 <script>
