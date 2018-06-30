@@ -167,7 +167,7 @@ impl SudokuBoard {
 
     /// Get а board skeleton adjusted for the difficulty.
     ///
-    /// Quoth <del>the Raven</del> `Animu_x63`:
+    /// Quoth <del>the Raven</del> [`Animu_x63`](https://github.com/Aarowaim):
     ///
     /// > The absolute measures of sudoku difficulty are the average sparsity of squares (over all gamestates) that can
     /// logically be resolved, and the maximum amount of logical deductions required to fill in the easiest square along states
