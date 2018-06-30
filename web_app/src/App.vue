@@ -1,9 +1,6 @@
 <template>
   <div id="app">
-    <Menu id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/about">About</router-link>
-    </Menu>
+    <Menu/>
     <router-view/>
     <Footer/>
   </div>
@@ -27,6 +24,10 @@ html,body
   padding 0
   font-size 14px
   height 100vh
+a
+  text-decoration none
+  margin 0
+  padding 0
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased

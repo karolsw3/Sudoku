@@ -9,8 +9,8 @@
         button.Menu__button.Menu__button--dropdown Hard
     button.Menu__button Leaderboard
   .Menu__slot
-    button.Menu__button Login
-    button.Menu__button Register
+    router-link(to="/login").Menu__button Login
+    router-link(to="/register").Menu__button Register
     button.Menu__user U
 </template>
 
