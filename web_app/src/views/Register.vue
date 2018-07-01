@@ -2,7 +2,7 @@
 .Register
   ColumnPanel
     Input(placeholder="Username" type="text")
-    Input(placeholder="Email" type="text")
+    Input(placeholder="Email" type="email")
     Input(placeholder="Password" type="password")
     Input(placeholder="Repeat password" type="password")
     p TODO: I'm not a robot

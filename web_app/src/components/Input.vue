@@ -20,10 +20,20 @@ export default {
   watch: {
     value: function () {
       switch (this.type) {
+        case 'email':
+          if (!validator.isEmail(this.value)) {
+            console.log(this.value)
+            this.invalid = true
+            this.errorMessage = 'Invalid email'
+          } else {
+            this.invalid = false
+            this.errorMessage = ''
+          }
+          break
         default:
           if (validator.isEmpty(this.value)) {
             this.invalid = true
-            this.errorMessage = 'Value can\'t be empty'
+            this.errorMessage = 'This input can\'t be empty'
           } else if (!validator.isLength(this.value, {min: 5, max: 40})) {
             this.invalid = true
             this.errorMessage = 'You have to use from 5 to 40 characters'
