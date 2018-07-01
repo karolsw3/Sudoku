@@ -1,8 +1,8 @@
 <template lang="pug">
 .Login
   ColumnPanel
-    Input(placeholder="Username" type="text")
-    Input(placeholder="Password" type="password")
+    Input(placeholder="Username" type="text" v-model="username")
+    Input(placeholder="Password" type="password" v-model="password")
     Button Login
 </template>
 
@@ -15,6 +15,12 @@ export default {
   name: 'Login',
   components: {
     ColumnPanel, Input, Button
+  },
+  data: function () {
+    return {
+      username: '',
+      password: '' // Hash this value before sending anywhere
+    }
   }
 }
 </script>
