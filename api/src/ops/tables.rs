@@ -26,6 +26,7 @@ table! {
         created_at   -> Timestamp,
         is_admin     -> Bool,
         points_total -> Integer,
+        games_total  -> Integer,
     }
 }
 

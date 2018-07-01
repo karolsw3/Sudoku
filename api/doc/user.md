@@ -73,9 +73,14 @@ CREATE TABLE IF NOT EXISTS users (
     created_at   DATETIME NOT NULL,           -- Time user was created
     is_admin     BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges
     points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user's points, calculated according to sudoku.md#scoring-formula, non-negative
+    games_total  INTEGER NOT NULL DEFAULT 0,  -- Amount of games played, non-negative
 
-    CHECK (points_total >= 0)
+    CHECK ((points_total >= 0) AND (games_total >= 0))
 );
+
+ALTER TABLE users
+ADD games_total INTEGER NOT NULL DEFAULT 0
+CONSTRAINT CHECK  (games_total >= 0);
 ```
 
 ## Sanitised User data
@@ -83,10 +88,10 @@ CREATE TABLE IF NOT EXISTS users (
 ```json
 {
     "username":     "string",
-    "email":        "string",
     "created_at":   "RFC3339 (string)",
     "is_admin":     "boolean",
-    "points_total": "number"
+    "points_total": "number",
+    "games_total":  "number"
 }
 ```
 

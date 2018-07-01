@@ -13,5 +13,6 @@ fn new() {
                    created_at: NaiveDateTime::from_timestamp(Utc::now().naive_utc().timestamp(), 0),
                    is_admin: false,
                    points_total: 0,
+                   games_total: 0,
                });
 }

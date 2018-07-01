@@ -35,6 +35,9 @@ pub struct User {
 
     /// Sum total of the user's points, calculated according to `doc/scoring.md#endgame-formula`, `CHECK`ed to nonnegativity.
     pub points_total: i32,
+
+    /// Amount of games played, `CHECK`ed to nonnegativity.
+    pub games_total: i32,
 }
 
 impl User {
@@ -52,6 +55,7 @@ impl User {
             created_at: NaiveDateTime::from_timestamp(Utc::now().naive_utc().timestamp(), 0),
             is_admin: false,
             points_total: 0,
+            games_total: 0,
         }
     }
 
@@ -68,6 +72,7 @@ impl User {
     /// Update in-memory and in-DB repr by the specified point count.
     pub fn solve(&mut self, for_points: usize, db: &SqliteConnection) -> Result<(), &'static str> {
         self.points_total += for_points as i32;
+        self.games_total += 1;
         diesel::update(tables::users::table.filter(tables::users::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
     }
 
@@ -115,6 +120,7 @@ impl User {
     /// #          created_at: NaiveDate::from_ymd(2018, 07, 23).and_hms(18, 18, 24),
     /// #          is_admin: false,
     /// #          points_total: 435,
+    /// #          games_total: 1,
     /// #      },
     /// #      User {
     /// #          id: None,
@@ -124,6 +130,7 @@ impl User {
     /// #          created_at: NaiveDate::from_ymd(2018, 07, 23).and_hms(19, 08, 09),
     /// #          is_admin: true,
     /// #          points_total: 732,
+    /// #          games_total: 1,
     /// #      },
     /// #      User {
     /// #          id: None,
@@ -133,6 +140,7 @@ impl User {
     /// #          created_at: NaiveDate::from_ymd(2018, 07, 23).and_hms(19, 08, 56),
     /// #          is_admin: false,
     /// #          points_total: 1230,
+    /// #          games_total: 2,
     /// #      },
     /// #      User {
     /// #          id: None,
@@ -142,6 +150,7 @@ impl User {
     /// #          created_at: NaiveDate::from_ymd(2018, 07, 23).and_hms(19, 11, 06),
     /// #          is_admin: false,
     /// #          points_total: 222,
+    /// #          games_total: 1,
     /// #      }];
     /// # for user in &mut users {
     /// #     user.add(&db).unwrap();
@@ -160,6 +169,7 @@ impl User {
     ///           created_at: NaiveDate::from_ymd(2018, 07, 23).and_hms(19, 11, 06),
     ///           is_admin: false,
     ///           points_total: 222,
+    ///           games_total: 1,
     ///       },
     ///       User {
     ///           id: Some(1),
@@ -169,6 +179,7 @@ impl User {
     ///           created_at: NaiveDate::from_ymd(2018, 07, 23).and_hms(18, 18, 24),
     ///           is_admin: false,
     ///           points_total: 435,
+    ///           games_total: 1,
     ///       },
     ///       User {
     ///           id: Some(2),
@@ -178,6 +189,7 @@ impl User {
     ///           created_at: NaiveDate::from_ymd(2018, 07, 23).and_hms(19, 08, 09),
     ///           is_admin: true,
     ///           points_total: 732,
+    ///           games_total: 1,
     ///       }]);
     /// ```
     pub fn leaders(cfg: &LeaderboardConfig, db: &SqliteConnection) -> Result<Vec<User>, &'static str> {
