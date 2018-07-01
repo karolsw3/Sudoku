@@ -3,8 +3,8 @@
   ColumnPanel
     Input(placeholder="Username" type="text")
     Input(placeholder="Email" type="email")
-    Input(placeholder="Password" type="password")
-    Input(placeholder="Repeat password" type="password")
+    Input(placeholder="Password" type="password" id="password")
+    Input(placeholder="Repeat password" type="password" id="confirm_password")
     p TODO: I'm not a robot
     Button Register
 </template>
