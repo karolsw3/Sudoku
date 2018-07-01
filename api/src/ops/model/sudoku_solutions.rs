@@ -203,9 +203,8 @@ impl SudokuSolution {
     fn leaders_impl<OrderExpr>(cfg: &LeaderboardConfig, db: &SqliteConnection, ord: OrderExpr) -> Result<Vec<SudokuSolution>, &'static str>
         where OrderExpr: Expression + AppearsOnTable<tables::sudoku_solutions::table> + QueryId + QueryFragment<SqliteBackend>
     {
-        tables::sudoku_solutions::table.order(tables::sudoku_solutions::score.desc())
+        tables::sudoku_solutions::table.order(ord)
             .limit(cfg.count as i64)
-            .order(ord)
             .load(db)
             .map_err(|_| "couldn't load leaderboard")
     }

@@ -7,12 +7,21 @@ Getting data out of the system
 Both the defaults and maxes are changeable from the defaults presented below via the command line.
 
 ```toml
-[default]
+[board.default]
 count = 10
 ordering = 'best_to_worst'
 
-[max]
+[board.max]
 count = 42
+ordering = 'best_to_worst'
+
+
+[person.default]
+count = 3
+ordering = 'best_to_worst'
+
+[person.max]
+count = 10
 ordering = 'best_to_worst'
 ```
 
@@ -33,11 +42,19 @@ Any of:
   * `best_to_worst`
   * `worst_to_best`
 
+#### Leaderboard Selector
+
+Any of:
+  * `solutions`
+  * `users`
+
 ## Retrieval
 ### Leaderboard
 
-The request query is a Loose Leaderboard Config.
+The request query is a Loose Leaderboard Config, with another optional `of` key of type [Leaderboard Selector](#leaderboard-selector).
 
 That config is then clamped to the loaded max.
 
-The response is an array of [Solution messages](sudoku.md#solution-message).
+Depending on the `of` key value (or `solutions` by default), the response is an array of:
+  * [Solution messages](sudoku.md#solution-message), if `solutions`, or
+  * [Sanitised user data](user.md#sanitised-user-data), if `users`.

@@ -1,9 +1,9 @@
 //! Data used for general application setup: third-party connexions, et caetera.
 
 
+use self::super::super::ops::{SolutionOrdering, LeaderboardOf};
 use rocket::request::{FromRequest, Outcome as RequestOutcome};
 use self::super::super::util::INITIALISE_DATABASE;
-use self::super::super::ops::SolutionOrdering;
 use diesel::r2d2::{self, ConnectionManager};
 use rocket::request::{FormItems, FromForm};
 use diesel::connection::SimpleConnection;
@@ -95,6 +95,49 @@ impl Deref for DatabaseConnection {
 /// Configuration of a leaderboard request.
 //
 /// Refer to [`doc/check.rs`](../../doc/check/) for more details.
+#[derive(Debug, Copy, Clone, Hash, Eq, PartialEq, PartialOrd, Ord)]
+pub struct SpecificLeaderboardConfig {
+    /// How many entries to return
+    pub for_whom: LeaderboardOf,
+    /// How many entries to return
+    pub cfg: LeaderboardConfig,
+}
+
+#[derive_FromForm]
+struct SpecificLeaderboardConfigData {
+    pub count: Option<usize>,
+    pub ordering: Option<SolutionOrdering>,
+    pub of: Option<LeaderboardOf>,
+}
+
+impl<'f> FromForm<'f> for SpecificLeaderboardConfig {
+    // Ideally this would be
+    // type Error = <LeaderboardConfigData as FromForm<'f>>::Error;
+    // But that's "leaking a private type" so
+    type Error = RocketError;
+
+    fn from_form(items: &mut FormItems<'f>, strict: bool) -> Result<Self, Self::Error> {
+        SpecificLeaderboardConfigData::from_form(items, strict).map(|slcd| {
+            let for_whom = slcd.of.unwrap_or_else(|| LeaderboardOf::Default);
+            let defaults = match for_whom {
+                LeaderboardOf::Solutions => &LeaderboardConfig::BOARD_DEFAULT_DEFAULT,
+                LeaderboardOf::Users => &LeaderboardConfig::PLAYER_DEFAULT_DEFAULT,
+            };
+
+            SpecificLeaderboardConfig {
+                for_whom: for_whom,
+                cfg: LeaderboardConfig {
+                    count: slcd.count.unwrap_or_else(|| defaults.count),
+                    ordering: slcd.ordering.unwrap_or_else(|| defaults.ordering),
+                },
+            }
+        })
+    }
+}
+
+/// Configuration of a leaderboard request.
+//
+/// Refer to [`doc/check.rs`](../../doc/check/) for more details.
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord)]
 pub struct LeaderboardConfig {
     /// How many entries to return
@@ -103,44 +146,30 @@ pub struct LeaderboardConfig {
     pub ordering: SolutionOrdering,
 }
 
-#[derive_FromForm]
-struct LeaderboardConfigData {
-    pub count: Option<usize>,
-    pub ordering: Option<SolutionOrdering>,
-}
-
 impl LeaderboardConfig {
-    /// Default no-spec return config.
-    pub const DEFAULT_DEFAULT: LeaderboardConfig = LeaderboardConfig {
+    /// Default no-spec return config for solutions.
+    pub const BOARD_DEFAULT_DEFAULT: LeaderboardConfig = LeaderboardConfig {
         count: 10,
         ordering: SolutionOrdering::Default,
     };
 
-    /// Default maximal unexceedable return config.
-    pub const DEFAULT_MAX: LeaderboardConfig = LeaderboardConfig {
+    /// Default maximal unexceedable return config for solutions.
+    pub const BOARD_DEFAULT_MAX: LeaderboardConfig = LeaderboardConfig {
         count: 42,
         ordering: SolutionOrdering::Default,
     };
-}
 
-impl<'f> FromForm<'f> for LeaderboardConfig {
-    // Ideally this would be
-    // type Error = <LeaderboardConfigData as FromForm<'f>>::Error;
-    // But that's "leaking a private type" so
-    type Error = RocketError;
+    /// Default no-spec return config for players.
+    pub const PLAYER_DEFAULT_DEFAULT: LeaderboardConfig = LeaderboardConfig {
+        count: 3,
+        ordering: SolutionOrdering::Default,
+    };
 
-    fn from_form(items: &mut FormItems<'f>, strict: bool) -> Result<Self, Self::Error> {
-        LeaderboardConfigData::from_form(items, strict).map(Into::into)
-    }
-}
-
-impl From<LeaderboardConfigData> for LeaderboardConfig {
-    fn from(data: LeaderboardConfigData) -> LeaderboardConfig {
-        LeaderboardConfig {
-            count: data.count.unwrap_or_else(|| LeaderboardConfig::DEFAULT_DEFAULT.count),
-            ordering: data.ordering.unwrap_or_else(|| LeaderboardConfig::DEFAULT_DEFAULT.ordering),
-        }
-    }
+    /// Default maximal unexceedable return config for players.
+    pub const PLAYER_DEFAULT_MAX: LeaderboardConfig = LeaderboardConfig {
+        count: 10,
+        ordering: SolutionOrdering::Default,
+    };
 }
 
 impl cmp::PartialOrd for LeaderboardConfig {
@@ -153,11 +182,22 @@ impl cmp::PartialOrd for LeaderboardConfig {
 //
 /// Refer to [`doc/check.rs`](../../doc/check/) for more details.
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
-pub struct LeaderboardSettings {
+pub struct LeaderboardGroupSettings {
     /// Default config to backfill from
     pub default: LeaderboardConfig,
     /// Unexceedable config
     pub max: LeaderboardConfig,
+}
+
+/// Amalgam of max and default leaderboard configurations.
+//
+/// Refer to [`doc/check.rs`](../../doc/check/) for more details.
+#[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
+pub struct LeaderboardSettings {
+    /// Settings for solves
+    pub board: LeaderboardGroupSettings,
+    /// Settings for people
+    pub person: LeaderboardGroupSettings,
 }
 
 impl LeaderboardSettings {

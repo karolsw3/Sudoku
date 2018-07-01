@@ -37,22 +37,34 @@ The leaderboard settings are stored in TOML format, like so
 (this configuration is also the defaults):
 
 ```toml
-[default]
+[board.default]
 count = 10
 ordering = 'best_to_worst'
 
-[max]
+[board.max]
 count = 42
+ordering = 'best_to_worst'
+
+
+[person.default]
+count = 3
+ordering = 'best_to_worst'
+
+[person.max]
+count = 10
 ordering = 'best_to_worst'
 ```
 
-Both `default` and `max` have the same format:
+Both `default` and `max` in both sexions have the same format:
 
   * `count` – positive integer – how many entries to return
   * `ordering` – enum, either `'best_to_worst'`, or `'worst_to_best'` –
                  which results to obtain, and how to sort them afterward
 
 In the `max` sexion, the `ordering` key is unused (but must still be valid).
+
+The `board` sexion specifies configuration for leaderboards of solutions,
+the `person` one – for those of registered in players.
 
 ## AUTHOR
 

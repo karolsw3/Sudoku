@@ -20,8 +20,14 @@ fn main() {
                 .and_then(|f| ops::setup::LeaderboardSettings::load(f).map_err(|e| eprintln!("{}\nReverting to defaults.", e)).ok())
                 .unwrap_or_else(|| {
                     ops::setup::LeaderboardSettings {
-                        default: ops::setup::LeaderboardConfig::DEFAULT_DEFAULT,
-                        max: ops::setup::LeaderboardConfig::DEFAULT_MAX,
+                        board: ops::setup::LeaderboardGroupSettings {
+                            default: ops::setup::LeaderboardConfig::BOARD_DEFAULT_DEFAULT,
+                            max: ops::setup::LeaderboardConfig::BOARD_DEFAULT_MAX,
+                        },
+                        person: ops::setup::LeaderboardGroupSettings {
+                            default: ops::setup::LeaderboardConfig::PLAYER_DEFAULT_DEFAULT,
+                            max: ops::setup::LeaderboardConfig::PLAYER_DEFAULT_MAX,
+                        },
                     }
                 });
             println!("Leaderboard settings:\n{}",
