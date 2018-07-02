@@ -32,7 +32,7 @@ script:
   - if [ "$LANGUAGE" == "Rust" ] && [ "$CLIPPY" ]; then
       cargo install -f clippy;
       cargo clippy;
-    fi
+    fi || true
   -
     # Diesel denies warnings, even in documentation, which produces them, meaning we can *not* build the documentation w/o patching that out
   - if [ "$LANGUAGE" == "Rust-doc" ]; then
