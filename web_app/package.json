@@ -9,9 +9,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "es6-promise": "^4.2.4",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
+    "validator": "^10.4.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
