@@ -19,7 +19,6 @@ export default {
   },
   watch: {
     value: function () {
-
       // Store all input values in the store
       if (this.id) {
         this.$store.commit('change', {
@@ -51,9 +50,9 @@ export default {
           }
       }
 
-      if (this.id == 'confirm_password') {
-        console.log(this.$store.state.password + '  ' + this.value)
-        if (this.$store.state.password !== this.value) {
+      // Check if passwords match on registration
+      if (this.id === 'register__confirm_password') {
+        if (this.$store.state.register__password !== this.value) {
           this.invalid = true
           this.errorMessage = 'Passwords doesn\'t match'
         } else {

@@ -1,5 +1,5 @@
 <template lang="pug">
-button.Button
+button.Button(@click="$emit('clicked')")
   slot
 </template>
 
