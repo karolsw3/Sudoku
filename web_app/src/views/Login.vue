@@ -4,6 +4,7 @@
     Input(placeholder="Username" type="text" id="login__username")
     Input(placeholder="Password" type="password" id="login__password")
     ErrorMessageBox(v-if="error") {{errorMessage}}
+    Loading(v-if="loading")
     Button(@clicked="login") Login
 </template>
 
@@ -12,22 +13,24 @@ import Input from '@/components/Input.vue'
 import ColumnPanel from '@/components/ColumnPanel.vue'
 import ErrorMessageBox from '@/components/ErrorMessageBox.vue'
 import Button from '@/components/Button.vue'
+import Loading from '@/components/Loading.vue'
 import axios from 'axios'
 
 export default {
   name: 'Login',
   components: {
-    ColumnPanel, Input, Button, ErrorMessageBox
+    ColumnPanel, Input, Button, ErrorMessageBox, Loading
   },
   data: function () {
     return {
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      loading: false
     }
   },
   methods: {
     login: function (event) {
-
+      this.loading = true
       let data = {
         username: this.$store.state.login__username,
         password: this.$store.state.login__password
@@ -36,6 +39,7 @@ export default {
       axios.post('/api/login', data)
         .then((response) => {
           // Take user to the login page
+          this.loading = false
         })
         .catch((error) => {
           switch (error.response.status) {
@@ -47,6 +51,7 @@ export default {
               this.error = true
               this.errorMessage = "Internal server error"
           }
+          this.loading = false
         })
     }
   }
