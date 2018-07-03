@@ -17,18 +17,18 @@ The API will be used both by web and mobile app.
 It should:
   - USERS
     - Register a new user
-      > POST ``sudoku/register``
+      > POST ``sudoku/api/register``
     - Validate users login and password
-      > POST ``sudoku/login``
+      > POST ``sudoku/api/login``
     - Return the number of boards solved by a user (ordered by duration and difficulty) 
-      > GET ``sudoku/getScore?user=username``
+      > GET ``sudoku/api/getScore?user=username``
     - Compare users scores in a leaderboard
-      > GET ``sudoku/getLeaderboard``
+      > GET ``sudoku/api/getLeaderboard``
   - GAME
     - Generate new sudoku boards
-      > GET ``sudoku/generateBoard?difficulty=1&variant=0``
+      > GET ``sudoku/api/generateBoard?difficulty=1&variant=0``
     - Validate completed ones
-      > POST ``sudoku/validateBoard``
+      > POST ``sudoku/api/validateBoard``
 
 <br>
 After each game validation the server should give points to the player, calculated as follows:
