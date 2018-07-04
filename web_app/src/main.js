@@ -9,11 +9,15 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    input: []
+    input: [],
+    userLogged: false
   },
   mutations: {
     change (input, payload) {
       input[payload.id] = payload.value
+    },
+    login (userLogged, boolean) {
+      userLogged = boolean
     }
   }
 })

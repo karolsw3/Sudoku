@@ -31,6 +31,7 @@ export default {
   methods: {
     login: function (event) {
       this.loading = true
+      this.error = false
       let data = {
         username: this.$store.state.login__username,
         password: this.$store.state.login__password
@@ -38,7 +39,7 @@ export default {
 
       axios.post('/api/login', data)
         .then((response) => {
-          // Take user to the login page
+          this.$store.commit('userLogged', true)
           this.loading = false
         })
         .catch((error) => {
