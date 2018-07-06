@@ -5,32 +5,27 @@
       .Board__grid(v-for="j in 3")
         template(v-for="x in 3")
           .Board__slot(v-for="y in 3" @click="onSlotClick((i - 1)*3 + (x - 1),(j - 1)*3 + (y - 1))" :class="{'Board__slot--selected' : (i - 1)*3 + (x - 1) == selectedSlot.x && (j - 1)*3 + (y - 1) == selectedSlot.y}")
-            p(v-if="state[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)] != 0" ) {{state[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)]}} 
+            p(v-if="boardState[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)] != 0" ) {{boardState[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)]}}
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Board',
-  data: function () {
-    return {
-      state: [[0,0,0,0,0,0,0,0,0], // Well.. that's not the brightest method to
-              [0,0,0,0,0,0,0,0,0], // make a 9x9 matrix, but that's the most clear
-              [0,0,0,2,2,2,2,0,0], // one.
-              [0,0,1,0,0,0,0,1,0],
-              [0,0,0,1,1,1,1,0,0],
-              [0,0,0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0,0,0],
-              [0,0,0,0,0,0,0,0,0]],
-      selectedSlot: {x: -1, y: -1}
-    }
-  },
   methods: {
     onSlotClick (x, y) {
-      this.selectedSlot = {x, y}
+      this.$store.commit('slotSelected', {x, y})
+    }
+  },
+  computed: {
+    boardState () {
+      return this.$store.state.boardState
+    },
+    selectedSlot () {
+      return this.$store.state.selectedSlot
     }
   }
-
 }
 </script>
 

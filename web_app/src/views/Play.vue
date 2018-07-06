@@ -15,7 +15,7 @@ export default {
   },
   methods: {
     numberSelected (number) {
-      console.log(number)
+      this.$store.state.boardState[this.$store.state.selectedSlot.x][this.$store.state.selectedSlot.y] = number
     }
   }
 }
