@@ -104,3 +104,15 @@ pub fn create_account(db: DatabaseConnection, mut cookies: Cookies, form: Form<L
         }
     }
 }
+
+/// Get data for the currently logged-in user
+#[get("/user_data")]
+pub fn user_data(db: DatabaseConnection, mut cookies: Cookies) -> Result<Json<SanitisedUserData>, Custom<Json<GenericError>>> {
+    let session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+
+    if let Some(uid) = session.user_id {
+        Ok(Json(User::get_by_id(uid, &db).map_err(|e| Custom(Status::InternalServerError, Json((e.to_string(), GenericErrorSeverity::Danger).into())))?.into()))
+    } else {
+        Err(Custom(Status::Unauthorized, Json(("User not logged in", GenericErrorSeverity::Warning).into())))
+    }
+}
