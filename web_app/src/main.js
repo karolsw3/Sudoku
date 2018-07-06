@@ -12,15 +12,7 @@ const store = new Vuex.Store({
     input: [],
     userLogged: false,
     selectedSlot: {x: -1, y: -1},
-    boardState: [[0,0,0,0,0,0,0,0,0], // Well.. that's not the brightest method to
-    [0,0,0,0,0,0,0,0,0], // make a 9x9 matrix, but that's the most clear
-    [0,0,0,0,0,0,0,0,0], // one.
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0,0,0]]
+    boardState: Array(9).fill().map(() => Array(9).fill(0))
   },
   mutations: {
     change (input, payload) {
