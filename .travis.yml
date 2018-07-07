@@ -61,7 +61,7 @@ after_success:
       mkdir -p ~/.ssh && cp "$TRAVIS_BUILD_DIR/gh_rsa" ~/.ssh/id_rsa && chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa;
       git clone -b backend-doc "git@github.com:$TRAVIS_REPO_SLUG.git" "$TRAVIS_BUILD_DIR-backend-doc";
       mkdir -p target;
-      cp -rf target/doc/* "$TRAVIS_BUILD_DIR-backend-doc"
+      cp -rf target/doc/* "$TRAVIS_BUILD_DIR-backend-doc";
       pushd "$TRAVIS_BUILD_DIR-backend-doc";
       git config --global user.email "nabijaczleweli@gmail.com";
       git config --global user.name "Nabijaczleweli Autouploader Bot";
