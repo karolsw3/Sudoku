@@ -10,6 +10,8 @@ We want to make our take modern, secure, well-designed and open to everyone – 
 
 `Sudoku` consists of a public API, web app, and in the future – a mobile app.
 
+# <img src="images/progress.png" alt="Progress" height="280"/>
+
 ## API
 
 <sub>Subject to change and move elsewhere with rest of API documentation.</sub>
