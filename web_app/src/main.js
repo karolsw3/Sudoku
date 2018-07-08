@@ -28,6 +28,10 @@ const store = new Vuex.Store({
   }
 })
 
+/*
+  Keyboard
+*/
+
 document.body.addEventListener('keydown', function (e) {
   if (!isNaN(e.key)) {
     store.state.boardState[store.state.selectedSlot.x][store.state.selectedSlot.y] = e.key
