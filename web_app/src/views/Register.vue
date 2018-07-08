@@ -50,11 +50,11 @@ export default {
           switch (error.response.status) {
             case 404:
               this.error = true
-              this.errorMessage = "Error 404"
+              this.errorMessage = 'Error 404'
               break
             default:
               this.error = true
-              this.errorMessage = "Internal server error"
+              this.errorMessage = 'Internal server error'
           }
           this.loading = false
         })

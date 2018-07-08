@@ -6,7 +6,7 @@
     ErrorMessageBox(v-if="error") {{errorMessage}}
     Loading(v-if="loading")
     Button(@clicked="login") Login
-</template>
+</template>``
 
 <script>
 import Input from '@/components/Input.vue'
@@ -15,6 +15,7 @@ import ErrorMessageBox from '@/components/ErrorMessageBox.vue'
 import Button from '@/components/Button.vue'
 import Loading from '@/components/Loading.vue'
 import axios from 'axios'
+import scrypt from 'scrypt-js'
 
 export default {
   name: 'Login',
@@ -34,26 +35,38 @@ export default {
       this.error = false
       let data = {
         username: this.$store.state.login__username,
-        password: this.$store.state.login__password
+        password: Buffer.from(this.$store.state.login__password)
       }
 
-      axios.post('/api/login', data)
-        .then((response) => {
-          this.$store.commit('userLogged', true)
-          this.loading = false
-        })
-        .catch((error) => {
-          switch (error.response.status) {
-            case 404:
-              this.error = true
-              this.errorMessage = "Error 404"
-              break
-            default:
-              this.error = true
-              this.errorMessage = "Internal server error"
-          }
-          this.loading = false
-        })
+      var salt = Buffer.from('Sudoku')
+
+      scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
+        if (error) {
+          console.error('An error occurred')
+        } else if (key) {
+          data.password = ''
+          key.map((item) => {
+            data.password += item.toString(16)
+          })
+          axios.post('/api/login', data)
+            .then((response) => {
+              this.$store.commit('userLogged', true)
+              this.loading = false
+            })
+            .catch((error) => {
+              switch (error.response.status) {
+                case 404:
+                  this.error = true
+                  this.errorMessage = 'Error 404'
+                  break
+                default:
+                  this.error = true
+                  this.errorMessage = 'Internal server error'
+              }
+              this.loading = false
+            })
+        }
+      })
     }
   }
 }
