@@ -25,8 +25,8 @@ use r2d2;
 /// # extern crate sudoku_backend;
 /// # #[macro_use]
 /// # extern crate rocket;
-/// # use std::env::temp_dir;
 /// # use std::fs;
+/// # use std::env::temp_dir;
 /// # use sudoku_backend::ops::setup::DatabaseConnection;
 /// #[get("/databased")]
 /// fn databased(db: DatabaseConnection) -> String {
@@ -39,6 +39,7 @@ use r2d2;
 /// #   let database_file =
 /// #     ("$ROOT/sudoku-backend.db".to_string(),
 /// #      temp_dir().join("sudoku-backend-doctest").join("ops-setup-DatabaseConnection-initialise").join("sudoku-backend.db"));
+/// #   fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
 /// #   /*
 ///     let database_file: (String, PathBuf) = /* obtained elsewhere */;
 /// #   */

@@ -6,8 +6,11 @@ extern crate diesel_codegen;
 // #[macro_use]
 // extern crate serde_derive;
 extern crate r2d2_diesel;
+#[macro_use]
+extern crate lazy_static;
 extern crate serde_json;
 extern crate chrono;
+extern crate crypto;
 extern crate rocket;
 #[macro_use]
 extern crate diesel;
@@ -16,6 +19,7 @@ extern crate serde;
 #[macro_use]
 extern crate clap;
 extern crate r2d2;
+extern crate time;
 
 mod options;
 
