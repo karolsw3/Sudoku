@@ -18,6 +18,7 @@ import ErrorMessageBox from '@/components/ErrorMessageBox.vue'
 import Button from '@/components/Button.vue'
 import Loading from '@/components/Loading.vue'
 import axios from 'axios'
+import scrypt from 'scrypt-js'
 
 export default {
   name: 'Register',
@@ -38,26 +39,35 @@ export default {
       let data = {
         username: this.$store.state.register__username,
         email: this.$store.state.register__email,
-        password: this.$store.state.register__password
+        password: Buffer.from(this.$store.state.register__password)
       }
 
-      axios.post('/api/register', data)
-        .then((response) => {
-          this.$store.commit('userLogged', true)
-          this.loading = false
-        })
-        .catch((error) => {
-          switch (error.response.status) {
-            case 404:
-              this.error = true
-              this.errorMessage = 'Error 404'
-              break
-            default:
-              this.error = true
-              this.errorMessage = 'Internal server error'
-          }
-          this.loading = false
-        })
+      var salt = Buffer.from('Sudoku')
+
+      scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
+        if (error) {
+          this.error = true
+          this.errorMessage = 'Error with password encryption'
+        } else if (key) {
+          axios.post('/api/register', data)
+            .then((response) => {
+              this.$store.commit('userLogged', true)
+              this.loading = false
+            })
+            .catch((error) => {
+              switch (error.response.status) {
+                case 404:
+                  this.error = true
+                  this.errorMessage = 'Error 404'
+                  break
+                default:
+                  this.error = true
+                  this.errorMessage = 'Internal server error'
+              }
+              this.loading = false
+            })
+        }
+      })
     }
   }
 }
