@@ -9,9 +9,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="500mm"
+   height="120mm"
+   viewBox="40 -145 1200 240"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.175"
-     inkscape:cx="1782.685"
-     inkscape:cy="1276.8456"
+     inkscape:zoom="0.90509668"
+     inkscape:cx="762.51456"
+     inkscape:cy="337.13561"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -45,7 +45,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -53,357 +53,6 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <rect
-       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#011f7f;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4716"
-       width="1720.6814"
-       height="482.29758"
-       x="-291.93143"
-       y="-268.45236"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <rect
-       style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4518"
-       width="155.7262"
-       height="52.160713"
-       x="-254.75594"
-       y="-79.086311"
-       ry="4.9136906"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-219.12901"
-       y="-43.760006"
-       id="text4522"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4520"
-         x="-219.12901"
-         y="-43.760006"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Sudoku</tspan></text>
-    <rect
-       ry="4.9136906"
-       y="-145.61012"
-       x="-49.136887"
-       height="52.160713"
-       width="155.7262"
-       id="rect4524"
-       style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4528"
-       y="-111.31115"
-       x="-13.54649"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
-         y="-111.31115"
-         x="-13.54649"
-         id="tspan4526"
-         sodipodi:role="line">Rest API</tspan></text>
-    <rect
-       style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4530"
-       width="155.7262"
-       height="52.160713"
-       x="-49.136887"
-       y="-12.562504"
-       ry="4.9136906"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-18.088503"
-       y="19.233955"
-       id="text4534"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4532"
-         x="-18.088503"
-         y="19.233955"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Web app</tspan></text>
-    <path
-       style="fill:none;stroke:#001f7e;stroke-width:4.365;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -101.67557,-52.627977 c 43.23806,0.325934 22.682828,-66.565593 51.782713,-66.901783 v 0 0 h 6.047619 v 0"
-       id="path4536"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       sodipodi:nodetypes="cccccc"
-       inkscape:connector-curvature="0"
-       id="path4538"
-       d="m -101.67557,-52.627977 c 43.23806,-0.32593 22.682828,66.565593 51.782713,66.901783 v 0 0 h 6.047619 v 0"
-       style="fill:none;stroke:#001f7e;stroke-width:4.36499977;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <rect
-       style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4540"
-       width="155.7262"
-       height="52.160713"
-       x="-49.136887"
-       y="-79.086311"
-       ry="4.9136906"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-29.267149"
-       y="-47.300877"
-       id="text4544"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4542"
-         x="-29.267149"
-         y="-47.300877"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Mobile app</tspan></text>
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.365;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
-       d="m -101.67557,-52.627976 h 57.576098"
-       id="path4546"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4554"
-       d="M 28.726212,-173.49039 V -132.485"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <rect
-       style="opacity:1;fill:#ff2a2a;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4548"
-       width="155.7262"
-       height="52.160713"
-       x="-49.136887"
-       y="-212.96204"
-       ry="4.9136906"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-18.193232"
-       y="-178.66307"
-       id="text4552"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4550"
-         x="-18.193232"
-         y="-178.66307"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Database</tspan></text>
-    <rect
-       ry="4.7000518"
-       y="-11.428576"
-       x="123.08368"
-       height="49.892857"
-       width="149.11375"
-       id="rect4558"
-       style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:#011f7f;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4562"
-       y="19.233953"
-       x="155.42297"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="19.233953"
-         x="155.42297"
-         id="tspan4560"
-         sodipodi:role="line">Logging</tspan></text>
-    <rect
-       style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:#011f7f;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4564"
-       width="149.11375"
-       height="49.892857"
-       x="288.79077"
-       y="-11.428576"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="306.77643"
-       y="19.233953"
-       id="text4568"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4566"
-         x="306.77643"
-         y="19.233953"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Registering</tspan></text>
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4570"
-       width="149.11375"
-       height="49.892857"
-       x="123.08368"
-       y="-143.99426"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="155.42297"
-       y="-113.33173"
-       id="text4574"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4572"
-         x="155.42297"
-         y="-113.33173"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Logging</tspan></text>
-    <rect
-       ry="4.7000518"
-       y="-143.99426"
-       x="288.79077"
-       height="49.892857"
-       width="149.11375"
-       id="rect4576"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4580"
-       y="-113.33173"
-       x="306.77643"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="-113.33173"
-         x="306.77643"
-         id="tspan4578"
-         sodipodi:role="line">Registering</tspan></text>
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4582"
-       width="149.11375"
-       height="49.892857"
-       x="123.08368"
-       y="-77.17688"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="155.42297"
-       y="-46.514351"
-       id="text4586"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4584"
-         x="155.42297"
-         y="-46.514351"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Logging</tspan></text>
-    <rect
-       ry="4.7000518"
-       y="-77.17688"
-       x="288.79077"
-       height="49.892857"
-       width="149.11375"
-       id="rect4588"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4592"
-       y="-46.514351"
-       x="306.77643"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="-46.514351"
-         x="306.77643"
-         id="tspan4590"
-         sodipodi:role="line">Registering</tspan></text>
-    <path
-       inkscape:connector-curvature="0"
-       id="path4594"
-       d="m 105.72558,-52.627976 h 16.95113"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 271.43269,-52.627976 h 16.95113"
-       id="path4596"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4598"
-       d="m 271.43269,-119.44536 h 16.95113"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 105.19104,-119.44536 h 16.95113"
-       id="path4600"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 271.43269,13.654865 h 16.95113"
-       id="path4602"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4604"
-       d="m 105.19104,13.654865 h 16.95113"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <rect
-       ry="4.7000518"
-       y="-11.428576"
-       x="455.03241"
-       height="49.892857"
-       width="149.11375"
-       id="rect4606"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4608"
-       d="m 437.67434,13.654865 h 16.95113"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -416,19 +65,6 @@
          y="43.402847"
          style="stroke-width:0.26458332" /></text>
     <text
-       id="text4616"
-       y="19.233953"
-       x="493.58942"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="19.233953"
-         x="493.58942"
-         id="tspan4614"
-         sodipodi:role="line">Playing</tspan></text>
-    <text
        id="text4620"
        y="21.177847"
        x="640.37781"
@@ -439,330 +75,721 @@
          x="640.37781"
          id="tspan4618"
          sodipodi:role="line" /></text>
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4622"
-       width="149.11375"
-       height="49.892857"
-       x="455.03241"
-       y="-76.642342"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 437.67434,-51.5589 h 16.95113"
-       id="path4624"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="493.58942"
-       y="-45.979813"
-       id="text4628"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4626"
-         x="493.58942"
-         y="-45.979813"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Playing</tspan></text>
-    <rect
-       ry="4.7000518"
-       y="-76.642342"
-       x="455.03241"
-       height="49.892857"
-       width="149.11375"
-       id="rect4630"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4632"
-       d="m 437.67434,-118.37628 h 16.95113"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4636"
-       y="-112.7972"
-       x="473.55823"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="-112.7972"
-         x="473.55823"
-         id="tspan4634"
-         sodipodi:role="line">Validating boards</tspan></text>
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4638"
-       width="212.72391"
-       height="49.892857"
-       x="455.03244"
-       y="-143.45972"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="473.55823"
-       y="-112.7972"
-       id="text4642"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4640"
-         x="473.55823"
-         y="-112.7972"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Validating boards</tspan></text>
-    <rect
-       ry="4.7000518"
-       y="-143.45972"
-       x="455.03244"
-       height="49.892857"
-       width="212.72391"
-       id="rect4644"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 666.72791,-118.37628 h 16.95113"
-       id="path4646"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4650"
-       y="-112.7972"
-       x="703.59216"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="-112.7972"
-         x="703.59216"
-         id="tspan4648"
-         sodipodi:role="line">Generating boards</tspan></text>
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4652"
-       width="232.37866"
-       height="49.892857"
-       x="684.086"
-       y="-143.45972"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4660"
-       d="m 916.89219,-118.37628 h 16.95113"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="953.43359"
-       y="-112.7972"
-       id="text4664"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4662"
-         x="953.43359"
-         y="-112.7972"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Giving points</tspan></text>
-    <rect
-       ry="4.7000518"
-       y="-143.45972"
-       x="934.25031"
-       height="49.892857"
-       width="172.51028"
-       id="rect4666"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4668"
-       width="230.00066"
-       height="49.892857"
-       x="622.0979"
-       y="-11.428576"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 604.73982,13.654865 h 16.95113"
-       id="path4670"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="635.32733"
-       y="19.233953"
-       id="text4674"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4672"
-         x="635.32733"
-         y="19.233953"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Displaying a ranking</tspan></text>
-    <rect
-       ry="4.7000518"
-       y="-76.440483"
-       x="622.0979"
-       height="49.892857"
-       width="230.00066"
-       id="rect4676"
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <path
-       inkscape:connector-curvature="0"
-       id="path4678"
-       d="m 604.73982,-51.35704 h 16.95113"
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4682"
-       y="-45.77795"
-       x="635.32733"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="-45.77795"
-         x="635.32733"
-         id="tspan4680"
-         sodipodi:role="line">Displaying a ranking</tspan></text>
-    <path
-       style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m 1106.119,-118.37628 h 16.9511"
-       id="path4684"
-       inkscape:connector-curvature="0"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4688"
-       y="-112.7972"
-       x="1153.5314"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="-112.7972"
-         x="1153.5314"
-         id="tspan4686"
-         sodipodi:role="line">Creating a ranking</tspan></text>
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4690"
-       width="249.4839"
-       height="49.892857"
-       x="1123.4772"
-       y="-143.45972"
-       ry="4.7000518"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <rect
-       style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:4.0999999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4694"
-       width="36.133759"
-       height="36.133759"
-       x="-36.469139"
-       y="129.25661"
-       ry="8.4047461"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:29.74355125px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.90000004;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="-48.770332"
-       y="101.45444"
-       id="text4698"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4696"
-         x="-48.770332"
-         y="101.45444"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.43871307px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.90000004;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Legend:</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="13.235585"
-       y="152.86871"
-       id="text4702"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4700"
-         x="13.235585"
-         y="152.86871"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">- totally not done</tspan></text>
-    <rect
-       ry="8.4047461"
-       y="129.25661"
-       x="212.62605"
-       height="36.133759"
-       width="36.133759"
-       id="rect4704"
-       style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:#011f7f;stroke-width:4.0999999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       id="text4708"
-       y="155.45943"
-       x="262.33078"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       xml:space="preserve"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-         y="155.45943"
-         x="262.33078"
-         id="tspan4706"
-         sodipodi:role="line">- half done</tspan></text>
-    <rect
-       style="opacity:1;fill:#2aff80;fill-opacity:1;stroke:#011f7f;stroke-width:4.0999999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       id="rect4710"
-       width="36.133759"
-       height="36.133759"
-       x="403.99103"
-       y="129.25661"
-       ry="8.4047461"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:25.39999962px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="453.69577"
-       y="155.47044"
-       id="text4714"
-       inkscape:export-xdpi="22.049999"
-       inkscape:export-ydpi="22.049999"><tspan
-         sodipodi:role="line"
-         id="tspan4712"
-         x="453.69577"
-         y="155.47044"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:22.57777786px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999998;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">- done</tspan></text>
+    <g
+       id="g998">
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         y="-177.73808"
+         x="31.611187"
+         height="300.86902"
+         width="1073.5962"
+         id="rect4716"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#011f7f;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="3.0652802"
+         y="-59.606911"
+         x="54.806339"
+         height="32.539127"
+         width="97.163277"
+         id="rect4518"
+         style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4522"
+         y="-37.572876"
+         x="77.028351"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           y="-37.572876"
+           x="77.028351"
+           id="tspan4520"
+           sodipodi:role="line">Sudoku</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4524"
+         width="97.163277"
+         height="32.539127"
+         x="183.09959"
+         y="-101.10609"
+         ry="3.0652802" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         x="205.28729"
+         y="-79.716721"
+         id="text4528"><tspan
+           sodipodi:role="line"
+           id="tspan4526"
+           x="205.28729"
+           y="-79.716721"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332">Rest API</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="3.0652802"
+         y="-18.107735"
+         x="183.09959"
+         height="32.539127"
+         width="97.163277"
+         id="rect4530"
+         style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4534"
+         y="1.7278285"
+         x="202.45361"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           y="1.7278285"
+           x="202.45361"
+           id="tspan4532"
+           sodipodi:role="line">Web app</tspan></text>
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path4536"
+         d="m 150.31879,-43.101555 c 26.97781,0.203325 14.15264,-41.525243 32.30913,-41.734966 v 0 0 h 3.77333 v 0"
+         style="fill:none;stroke:#001f7e;stroke-width:4.36499977;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#001f7e;stroke-width:4.36499977;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 150.31879,-43.101555 c 26.97781,-0.203323 14.15264,41.5252422 32.30913,41.7349657 v 0 0 h 3.77333 v 0"
+         id="path4538"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccc" />
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="3.0652802"
+         y="-59.606911"
+         x="183.09959"
+         height="32.539127"
+         width="97.163277"
+         id="rect4540"
+         style="opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4544"
+         y="-39.78196"
+         x="195.47948"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           y="-39.78196"
+           x="195.47948"
+           id="tspan4542"
+           sodipodi:role="line">Mobile app</tspan></text>
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4546"
+         d="m 150.31879,-43.101555 h 35.92383"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 231.68124,-118.49848 v 25.580164"
+         id="path4554"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="3.0652802"
+         y="-143.12186"
+         x="183.09959"
+         height="32.539127"
+         width="97.163277"
+         id="rect4548"
+         style="opacity:1;fill:#ff2a2a;fill-opacity:1;stroke:none;stroke-width:12.46199989;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4552"
+         y="-121.73627"
+         x="202.38828"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.26458332"
+           y="-121.73627"
+           x="202.38828"
+           id="tspan4550"
+           sodipodi:role="line">Database</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4558"
+         width="93.037537"
+         height="31.124382"
+         x="290.55432"
+         y="-17.400364"
+         ry="2.9320071" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="310.70404"
+         y="1.7278273"
+         id="text4562"><tspan
+           sodipodi:role="line"
+           id="tspan4560"
+           x="310.70404"
+           y="1.7278273"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Logging</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-17.400364"
+         x="393.94504"
+         height="31.124382"
+         width="93.037537"
+         id="rect4564"
+         style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4568"
+         y="1.7278273"
+         x="405.13052"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="1.7278273"
+           x="405.13052"
+           id="tspan4566"
+           sodipodi:role="line">Registering</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-100.09808"
+         x="290.55432"
+         height="31.124382"
+         width="93.037537"
+         id="rect4570"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4574"
+         y="-80.977325"
+         x="310.70404"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="-80.977325"
+           x="310.70404"
+           id="tspan4572"
+           sodipodi:role="line">Logging</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4576"
+         width="93.037537"
+         height="31.124382"
+         x="393.94504"
+         y="-100.09808"
+         ry="2.9320071" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="405.13052"
+         y="-80.977325"
+         id="text4580"><tspan
+           sodipodi:role="line"
+           id="tspan4578"
+           x="405.13052"
+           y="-80.977325"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Registering</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-58.41576"
+         x="290.55432"
+         height="31.124382"
+         width="93.037537"
+         id="rect4582"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4586"
+         y="-39.29126"
+         x="310.70404"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="-39.29126"
+           x="310.70404"
+           id="tspan4584"
+           sodipodi:role="line">Logging</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4588"
+         width="93.037537"
+         height="31.124382"
+         x="393.94504"
+         y="-58.41576"
+         ry="2.9320071" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="405.13052"
+         y="-39.29126"
+         id="text4592"><tspan
+           sodipodi:role="line"
+           id="tspan4590"
+           x="405.13052"
+           y="-39.29126"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Registering</tspan></text>
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 279.72396,-43.101555 h 10.57643"
+         id="path4594"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4596"
+         d="m 383.1147,-43.101555 h 10.57643"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 383.1147,-84.78387 h 10.57643"
+         id="path4598"
+         inkscape:connector-curvature="0" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4600"
+         d="m 279.39044,-84.78387 h 10.57644"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4602"
+         d="m 383.1147,-1.7526998 h 10.57643"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 279.39044,-1.7526998 h 10.57644"
+         id="path4604"
+         inkscape:connector-curvature="0" />
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4606"
+         width="93.037537"
+         height="31.124382"
+         x="497.66928"
+         y="-17.400364"
+         ry="2.9320071" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 486.83896,-1.7526998 h 10.57643"
+         id="path4608"
+         inkscape:connector-curvature="0" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="521.6795"
+         y="1.7278273"
+         id="text4616"><tspan
+           sodipodi:role="line"
+           id="tspan4614"
+           x="521.6795"
+           y="1.7278273"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Playing</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-58.082302"
+         x="497.66928"
+         height="31.124382"
+         width="93.037537"
+         id="rect4622"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4624"
+         d="m 486.83896,-42.434639 h 10.57643"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4628"
+         y="-38.957771"
+         x="521.6795"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="-38.957771"
+           x="521.6795"
+           id="tspan4626"
+           sodipodi:role="line">Playing</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4630"
+         width="93.037537"
+         height="31.124382"
+         x="497.66928"
+         y="-58.082302"
+         ry="2.9320071" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 486.83896,-84.116952 h 10.57643"
+         id="path4632"
+         inkscape:connector-curvature="0" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="509.18243"
+         y="-80.643837"
+         id="text4636"><tspan
+           sodipodi:role="line"
+           id="tspan4634"
+           x="509.18243"
+           y="-80.643837"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Validating boards</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-99.76461"
+         x="497.66931"
+         height="31.124382"
+         width="132.72624"
+         id="rect4638"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4642"
+         y="-80.643837"
+         x="509.18243"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="-80.643837"
+           x="509.18243"
+           id="tspan4640"
+           sodipodi:role="line">Validating boards</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4644"
+         width="132.72624"
+         height="31.124382"
+         x="497.66931"
+         y="-99.76461"
+         ry="2.9320071" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4646"
+         d="M 629.75387,-84.116952 H 640.3303"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="652.69611"
+         y="-80.643837"
+         id="text4650"><tspan
+           sodipodi:role="line"
+           id="tspan4648"
+           x="652.69611"
+           y="-80.643837"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Generating boards</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-99.76461"
+         x="640.58423"
+         height="31.124382"
+         width="144.98956"
+         id="rect4652"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 785.84053,-84.116952 h 10.57643"
+         id="path4660"
+         inkscape:connector-curvature="0" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4664"
+         y="-80.643837"
+         x="808.56732"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="-80.643837"
+           x="808.56732"
+           id="tspan4662"
+           sodipodi:role="line">Giving points</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4666"
+         width="107.63549"
+         height="31.124382"
+         x="796.6709"
+         y="-99.76461"
+         ry="2.9320071" />
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-17.400364"
+         x="601.90759"
+         height="31.124382"
+         width="143.50584"
+         id="rect4668"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4670"
+         d="m 591.07723,-1.7526998 h 10.57643"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4674"
+         y="1.7278273"
+         x="610.10706"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="1.7278273"
+           x="610.10706"
+           id="tspan4672"
+           sodipodi:role="line">Displaying a ranking</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4676"
+         width="143.50584"
+         height="31.124382"
+         x="601.90759"
+         y="-57.956379"
+         ry="2.9320071" />
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m 591.07723,-42.308714 h 10.57643"
+         id="path4678"
+         inkscape:connector-curvature="0" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="610.10706"
+         y="-38.831833"
+         id="text4682"><tspan
+           sodipodi:role="line"
+           id="tspan4680"
+           x="610.10706"
+           y="-38.831833"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Displaying a ranking</tspan></text>
+      <path
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         inkscape:connector-curvature="0"
+         id="path4684"
+         d="m 903.90607,-84.116952 h 10.57641"
+         style="fill:none;stroke:#011f7f;stroke-width:4.36499977;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="933.40442"
+         y="-80.643837"
+         id="text4688"><tspan
+           sodipodi:role="line"
+           id="tspan4686"
+           x="933.40442"
+           y="-80.643837"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Creating a ranking</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="2.9320071"
+         y="-99.76461"
+         x="914.73645"
+         height="31.124382"
+         width="155.66216"
+         id="rect4690"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:3.20000005;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="5.2430859"
+         y="70.362488"
+         x="191.00346"
+         height="22.541121"
+         width="22.545176"
+         id="rect4694"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#011f7f;stroke-width:4.0999999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4698"
+         y="53.023586"
+         x="183.31181"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:18.55642319px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.90000004;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16.49459839px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.90000004;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="53.023586"
+           x="183.31181"
+           id="tspan4696"
+           sodipodi:role="line">Legend:</tspan></text>
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4702"
+         y="85.099953"
+         x="221.99609"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="85.099953"
+           x="221.99609"
+           id="tspan4700"
+           sodipodi:role="line">- totally not done</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:#011f7f;stroke-width:4.0999999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect4704"
+         width="22.545176"
+         height="22.541121"
+         x="346.4231"
+         y="70.362488"
+         ry="5.2430859" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="377.40173"
+         y="86.716248"
+         id="text4708"><tspan
+           sodipodi:role="line"
+           id="tspan4706"
+           x="377.40173"
+           y="86.716248"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">- half done</tspan></text>
+      <rect
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         ry="5.2430859"
+         y="70.362488"
+         x="465.82269"
+         height="22.541121"
+         width="22.545176"
+         id="rect4710"
+         style="opacity:1;fill:#2aff80;fill-opacity:1;stroke:#011f7f;stroke-width:4.0999999;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         transform="scale(1.0000899,0.99991007)"
+         inkscape:export-ydpi="22.049999"
+         inkscape:export-xdpi="22.049999"
+         id="text4714"
+         y="86.723122"
+         x="496.79062"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.84656525px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;opacity:1;fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.08583641px;font-family:Sawasdee;-inkscape-font-specification:'Sawasdee Bold';fill:#011f7f;fill-opacity:1;stroke:none;stroke-width:0.89999992;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="86.723122"
+           x="496.79062"
+           id="tspan4712"
+           sodipodi:role="line">- done</tspan></text>
+    </g>
   </g>
 </svg>
