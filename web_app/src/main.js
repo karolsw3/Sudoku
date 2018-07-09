@@ -33,22 +33,25 @@ const store = new Vuex.Store({
 */
 
 document.body.addEventListener('keydown', function (e) {
-  if (!isNaN(e.key)) {
-    store.state.boardState[store.state.selectedSlot.x][store.state.selectedSlot.y] = e.key
-  }
-
-  switch (e.key) {
-    case 'h':
-      store.state.selectedSlot.y--
-      break
-    case 'j':
-      store.state.selectedSlot.x++
-      break
-    case 'k':
-      store.state.selectedSlot.x--
-      break
-    case 'l':
-      store.state.selectedSlot.y++
+  switch (router.currentRoute.name) {
+    case 'play':
+      if (!isNaN(e.key)) {
+        store.state.boardState[store.state.selectedSlot.x][store.state.selectedSlot.y] = e.key
+      }
+      switch (e.key) {
+        case 'h':
+          store.state.selectedSlot.y--
+          break
+        case 'j':
+          store.state.selectedSlot.x++
+          break
+        case 'k':
+          store.state.selectedSlot.x--
+          break
+        case 'l':
+          store.state.selectedSlot.y++
+          break
+      }
       break
   }
 }, false)
