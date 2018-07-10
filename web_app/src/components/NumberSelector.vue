@@ -12,19 +12,18 @@ export default {
 <style scoped lang="stylus">
 .NumberSelector
   position absolute
-  top 150px
-  left 10px
-  width 150px
-  height 150px
-  display grid
-  grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
+  bottom -50px
+  left 0
+  width 100%
+  height 40px
+  display flex
   border 1px solid #eee
   &__slot
     width 100%
     height 100%
     background white
     color #d9d9d9
-    font-size 25px
+    font-size 20px
     display flex
     justify-content center
     align-items center
@@ -33,6 +32,6 @@ export default {
     box-sizing border-box
     transition-duration .12s
     &:hover
-      border 2px solid #0445b7
-      color #0445b7
+      background #0445b7
+      color white
 </style>

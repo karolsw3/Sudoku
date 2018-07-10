@@ -43,7 +43,7 @@ export default {
       scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
         if (error) {
           this.error = true
-          this.errorMessage = 'Error with password encryption'
+          this.errorMessage = 'Error with password derivation'
         } else if (key) {
           data.password = ''
           key.map((item) => {

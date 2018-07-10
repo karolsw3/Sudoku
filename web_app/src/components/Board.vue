@@ -1,5 +1,6 @@
 <template lang="pug">
 .Board
+  slot
   .Board__grid.Board__grid--main
     template(v-for="i in 3")
       .Board__grid(v-for="j in 3")

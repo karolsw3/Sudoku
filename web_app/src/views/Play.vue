@@ -1,7 +1,7 @@
 <template lang="pug">
   .home
-    NumberSelector(@numberSelected="numberSelected")
-    Board()
+    Board
+      NumberSelector(@numberSelected="numberSelected")
 </template>
 
 <script>
