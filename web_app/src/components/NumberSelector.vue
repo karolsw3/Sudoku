@@ -1,6 +1,7 @@
 <template lang="pug">
 .NumberSelector
   .NumberSelector__slot(v-for="n in 9" @click="$emit('numberSelected', n)") {{n}}
+  .NumberSelector__slot(@click="$emit('numberSelected', 0)") 0
 </template>
 
 <script>
@@ -21,7 +22,7 @@ export default {
     width 100%
     height 100%
     border 2px solid #eee
-    margin 0 5px
+    margin 0 3px
     color #777
     font-size 16px
     border-radius 5px
@@ -34,5 +35,8 @@ export default {
     &:hover
       background #0445b7
       border-color #0445b7
+      color white
+    &:nth-child(10)
+      background #ff4455
       color white
 </style>
