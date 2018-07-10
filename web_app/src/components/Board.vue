@@ -33,10 +33,11 @@ export default {
 .Board
   display inline-block
   width 400px
-  height 400px
+  height 403px
   position relative
   margin 150px auto 0 auto
   border 2px solid #e6e8eb
+  border-radius 5px
   &__grid
     position relative
     width 100%

@@ -12,26 +12,27 @@ export default {
 <style scoped lang="stylus">
 .NumberSelector
   position absolute
-  bottom -50px
+  bottom -60px
   left 0
   width 100%
   height 40px
   display flex
-  border 1px solid #eee
   &__slot
     width 100%
     height 100%
-    background white
-    color #d9d9d9
-    font-size 20px
+    border 2px solid #eee
+    margin 0 5px
+    color #777
+    font-size 16px
+    border-radius 5px
     display flex
     justify-content center
     align-items center
-    border 1px solid #eee
     cursor pointer
     box-sizing border-box
     transition-duration .12s
     &:hover
       background #0445b7
+      border-color #0445b7
       color white
 </style>
