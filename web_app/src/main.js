@@ -11,7 +11,7 @@ const store = new Vuex.Store({
   state: {
     input: [],
     userLogged: false,
-    selectedSlot: {x: -1, y: -1},
+    selectedSlot: {x: 0, y: 0},
     boardState: Array(9).fill().map(() => Array(9).fill(0))
   },
   mutations: {
@@ -40,16 +40,24 @@ document.body.addEventListener('keydown', function (e) {
       }
       switch (e.key) {
         case 'h':
-          store.state.selectedSlot.y--
+          if (store.state.selectedSlot.y > 0) {
+            store.state.selectedSlot.y--
+          }
           break
         case 'j':
+          if (store.state.selectedSlot.x < 8) {
           store.state.selectedSlot.x++
+          }
           break
         case 'k':
-          store.state.selectedSlot.x--
+          if (store.state.selectedSlot.x > 0) {
+            store.state.selectedSlot.x--
+          }
           break
         case 'l':
-          store.state.selectedSlot.y++
+          if (store.state.selectedSlot.y < 8) {
+            store.state.selectedSlot.y++
+          }
           break
       }
       break
