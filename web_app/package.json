@@ -12,8 +12,10 @@
   "dependencies": {
     "axios": "^0.18.0",
     "es6-promise": "^4.2.4",
+    "eslint": "^5.1.0",
     "pug": "^2.0.3",
     "pug-plain-loader": "^1.0.0",
+    "scrypt-js": "^2.0.3",
     "validator": "^10.4.0",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",

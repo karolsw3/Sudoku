@@ -1,0 +1,51 @@
+<template lang="pug">
+.Timer
+  p {{compHours}}h : {{compMinutes}}m : {{compSeconds}}s : {{compMiliseconds}}ms
+</template>
+
+<script>
+export default {
+  name: 'Timer',
+  data: function () {
+    return {
+      miliseconds: 36000000
+    }
+  },
+  computed: {
+    compMiliseconds () {
+      return this.miliseconds % 1000
+    },
+    compSeconds () {
+      return Math.floor(this.miliseconds / 1000) % 60
+    },
+    compMinutes () {
+      return Math.floor(this.miliseconds / 1000 / 60) % 60
+    },
+    compHours () {
+      return Math.floor(this.miliseconds / 1000 / 60 / 60)
+    }
+  },
+  methods: {
+    start () {
+      setTimeout(() => {
+        this.miliseconds++
+      }, 1)
+    },
+    set (miliseconds) {
+      this.miliseconds = miliseconds
+    }
+  }
+}
+</script>
+
+<style scoped lang="stylus">
+.Timer
+  position absolute
+  top -70px
+  left 0
+  width 100%
+  height 60px
+  font-size 25px
+  color #aaa
+  text-align center
+</style>

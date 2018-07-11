@@ -1,17 +1,19 @@
 <template lang="pug">
   .home
     Board
+      Timer
       NumberSelector(@numberSelected="numberSelected")
 </template>
 
 <script>
 import Board from '@/components/Board.vue'
 import NumberSelector from '@/components/NumberSelector.vue'
+import Timer from '@/components/Timer.vue'
 
 export default {
   name: 'home',
   components: {
-    Board, NumberSelector
+    Board, NumberSelector, Timer
   },
   methods: {
     numberSelected (number) {
