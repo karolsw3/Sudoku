@@ -1,5 +1,5 @@
 <template lang="pug">
-  .home
+  .play
     Board
       Timer
       NumberSelector(@numberSelected="numberSelected")
@@ -11,7 +11,7 @@ import NumberSelector from '@/components/NumberSelector.vue'
 import Timer from '@/components/Timer.vue'
 
 export default {
-  name: 'home',
+  name: 'play',
   components: {
     Board, NumberSelector, Timer
   },
