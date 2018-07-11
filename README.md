@@ -19,17 +19,83 @@ We want to make our take modern, secure, well-designed and open to everyone – 
   - USERS
     - Register a new user
       > POST `sudoku/api/register`
+      ```javascript
+        // Returned JSON
+        data: {
+          'success': true,
+          'message': 'New user registered successfully',
+          'code': 201
+        }
+      ```
     - Validate users login and password
       > POST `sudoku/api/login`
+      ```javascript
+        // Returned JSON
+        data: {
+          'success': false,
+          'message': 'Incorrect password',
+          'code': 401
+        }
+      ```
     - Return the number of boards solved by a user (ordered by duration and difficulty)
       > GET `sudoku/api/getScore?user=username`
+      ```javascript
+        // Returned JSON
+        data: {
+          'games': [
+            {
+              'id': 452,
+              'difficulty': 2,
+              'duration': 23438
+            } //, ...
+          ]
+        }
+      ```
     - Compare users scores in a leaderboard
-      > GET `sudoku/api/getLeaderboard`
+      > GET `sudoku/api/getLeaderboard?page=1`
+      ```javascript
+        // Returned JSON
+        data: {
+          'page': 1,
+          'maxPages': 34,
+          'leaderboard': [
+            {
+              'position': 1,
+              'username': 'John Smith',
+              'points': 10987,
+              'gamesPlayed': 546
+            } //, ...
+          ]
+        }
+      ```
   - GAME
     - Generate new sudoku boards
       > GET `sudoku/api/generateBoard?difficulty=1&variant=0`
+      ```javascript
+        // Returned JSON
+        data: {
+          'board': [
+            [5,3,0,0,7,0,0,0,0],
+            [6,0,0,1,9,5,0,0,0],
+            [0,9,8,0,0,0,0,6,0],
+            [8,0,0,0,6,0,0,0,3],
+            [4,0,0,8,0,3,0,0,1],
+            [7,0,0,0,2,0,0,0,6],
+            [0,6,0,0,0,0,2,8,0],
+            [0,0,0,4,1,9,0,0,5],
+            [0,0,0,0,8,0,0,7,9],
+          ]
+        }
+      ```
     - Validate completed ones
       > POST `sudoku/api/validateBoard`
+      ```javascript
+        // Returned JSON
+        data: {
+          'isValid': false,
+          'message': 'It ain\'t so easy lil boy..'
+        }
+      ```
 
 After a game is won, the player is awarded points, calculated as follows:
 
