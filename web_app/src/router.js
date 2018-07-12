@@ -32,9 +32,10 @@ export default new Router({
       component: Register
     },
     {
-      path: '/play',
+      path: '/play/:level',
       name: 'play',
-      component: Play
+      component: Play,
+      props: true
     },
     {
       path: '/leaderboard',

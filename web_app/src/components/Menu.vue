@@ -4,10 +4,10 @@
     .Menu__logo
     .Menu__button.Menu__button--dropdownBase New game
       .Menu__dropdown
-        button.Menu__button.Menu__button--dropdown Easy
-        button.Menu__button.Menu__button--dropdown Medium
-        button.Menu__button.Menu__button--dropdown Hard
-    button.Menu__button Leaderboard
+        router-link(to="/play/easy").Menu__button.Menu__button--dropdown Easy
+        router-link(to="/play/medium").Menu__button.Menu__button--dropdown Medium
+        router-link(to="/play/hard").Menu__button.Menu__button--dropdown Hard
+    router-link(to="/leaderboard").Menu__button Leaderboard
   .Menu__slot
     router-link(to="/login").Menu__button Login
     router-link(to="/register").Menu__button Register
@@ -72,7 +72,8 @@ export default {
       &:hover
         opacity 1
         .Menu__dropdown
-          display block
+          display flex
+          flex-direction column
     &--dropdown
       background #f4f4f4
       border-radius none

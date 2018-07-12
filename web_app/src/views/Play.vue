@@ -15,6 +15,7 @@ export default {
   components: {
     Board, NumberSelector, Timer
   },
+  props: ['level'],
   methods: {
     numberSelected (number) {
       this.$store.state.boardState[this.$store.state.selectedSlot.x][this.$store.state.selectedSlot.y] = number
