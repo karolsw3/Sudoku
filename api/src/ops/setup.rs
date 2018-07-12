@@ -7,9 +7,11 @@ use self::super::super::util::INITIALISE_DATABASE;
 use diesel::r2d2::{self, ConnectionManager};
 use rocket::request::{FormItems, FromForm};
 use diesel::connection::SimpleConnection;
+use chrono::{DateTime, Duration, Utc};
 use rocket::{Request, Outcome, State};
 use diesel::sqlite::SqliteConnection;
 use rocket::Error as RocketError;
+use std::sync::{Mutex, Arc};
 use rocket::http::Status;
 use std::path::PathBuf;
 use std::ops::Deref;
@@ -208,5 +210,95 @@ impl LeaderboardSettings {
             .read_to_string(&mut buf)
             .map_err(|e| format!("Couldn't read leaderboard settings file: {}", e))?;
         toml::from_str(&buf).map_err(|e| format!("Failed to parse leaderboard settings: {}", e))
+    }
+}
+
+/// A time-limited cache of session IDs for "currently active" indicator.
+//
+/// Refer to [`doc/check.rs`](../../doc/check/) for more details.
+///
+/// # Examples
+///
+/// ```no_run
+/// # #![feature(plugin)]
+/// # #![plugin(rocket_codegen)]
+/// # extern crate sudoku_backend;
+/// # #[macro_use]
+/// # extern crate rocket;
+/// # use std::fs;
+/// # use rocket::State;
+/// # use std::env::temp_dir;
+/// # use sudoku_backend::util::ACTIVITY_TIMEOUT_DEFAULT;
+/// # use sudoku_backend::ops::setup::{DatabaseConnection, ActivityCache};
+/// #[get("/endpoint")]
+/// fn endpoint(db: DatabaseConnection, ac: State<ActivityCache>) -> String {
+///     // Get the ID of this session
+/// #   let session_id = 12;
+///     ac.register_activity(12);
+///
+///     // rest of funxionality is outside the scope of this document
+/// #   let funxion_result = "henlo".to_string();
+///     funxion_result
+/// }
+///
+/// #[get("/users_active")]
+/// fn users_active(ac: State<ActivityCache>) -> String {
+///     ac.active_users().to_string()
+/// }
+///
+/// fn main() {
+/// #   let database_file =
+/// #     ("$ROOT/sudoku-backend.db".to_string(),
+/// #      temp_dir().join("sudoku-backend-doctest").join("ops-setup-ActivityCache").join("sudoku-backend.db"));
+/// #   fs::create_dir_all(database_file.1.parent().unwrap()).unwrap();
+/// #   /*
+///     let database_file: (String, PathBuf) = /* obtained elsewhere */;
+/// #   */
+///     rocket::ignite()
+///         .manage(DatabaseConnection::initialise(&database_file))
+///         .manage(ActivityCache::new(*ACTIVITY_TIMEOUT_DEFAULT))
+///         .mount("/", routes![endpoint, users_active])
+///         .launch();
+/// }
+/// ```
+#[derive(Debug, Clone)]
+pub struct ActivityCache {
+    timeout: Duration,
+    session_ids: Arc<Mutex<Vec<(usize, DateTime<Utc>)>>>,
+}
+
+impl ActivityCache {
+    /// Create a cache timing out after the specified duration.
+    pub fn new(timeout: Duration) -> ActivityCache {
+        ActivityCache {
+            timeout: timeout,
+            session_ids: Arc::new(Mutex::new(Vec::new())),
+        }
+    }
+
+    /// Mark the specified session ID as last active *now*.
+    pub fn register_activity(&self, session_id: usize) {
+        let mut session_ids = match self.session_ids.lock() {
+            Ok(l) => l,
+            Err(pl) => pl.into_inner(),
+        };
+
+        match session_ids.binary_search_by_key(&session_id, |&(id, _)| id) {
+            Ok(idx) => session_ids[idx] = (session_id, Utc::now()),
+            Err(idx) => session_ids.insert(idx, (session_id, Utc::now())),
+        }
+    }
+
+    /// Get how many users can be considered "active", i.e. amount of sessions last active at most the previously-specified
+    /// amount of time before *now*.
+    pub fn active_users(&self) -> usize {
+        let oldest_allowed = Utc::now() - self.timeout;
+        let mut session_ids = match self.session_ids.lock() {
+            Ok(l) => l,
+            Err(pl) => pl.into_inner(),
+        };
+
+        session_ids.retain(|&(_, ts)| ts > oldest_allowed);
+        session_ids.len()
     }
 }
