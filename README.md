@@ -21,7 +21,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
       > POST `sudoku/api/register`
       ```javascript
         // Returned JSON
-        data: {
+        'data': {
           'success': true,
           'message': 'New user registered successfully',
           'code': 201
@@ -31,7 +31,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
       > POST `sudoku/api/login`
       ```javascript
         // Returned JSON
-        data: {
+        'data': {
           'success': false,
           'message': 'Incorrect password',
           'code': 401
@@ -41,7 +41,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
       > GET `sudoku/api/getScore?user=username`
       ```javascript
         // Returned JSON
-        data: {
+        'data': {
           'games': [
             {
               'id': 452,
@@ -55,7 +55,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
       > GET `sudoku/api/getLeaderboard?page=1`
       ```javascript
         // Returned JSON
-        data: {
+        'data': {
           'page': 1,
           'maxPages': 34,
           'leaderboard': [
@@ -73,7 +73,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
       > GET `sudoku/api/generateBoard?difficulty=1&variant=0`
       ```javascript
         // Returned JSON
-        data: {
+        'data': {
           'board': [
             [5,3,0,0,7,0,0,0,0],
             [6,0,0,1,9,5,0,0,0],
@@ -83,7 +83,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
             [7,0,0,0,2,0,0,0,6],
             [0,6,0,0,0,0,2,8,0],
             [0,0,0,4,1,9,0,0,5],
-            [0,0,0,0,8,0,0,7,9],
+            [0,0,0,0,8,0,0,7,9]
           ]
         }
       ```
@@ -91,7 +91,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
       > POST `sudoku/api/validateBoard`
       ```javascript
         // Returned JSON
-        data: {
+        'data': {
           'isValid': false,
           'message': 'It ain\'t so easy lil boy..'
         }
