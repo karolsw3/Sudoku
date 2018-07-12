@@ -3,11 +3,14 @@
 
 use crypto::scrypt::{ScryptParams, scrypt_simple};
 use rand::{self, Rng};
-use time::Duration;
+use chrono::Duration;
 use std::iter;
 
 
 lazy_static! {
+    /// The time a session must be inactive (not make any requests) for before it's considered inactive.
+    pub static ref ACTIVITY_TIMEOUT_DEFAULT: Duration = Duration::minutes(10);
+
     /// The ideal "ideal" time `scrypt` – 250ms, which makes the hash time be between 250 and 500 milliseconds.
     pub static ref SCRYPT_MINIMUM_TIME: Duration = Duration::milliseconds(250);
 

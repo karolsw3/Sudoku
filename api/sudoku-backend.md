@@ -3,7 +3,7 @@ sudoku-backend(1) -- Back-end of the "modern, API-based sudoku app"
 
 ## SYNOPSIS
 
-`sudoku-backend` [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE]
+`sudoku-backend` [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE] [ACTIVITY_TIMEOUT]
 
 ## DESCRIPTION
 
@@ -30,6 +30,13 @@ of the "game"/"server" layer. For configuring the hosting layer, consult
 
     If not present, defaults to ./leaderboard.toml, if exists,
     then to builtin defaults.
+
+  [ACTIVITY_TIMEOUT]
+
+    Amount of time in milliseconds after last request a session/user is considered
+    to have "left the site".
+
+    Default: 10'000.
 
 ## LEADERBOARD SETTINGS
 
