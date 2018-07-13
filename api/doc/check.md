@@ -48,6 +48,12 @@ Any of:
   * `solutions`
   * `users`
 
+### Activity
+
+A session is considered active if last activity thereon occurred at most the specified duration before *now*.
+
+Data extraxion requests do *not* count towards activity.
+
 ## Retrieval
 ### Leaderboard
 
@@ -58,3 +64,7 @@ That config is then clamped to the loaded max.
 Depending on the `of` key value (or `solutions` by default), the response is an array of:
   * [Solution messages](sudoku.md#solution-message), if `solutions`, or
   * [Sanitised user data](user.md#sanitised-user-data), if `users`.
+
+### Activity
+
+Request empty, returns a `usize`.

@@ -14,6 +14,7 @@ fn main() {
 
     rocket::ignite()
         .manage(ops::setup::DatabaseConnection::initialise(&opts.database_file))
+        .manage(ops::setup::ActivityCache::new(opts.activity_timeout))
         .manage({
             let leaderboard_settings = opts.leaderboard_settings_file
                 .as_ref()
@@ -47,6 +48,7 @@ fn main() {
                        ops::routes::v1::play::submit])
         .mount("/api/v1/check",
                routes![ops::routes::v1::check::leaderboard_specless,
-                       ops::routes::v1::check::leaderboard])
+                       ops::routes::v1::check::leaderboard,
+                       ops::routes::v1::check::active_users])
         .launch();
 }

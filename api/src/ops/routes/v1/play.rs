@@ -8,11 +8,11 @@
 use self::super::super::super::{NewBoardRequestForm, OldBoardRequestForm, SudokuSolution, BoardMessage, SudokuBoard, Session, User};
 use self::super::super::super::super::util::{random_username, board_includes};
 use self::super::super::super::errors::{GenericErrorSeverity, GenericError};
-use self::super::super::super::setup::DatabaseConnection;
+use self::super::super::super::setup::{DatabaseConnection, ActivityCache};
 use rocket::response::status::Custom;
 use rocket::http::{Cookies, Status};
+use rocket::request::{State, Form};
 use chrono::{DateTime, Utc};
-use rocket::request::Form;
 use rocket_contrib::Json;
 use std::borrow::Cow;
 use sudoku::Sudoku;
@@ -20,8 +20,10 @@ use sudoku::Sudoku;
 
 /// Get a new board of the specified difficulty and update the session.
 #[get("/new?<difficulty>")]
-pub fn new(db: DatabaseConnection, mut cookies: Cookies, difficulty: NewBoardRequestForm) -> Result<Custom<Json<BoardMessage>>, Custom<Json<GenericError>>> {
+pub fn new(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Cookies, difficulty: NewBoardRequestForm)
+           -> Result<Custom<Json<BoardMessage>>, Custom<Json<GenericError>>> {
     let mut session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    ac.register_activity(session.id.unwrap() as usize);
     let difficulty = difficulty.difficulty
         .map_err(|e| {
             Custom(Status::BadRequest,
@@ -51,8 +53,10 @@ pub fn new(db: DatabaseConnection, mut cookies: Cookies, difficulty: NewBoardReq
 
 /// Get the specified board and update the session.
 #[get("/replay?<board_id>")]
-pub fn replay(db: DatabaseConnection, mut cookies: Cookies, board_id: OldBoardRequestForm) -> Result<Custom<Json<BoardMessage>>, Custom<Json<GenericError>>> {
+pub fn replay(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Cookies, board_id: OldBoardRequestForm)
+              -> Result<Custom<Json<BoardMessage>>, Custom<Json<GenericError>>> {
     let mut session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    ac.register_activity(session.id.unwrap() as usize);
     let board_id = board_id.board_id
         .map_err(|e| {
             Custom(Status::BadRequest,
@@ -75,8 +79,10 @@ pub fn replay(db: DatabaseConnection, mut cookies: Cookies, board_id: OldBoardRe
 
 /// Get a new board of the specified difficulty and update the session.
 #[post("/submit", data="<submitted_board>")]
-pub fn submit(db: DatabaseConnection, mut cookies: Cookies, submitted_board: Form<BoardMessage>) -> Result<Json<SudokuSolution>, Custom<Json<GenericError>>> {
+pub fn submit(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Cookies, submitted_board: Form<BoardMessage>)
+              -> Result<Json<SudokuSolution>, Custom<Json<GenericError>>> {
     let mut session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    ac.register_activity(session.id.unwrap() as usize);
 
     let submitted_board = submitted_board.into_inner();
     if submitted_board.solved_board.is_none() {

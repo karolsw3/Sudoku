@@ -36,7 +36,7 @@ of the "game"/"server" layer. For configuring the hosting layer, consult
     Amount of time in milliseconds after last request a session/user is considered
     to have "left the site".
 
-    Default: 10'000.
+    Default: 600'000 (10 minutes).
 
 ## LEADERBOARD SETTINGS
 

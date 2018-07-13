@@ -53,7 +53,7 @@ impl Options {
                                                                Default: ./leaderboard.toml, then hard defaults'")
                 .validator(|s| Options::file_validator("Leaderboard settings", s)))
             .arg(Arg::from_usage("[ACTIVITY_TIMEOUT] 'Amount of time in milliseconds after last request a user is considered to have \"left the site\". \
-                                  Default: 60000'")
+                                  Default: 600'000 (10 minutes)'")
                 .validator(Options::positive_integer_validator))
             .get_matches();
 

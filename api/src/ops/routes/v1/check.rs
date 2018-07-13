@@ -3,7 +3,8 @@
 //! To be mounted on "/api/v1/check".
 
 
-use self::super::super::super::setup::{SpecificLeaderboardConfig, LeaderboardGroupSettings, LeaderboardSettings, DatabaseConnection, LeaderboardConfig};
+use self::super::super::super::setup::{SpecificLeaderboardConfig, LeaderboardGroupSettings, LeaderboardSettings, DatabaseConnection, LeaderboardConfig,
+                                       ActivityCache};
 use self::super::super::super::{SanitisedUserData, SudokuSolution, LeaderboardOf, User};
 use self::super::super::super::errors::{GenericErrorSeverity, GenericError};
 use rocket::response::status::Custom;
@@ -27,6 +28,12 @@ pub fn leaderboard(db: DatabaseConnection, settings: State<LeaderboardSettings>,
         LeaderboardOf::Solutions => leaderboard_solutions(db, &settings.board, spec.map(|s| s.cfg)),
         LeaderboardOf::Users => leaderboard_users(db, &settings.person, spec.map(|s| s.cfg)),
     }
+}
+
+/// Get active user count
+#[get("/active_users")]
+pub fn active_users(ac: State<ActivityCache>) -> Json<usize> {
+    Json(ac.active_users())
 }
 
 fn leaderboard_solutions(db: DatabaseConnection, settings: &LeaderboardGroupSettings, spec: Option<LeaderboardConfig>)

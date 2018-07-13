@@ -7,11 +7,12 @@
 
 use self::super::super::super::errors::{GenericErrorSeverity, GenericError, LoginError};
 use self::super::super::super::{SanitisedUserData, LoginForm, Session, User};
-use self::super::super::super::setup::DatabaseConnection;
+use self::super::super::super::setup::{DatabaseConnection, ActivityCache};
 use rocket::response::status::Custom;
 use rocket::http::{Cookies, Status};
 use rocket::request::Form;
 use rocket_contrib::Json;
+use rocket::State;
 use std::cmp;
 
 
@@ -21,9 +22,10 @@ use std::cmp;
 /// If login exists and password verifies correct and not a dupe,
 /// update session to reflect permissions.
 #[post("/login", data="<form>")]
-pub fn login(db: DatabaseConnection, mut cookies: Cookies, form: Form<LoginForm>)
+pub fn login(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Cookies, form: Form<LoginForm>)
              -> Result<Result<Custom<Json<SanitisedUserData>>, Custom<Json<LoginError>>>, Custom<Json<GenericError>>> {
     let mut session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    ac.register_activity(session.id.unwrap() as usize);
     let form = form.into_inner();
 
     if form.email.is_some() {
@@ -65,9 +67,10 @@ pub fn logout(db: DatabaseConnection, mut cookies: Cookies) -> Result<Custom<&'s
 /// Check the received form.
 /// If login doesn't exist, create new user.
 #[post("/new", data="<form>")]
-pub fn create_account(db: DatabaseConnection, mut cookies: Cookies, form: Form<LoginForm>)
+pub fn create_account(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Cookies, form: Form<LoginForm>)
                       -> Result<Custom<Json<SanitisedUserData>>, Custom<Json<GenericError>>> {
-    let _session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    let session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    ac.register_activity(session.id.unwrap() as usize);
     let form = form.into_inner();
 
     if form.email.is_none() {
@@ -107,8 +110,9 @@ pub fn create_account(db: DatabaseConnection, mut cookies: Cookies, form: Form<L
 
 /// Get data for the currently logged-in user
 #[get("/user_data")]
-pub fn user_data(db: DatabaseConnection, mut cookies: Cookies) -> Result<Json<SanitisedUserData>, Custom<Json<GenericError>>> {
+pub fn user_data(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Cookies) -> Result<Json<SanitisedUserData>, Custom<Json<GenericError>>> {
     let session = Session::get(&db, &mut cookies).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+    ac.register_activity(session.id.unwrap() as usize);
 
     if let Some(uid) = session.user_id {
         Ok(Json(User::get_by_id(uid, &db).map_err(|e| Custom(Status::InternalServerError, Json((e.to_string(), GenericErrorSeverity::Danger).into())))?.into()))
