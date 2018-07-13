@@ -15,8 +15,11 @@ const store = new Vuex.Store({
     boardState: Array(9).fill().map(() => Array(9).fill(0))
   },
   mutations: {
-    change (input, payload) {
+    mutateInput (input, payload) {
       input[payload.id] = payload.value
+    },
+    mutateBoard (boardState, payload) {
+      boardState = payload
     },
     login (userLogged, boolean) {
       userLogged = boolean

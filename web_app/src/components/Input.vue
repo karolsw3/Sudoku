@@ -21,7 +21,7 @@ export default {
     value: function () {
       // Store all input values in the store
       if (this.id) {
-        this.$store.commit('change', {
+        this.$store.commit('mutateInput', {
           id: this.id,
           value: this.value
         })
