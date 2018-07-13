@@ -1,6 +1,6 @@
 <template lang="pug">
 .Timer
-  p {{compHours}}h : {{compMinutes}}m : {{compSeconds}}s : {{compMiliseconds}}ms
+  p {{compHours}}h {{compMinutes}}m {{compSeconds}}s {{compMiliseconds}}ms
 </template>
 
 <script>
@@ -8,7 +8,7 @@ export default {
   name: 'Timer',
   data: function () {
     return {
-      miliseconds: 36000000
+      miliseconds: 0
     }
   },
   computed: {
@@ -45,7 +45,7 @@ export default {
   left 0
   width 100%
   height 60px
-  font-size 25px
-  color #aaa
+  font-size 20px
+  color #ddd
   text-align center
 </style>

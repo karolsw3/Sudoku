@@ -36,7 +36,7 @@ export default {
     position absolute
     height 2px
     width 100%
-    bottom -2px
+    bottom -1px
     left 0
     background-image linear-gradient(to right, #001672, #0445b7)
   &__slot

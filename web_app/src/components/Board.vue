@@ -42,11 +42,9 @@ export default {
 <style scoped lang="stylus">
 .Board
   display inline-block
-  width 400px
-  height 403px
   position relative
-  margin 150px auto 0 auto
-  border 2px solid #e6e8eb
+  margin 110px auto 0 auto
+  box-sizing border-box
   border-radius 5px
   &__grid
     position relative
@@ -54,19 +52,22 @@ export default {
     height 100%
     display grid
     background #f5f5f5
-    grid-gap 2px
+    box-sizing border-box
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
     &--main
-      height 400px
-      background #e6e8eb
-      grid-gap 2px
+      width 404px
+      height 404px
+      background #f5f5f5
+      border-radius 5px
+      border 1px solid #f5f5f5
   &__slot
     background white
     box-sizing border-box
     width 100%
     height 100%
+    max-height 100%
+    max-width 100%
     text-align center
-    grid-gap 1px
     font-weight 700
     color #0445b7
     cursor pointer

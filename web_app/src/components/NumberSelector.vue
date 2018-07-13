@@ -21,7 +21,7 @@ export default {
   &__slot
     width 100%
     height 100%
-    border 2px solid #eee
+    border 1px solid #eee
     margin 0 3px
     color #777
     font-size 16px
@@ -37,6 +37,7 @@ export default {
       border-color #0445b7
       color white
     &:nth-child(10)
+      border-color transparent
       background #ff4455
       color white
 </style>
