@@ -7,6 +7,10 @@ import router from './router'
 Vue.config.productionTip = false
 Vue.use(Vuex)
 
+/*
+  Vuex store
+*/
+
 const store = new Vuex.Store({
   state: {
     input: [],
@@ -18,8 +22,13 @@ const store = new Vuex.Store({
     mutateInput (input, payload) {
       input[payload.id] = payload.value
     },
-    mutateBoard (boardState, payload) {
-      boardState = payload
+    mutateBoard (state, payload) {
+      state.boardState = payload
+    },
+    mutateBoardSlot (state, payload) {
+      if (state.boardState[payload.x][payload.y] < 10) { // If value is greater than > 10 it means that the slot is locked (see Play.vue)
+        state.boardState[payload.x][payload.y] = payload.value
+      }
     },
     login (userLogged, boolean) {
       userLogged = boolean
@@ -39,7 +48,11 @@ document.body.addEventListener('keydown', function (e) {
   switch (router.currentRoute.name) {
     case 'play':
       if (!isNaN(e.key)) {
-        store.state.boardState[store.state.selectedSlot.x][store.state.selectedSlot.y] = e.key
+        store.commit('mutateBoardSlot', {
+          x: store.state.selectedSlot.x,
+          y: store.state.selectedSlot.y,
+          value: e.key
+        })
       }
       switch (e.key) {
         case 'h':
@@ -49,7 +62,7 @@ document.body.addEventListener('keydown', function (e) {
           break
         case 'j':
           if (store.state.selectedSlot.x < 8) {
-          store.state.selectedSlot.x++
+            store.state.selectedSlot.x++
           }
           break
         case 'k':

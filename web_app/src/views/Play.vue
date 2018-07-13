@@ -17,26 +17,34 @@ export default {
     Board, NumberSelector, Timer
   },
   props: ['difficulty'],
+  computed: {
+    boardState () {
+      return this.$store.state.boardState
+    }
+  },
   methods: {
     numberSelected (number) {
-      this.$store.state.boardState[this.$store.state.selectedSlot.x][this.$store.state.selectedSlot.y] = number
+      this.$store.commit('mutateBoardSlot', {
+        x: this.$store.state.selectedSlot.x,
+        y: this.$store.state.selectedSlot.y,
+        value: number
+      })
+    },
+    lockSlots () { // locks all currently filled slots
+      for (let row in this.boardState) {
+        for (let column in this.boardState) {
+          if (this.boardState[row][column] > 0) {
+            this.boardState[row][column] += 10 // If value is greater than > 10 it means that the slot is locked
+          }
+        }
+      }
     }
   },
   created () {
-    switch (this.difficulty) {
-      case 'easy':
-        this.difficulty = 1
-        break
-      case 'medium':
-        this.difficulty = 2
-        break
-      case 'hard':
-        this.difficulty = 3
-    }
-
     axios.get('https://api.myjson.com/bins/1cvca6') // Will be: '/api/generateBoard?difficulty=1&variant=0'
       .then((response) => {
         this.$store.commit('mutateBoard', response.data.board)
+        this.lockSlots()
       })
       .catch(function (error) {
         console.error(error)
