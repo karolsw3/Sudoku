@@ -1,7 +1,7 @@
 <template lang="pug">
   .play
     Board
-      Timer
+      Timer(ref='timer')
       NumberSelector(@numberSelected="numberSelected")
 </template>
 
@@ -45,6 +45,8 @@ export default {
       .then((response) => {
         this.$store.commit('mutateBoard', response.data.board)
         this.lockSlots()
+        let timer = this.$refs.timer
+        timer.start()
       })
       .catch(function (error) {
         console.error(error)

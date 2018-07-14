@@ -8,7 +8,8 @@ export default {
   name: 'Timer',
   data: function () {
     return {
-      miliseconds: 0
+      miliseconds: 0,
+      interval: null
     }
   },
   computed: {
@@ -27,9 +28,13 @@ export default {
   },
   methods: {
     start () {
-      setTimeout(() => {
-        this.miliseconds++
-      }, 1)
+      let startTime = Date.now()
+      this.interval = setInterval(() => {
+        this.miliseconds = Date.now() - startTime
+      })
+    },
+    stop () {
+      clearInterval(this.interval)
     },
     set (miliseconds) {
       this.miliseconds = miliseconds
