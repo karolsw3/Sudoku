@@ -7,10 +7,10 @@
         template(v-for="x in 3")
           .Board__slot(
             v-for="y in 3"
-            @click="onSlotClick((i - 1) * 3 + (x - 1),(j - 1) * 3 + (y - 1))"
+            @click="onSlotClick(getSlotX(i, j, x, y), getSlotY(i, j, x, y))"
             :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y)]"
           )
-            p(v-if="boardState[(i - 1) * 3 + (x - 1)][(j - 1) * 3 + (y - 1)] != 0" ) {{boardState[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)] % 10}}
+            p(v-if="boardState[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0" ) {{boardState[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
 </template>
 
 <script>
@@ -25,6 +25,12 @@ export default {
   methods: {
     onSlotClick (x, y) {
       this.$store.commit('slotSelected', {x, y})
+    },
+    getSlotX (i, j, x, y) {
+      return (i - 1) * 3 + (x - 1)
+    },
+    getSlotY (i, j, x, y) {
+      return (j - 1) * 3 + (y - 1)
     },
     getSelectedClass (i, j, x, y) {
       return (i - 1) * 3 + (x - 1) === this.selectedSlot.x && (j - 1) * 3 + (y - 1) === this.selectedSlot.y ? 'Board__slot--selected' : ''
