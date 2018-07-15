@@ -32,6 +32,15 @@ export default {
     getLockedClass (i, j, x, y) {
       return this.boardState[(i - 1) * 3 + (x - 1)][(j - 1) * 3 + (y - 1)] > 10 ? 'Board__slot--locked' : ''
     },
+    lockSlots () { // locks all currently filled slots
+      for (let row in this.boardState) {
+        for (let column in this.boardState) {
+          if (this.boardState[row][column] > 0) {
+            this.boardState[row][column] += 10 // If value is greater than > 10 it means that the slot is locked
+          }
+        }
+      }
+    },
     countFilledSlots () {
       for (let row in this.boardState) {
         for (let column in this.boardState[row]) {

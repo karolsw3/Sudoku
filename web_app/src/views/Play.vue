@@ -30,15 +30,6 @@ export default {
         value: number
       })
     },
-    lockSlots () { // locks all currently filled slots
-      for (let row in this.boardState) {
-        for (let column in this.boardState) {
-          if (this.boardState[row][column] > 0) {
-            this.boardState[row][column] += 10 // If value is greater than > 10 it means that the slot is locked
-          }
-        }
-      }
-    },
     submitBoard () {
       /* let data = {
         boardState: this.$store.boardState
@@ -51,11 +42,11 @@ export default {
     axios.get('https://api.myjson.com/bins/1cvca6') // Will be: '/api/generateBoard?difficulty=1&variant=0'
       .then((response) => {
         this.$store.commit('mutateBoard', response.data.board)
-        this.lockSlots()
-        let timer = this.$refs.timer
-        timer.start()
         let board = this.$refs.board
+        let timer = this.$refs.timer
         board.countFilledSlots()
+        board.lockSlots()
+        timer.start()
       })
       .catch(function (error) {
         console.error(error)
