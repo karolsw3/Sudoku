@@ -6,26 +6,40 @@
       .Board__grid(v-for="j in 3")
         template(v-for="x in 3")
           .Board__slot(
-            v-for="y in 3" 
-            @click="onSlotClick((i - 1)*3 + (x - 1),(j - 1)*3 + (y - 1))" 
+            v-for="y in 3"
+            @click="onSlotClick((i - 1) * 3 + (x - 1),(j - 1) * 3 + (y - 1))"
             :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y)]"
           )
-            p(v-if="boardState[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)] != 0" ) {{boardState[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)] % 10}}
+            p(v-if="boardState[(i - 1) * 3 + (x - 1)][(j - 1) * 3 + (y - 1)] != 0" ) {{boardState[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)] % 10}}
 </template>
 
 <script>
 
 export default {
   name: 'Board',
+  data: function () {
+    return {
+      filledSlots: 0
+    }
+  },
   methods: {
     onSlotClick (x, y) {
       this.$store.commit('slotSelected', {x, y})
     },
     getSelectedClass (i, j, x, y) {
-      return (i - 1)*3 + (x - 1) == this.selectedSlot.x && (j - 1)*3 + (y - 1) == this.selectedSlot.y ? 'Board__slot--selected' : ''
+      return (i - 1) * 3 + (x - 1) === this.selectedSlot.x && (j - 1) * 3 + (y - 1) === this.selectedSlot.y ? 'Board__slot--selected' : ''
     },
     getLockedClass (i, j, x, y) {
-      return this.boardState[(i - 1)*3 + (x - 1)][(j - 1)*3 + (y - 1)] > 10 ? 'Board__slot--locked' : ''
+      return this.boardState[(i - 1) * 3 + (x - 1)][(j - 1) * 3 + (y - 1)] > 10 ? 'Board__slot--locked' : ''
+    },
+    countFilledSlots () {
+      for (let row in this.boardState) {
+        for (let column in this.boardState[row]) {
+          if (this.boardState[row][column] > 0) {
+            this.$store.commit('incrementFilledSlotsCounter')
+          }
+        }
+      }
     }
   },
   computed: {

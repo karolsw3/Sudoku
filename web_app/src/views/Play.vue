@@ -1,6 +1,6 @@
 <template lang="pug">
   .play
-    Board
+    Board(ref='board')
       Timer(ref='timer')
       NumberSelector(@numberSelected="numberSelected")
 </template>
@@ -38,6 +38,13 @@ export default {
           }
         }
       }
+    },
+    submitBoard () {
+      /* let data = {
+        boardState: this.$store.boardState
+      }
+       axios.post('/api/validateBoard', data)
+      ... then */
     }
   },
   created () {
@@ -47,6 +54,8 @@ export default {
         this.lockSlots()
         let timer = this.$refs.timer
         timer.start()
+        let board = this.$refs.board
+        board.countFilledSlots()
       })
       .catch(function (error) {
         console.error(error)

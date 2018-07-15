@@ -16,7 +16,8 @@ const store = new Vuex.Store({
     input: [],
     userLogged: false,
     selectedSlot: {x: 0, y: 0},
-    boardState: Array(9).fill().map(() => Array(9).fill(0))
+    boardState: Array(9).fill().map(() => Array(9).fill(0)),
+    filledSlots: 0
   },
   mutations: {
     mutateInput (input, payload) {
@@ -27,6 +28,14 @@ const store = new Vuex.Store({
     },
     mutateBoardSlot (state, payload) {
       if (state.boardState[payload.x][payload.y] < 10) { // If value is greater than > 10 it means that the slot is locked (see Play.vue)
+        if (payload.value > 0 && state.boardState[payload.x][payload.y] === 0) {
+          state.filledSlots++
+
+          // When the board is fully filled
+          if (state.filledSlots === 3 * 3 * 9) {
+            // Make an axios request to send the baord state
+          }
+        }
         state.boardState[payload.x][payload.y] = payload.value
       }
     },
@@ -36,6 +45,9 @@ const store = new Vuex.Store({
     slotSelected (state, payload) { // When a slot on the board in selected
       state.selectedSlot.x = payload.x
       state.selectedSlot.y = payload.y
+    },
+    incrementFilledSlotsCounter (filledSlots) {
+      filledSlots++
     }
   }
 })
