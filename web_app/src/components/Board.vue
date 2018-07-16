@@ -33,10 +33,10 @@ export default {
       return (j - 1) * 3 + (y - 1)
     },
     getSelectedClass (i, j, x, y) {
-      return (i - 1) * 3 + (x - 1) === this.selectedSlot.x && (j - 1) * 3 + (y - 1) === this.selectedSlot.y ? 'Board__slot--selected' : ''
+      return this.getSlotX(i, j, x, y) === this.selectedSlot.x && this.getSlotY(i, j, x, y) === this.selectedSlot.y ? 'Board__slot--selected' : ''
     },
     getLockedClass (i, j, x, y) {
-      return this.boardState[(i - 1) * 3 + (x - 1)][(j - 1) * 3 + (y - 1)] > 10 ? 'Board__slot--locked' : ''
+      return this.boardState[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
     },
     lockSlots () { // locks all currently filled slots
       for (let row in this.boardState) {
