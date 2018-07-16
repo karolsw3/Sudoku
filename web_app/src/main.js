@@ -13,16 +13,12 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    input: [],
     userLogged: false,
     selectedSlot: {x: 0, y: 0},
     boardState: Array(9).fill().map(() => Array(9).fill(0)),
     filledSlots: 0
   },
   mutations: {
-    mutateInput (input, payload) {
-      input[payload.id] = payload.value
-    },
     mutateBoard (state, payload) {
       state.boardState = payload
     },

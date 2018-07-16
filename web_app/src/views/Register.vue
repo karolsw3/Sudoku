@@ -1,10 +1,10 @@
 <template lang="pug">
 .Register
   ColumnPanel
-    Input(placeholder="Username" type="text" id="register__username")
-    Input(placeholder="Email" type="email" id="register__email")
-    Input(placeholder="Password" type="password" id="register__password")
-    Input(placeholder="Repeat password" type="password" id="register__confirm_password")
+    Input(placeholder="Username" type="text" ref="username")
+    Input(placeholder="Email" type="email" ref="email")
+    Input(placeholder="Password" type="password" ref="password")
+    Input(placeholder="Repeat password" type="password" ref="confirm_password" @valueChanged='validatePasswords')
     p TODO: I'm not a robot
     ErrorMessageBox(v-if="error") {{errorMessage}}
     Loading(v-if="loading")
@@ -37,9 +37,9 @@ export default {
       this.loading = true
       this.error = false
       let data = {
-        username: this.$store.state.register__username,
-        email: this.$store.state.register__email,
-        password: Buffer.from(this.$store.state.register__password)
+        username: this.$refs.username.value,
+        email: this.$refs.email.value,
+        password: Buffer.from(this.$refs.password.value)
       }
 
       var salt = Buffer.from('Sudoku')
@@ -68,6 +68,16 @@ export default {
             })
         }
       })
+    },
+    validatePasswords () {
+      let confirmPassword = this.$refs.confirm_password
+      if (this.$refs.password.value !== confirmPassword.value) {
+        confirmPassword.invalid = true
+        confirmPassword.errorMessage = 'Passwords doesn\'t match'
+      } else {
+        confirmPassword.invalid = false
+        confirmPassword.errorMessage = ''
+      }
     }
   }
 }

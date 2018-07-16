@@ -9,7 +9,7 @@ import validator from 'validator'
 
 export default {
   name: 'Input',
-  props: ['id', 'placeholder', 'type'],
+  props: ['placeholder', 'type'],
   data: function () {
     return {
       value: '',
@@ -19,14 +19,6 @@ export default {
   },
   watch: {
     value: function () {
-      // Store all input values in the store
-      if (this.id) {
-        this.$store.commit('mutateInput', {
-          id: this.id,
-          value: this.value
-        })
-      }
-
       switch (this.type) {
         case 'email':
           if (!validator.isEmail(this.value)) {
@@ -49,17 +41,7 @@ export default {
             this.errorMessage = ''
           }
       }
-
-      // Check if passwords match on registration
-      if (this.id === 'register__confirm_password') {
-        if (this.$store.state.register__password !== this.value) {
-          this.invalid = true
-          this.errorMessage = 'Passwords doesn\'t match'
-        } else {
-          this.invalid = false
-          this.errorMessage = ''
-        }
-      }
+      this.$emit('valueChanged')
     }
   }
 }

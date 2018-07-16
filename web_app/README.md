@@ -25,17 +25,6 @@ To build the app, simply run:
 ## The vuex store
 
 The store is declared in main.js file and it consists of following states:
-* <b>input[]</b>  
-  Array. Stores values of all inputs in login and register form
-  To access a specified input you need to know its ID:
-  ```javascript
-    // For inputs in a register form, a 'register__' prefix is used:
-    store.input['register__username']
-    // Other inputs respectively:
-    store.input['login__password']
-    store.input['register__email']
-    // etc...
-  ```
 * <b>userLogged</b>  
   Boolean. True is a user in logged, false otherwise.
 * <b>selectedSlot</b>  

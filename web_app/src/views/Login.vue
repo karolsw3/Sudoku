@@ -1,8 +1,8 @@
 <template lang="pug">
 .Login
   ColumnPanel
-    Input(placeholder="Username" type="text" id="login__username")
-    Input(placeholder="Password" type="password" id="login__password")
+    Input(placeholder="Username" type="text" ref="username")
+    Input(placeholder="Password" type="password" ref="password")
     ErrorMessageBox(v-if="error") {{errorMessage}}
     Loading(v-if="loading")
     Button(@clicked="login") Login
@@ -26,6 +26,7 @@ export default {
     return {
       error: false,
       errorMessage: '',
+      allInputsFilled: false,
       loading: false
     }
   },
@@ -34,10 +35,9 @@ export default {
       this.loading = true
       this.error = false
       let data = {
-        username: this.$store.state.login__username,
-        password: Buffer.from(this.$store.state.login__password)
+        username: this.$refs.username.value,
+        password: this.$refs.password.value
       }
-
       var salt = Buffer.from('Sudoku')
 
       scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
