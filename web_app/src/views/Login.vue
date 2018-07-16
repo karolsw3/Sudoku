@@ -1,11 +1,11 @@
 <template lang="pug">
 .Login
   ColumnPanel
-    Input(placeholder="Username" type="text" ref="username")
-    Input(placeholder="Password" type="password" ref="password")
+    Input(placeholder="Username" type="text" ref="username" @valueChanged='checkIfInputsAreFilled')
+    Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     ErrorMessageBox(v-if="error") {{errorMessage}}
     Loading(v-if="loading")
-    Button(@clicked="login") Login
+    Button(@clicked="login" :class="{'Button--disabled' : !allInputsFilled}") Login
 </template>``
 
 <script>
@@ -32,42 +32,54 @@ export default {
   },
   methods: {
     login: function (event) {
-      this.loading = true
-      this.error = false
-      let data = {
-        username: this.$refs.username.value,
-        password: this.$refs.password.value
-      }
-      var salt = Buffer.from('Sudoku')
-
-      scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
-        if (error) {
-          this.error = true
-          this.errorMessage = 'Error with password derivation'
-        } else if (key) {
-          data.password = ''
-          key.map((item) => {
-            data.password += item.toString(16)
-          })
-          axios.post('/api/login', data)
-            .then((response) => {
-              this.$store.commit('userLogged', true)
-              this.loading = false
-            })
-            .catch((error) => {
-              switch (error.response.status) {
-                case 404:
-                  this.error = true
-                  this.errorMessage = 'Error 404'
-                  break
-                default:
-                  this.error = true
-                  this.errorMessage = 'Internal server error'
-              }
-              this.loading = false
-            })
+      if (this.allInputsFilled) {
+        this.loading = true
+        this.error = false
+        let data = {
+          username: this.$refs.username.value,
+          password: this.$refs.password.value
         }
-      })
+        var salt = Buffer.from('Sudoku')
+
+        scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
+          if (error) {
+            this.error = true
+            this.errorMessage = 'Error with password derivation'
+          } else if (key) {
+            data.password = ''
+            key.map((item) => {
+              data.password += item.toString(16)
+            })
+            axios.post('/api/login', data)
+              .then((response) => {
+                this.$store.commit('userLogged', true)
+                this.loading = false
+              })
+              .catch((error) => {
+                switch (error.response.status) {
+                  case 404:
+                    this.error = true
+                    this.errorMessage = 'Error 404'
+                    break
+                  default:
+                    this.error = true
+                    this.errorMessage = 'Internal server error'
+                }
+                this.loading = false
+              })
+          }
+        })
+      }
+    },
+    checkIfInputsAreFilled () {
+      if (
+        this.$refs.username.value !== '' && !this.$refs.username.invalid &&
+        this.$refs.password.value !== '' && !this.$refs.password.invalid
+      ) {
+        this.allInputsFilled = true
+      } else {
+        this.allInputsFilled = false
+      }
     }
   }
 }

@@ -1,14 +1,14 @@
 <template lang="pug">
 .Register
   ColumnPanel
-    Input(placeholder="Username" type="text" ref="username")
-    Input(placeholder="Email" type="email" ref="email")
-    Input(placeholder="Password" type="password" ref="password")
-    Input(placeholder="Repeat password" type="password" ref="confirm_password" @valueChanged='validatePasswords')
+    Input(placeholder="Username" type="text" ref="username" @valueChanged='checkIfInputsAreFilled')
+    Input(placeholder="Email" type="email" ref="email" @valueChanged='checkIfInputsAreFilled')
+    Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
+    Input(placeholder="Repeat password" type="password" ref="confirm_password" @valueChanged='validatePasswords(); checkIfInputsAreFilled()')
     p TODO: I'm not a robot
     ErrorMessageBox(v-if="error") {{errorMessage}}
     Loading(v-if="loading")
-    Button(@clicked="register") Register
+    Button(@clicked="register" :class="{'Button--disabled' : !allInputsFilled}") Register
 </template>
 
 <script>
@@ -29,45 +29,48 @@ export default {
     return {
       error: false,
       errorMessage: '',
-      loading: false
+      loading: false,
+      allInputsFilled: false
     }
   },
   methods: {
     register: function (event) {
-      this.loading = true
-      this.error = false
-      let data = {
-        username: this.$refs.username.value,
-        email: this.$refs.email.value,
-        password: Buffer.from(this.$refs.password.value)
-      }
-
-      var salt = Buffer.from('Sudoku')
-
-      scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
-        if (error) {
-          this.error = true
-          this.errorMessage = 'Error with password derivation'
-        } else if (key) {
-          axios.post('/api/register', data)
-            .then((response) => {
-              this.$store.commit('userLogged', true)
-              this.loading = false
-            })
-            .catch((error) => {
-              switch (error.response.status) {
-                case 404:
-                  this.error = true
-                  this.errorMessage = 'Error 404'
-                  break
-                default:
-                  this.error = true
-                  this.errorMessage = 'Internal server error'
-              }
-              this.loading = false
-            })
+      if (this.allInputsFilled) {
+        this.loading = true
+        this.error = false
+        let data = {
+          username: this.$refs.username.value,
+          email: this.$refs.email.value,
+          password: Buffer.from(this.$refs.password.value)
         }
-      })
+
+        var salt = Buffer.from('Sudoku')
+
+        scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
+          if (error) {
+            this.error = true
+            this.errorMessage = 'Error with password derivation'
+          } else if (key) {
+            axios.post('/api/register', data)
+              .then((response) => {
+                this.$store.commit('userLogged', true)
+                this.loading = false
+              })
+              .catch((error) => {
+                switch (error.response.status) {
+                  case 404:
+                    this.error = true
+                    this.errorMessage = 'Error 404'
+                    break
+                  default:
+                    this.error = true
+                    this.errorMessage = 'Internal server error'
+                }
+                this.loading = false
+              })
+          }
+        })
+      }
     },
     validatePasswords () {
       let confirmPassword = this.$refs.confirm_password
@@ -77,6 +80,18 @@ export default {
       } else {
         confirmPassword.invalid = false
         confirmPassword.errorMessage = ''
+      }
+    },
+    checkIfInputsAreFilled () {
+      if (
+        this.$refs.username.value !== '' && !this.$refs.username.invalid &&
+        this.$refs.password.value !== '' && !this.$refs.password.invalid &&
+        this.$refs.email.value !== '' && !this.$refs.email.invalid &&
+        this.$refs.confirm_password.value !== '' && !this.$refs.confirm_password.invalid
+      ) {
+        this.allInputsFilled = true
+      } else {
+        this.allInputsFilled = false
       }
     }
   }

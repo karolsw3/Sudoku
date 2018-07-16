@@ -24,4 +24,8 @@ export default {
   cursor pointer
   &:hover
     opacity 0.8
+  &--disabled
+    background #dedede
+    color #aaa
+    cursor default
 </style>
