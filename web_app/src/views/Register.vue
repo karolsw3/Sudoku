@@ -18,7 +18,6 @@ import ErrorMessageBox from '@/components/ErrorMessageBox.vue'
 import Button from '@/components/Button.vue'
 import Loading from '@/components/Loading.vue'
 import axios from 'axios'
-import scrypt from 'scrypt-js'
 import util from '@/util.js'
 
 export default {
@@ -45,7 +44,7 @@ export default {
           password: this.$refs.password.value
         }
         util.methods.derivePassword(
-          data.password, 
+          data.password,
           (error) => {
             this.error = true
             this.errorMessage = error

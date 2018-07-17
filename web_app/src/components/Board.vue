@@ -19,12 +19,53 @@ export default {
   name: 'Board',
   data: function () {
     return {
-      filledSlots: 0
+      filledSlots: 0,
+      selectedSlot: {
+        x: 0,
+        y: 0
+      }
     }
+  },
+  created () {
+    window.addEventListener('keydown', this.keyDown)
   },
   methods: {
     onSlotClick (x, y) {
-      this.$store.commit('slotSelected', {x, y})
+      this.selectedSlot.x = x
+      this.selectedSlot.y = y
+    },
+    keyDown (e) {
+      if (this.$router.currentRoute.name === 'play') {
+        if (!isNaN(e.key)) {
+          this.$store.commit('mutateBoardSlot', {
+            x: this.selectedSlot.x,
+            y: this.selectedSlot.y,
+            value: e.key
+          })
+        }
+        switch (e.key) {
+          case 'h':
+            if (this.selectedSlot.y > 0) {
+              this.selectedSlot.y--
+            }
+            break
+          case 'j':
+            if (this.selectedSlot.x < 8) {
+              this.selectedSlot.x++
+            }
+            break
+          case 'k':
+            if (this.selectedSlot.x > 0) {
+              this.selectedSlot.x--
+            }
+            break
+          case 'l':
+            if (this.selectedSlot.y < 8) {
+              this.selectedSlot.y++
+            }
+            break
+          }
+      }
     },
     getSlotX (i, j, x, y) {
       return (i - 1) * 3 + (x - 1)
@@ -60,9 +101,6 @@ export default {
   computed: {
     boardState () {
       return this.$store.state.boardState
-    },
-    selectedSlot () {
-      return this.$store.state.selectedSlot
     }
   }
 }

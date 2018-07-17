@@ -60,10 +60,9 @@ export default {
   &__table
     max-width 900px
     border-collapse collapse
-    border 2px solid #eee
     th, td
       padding 7px 23px
-      border 2px solid #eee
+      border 1px solid #eee
   &__navigation
     width auto
     margin 20px auto
