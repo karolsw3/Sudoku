@@ -39,7 +39,9 @@ export default {
       if (this.$router.currentRoute.name === 'play') {
         if (!isNaN(e.key)) {
           this.checkIfSlotHasBeenFilled(e.key)
-          this.slots[this.selectedSlot.x][this.selectedSlot.y] = e.key
+          if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
+            this.slots[this.selectedSlot.x][this.selectedSlot.y] = e.key
+          }
         }
         switch (e.key) {
           case 'h':
@@ -66,11 +68,9 @@ export default {
       }
     },
     checkIfSlotHasBeenFilled (newSlotValue) {
-      if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
-        if (newSlotValue > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] === 0) {
-          this.filledSlots++
-          this.checkIfBoardIsFullyFilled()
-        }
+      if (newSlotValue > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] === 0) {
+        this.filledSlots++
+        this.checkIfBoardIsFullyFilled()
       }
     },
     checkIfBoardIsFullyFilled () {
@@ -103,7 +103,7 @@ export default {
       for (let row in this.slots) {
         for (let column in this.slots[row]) {
           if (this.slots[row][column] > 0) {
-            this.$store.commit('incrementFilledSlotsCounter')
+            this.filledSlots++
           }
         }
       }
