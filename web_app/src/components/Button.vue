@@ -20,7 +20,7 @@ export default {
   color white
   border none
   border-radius 2px
-  transition-duration 0.12s
+  transition-duration 0.2s
   cursor pointer
   &:hover
     opacity 0.8

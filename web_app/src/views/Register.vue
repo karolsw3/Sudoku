@@ -41,36 +41,47 @@ export default {
         let data = {
           username: this.$refs.username.value,
           email: this.$refs.email.value,
-          password: Buffer.from(this.$refs.password.value)
+          password: this.$refs.password.value
         }
-
-        var salt = Buffer.from('Sudoku')
-
-        scrypt(data.password, salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
-          if (error) {
-            this.error = true
-            this.errorMessage = 'Error with password derivation'
-          } else if (key) {
-            axios.post('/api/register', data)
-              .then((response) => {
-                this.$store.commit('userLogged', true)
-                this.loading = false
-              })
-              .catch((error) => {
-                switch (error.response.status) {
-                  case 404:
-                    this.error = true
-                    this.errorMessage = 'Error 404'
-                    break
-                  default:
-                    this.error = true
-                    this.errorMessage = 'Internal server error'
-                }
-                this.loading = false
-              })
-          }
+        this.derivePassword(data.password, (password) => {
+          data.password = password
+          this.sendRegisterRequest(data)
         })
       }
+    },
+    derivePassword (password, callback) {
+      var salt = Buffer.from('Sudoku')
+      scrypt(Buffer.from('password'), salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
+        if (error) {
+          this.error = true
+          this.errorMessage = 'Error with password derivation'
+        } else if (key) {
+          password = ''
+          key.map((item) => {
+            password += item.toString(16)
+          })
+          callback(password)
+        }
+      })
+    },
+    sendRegisterRequest (data) {
+      axios.post('/api/register', data)
+        .then((response) => {
+          this.$store.commit('userLogged', true)
+          this.loading = false
+        })
+        .catch((error) => {
+          switch (error.response.status) {
+            case 404:
+              this.error = true
+              this.errorMessage = 'Error 404'
+              break
+            default:
+              this.error = true
+              this.errorMessage = 'Internal server error'
+          }
+          this.loading = false
+        })
     },
     validatePasswords () {
       let confirmPassword = this.$refs.confirm_password
