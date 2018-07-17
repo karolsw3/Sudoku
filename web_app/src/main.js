@@ -23,7 +23,7 @@ const store = new Vuex.Store({
       state.boardState = payload
     },
     mutateBoardSlot (state, payload) {
-      if (state.boardState[payload.x][payload.y] < 10) { // If value is greater than > 10 it means that the slot is locked (see Play.vue)
+      if (state.boardState[payload.x][payload.y] < 10) { // If value is greater than 9 it means that the slot is locked (see Play.vue)
         if (payload.value > 0 && state.boardState[payload.x][payload.y] === 0) {
           state.filledSlots++
 

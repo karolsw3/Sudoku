@@ -9,9 +9,9 @@
         router-link(to="/play/hard").Menu__button.Menu__button--dropdown Hard
     router-link(to="/leaderboard").Menu__button Leaderboard
   .Menu__slot
-    router-link(to="/login").Menu__button Login
-    router-link(to="/register").Menu__button Register
-    button.Menu__user U
+    router-link(to="/login" v-if='!this.$store.state.userLogged').Menu__button Login
+    router-link(to="/register" v-if='!this.$store.state.userLogged').Menu__button Register
+    button.Menu__user(v-if='this.$store.state.userLogged') U
 </template>
 
 <script>
