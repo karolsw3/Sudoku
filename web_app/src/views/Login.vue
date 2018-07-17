@@ -16,6 +16,7 @@ import Button from '@/components/Button.vue'
 import Loading from '@/components/Loading.vue'
 import axios from 'axios'
 import scrypt from 'scrypt-js'
+import util from '@/util.js'
 
 export default {
   name: 'Login',
@@ -39,26 +40,18 @@ export default {
           username: this.$refs.username.value,
           password: this.$refs.password.value
         }
-        this.derivePassword(data.password, (password) => {
-          data.password = password
-          this.sendLoginRequest(data)
-        })
+        util.methods.derivePassword(
+          data.password, 
+          (error) => {
+            this.error = true
+            this.errorMessage = error
+          },
+          (password) => {
+            data.password = password
+            this.sendLoginRequest(data)
+          }
+        )
       }
-    },
-    derivePassword (password, callback) {
-      var salt = Buffer.from('Sudoku')
-      scrypt(Buffer.from('password'), salt, Math.pow(2, 14), 8, 1, 64, (error, progress, key) => {
-        if (error) {
-          this.error = true
-          this.errorMessage = 'Error with password derivation'
-        } else if (key) {
-          password = ''
-          key.map((item) => {
-            password += item.toString(16)
-          })
-          callback(password)
-        }
-      })
     },
     sendLoginRequest (data) {
       axios.post('/api/login', data)
