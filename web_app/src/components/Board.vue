@@ -45,26 +45,58 @@ export default {
         }
         switch (e.key) {
           case 'h':
-            if (this.selectedSlot.y > 0) {
-              this.selectedSlot.y--
-            }
+            this.selectSlotLeft()
             break
           case 'j':
-            if (this.selectedSlot.x < 8) {
-              this.selectedSlot.x++
-            }
+            this.selectSlotDown()
             break
           case 'k':
-            if (this.selectedSlot.x > 0) {
-              this.selectedSlot.x--
-            }
+            this.selectSlotUp()
             break
           case 'l':
-            if (this.selectedSlot.y < 8) {
-              this.selectedSlot.y++
-            }
+            this.selectSlotRight()
             break
         }
+      }
+    },
+    selectSlotUp () {
+      if (this.selectedSlot.x > 0) {
+        this.selectedSlot.x--
+        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
+          this.selectSlotUp()
+        }
+      } else {
+        this.selectSlotDown()
+      }
+    },
+    selectSlotDown () {
+      if (this.selectedSlot.x < 8) {
+        this.selectedSlot.x++
+        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
+          this.selectSlotDown()
+        }
+      } else {
+        this.selectSlotUp()
+      }
+    },
+    selectSlotLeft () {
+      if (this.selectedSlot.y > 0) {
+        this.selectedSlot.y--
+        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
+          this.selectSlotLeft()
+        }
+      } else {
+        this.selectSlotRight()
+      }
+    },
+    selectSlotRight () {
+      if (this.selectedSlot.y < 8) {
+        this.selectedSlot.y++
+        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
+          this.selectSlotRight()
+        }
+      } else {
+        this.selectSlotLeft()
       }
     },
     checkIfSlotHasBeenFilled (newSlotValue) {
