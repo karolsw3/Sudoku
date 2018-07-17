@@ -10,7 +10,7 @@
             @click="onSlotClick(getSlotX(i, j, x, y), getSlotY(i, j, x, y))"
             :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y)]"
           )
-            p(v-if="boardState[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0" ) {{boardState[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
+            p(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0" ) {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
 </template>
 
 <script>
@@ -19,6 +19,7 @@ export default {
   name: 'Board',
   data: function () {
     return {
+      slots: Array(9).fill().map(() => Array(9).fill(0)),
       filledSlots: 0,
       selectedSlot: {
         x: 0,
@@ -37,11 +38,8 @@ export default {
     keyDown (e) {
       if (this.$router.currentRoute.name === 'play') {
         if (!isNaN(e.key)) {
-          this.$store.commit('mutateBoardSlot', {
-            x: this.selectedSlot.x,
-            y: this.selectedSlot.y,
-            value: e.key
-          })
+          this.checkIfSlotHasBeenFilled(e.key)
+          this.slots[this.selectedSlot.x][this.selectedSlot.y] = e.key
         }
         switch (e.key) {
           case 'h':
@@ -64,7 +62,20 @@ export default {
               this.selectedSlot.y++
             }
             break
-          }
+        }
+      }
+    },
+    checkIfSlotHasBeenFilled (newSlotValue) {
+      if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
+        if (newSlotValue > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] === 0) {
+          this.filledSlots++
+          this.checkIfBoardIsFullyFilled()
+        }
+      }
+    },
+    checkIfBoardIsFullyFilled () {
+      if (this.filledSlots === 3 * 3 * 9) {
+        // Make an axios request to send the board state
       }
     },
     getSlotX (i, j, x, y) {
@@ -77,30 +88,25 @@ export default {
       return this.getSlotX(i, j, x, y) === this.selectedSlot.x && this.getSlotY(i, j, x, y) === this.selectedSlot.y ? 'Board__slot--selected' : ''
     },
     getLockedClass (i, j, x, y) {
-      return this.boardState[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
+      return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
     },
     lockSlots () { // locks all currently filled slots
-      for (let row in this.boardState) {
-        for (let column in this.boardState) {
-          if (this.boardState[row][column] > 0) {
-            this.boardState[row][column] += 10 // If value is greater than > 10 it means that the slot is locked
+      for (let row in this.slots) {
+        for (let column in this.slots) {
+          if (this.slots[row][column] > 0) {
+            this.slots[row][column] += 10 // If value is greater than > 10 it means that the slot is locked
           }
         }
       }
     },
     countFilledSlots () {
-      for (let row in this.boardState) {
-        for (let column in this.boardState[row]) {
-          if (this.boardState[row][column] > 0) {
+      for (let row in this.slots) {
+        for (let column in this.slots[row]) {
+          if (this.slots[row][column] > 0) {
             this.$store.commit('incrementFilledSlotsCounter')
           }
         }
       }
-    }
-  },
-  computed: {
-    boardState () {
-      return this.$store.state.boardState
     }
   }
 }

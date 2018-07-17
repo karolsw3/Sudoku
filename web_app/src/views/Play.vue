@@ -17,33 +17,18 @@ export default {
     Board, NumberSelector, Timer
   },
   props: ['difficulty'],
-  computed: {
-    boardState () {
-      return this.$store.state.boardState
-    }
-  },
   methods: {
     numberSelected (number) {
-      this.$store.commit('mutateBoardSlot', {
-        x: this.$store.state.selectedSlot.x,
-        y: this.$store.state.selectedSlot.y,
-        value: number
-      })
-    },
-    submitBoard () {
-      /* let data = {
-        boardState: this.$store.boardState
-      }
-       axios.post('/api/validateBoard', data)
-      ... then */
+      let board = this.$refs.board
+      board.slots[board.selectedSlot.x][board.selectedSlot.y] = number
     }
   },
   created () {
     axios.get('https://api.myjson.com/bins/1cvca6') // Will be: '/api/generateBoard?difficulty=1&variant=0'
       .then((response) => {
-        this.$store.commit('mutateBoard', response.data.board)
         let board = this.$refs.board
         let timer = this.$refs.timer
+        board.slots = response.data.board
         board.countFilledSlots()
         board.lockSlots()
         timer.start()

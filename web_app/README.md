@@ -27,7 +27,4 @@ To build the app, simply run:
 The store is declared in main.js file and it consists of following states:
 * <b>userLogged</b>  
   Boolean. True is a user in logged, false otherwise.
-* <b>selectedSlot</b>  
-  Object. Stores x and y coordinates of the selected slot on the board.
-* <b>boardState</b>  
-  9x9 matrix. Stores all slots of the board in a matrix, where a slot can contain a number between 0 and 9 (0 means an empty slot).
+
