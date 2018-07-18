@@ -23,7 +23,7 @@ export default {
 <style scoped lang="stylus">
 .Menu
   width 100%
-  height 80px
+  height 100px
   background white
   position relative
   display flex
@@ -31,21 +31,13 @@ export default {
   justify-content space-between
   box-sizing border-box
   padding 0 20px
-  &:before
-    content ''
-    position absolute
-    height 1px
-    width 100%
-    bottom -1px
-    left 0
-    background-image linear-gradient(to right, #001672, #0445b7)
   &__slot
     display flex
     align-items center
     justify-content center
   &__logo
-    width 60px
-    height 60px
+    width 80px
+    height 80px
     margin-right 15px
     background-image url(../../../images/logo.png)
     background-size cover
@@ -56,9 +48,9 @@ export default {
     padding 10px 20px
     margin-right 15px
     box-sizing border-box
-    color #001672
-    font-size 1em
-    background #eee
+    color white
+    //font-size 1em
+    background #123ffc
     border-radius 2px
     border none
     cursor pointer

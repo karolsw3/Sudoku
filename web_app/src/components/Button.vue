@@ -16,7 +16,7 @@ export default {
   max-width 400px
   padding 19px 20px
   margin-top 15px
-  background #001672
+  background #123ffc
   color white
   border none
   border-radius 2px

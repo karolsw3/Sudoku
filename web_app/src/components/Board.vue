@@ -213,7 +213,7 @@ export default {
     max-width 100%
     text-align center
     font-weight 700
-    color #0445b7
+    color #123ffc
     cursor pointer
     &:hover
       background #e6e8eb
