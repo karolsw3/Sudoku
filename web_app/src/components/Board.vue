@@ -36,13 +36,16 @@ export default {
       this.selectedSlot.x = x
       this.selectedSlot.y = y
     },
+    mutateSelectedSlot (newValue) {
+      if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
+        this.slots[this.selectedSlot.x][this.selectedSlot.y] = newValue
+      }      
+    },
     keydown (e) {
       if (this.$router.currentRoute.name === 'play') {
         if (!isNaN(e.key)) {
           this.checkIfSlotHasBeenFilled(e.key)
-          if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
-            this.slots[this.selectedSlot.x][this.selectedSlot.y] = e.key
-          }
+          this.mutateSelectedSlot(e.key)
         }
         switch (e.key) {
           case 'h':

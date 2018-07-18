@@ -20,7 +20,7 @@ export default {
   methods: {
     numberSelected (number) {
       let board = this.$refs.board
-      board.slots[board.selectedSlot.x][board.selectedSlot.y] = number
+      board.mutateSelectedSlot(number)
     }
   },
   created () {
