@@ -19,14 +19,17 @@ table! {
     /// See [`doc/user.md`](../../doc/user/)
     users {
         /// Nullable wrapper so we can pass NULL to SQLite so it assigns new id
-        id           -> Nullable<Integer>,
-        username     -> Text,
-        password     -> Text,
-        email        -> Text,
-        created_at   -> Timestamp,
-        is_admin     -> Bool,
-        points_total -> Integer,
-        games_total  -> Integer,
+        id                 -> Nullable<Integer>,
+        username           -> Text,
+        password           -> Text,
+        email              -> Text,
+        created_at         -> Timestamp,
+        is_admin           -> Bool,
+        points_total       -> Integer,
+        games_total        -> Integer,
+        games_total_easy   -> Integer,
+        games_total_medium -> Integer,
+        games_total_hard   -> Integer,
     }
 }
 

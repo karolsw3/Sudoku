@@ -6,6 +6,7 @@ use diesel::query_dsl::{RunQueryDsl, QueryDsl};
 use diesel::{self, AppearsOnTable, Expression};
 use self::super::super::tables::{self, users};
 use self::super::super::SolutionOrdering;
+use self::super::BoardDifficulty;
 use chrono::{NaiveDateTime, Utc};
 
 
@@ -36,8 +37,17 @@ pub struct User {
     /// Sum total of the user's points, calculated according to `doc/scoring.md#endgame-formula`, `CHECK`ed to nonnegativity.
     pub points_total: i32,
 
-    /// Amount of games played, `CHECK`ed to nonnegativity.
+    /// Total amount of games played, `CHECK`ed to nonnegativity.
     pub games_total: i32,
+
+    /// Amount of easy games played, `CHECK`ed to nonnegativity.
+    pub games_total_easy: i32,
+
+    /// Amount of medium games played, `CHECK`ed to nonnegativity.
+    pub games_total_medium: i32,
+
+    /// Amount of hard games played, `CHECK`ed to nonnegativity.
+    pub games_total_hard: i32,
 }
 
 impl User {
@@ -56,6 +66,9 @@ impl User {
             is_admin: false,
             points_total: 0,
             games_total: 0,
+            games_total_easy: 0,
+            games_total_medium: 0,
+            games_total_hard: 0,
         }
     }
 
@@ -70,9 +83,14 @@ impl User {
     }
 
     /// Update in-memory and in-DB repr by the specified point count.
-    pub fn solve(&mut self, for_points: usize, db: &SqliteConnection) -> Result<(), &'static str> {
+    pub fn solve(&mut self, for_points: usize, for_difficulty: BoardDifficulty, db: &SqliteConnection) -> Result<(), &'static str> {
         self.points_total += for_points as i32;
         self.games_total += 1;
+        *match for_difficulty {
+            BoardDifficulty::Easy => &mut self.games_total_easy,
+            BoardDifficulty::Medium => &mut self.games_total_medium,
+            BoardDifficulty::Hard => &mut self.games_total_hard,
+        } += 1;
         diesel::update(tables::users::table.filter(tables::users::id.eq(self.id.unwrap()))).set(&*self).execute(db).map(|_| ()).map_err(|_| "update failed")
     }
 
@@ -84,13 +102,13 @@ impl User {
     ///
     /// ```sql
     /// INSERT INTO "users"
-    ///     VALUES(1, 'karolsw3',       'password', 'email', '2018-07-23 18:18:24', 0, 435);
+    ///     VALUES(1, 'karolsw3',       'password', 'email', '2018-07-23 18:18:24', 0, 435, 1, 1, 0, 0);
     /// INSERT INTO "users"
-    ///     VALUES(2, 'nabijaczleweli', 'password', 'email', '2018-07-23 19:08:09', 1, 732);
+    ///     VALUES(2, 'nabijaczleweli', 'password', 'email', '2018-07-23 19:08:09', 1, 732, 1, 0, 1, 0);
     /// INSERT INTO "users"
-    ///     VALUES(3, 'sehe',           'password', 'email', '2018-07-23 19:08:56', 0, 1230);
+    ///     VALUES(3, 'sehe',           'password', 'email', '2018-07-23 19:08:56', 0, 1230, 2, 0, 0, 2);
     /// INSERT INTO "users"
-    ///     VALUES(4, 'skorezore',      'password', 'email', '2018-07-23 19:11:06', 0, 222);
+    ///     VALUES(4, 'skorezore',      'password', 'email', '2018-07-23 19:11:06', 0, 222, 1, 0, 0, 1);
     /// ```
     ///
     /// The following holds:
@@ -121,6 +139,9 @@ impl User {
     /// #          is_admin: false,
     /// #          points_total: 435,
     /// #          games_total: 1,
+    /// #          games_total_easy: 1,
+    /// #          games_total_medium: 0,
+    /// #          games_total_hard: 0,
     /// #      },
     /// #      User {
     /// #          id: None,
@@ -131,6 +152,9 @@ impl User {
     /// #          is_admin: true,
     /// #          points_total: 732,
     /// #          games_total: 1,
+    /// #          games_total_easy: 0,
+    /// #          games_total_medium: 1,
+    /// #          games_total_hard: 0,
     /// #      },
     /// #      User {
     /// #          id: None,
@@ -141,6 +165,9 @@ impl User {
     /// #          is_admin: false,
     /// #          points_total: 1230,
     /// #          games_total: 2,
+    /// #          games_total_easy: 0,
+    /// #          games_total_medium: 0,
+    /// #          games_total_hard: 2,
     /// #      },
     /// #      User {
     /// #          id: None,
@@ -151,6 +178,9 @@ impl User {
     /// #          is_admin: false,
     /// #          points_total: 222,
     /// #          games_total: 1,
+    /// #          games_total_easy: 0,
+    /// #          games_total_medium: 0,
+    /// #          games_total_hard: 1,
     /// #      }];
     /// # for user in &mut users {
     /// #     user.add(&db).unwrap();
@@ -170,6 +200,9 @@ impl User {
     ///           is_admin: false,
     ///           points_total: 222,
     ///           games_total: 1,
+    ///           games_total_easy: 0,
+    ///           games_total_medium: 0,
+    ///           games_total_hard: 1,
     ///       },
     ///       User {
     ///           id: Some(1),
@@ -180,6 +213,9 @@ impl User {
     ///           is_admin: false,
     ///           points_total: 435,
     ///           games_total: 1,
+    ///           games_total_easy: 1,
+    ///           games_total_medium: 0,
+    ///           games_total_hard: 0,
     ///       },
     ///       User {
     ///           id: Some(2),
@@ -190,6 +226,9 @@ impl User {
     ///           is_admin: true,
     ///           points_total: 732,
     ///           games_total: 1,
+    ///           games_total_easy: 0,
+    ///           games_total_medium: 1,
+    ///           games_total_hard: 0,
     ///       }]);
     /// ```
     pub fn leaders(cfg: &LeaderboardConfig, db: &SqliteConnection) -> Result<Vec<User>, &'static str> {

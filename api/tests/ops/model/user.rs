@@ -14,5 +14,8 @@ fn new() {
                    is_admin: false,
                    points_total: 0,
                    games_total: 0,
+                   games_total_easy: 0,
+                   games_total_medium: 0,
+                   games_total_hard: 0,
                });
 }

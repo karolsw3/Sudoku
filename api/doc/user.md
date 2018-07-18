@@ -66,16 +66,19 @@ Independently of whether the user is logged in, the server shall return `204 No 
 
 ```sql
 CREATE TABLE IF NOT EXISTS users (
-    id           INTEGER PRIMARY KEY ASC,     -- Unique user ID
-    username     TEXT NOT NULL UNIQUE,        -- User's name or "login" or whatever you want to call it
-    password     TEXT NOT NULL,               -- Doubly scrypted password text, see above.
-    email        TEXT NOT NULL UNIQUE,        -- User's contact e-mail
-    created_at   DATETIME NOT NULL,           -- Time user was created
-    is_admin     BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges
-    points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user's points, calculated according to sudoku.md#scoring-formula, non-negative
-    games_total  INTEGER NOT NULL DEFAULT 0,  -- Amount of games played, non-negative
+    id                 INTEGER PRIMARY KEY ASC,     -- Unique user ID
+    username           TEXT NOT NULL UNIQUE,        -- User's name or "login" or whatever you want to call it
+    password           TEXT NOT NULL,               -- Doubly scrypted password text, see above.
+    email              TEXT NOT NULL UNIQUE,        -- User's contact e-mail
+    created_at         DATETIME NOT NULL,           -- Time user was created
+    is_admin           BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges
+    points_total       INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user's points, calculated according to sudoku.md#scoring-formula, non-negative
+    games_total        INTEGER NOT NULL DEFAULT 0,  -- Total amount of games played, non-negative
+    games_total_easy   INTEGER NOT NULL DEFAULT 0,  -- Amount of easy games played, non-negative
+    games_total_medium INTEGER NOT NULL DEFAULT 0,  -- Amount of medium games played, non-negative
+    games_total_hard   INTEGER NOT NULL DEFAULT 0,  -- Amount of hard games played, non-negative
 
-    CHECK ((points_total >= 0) AND (games_total >= 0))
+    CHECK ((points_total >= 0) AND (games_total >= 0) AND (games_total_easy >= 0) AND (games_total_medium >= 0) AND (games_total_hard >= 0))
 );
 ```
 
@@ -83,11 +86,14 @@ CREATE TABLE IF NOT EXISTS users (
 
 ```json
 {
-    "username":     "string",
-    "created_at":   "RFC3339 (string)",
-    "is_admin":     "boolean",
-    "points_total": "number",
-    "games_total":  "number"
+    "username":           "string",
+    "created_at":         "RFC3339 (string)",
+    "is_admin":           "boolean",
+    "points_total":       "number",
+    "games_total":        "number",
+    "games_total_easy":   "number",
+    "games_total_medium": "number",
+    "games_total_hard":   "number"
 }
 ```
 

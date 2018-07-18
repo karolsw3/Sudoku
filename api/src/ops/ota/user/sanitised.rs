@@ -23,6 +23,9 @@ use chrono::{FixedOffset, DateTime};
 ///                is_admin: true,
 ///                points_total: 1750,
 ///                games_total: 3,
+///                games_total_easy: 2,
+///                games_total_medium: 1,
+///                games_total_hard: 0,
 ///            }),
 ///            SanitisedUserData {
 ///                username: "karolsw3".to_string(),
@@ -30,6 +33,9 @@ use chrono::{FixedOffset, DateTime};
 ///                is_admin: true,
 ///                points_total: 1750,
 ///                games_total: 3,
+///                games_total_easy: 2,
+///                games_total_medium: 1,
+///                games_total_hard: 0,
 ///            });
 /// ```
 #[derive(Serialize, Deserialize, Debug, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
@@ -47,8 +53,17 @@ pub struct SanitisedUserData {
     /// [`doc/scoring.md#endgame-formula`](../doc/scoring/#endgame-formula).
     pub points_total: u64,
 
-    /// Amount of games played.
+    /// Total amount of games played.
     pub games_total: u64,
+
+    /// Amount easy of games played.
+    pub games_total_easy: u64,
+
+    /// Amount medium of games played.
+    pub games_total_medium: u64,
+
+    /// Amount hard of games played.
+    pub games_total_hard: u64,
 }
 
 impl From<User> for SanitisedUserData {
@@ -59,6 +74,9 @@ impl From<User> for SanitisedUserData {
             is_admin: u.is_admin,
             points_total: u.points_total as u64, // CHECKed to be >=0
             games_total: u.games_total as u64, // CHECKed to be >=0
+            games_total_easy: u.games_total_easy as u64, // CHECKed to be >=0
+            games_total_medium: u.games_total_medium as u64, // CHECKed to be >=0
+            games_total_hard: u.games_total_hard as u64, // CHECKed to be >=0
         }
     }
 }

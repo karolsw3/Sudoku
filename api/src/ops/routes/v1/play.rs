@@ -5,7 +5,7 @@
 //! Refer to [doc/sudoku.md](../../../doc/sudoku/) for the specifics.
 
 
-use self::super::super::super::{NewBoardRequestForm, OldBoardRequestForm, SudokuSolution, BoardMessage, SudokuBoard, Session, User};
+use self::super::super::super::{NewBoardRequestForm, OldBoardRequestForm, BoardDifficulty, SudokuSolution, BoardMessage, SudokuBoard, Session, User};
 use self::super::super::super::super::util::{random_username, board_includes};
 use self::super::super::super::errors::{GenericErrorSeverity, GenericError};
 use self::super::super::super::setup::{DatabaseConnection, ActivityCache};
@@ -77,7 +77,7 @@ pub fn replay(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Coo
               })))
 }
 
-/// Get a new board of the specified difficulty and update the session.
+/// Submit a completed board and update user/leaderboard
 #[post("/submit", data="<submitted_board>")]
 pub fn submit(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Cookies, submitted_board: Form<BoardMessage>)
               -> Result<Json<SudokuSolution>, Custom<Json<GenericError>>> {
@@ -116,7 +116,13 @@ pub fn submit(db: DatabaseConnection, ac: State<ActivityCache>, mut cookies: Coo
         .ok_or_else(|| Custom(Status::InternalServerError, Json(("could not create solution", GenericErrorSeverity::Danger).into())))?;
 
     if let Some(ref mut user) = user {
-        user.solve(solution.score as usize, &db).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
+        user.solve(solution.score as usize,
+                   BoardDifficulty::from_numeric(solution.difficulty as u64).ok_or_else(|| {
+                           Custom(Status::InternalServerError,
+                                  Json(("invalid board difficulty", GenericErrorSeverity::Danger).into()))
+                       })?,
+                   &db)
+            .map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
     }
 
     solution.insert(&db).map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
