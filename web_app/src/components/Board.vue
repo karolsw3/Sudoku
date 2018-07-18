@@ -24,18 +24,19 @@ export default {
       selectedSlot: {
         x: 0,
         y: 0
-      }
+      },
+      shiftPressed: false
     }
   },
   created () {
-    window.addEventListener('keydown', this.keyDown)
+    window.addEventListener('keydown', this.keydown)
   },
   methods: {
     onSlotClick (x, y) {
       this.selectedSlot.x = x
       this.selectedSlot.y = y
     },
-    keyDown (e) {
+    keydown (e) {
       if (this.$router.currentRoute.name === 'play') {
         if (!isNaN(e.key)) {
           this.checkIfSlotHasBeenFilled(e.key)
@@ -56,47 +57,79 @@ export default {
           case 'l':
             this.selectSlotRight()
             break
+          case 'H':
+            this.selectSlotLeftWarp()
+            break
+          case 'J':
+            this.selectSlotDownWarp()
+            break
+          case 'K':
+            this.selectSlotUpWarp()
+            break
+          case 'L':
+            this.selectSlotRightWarp()
+            break
         }
       }
     },
     selectSlotUp () {
       if (this.selectedSlot.x > 0) {
         this.selectedSlot.x--
-        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
-          this.selectSlotUp()
-        }
-      } else {
-        this.selectSlotDown()
       }
     },
     selectSlotDown () {
       if (this.selectedSlot.x < 8) {
         this.selectedSlot.x++
-        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
-          this.selectSlotDown()
-        }
-      } else {
-        this.selectSlotUp()
       }
     },
     selectSlotLeft () {
       if (this.selectedSlot.y > 0) {
         this.selectedSlot.y--
-        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
-          this.selectSlotLeft()
-        }
-      } else {
-        this.selectSlotRight()
       }
     },
     selectSlotRight () {
       if (this.selectedSlot.y < 8) {
         this.selectedSlot.y++
+      }
+    },
+    selectSlotUpWarp () {
+      if (this.selectedSlot.x > 0) {
+        this.selectedSlot.x--
         if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
-          this.selectSlotRight()
+          this.selectSlotUpWarp()
         }
       } else {
-        this.selectSlotLeft()
+        this.selectSlotDownWarp()
+      }
+    },
+    selectSlotDownWarp () {
+      if (this.selectedSlot.x < 8) {
+        this.selectedSlot.x++
+        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
+          this.selectSlotDownWarp()
+        }
+      } else {
+        this.selectSlotUpWarp()
+      }
+    },
+    selectSlotLeftWarp () {
+      if (this.selectedSlot.y > 0) {
+        this.selectedSlot.y--
+        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
+          this.selectSlotLeftWarp()
+        }
+      } else {
+        this.selectSlotRightWarp()
+      }
+    },
+    selectSlotRightWarp () {
+      if (this.selectedSlot.y < 8) {
+        this.selectedSlot.y++
+        if (this.slots[this.selectedSlot.x][this.selectedSlot.y] > 9) {
+          this.selectSlotRightWarp()
+        }
+      } else {
+        this.selectSlotLeftWarp()
       }
     },
     checkIfSlotHasBeenFilled (newSlotValue) {
