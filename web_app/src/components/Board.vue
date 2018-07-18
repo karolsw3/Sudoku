@@ -199,6 +199,9 @@ export default {
       border-radius 5px
       border 1px solid #f5f5f5
   &__slot
+    display flex
+    align-items center
+    justify-content center
     background white
     box-sizing border-box
     width 100%
@@ -209,12 +212,10 @@ export default {
     font-weight 700
     color #0445b7
     cursor pointer
-    transition-duration .2s
     &:hover
       background #e6e8eb
     &--selected
-      background #0445b7 !important
-      color white
+      border 4px solid
     &--locked
       background #f5f5f5 !important
       color #222 !important
