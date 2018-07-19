@@ -12,20 +12,24 @@
         td {{leader.points}}
         td {{leader.gamesPlayed}}
     .leaderboard__navigation
-      a(v-for='n in 5' v-if='(page - n) > 0')
-        .leaderboard__button {{page - n}}
-      a
-        .leaderboard__button {{page}}
-      a(v-for='n in 5')
-        .leaderboard__button {{page + n}}
-      a
-        .leaderboard__button.leaderboard__button--last ... {{lastPage}}
+      .leaderboard__slot(v-for='n in 5' v-if='(page - n) > 0')
+        NumberButton {{page - n}}
+      .leaderboard__slot
+        NumberButton {{page}}
+      .leaderboard__slot(v-for='n in 5')
+        NumberButton {{page + n}}
+      .leaderboard__slot
+        p ...
+      .leaderboard__slot
+        NumberButton {{lastPage}}
 </template>
 
 <script>
+import NumberButton from '@/components/NumberButton.vue'
 
 export default {
   name: 'leaderboard',
+  components: { NumberButton },
   data: function () {
     return {
       page: 0,
@@ -65,14 +69,9 @@ export default {
       border 1px solid #eee
   &__navigation
     width auto
+    height 40px
     margin 20px auto
     display flex
-  &__button
-    margin 0 5px
-    padding 8px
-    border 1px solid #ccc
-    border-radius 5px
-    cursor pointer
-    &--last
-      margin-left 15px
+  &__slot
+    width auto
 </style>
