@@ -1,0 +1,269 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `rocket` crate."><meta name="keywords" content="rust, rustlang, rust-lang, rocket"><title>rocket - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Crate rocket</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'rocket', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>rocket</a></span><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/rocket/lib.rs.html#1-159' title='goto source code'>[src]</a></span></h1><div class='docblock'><h1 id="rocket---core-api-documentation" class="section-header"><a href="#rocket---core-api-documentation">Rocket - Core API Documentation</a></h1>
+<p>Hello, and welcome to the core Rocket API documentation!</p>
+<p>This API documentation is highly technical and is purely a reference.
+There's an <a href="https://rocket.rs/overview">overview</a> of Rocket on the main site
+as well as a <a href="https://rocket.rs/guide">full, detailed guide</a>. If you'd like
+pointers on getting started, see the
+<a href="https://rocket.rs/guide/quickstart">quickstart</a> or <a href="https://rocket.rs/guide/getting-started">getting
+started</a> chapters of the guide.</p>
+<p>You may also be interested in looking at the <a href="/rocket_contrib">contrib API
+documentation</a>, which contains JSON and templating
+support, among other features.</p>
+<h2 id="libraries" class="section-header"><a href="#libraries">Libraries</a></h2>
+<p>Rocket's functionality is split into three crates:</p>
+<ol>
+<li><a href="/rocket">Core</a> - The core library. Needed by every Rocket application.</li>
+<li><a href="/rocket_codegen">Codegen</a> - Core code generation plugin. Should always
+be used alongsize <code>rocket</code>, though it's not necessary.</li>
+<li><a href="/rocket_contrib">Contrib</a> - Provides useful functionality for many
+Rocket applications. Completely optional.</li>
+</ol>
+<h2 id="usage" class="section-header"><a href="#usage">Usage</a></h2>
+<p>The sanctioned way to use Rocket is via the code generation plugin. This
+makes Rocket easier and safer to use and allows a somewhat stable API as
+Rocket matures. To use Rocket with the code generation plugin in your
+Cargo-based project, add the following to <code>Cargo.toml</code>:</p>
+
+<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><pre class="rust rust-example-rendered ignore">
+[<span class="ident">dependencies</span>]
+<span class="ident">rocket</span> <span class="op">=</span> <span class="string">&quot;*&quot;</span>
+<span class="ident">rocket_codegen</span> <span class="op">=</span> <span class="string">&quot;*&quot;</span></pre>
+<p>If you'll be deploying your project to <a href="https://crates.io">crates.io</a>,
+you'll need to change the &quot;*&quot; to the current version of Rocket.</p>
+<p>Then, add the following to the top of your <code>main.rs</code> file:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#![<span class="ident">feature</span>(<span class="ident">plugin</span>)]</span>
+<span class="attribute">#![<span class="ident">plugin</span>(<span class="ident">rocket_codegen</span>)]</span>
+
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">rocket</span>;</pre>
+<p>See the <a href="https://rocket.rs/guide">guide</a> for more information on how to
+write Rocket applications. Here's a simple example to get you started:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#![<span class="ident">feature</span>(<span class="ident">plugin</span>)]</span>
+<span class="attribute">#![<span class="ident">plugin</span>(<span class="ident">rocket_codegen</span>)]</span>
+
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">rocket</span>;
+
+<span class="attribute">#[<span class="ident">get</span>(<span class="string">&quot;/&quot;</span>)]</span>
+<span class="kw">fn</span> <span class="ident">hello</span>() <span class="op">-&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+    <span class="string">&quot;Hello, world!&quot;</span>
+}
+
+<span class="kw">fn</span> <span class="ident">main</span>() {
+    <span class="ident">rocket</span>::<span class="ident">ignite</span>().<span class="ident">mount</span>(<span class="string">&quot;/&quot;</span>, <span class="macro">routes</span><span class="macro">!</span>[<span class="ident">hello</span>]).<span class="ident">launch</span>();
+}</pre>
+<h2 id="configuration" class="section-header"><a href="#configuration">Configuration</a></h2>
+<p>Rocket and Rocket libraries are configured via the <code>Rocket.toml</code> file and/or
+<code>ROCKET_{PARAM}</code> environment variables. For more information on how to
+configure Rocket, see the <a href="https://rocket.rs/guide/configuration/">configuration
+section</a> of the guide as well as the
+<a href="/rocket/config">config</a> module documentation.</p>
+<h2 id="testing" class="section-header"><a href="#testing">Testing</a></h2>
+<p>The <a href="/rocket/local">local</a> module contains structures that facilitate unit
+and itegration testing of a Rocket application. The <a href="/rocket/local">top-level <code>local</code>
+module documentation</a> and the <a href="https://rocket.rs/guide/testing/#testing">testing chapter of the
+guide</a> include detailed examples.</p>
+</div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="config/index.html"
+                                  title='mod rocket::config'>config</a></td>
+                           <td class='docblock-short'>
+                                <p>Application configuration and configuration parameter retrieval.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="data/index.html"
+                                  title='mod rocket::data'>data</a></td>
+                           <td class='docblock-short'>
+                                <p>Types and traits for handling incoming body data.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="error/index.html"
+                                  title='mod rocket::error'>error</a></td>
+                           <td class='docblock-short'>
+                                <p>Types representing various errors that can occur in a Rocket application.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="fairing/index.html"
+                                  title='mod rocket::fairing'>fairing</a></td>
+                           <td class='docblock-short'>
+                                <p>Fairings: callbacks at attach, launch, request, and response time.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="handler/index.html"
+                                  title='mod rocket::handler'>handler</a></td>
+                           <td class='docblock-short'>
+                                <p>The types of request and error handlers and their return values.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="http/index.html"
+                                  title='mod rocket::http'>http</a></td>
+                           <td class='docblock-short'>
+                                <p>Types that map to concepts in HTTP.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="local/index.html"
+                                  title='mod rocket::local'>local</a></td>
+                           <td class='docblock-short'>
+                                <p>Structures for local dispatching of requests, primarily for testing.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="outcome/index.html"
+                                  title='mod rocket::outcome'>outcome</a></td>
+                           <td class='docblock-short'>
+                                <p>Success, failure, and forward handling.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="request/index.html"
+                                  title='mod rocket::request'>request</a></td>
+                           <td class='docblock-short'>
+                                <p>Types and traits for request parsing and handling.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="mod" href="response/index.html"
+                                  title='mod rocket::response'>response</a></td>
+                           <td class='docblock-short'>
+                                <p>Types and traits to build and send responses.</p>
+
+                           </td>
+                       </tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Catcher.html"
+                                  title='struct rocket::Catcher'>Catcher</a></td>
+                           <td class='docblock-short'>
+                                <p>An error catching route.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Config.html"
+                                  title='struct rocket::Config'>Config</a></td>
+                           <td class='docblock-short'>
+                                <p>Structure for Rocket application configuration.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Data.html"
+                                  title='struct rocket::Data'>Data</a></td>
+                           <td class='docblock-short'>
+                                <p>Type representing the data in the body of an incoming request.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Request.html"
+                                  title='struct rocket::Request'>Request</a></td>
+                           <td class='docblock-short'>
+                                <p>The type of an incoming web request.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Response.html"
+                                  title='struct rocket::Response'>Response</a></td>
+                           <td class='docblock-short'>
+                                <p>A response, as returned by <code>Responder</code>s.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Rocket.html"
+                                  title='struct rocket::Rocket'>Rocket</a></td>
+                           <td class='docblock-short'>
+                                <p>The main <code>Rocket</code> type: used to mount routes and catchers and launch the
+application.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Route.html"
+                                  title='struct rocket::Route'>Route</a></td>
+                           <td class='docblock-short'>
+                                <p>A route: a method, its handler, path, rank, and format/media type.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.State.html"
+                                  title='struct rocket::State'>State</a></td>
+                           <td class='docblock-short'>
+                                <p>Request guard to retrieve managed state.</p>
+
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.Error.html"
+                                  title='enum rocket::Error'>Error</a></td>
+                           <td class='docblock-short'>
+                                <p>[unstable] Error type for Rocket. Likely to change.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="enum" href="enum.Outcome.html"
+                                  title='enum rocket::Outcome'>Outcome</a></td>
+                           <td class='docblock-short'>
+                                <p>An enum representing success (<code>Success</code>), failure (<code>Failure</code>), or
+forwarding (<code>Forward</code>).</p>
+
+                           </td>
+                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.custom.html"
+                                  title='fn rocket::custom'>custom</a></td>
+                           <td class='docblock-short'>
+                                <p>Alias to <a href="/rocket/struct.Rocket.html#method.custom">Rocket::custom()</a>.
+Creates a new instance of <code>Rocket</code> with a custom configuration.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.ignite.html"
+                                  title='fn rocket::ignite'>ignite</a></td>
+                           <td class='docblock-short'>
+                                <p>Alias to <a href="/rocket/struct.Rocket.html#method.ignite">Rocket::ignite()</a>.
+Creates a new instance of <code>Rocket</code>.</p>
+
+                           </td>
+                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.ErrorHandler.html"
+                                  title='type rocket::ErrorHandler'>ErrorHandler</a></td>
+                           <td class='docblock-short'>
+                                <p>The type of an error handler.</p>
+
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.Handler.html"
+                                  title='type rocket::Handler'>Handler</a></td>
+                           <td class='docblock-short'>
+                                <p>The type of a request handler.</p>
+
+                           </td>
+                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "rocket";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

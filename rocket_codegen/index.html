@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `rocket_codegen` crate."><meta name="keywords" content="rust, rustlang, rust-lang, rocket_codegen"><title>rocket_codegen - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Crate rocket_codegen</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#functions">Functions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'rocket_codegen', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='in-band'>Crate <a class="mod" href=''>rocket_codegen</a></span><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/rocket_codegen/lib.rs.html#1-221' title='goto source code'>[src]</a></span></h1><div class='docblock'><h1 id="rocket---code-generation" class="section-header"><a href="#rocket---code-generation">Rocket - Code Generation</a></h1>
+<p>This crate implements the code generation portions of Rocket. This includes
+custom derives, custom attributes, and procedural macros. The documentation
+here is purely technical. The code generation facilities are documented
+thoroughly in the <a href="https://rocket.rs/guide">Rocket programming guide</a>.</p>
+<h2 id="custom-attributes" class="section-header"><a href="#custom-attributes">Custom Attributes</a></h2>
+<p>This crate implements the following custom attributes:</p>
+<ul>
+<li><strong>route</strong></li>
+<li><strong>get</strong></li>
+<li><strong>put</strong></li>
+<li><strong>post</strong></li>
+<li><strong>delete</strong></li>
+<li><strong>head</strong></li>
+<li><strong>patch</strong></li>
+<li><strong>options</strong></li>
+<li><strong>catch</strong></li>
+</ul>
+<p>The grammar for all <em>route</em> attributes, including <strong>route</strong>, <strong>get</strong>,
+<strong>put</strong>, <strong>post</strong>, <strong>delete</strong>, <strong>head</strong>, <strong>patch</strong>, and <strong>options</strong> is
+defined as:</p>
+<pre>
+route := METHOD? '(' ('path' '=')? path (',' kv_param)* ')'
+
+path := URI_SEG
+      | DYNAMIC_PARAM
+      | '?' DYNAMIC_PARAM
+      | path '/' path
+      (string literal)
+
+kv_param := 'rank' '=' INTEGER
+          | 'format' '=' STRING
+          | 'data' '=' DYNAMIC_PARAM
+
+INTEGER := isize, as defined by Rust
+STRING := UTF-8 string literal, as defined by Rust
+IDENT := valid identifier, as defined by Rust
+
+URI_SEG := valid HTTP URI Segment
+DYNAMIC_PARAM := '<' IDENT '..'? '>' (string literal)
+</pre>
+<p>Note that the <strong>route</strong> attribute takes a method as its first argument,
+while the remaining do not. That is, <strong>route</strong> looks like:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">route</span>(<span class="ident">GET</span>, <span class="ident">path</span> <span class="op">=</span> <span class="string">&quot;/hello&quot;</span>)]</span></pre>
+<p>while the equivalent using <strong>get</strong> looks like:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">get</span>(<span class="string">&quot;/hello&quot;</span>)]</span></pre>
+<p>The syntax for the <strong>catch</strong> attribute is:</p>
+<pre>
+catch := INTEGER
+</pre>
+<p>A use of the <code>catch</code> attribute looks like:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">catch</span>(<span class="number">404</span>)]</span></pre>
+<h2 id="custom-derives" class="section-header"><a href="#custom-derives">Custom Derives</a></h2>
+<p>This crate implements the following custom derives:</p>
+<ul>
+<li><strong>FromForm</strong></li>
+</ul>
+<h3 id="fromform" class="section-header"><a href="#fromform"><code>FromForm</code></a></h3>
+<p>The <a href="/rocket/request/trait.FromForm.html"><code>FromForm</code></a> derive can be applied to structures with named fields:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">FromForm</span>)]</span>
+<span class="kw">struct</span> <span class="ident">MyStruct</span> {
+    <span class="ident">field</span>: <span class="ident">usize</span>,
+    <span class="ident">other</span>: <span class="ident">String</span>
+}</pre>
+<p>Each field's type is required to implement <a href="/rocket/request/trait.FromFormValue.html"><code>FromFormValue</code></a>. The derive
+accepts one field attribute: <code>form</code>, with the following syntax:</p>
+<pre>
+form := 'field' '=' '"' IDENT '"'
+
+IDENT := valid identifier, as defined by Rust
+</pre>
+<p>When applied, the attribute looks as follows:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">FromForm</span>)]</span>
+<span class="kw">struct</span> <span class="ident">MyStruct</span> {
+    <span class="ident">field</span>: <span class="ident">usize</span>,
+    <span class="attribute">#[<span class="ident">form</span>(<span class="ident">field</span> <span class="op">=</span> <span class="string">&quot;renamed_field&quot;</span>)]</span>
+    <span class="ident">other</span>: <span class="ident">String</span>
+}</pre>
+<p>The derive generates an implementation for the <a href="/rocket/request/trait.FromForm.html"><code>FromForm</code></a> trait. The
+implementation parses a form whose field names match the field names of the
+structure on which the derive was applied. Each field's value is parsed with
+the <a href="/rocket/request/trait.FromFormValue.html"><code>FromFormValue</code></a> implementation of the field's type. The <code>FromForm</code>
+implementation succeeds only when all of the field parses succeed.</p>
+<p>The <code>form</code> field attribute can be used to direct that a different incoming
+field name is expected. In this case, the attribute's field name is used
+instead of the structure's field name when parsing a form.</p>
+<h2 id="procedural-macros" class="section-header"><a href="#procedural-macros">Procedural Macros</a></h2>
+<p>This crate implements the following procedural macros:</p>
+<ul>
+<li><strong>routes</strong></li>
+<li><strong>catchers</strong></li>
+</ul>
+<p>The syntax for <code>routes!</code> and <code>catchers!</code> is defined as:</p>
+<pre>
+macro := PATH (',' macro)*
+
+PATH := a path, as defined by Rust
+</pre>
+<h1 id="debugging-codegen" class="section-header"><a href="#debugging-codegen">Debugging Codegen</a></h1>
+<p>When the <code>ROCKET_CODEGEN_DEBUG</code> environment variable is set, this crate logs
+the items it has generated to the console at compile-time. For example, you
+might run the following to build a Rocket application with codegen logging
+enabled:</p>
+
+<pre class="rust rust-example-rendered">
+<span class="ident">ROCKET_CODEGEN_DEBUG</span><span class="op">=</span><span class="number">1</span> <span class="ident">cargo</span> <span class="ident">build</span></pre>
+</div><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class="fn" href="fn.plugin_registrar.html"
+                                  title='fn rocket_codegen::plugin_registrar'>plugin_registrar</a></td>
+                           <td class='docblock-short'>
+                                <p>Compiler hook for Rust to register plugins.</p>
+
+                           </td>
+                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "rocket_codegen";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

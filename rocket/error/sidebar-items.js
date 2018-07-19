@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error","[unstable] Error type for Rocket. Likely to change."],["LaunchErrorKind","The kind of launch error that occured."]],"struct":[["LaunchError","An error that occurs during launch."]]});

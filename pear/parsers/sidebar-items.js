@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["delimited",""],["eat",""],["eat_any",""],["eat_if",""],["eat_slice",""],["eof",""],["peek",""],["peek_if",""],["peek_slice",""],["skip_while",""],["take_n","Takes at most `num` inputs."],["take_n_while","Takes at most `num` inputs as long as `condition` holds."],["take_some_while",""],["take_while",""]]});

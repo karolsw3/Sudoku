@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["GenericErrorSeverity","How severe an error is."]],"struct":[["GenericError","Use this for most non-specific errors."],["LoginError","Security ⇒ no data."]]});

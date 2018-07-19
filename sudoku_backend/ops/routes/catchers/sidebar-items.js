@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["internal_server_error","Handler for 500s, returning `RESPONSE_500`."],["not_found","Handler for 404s, returning `RESPONSE_404`."]],"static":[["static_rocket_catch_info_for_internal_server_error",""],["static_rocket_catch_info_for_not_found",""]],"struct":[["RESPONSE_404","Lazy error value for 404s"],["RESPONSE_500","Lazy error value for 500s"]]});

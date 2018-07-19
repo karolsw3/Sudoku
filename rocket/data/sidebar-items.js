@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Data","Type representing the data in the body of an incoming request."],["DataStream","Raw data stream of a request body."]],"trait":[["FromData","Trait implemented by data guards to derive a value from request body data."]],"type":[["Outcome","Type alias for the `Outcome` of a `FromData` conversion."]]});
