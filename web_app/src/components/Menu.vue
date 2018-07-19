@@ -27,14 +27,13 @@ export default {
 <style scoped lang="stylus">
 .Menu
   width 100%
-  height 100px
   background white
   position relative
   display flex
   align-items center
   justify-content space-between
   box-sizing border-box
-  padding 0 20px
+  padding 5px 20px
   &__slot
     display flex
     align-items center
