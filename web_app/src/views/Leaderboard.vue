@@ -1,16 +1,13 @@
 <template lang="pug">
   .leaderboard
-    table.leaderboard__table
-      tr
-        th Position
-        th Username
-        th Points
-        th Games played
-      tr(v-for='leader in leaders')
-        td {{leader.position}}
-        td {{leader.username}}
-        td {{leader.points}}
-        td {{leader.gamesPlayed}}
+    md-table(v-model='leaders', md-sort='position', md-sort-order='asc', md-card)
+      md-table-toolbar
+        h1.md-title Leaders
+      md-table-row(slot='md-table-row' slot-scope='{ item }')
+        md-table-cell(md-label='Position' md-numeric) {{ item.position }}
+        md-table-cell(md-label='Username' md-sort-by='username') {{ item.username }}
+        md-table-cell(md-label='Points' md-sort-by='points') {{ item.points }}
+        md-table-cell(md-label='Games played' md-sort-by='gamesPlayed') {{ item.gamesPlayed }}
     .leaderboard__navigation
       .leaderboard__slot(v-for='n in 5' v-if='(page - n) > 0')
         NumberButton {{page - n}}
@@ -61,12 +58,6 @@ export default {
   flex-direction column
   justify-content center
   align-items center
-  &__table
-    max-width 900px
-    border-collapse collapse
-    th, td
-      padding 7px 23px
-      border 1px solid #eee
   &__navigation
     width auto
     height 40px
