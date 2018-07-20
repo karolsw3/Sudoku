@@ -2,15 +2,19 @@
 .Menu
   .Menu__slot
     .Menu__logo
-    .Menu__button.Menu__button--dropdownBase New game
-      .Menu__dropdown
-        router-link(to="/play/easy").Menu__button.Menu__button--dropdown Easy
-        router-link(to="/play/medium").Menu__button.Menu__button--dropdown Medium
-        router-link(to="/play/hard").Menu__button.Menu__button--dropdown Hard
-    router-link(to="/leaderboard").Menu__button Leaderboard
+    md-menu(md-size="auto" md-align-trigger)
+      md-button.md-primary(md-menu-trigger) New game
+      md-menu-content
+        md-menu-item
+          router-link(tag='md-button' to="/play/easy") Easy
+        md-menu-item
+          router-link(tag='md-button' to="/play/medium") Medium
+        md-menu-item
+          router-link(tag='md-button' to="/play/hard") Hard
+    router-link(tag='md-button' to="/leaderboard") Leaderboard
   .Menu__slot
-    router-link(to="/login" v-if='!this.$store.state.userLogged').Menu__button Login
-    router-link(to="/register" v-if='!this.$store.state.userLogged').Menu__button Register
+    router-link.md-primary(tag='md-button' to="/login" v-if='!this.$store.state.userLogged') Login
+    router-link(tag='md-button' to="/register" v-if='!this.$store.state.userLogged') Register
     button.Menu__user(v-if='this.$store.state.userLogged') U
 </template>
 
@@ -23,14 +27,13 @@ export default {
 <style scoped lang="stylus">
 .Menu
   width 100%
-  height 100px
   background white
   position relative
   display flex
   align-items center
   justify-content space-between
   box-sizing border-box
-  padding 0 20px
+  padding 5px 20px
   &__slot
     display flex
     align-items center
@@ -42,49 +45,6 @@ export default {
     background-image url(../../../images/logo.png)
     background-size cover
     cursor pointer
-  &__button
-    width 130px
-    height 40px
-    padding 10px 20px
-    margin-right 15px
-    box-sizing border-box
-    color white
-    //font-size 1em
-    background #123ffc
-    border-radius 2px
-    border none
-    cursor pointer
-    transition-duration .12s
-    position relative
-    &:hover
-      opacity 0.8
-    &--dropdownBase
-      border-radius-bottom-left 0
-      border-radius-bottom-right 0
-      &:hover
-        opacity 1
-        .Menu__dropdown
-          display flex
-          flex-direction column
-    &--dropdown
-      background #f4f4f4
-      border-radius none
-      color #787878
-      z-index 2
-      &:hover
-        color white
-        background #a4a4a4
-        opacity 0.8
-  &__dropdown
-    position absolute
-    top 100%
-    left 0
-    width 100%
-    background white
-    border-radius-bottom-left 2px
-    border-radius-bottom-right 2px
-    z-index 3
-    display none
   &__user
     background #0445b7
     border-radius 50%

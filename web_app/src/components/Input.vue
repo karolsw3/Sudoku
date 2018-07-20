@@ -1,7 +1,8 @@
 <template lang="pug">
-.InputBox
-  input.Input(:placeholder="placeholder" :type="type" v-model="value" :class="{'Input--invalid' : invalid}")
-  .InputBox__message(v-if="errorMessage") {{errorMessage}}
+md-field(:class="{'md-invalid' : invalid}")
+  label {{placeholder}}
+  md-input(:type="type" v-model="value" :class="{'md-invalid' : invalid}")
+  span.md-error() {{errorMessage}}
 </template>
 
 <script>
@@ -46,30 +47,3 @@ export default {
   }
 }
 </script>
-
-<style scoped lang="stylus">
-.InputBox
-  width 100%
-  max-width 440px
-  position relative
-  text-align left
-  margin-top 15px
-  &__message
-    position absolute
-    bottom 3px
-    font-size 10px
-    color #ff4455
-    left 5px
-.Input
-  width 100%
-  box-sizing border-box
-  padding 19px 20px
-  background #f7f7f7
-  color #aaa
-  border none
-  border-radius 2px
-  position relative
-  &--invalid
-    border 1px solid #ff4455
-    color #ff4455
-</style>
