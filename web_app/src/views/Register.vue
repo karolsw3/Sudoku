@@ -8,7 +8,7 @@
     p TODO: I'm not a robot
     ErrorMessageBox(v-if="error") {{errorMessage}}
     Loading(v-if="loading")
-    Button(@clicked="register" :class="{'Button--disabled' : !allInputsFilled}") Register
+    Button(@clicked="register" :disabled="!allInputsFilled") Register
 </template>
 
 <script>

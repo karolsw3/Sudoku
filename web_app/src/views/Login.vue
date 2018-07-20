@@ -5,8 +5,8 @@
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     ErrorMessageBox(v-if="error") {{errorMessage}}
     Loading(v-if="loading")
-    Button(@clicked="login" :class="{'Button--disabled' : !allInputsFilled}") Login
-</template>``
+    Button(@clicked="login" :disabled="!allInputsFilled") Login
+</template>
 
 <script>
 import Input from '@/components/Input.vue'
