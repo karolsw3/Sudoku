@@ -3,7 +3,7 @@ import 'es6-promise/auto'
 import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
-import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard } from 'vue-material/dist/components'
+import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
@@ -16,6 +16,7 @@ Vue.use(MdList)
 Vue.use(MdTable)
 Vue.use(MdContent)
 Vue.use(MdCard)
+Vue.use(MdProgress)
 /*
   Vuex store
 */

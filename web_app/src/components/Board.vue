@@ -215,6 +215,7 @@ export default {
     font-weight 700
     color #123ffc
     cursor pointer
+    transition-duration .25s
     &:hover
       background #e6e8eb
     &--selected

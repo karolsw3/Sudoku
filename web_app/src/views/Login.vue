@@ -1,10 +1,12 @@
 <template lang="pug">
 .Login
+  div(v-if="loading")
+    md-progress-bar(md-mode='indeterminate')
+    md-progress-bar.md-primary(md-mode='indeterminate')
   ColumnPanel
     Input(placeholder="Username" type="text" ref="username" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     ErrorMessageBox(v-if="error") {{errorMessage}}
-    Loading(v-if="loading")
     Button(@clicked="login" :disabled="!allInputsFilled") Login
 </template>
 
@@ -13,14 +15,13 @@ import Input from '@/components/Input.vue'
 import ColumnPanel from '@/components/ColumnPanel.vue'
 import ErrorMessageBox from '@/components/ErrorMessageBox.vue'
 import Button from '@/components/Button.vue'
-import Loading from '@/components/Loading.vue'
 import axios from 'axios'
 import util from '@/util.js'
 
 export default {
   name: 'Login',
   components: {
-    ColumnPanel, Input, Button, ErrorMessageBox, Loading
+    ColumnPanel, Input, Button, ErrorMessageBox
   },
   data: function () {
     return {
@@ -87,6 +88,7 @@ export default {
 
 <style scoped lang="stylus">
 .Login
+  position relative
   box-sizing border-box
   height 100%
   width 100%
@@ -94,4 +96,9 @@ export default {
   display flex
   align-items center
   justify-content center
+.md-progress-bar
+  position absolute
+  top 0
+  left 0
+  width 100%
 </style>
