@@ -65,6 +65,12 @@
 <span id="65">65</span>
 <span id="66">66</span>
 <span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">borrow</span>::<span class="ident">Cow</span>;
 
@@ -124,6 +130,12 @@
     <span class="ident">Danger</span>,
 }
 
+
+<span class="kw">impl</span> <span class="ident">GenericErrorSeverity</span> {
+    <span class="doccomment">/// The currently-lowest severity, for generic code.</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">non_upper_case_globals</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">Lowest</span>: <span class="ident">GenericErrorSeverity</span> <span class="op">=</span> <span class="ident">GenericErrorSeverity</span>::<span class="ident">Warning</span>;
+}
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="ident">R</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;&gt;</span><span class="op">&gt;</span> <span class="ident">From</span><span class="op">&lt;</span>(<span class="ident">R</span>, <span class="ident">GenericErrorSeverity</span>)<span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">GenericError</span> {
     <span class="kw">fn</span> <span class="ident">from</span>((<span class="ident">r</span>, <span class="ident">s</span>): (<span class="ident">R</span>, <span class="ident">GenericErrorSeverity</span>)) <span class="op">-&gt;</span> <span class="ident">GenericError</span> {

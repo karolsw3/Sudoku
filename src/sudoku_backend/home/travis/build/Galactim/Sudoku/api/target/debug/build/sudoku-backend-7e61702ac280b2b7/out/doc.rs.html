@@ -157,6 +157,13 @@
 <span id="157">157</span>
 <span id="158">158</span>
 <span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
 </pre><pre class="rust ">
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">errors</span> {
     <span class="doccomment">//! # Errors</span>
@@ -237,13 +244,17 @@
     <span class="doccomment">//! </span>
     <span class="doccomment">//! That value is then hex-string-encoded (case irrelevant), a JSON-stringified form is constructed, then base64-encoded as &quot;data&quot; and that is sent in a form.</span>
     <span class="doccomment">//! </span>
-    <span class="doccomment">//! In other words, with `data` being the key and value, and doubling as &lt;span id=&quot;user-login-data&quot;&gt;User Login data&lt;/span&gt; (all keys `string`s):</span>
+    <span class="doccomment">//! In other words, with `data` being the key and value, and doubling as &lt;span id=&quot;user-login-data&quot;&gt;User Login Data&lt;/span&gt; (all keys `string`s):</span>
     <span class="doccomment">//! ```js</span>
     <span class="doccomment">//! let data = base64(JSON.stringify({</span>
     <span class="doccomment">//!     login: raw_login,</span>
+    <span class="doccomment">//!     email: raw_email, // See note below</span>
     <span class="doccomment">//!     password: scrypt(raw_password, /* With ^ params */)</span>
     <span class="doccomment">//! }));</span>
     <span class="doccomment">//! ```</span>
+    <span class="doccomment">//! </span>
+    <span class="doccomment">//! The `email` key *shall only be present* for user registration – the form will be rejected if it contains an email and is used to log in;</span>
+    <span class="doccomment">//!   *vice versa* – the registration request will be rejected if it doesn&#39;t contain the `email` key.</span>
     <span class="doccomment">//! </span>
     <span class="doccomment">//! ### Server-side verification</span>
     <span class="doccomment">//! If a user with the specified username exists in the database,</span>
@@ -272,6 +283,9 @@
     <span class="doccomment">//! The returned value shall be [Sanitised User data](#sanitised-user-data) on correct creation,</span>
     <span class="doccomment">//!                          an appropriately filled out [Generic Error](errors.md#generic-error) if a user with that name/e-mail already exists,</span>
     <span class="doccomment">//!                      and an otherwise implementation-defined relevant [Error](errors.md) on other errors.</span>
+    <span class="doccomment">//! </span>
+    <span class="doccomment">//! ### Logging out</span>
+    <span class="doccomment">//! Independently of whether the user is logged in, the server shall return `204 No Content`.</span>
     <span class="doccomment">//! </span>
     <span class="doccomment">//! ## SQL table def</span>
     <span class="doccomment">//! </span>
