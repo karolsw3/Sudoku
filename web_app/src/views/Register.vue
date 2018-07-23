@@ -20,7 +20,7 @@
 import Input from '@/components/Input.vue'
 import ColumnPanel from '@/components/ColumnPanel.vue'
 import Button from '@/components/Button.vue'
-import axios from 'axios'
+import base64 from 'base-64'
 import util from '@/util.js'
 
 export default {
@@ -42,7 +42,7 @@ export default {
         this.loading = true
         this.error = false
         let data = {
-          username: this.$refs.username.value,
+          login: this.$refs.username.value,
           email: this.$refs.email.value,
           password: this.$refs.password.value
         }
@@ -60,23 +60,15 @@ export default {
       }
     },
     sendRegisterRequest (data) {
-      axios.post('/api/register', data)
-        .then((response) => {
-          this.$store.commit('userLogged', true)
-          this.loading = false
-        })
-        .catch((error) => {
-          switch (error.response.status) {
-            case 404:
-              this.error = true
-              this.errorMessage = 'Error 404'
-              break
-            default:
-              this.error = true
-              this.errorMessage = 'Internal server error'
-          }
-          this.loading = false
-        })
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', '/api/v1/auth/new', true)
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+      xhr.onload = function () {
+        console.log(this.responseText)
+        this.$store.commit('userLogged', true)
+        this.loading = false
+      }
+      xhr.send(base64.encode(JSON.stringify(data)))
     },
     validatePasswords () {
       let confirmPassword = this.$refs.confirm_password

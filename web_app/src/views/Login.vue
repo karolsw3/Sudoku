@@ -16,8 +16,8 @@
 import Input from '@/components/Input.vue'
 import ColumnPanel from '@/components/ColumnPanel.vue'
 import Button from '@/components/Button.vue'
-import axios from 'axios'
 import util from '@/util.js'
+import base64 from 'base-64'
 
 export default {
   name: 'Login',
@@ -55,23 +55,15 @@ export default {
       }
     },
     sendLoginRequest (data) {
-      axios.post('/api/login', data)
-        .then((response) => {
-          this.$store.commit('userLogged', true)
-          this.loading = false
-        })
-        .catch((error) => {
-          switch (error.response.status) {
-            case 404:
-              this.error = true
-              this.errorMessage = 'Error 404'
-              break
-            default:
-              this.error = true
-              this.errorMessage = 'Internal server error'
-          }
-          this.loading = false
-        })
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', '/api/v1/auth/login', true)
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+      xhr.onload = function () {
+        console.log(this.responseText)
+        this.$store.commit('userLogged', true)
+        this.loading = false
+      }
+      xhr.send(base64.encode(JSON.stringify(data)))
     },
     checkIfInputsAreFilled () {
       if (
