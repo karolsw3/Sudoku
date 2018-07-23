@@ -63,7 +63,7 @@ export default {
         this.$store.commit('userLogged', true)
         this.loading = false
       }
-      xhr.send(base64.encode(JSON.stringify(data)))
+      xhr.send('data=' + base64.encode(JSON.stringify(data)))
     },
     checkIfInputsAreFilled () {
       if (

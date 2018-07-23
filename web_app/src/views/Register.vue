@@ -53,6 +53,7 @@ export default {
             this.errorMessage = error
           },
           (password) => {
+            console.log(data)
             data.password = password
             this.sendRegisterRequest(data)
           }
@@ -68,7 +69,8 @@ export default {
         this.$store.commit('userLogged', true)
         this.loading = false
       }
-      xhr.send(base64.encode(JSON.stringify(data)))
+      console.log(data)
+      xhr.send('data=' + base64.encode(JSON.stringify(data)))
     },
     validatePasswords () {
       let confirmPassword = this.$refs.confirm_password
