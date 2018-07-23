@@ -11,7 +11,7 @@
     p TODO: I'm not a robot
     Loading(v-if="loading")
     Button(@clicked="register" :disabled="!allInputsFilled") Register
-  md-snackbar(:md-position='position' :md-active.sync='error' md-persistent='')
+  md-snackbar(:md-active.sync='error' md-persistent='')
     span {{errorMessage}}
     md-button.md-accent(@click='error = false') Close
 </template>

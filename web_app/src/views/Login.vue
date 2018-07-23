@@ -7,7 +7,7 @@
     Input(placeholder="Username" type="text" ref="username" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     Button(@clicked="login" :disabled="!allInputsFilled") Login
-  md-snackbar(:md-position='position' :md-active.sync='error' md-persistent='')
+  md-snackbar(:md-active.sync='error' md-persistent='')
     span {{errorMessage}}
     md-button.md-accent(@click='error = false') Close
 </template>
