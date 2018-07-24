@@ -4,7 +4,7 @@
     md-progress-bar(md-mode='indeterminate')
     md-progress-bar.md-primary(md-mode='indeterminate')
   ColumnPanel
-    Input(placeholder="Username" type="text" ref="username" @valueChanged='checkIfInputsAreFilled')
+    Input(placeholder="Username" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Email" type="email" ref="email" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Repeat password" type="password" ref="confirm_password" @valueChanged='validatePasswords(); checkIfInputsAreFilled()')
@@ -42,7 +42,7 @@ export default {
         this.loading = true
         this.error = false
         let data = {
-          login: this.$refs.username.value,
+          login: this.$refs.login.value,
           email: this.$refs.email.value,
           password: this.$refs.password.value
         }
@@ -53,7 +53,6 @@ export default {
             this.errorMessage = error
           },
           (password) => {
-            console.log(data)
             data.password = password
             this.sendRegisterRequest(data)
           }
@@ -64,12 +63,10 @@ export default {
       var xhr = new XMLHttpRequest()
       xhr.open('POST', '/api/v1/auth/new', true)
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-      xhr.onload = function () {
-        console.log(this.responseText)
-        this.$store.commit('userLogged', true)
+      xhr.onload = (response) => {
+        this.$store.commit('login', true)
         this.loading = false
       }
-      console.log(data)
       xhr.send('data=' + base64.encode(JSON.stringify(data)))
     },
     validatePasswords () {
@@ -84,7 +81,7 @@ export default {
     },
     checkIfInputsAreFilled () {
       if (
-        this.$refs.username.value !== '' && !this.$refs.username.invalid &&
+        this.$refs.login.value !== '' && !this.$refs.login.invalid &&
         this.$refs.password.value !== '' && !this.$refs.password.invalid &&
         this.$refs.email.value !== '' && !this.$refs.email.invalid &&
         this.$refs.confirm_password.value !== '' && !this.$refs.confirm_password.invalid
@@ -113,4 +110,5 @@ export default {
   top 0
   left 0
   width 100%
+  height 2px
 </style>

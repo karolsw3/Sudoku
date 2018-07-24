@@ -28,8 +28,8 @@ const store = new Vuex.Store({
     userLogged: false
   },
   mutations: {
-    login (userLogged, boolean) {
-      userLogged = boolean
+    login (state, payload) {
+      state.userLogged = payload
     }
   }
 })

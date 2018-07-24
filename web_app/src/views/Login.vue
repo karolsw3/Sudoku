@@ -4,7 +4,7 @@
     md-progress-bar(md-mode='indeterminate')
     md-progress-bar.md-primary(md-mode='indeterminate')
   ColumnPanel
-    Input(placeholder="Username" type="text" ref="username" @valueChanged='checkIfInputsAreFilled')
+    Input(placeholder="Username" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     Button(@clicked="login" :disabled="!allInputsFilled") Login
   md-snackbar(:md-active.sync='error' md-persistent='')
@@ -38,7 +38,7 @@ export default {
         this.loading = true
         this.error = false
         let data = {
-          username: this.$refs.username.value,
+          login: this.$refs.login.value,
           password: this.$refs.password.value
         }
         util.methods.derivePassword(
@@ -58,9 +58,8 @@ export default {
       var xhr = new XMLHttpRequest()
       xhr.open('POST', '/api/v1/auth/login', true)
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-      xhr.onload = function () {
-        console.log(this.responseText)
-        this.$store.commit('userLogged', true)
+      xhr.onload = () => {
+        this.$store.commit('login', true)
         this.loading = false
       }
       xhr.send('data=' + base64.encode(JSON.stringify(data)))
@@ -94,4 +93,5 @@ export default {
   top 0
   left 0
   width 100%
+  height 2px
 </style>
