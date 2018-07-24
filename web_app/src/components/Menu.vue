@@ -13,9 +13,9 @@
           router-link(tag='md-button' to="/play/hard") Hard
     router-link(tag='md-button' to="/leaderboard") Leaderboard
   .Menu__slot
-    router-link.md-primary(tag='md-button' to="/login" v-if='!this.$store.state.userLogged') Login
-    router-link(tag='md-button' to="/register" v-if='!this.$store.state.userLogged') Register
-    button.Menu__user(v-if='this.$store.state.userLogged') U
+    router-link.md-primary(tag='md-button' to="/login" v-if='!this.$store.state.user.logged') Login
+    router-link(tag='md-button' to="/register" v-if='!this.$store.state.user.logged') Register
+    .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
 </template>
 
 <script>
@@ -46,19 +46,15 @@ export default {
     background-size cover
     cursor pointer
   &__user
-    background #0445b7
-    border-radius 50%
     border none
-    width 40px
     height 40px
+    padding 0 10px
+    border-radius 2px
     display flex
     align-items center
     justify-content center
-    color white
-    font-size 1.3em
-    font-weight 700
-    cursor pointer
+    color #222
+    cursor default
+    background #eee
     transition-duration .12s
-    &:hover
-      opacity 0.8
 </style>

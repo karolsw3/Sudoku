@@ -25,11 +25,21 @@ Vue.use(MdRipple)
 
 const store = new Vuex.Store({
   state: {
-    userLogged: false
+    user: {
+      logged: false,
+      login: '',
+      email : '',
+      pointsTotal: 0,
+      isAdmin: false
+    }
   },
   mutations: {
     login (state, payload) {
-      state.userLogged = payload
+      state.user.logged = true
+      state.user.login = payload.login
+      state.user.email = payload.email
+      state.user.pointsTotal = payload.pointsTotal
+      state.user.isAdmin = payload.isAdmin
     }
   }
 })

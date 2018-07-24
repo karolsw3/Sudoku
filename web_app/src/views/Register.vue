@@ -77,7 +77,13 @@ export default {
             break
           case 201:
             // Success
-            this.$store.commit('login', true)
+            let responseData = JSON.parse(response.target.response)
+            this.$store.commit('login', {
+              login: this.$refs.login.value,
+              email: responseData.email,
+              pointsTotal: responseData.points_total,
+              isAdmin: responseData.is_admin
+            })
             break
         }
       }
