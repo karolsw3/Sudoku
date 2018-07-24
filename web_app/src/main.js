@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import 'es6-promise/auto'
 import Vuex from 'vuex'
+import VueCookies from 'vue-cookies'
 import App from './App.vue'
 import router from './router'
 import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple } from 'vue-material/dist/components'
@@ -9,6 +10,7 @@ import 'vue-material/dist/theme/default.css'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
+Vue.use(VueCookies)
 Vue.use(MdButton)
 Vue.use(MdMenu)
 Vue.use(MdField)
@@ -19,6 +21,7 @@ Vue.use(MdCard)
 Vue.use(MdProgress)
 Vue.use(MdSnackbar)
 Vue.use(MdRipple)
+
 /*
   Vuex store
 */
@@ -40,6 +43,13 @@ const store = new Vuex.Store({
       state.user.email = payload.email
       state.user.pointsTotal = payload.pointsTotal
       state.user.isAdmin = payload.isAdmin
+    },
+    logout (state) {
+      state.user.logged = false
+      state.user.login = ''
+      state.user.email = ''
+      state.user.pointsTotal = 0
+      state.user.isAdmin = false   
     }
   }
 })

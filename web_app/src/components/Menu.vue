@@ -16,11 +16,31 @@
     router-link.md-primary(tag='md-button' to="/login" v-if='!this.$store.state.user.logged') Login
     router-link(tag='md-button' to="/register" v-if='!this.$store.state.user.logged') Register
     .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
+    md-button(v-if='this.$store.state.user.logged' @click='logout') Logout
 </template>
 
 <script>
 export default {
-  name: 'Menu'
+  name: 'Menu',
+  methods: {
+    logout () {
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', '/api/v1/auth/logout', true)
+      xhr.onload = (response) => {
+        switch (response.target.status) {
+          case 404:
+            this.error = true
+            this.errorMessage = '404 - Once upon a time there was a marvelous API. Was.'
+            break
+          case 204:
+            // Success
+            this.$store.commit('logout')
+            break
+        }
+      }
+      xhr.send('')
+    }
+  }
 }
 </script>
 
