@@ -4,10 +4,10 @@
     md-progress-bar(md-mode='indeterminate')
     md-progress-bar.md-primary(md-mode='indeterminate')
   ColumnPanel
-    Input(placeholder="Username" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
+    Input(placeholder="Login" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     Button(@clicked="login" :disabled="!allInputsFilled") Login
-  md-snackbar(:md-active.sync='error' md-persistent='')
+  md-snackbar(:md-active.sync='error' md-persistent)
     span {{errorMessage}}
     md-button.md-accent(@click='error = false') Close
 </template>
@@ -58,15 +58,29 @@ export default {
       var xhr = new XMLHttpRequest()
       xhr.open('POST', '/api/v1/auth/login', true)
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-      xhr.onload = () => {
-        this.$store.commit('login', true)
+      xhr.onload = (response) => {
         this.loading = false
+        switch (response.target.status) {
+          case 404:
+            this.error = true
+            this.errorMessage = '404 - Once upon a time there was a marvelous API. Was.'
+            break
+          case 401:
+            // Unauthorized
+            this.error = true
+            this.errorMessage = 'You have entered John Doe\'s password. Maybe your login is "john_doe1997"?'
+            break
+          case 202:
+            // Success
+            this.$store.commit('login', true)
+            break
+        }
       }
       xhr.send('data=' + base64.encode(JSON.stringify(data)))
     },
     checkIfInputsAreFilled () {
       if (
-        this.$refs.username.value !== '' && !this.$refs.username.invalid &&
+        this.$refs.login.value !== '' && !this.$refs.login.invalid &&
         this.$refs.password.value !== '' && !this.$refs.password.invalid
       ) {
         this.allInputsFilled = true
