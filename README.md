@@ -35,11 +35,11 @@ All endpoint data is returned in  **JSON**.
 <sub>Here temporarily, subject to change and move elsewhere with rest of internal design documents.</sub>
 
 ### USERS
-|  id |    name    |      password     |      seed      |          email         |  role | points |
-|-----|------------|-------------------|----------------|------------------------|-------|-------:|
-| `0` |  karolsw3  | 14c80afe290ba6dE1 | 4FaCc948fab1B2 | karol.sw3@gmail.com    | admin |    983 |
-| `1` |     bob    | 44f80cfeC53Aa4d71 | 911Cd9D82abeC5 | bob@blob.com           | user  |   3984 |
-| `2` | sudokuPapa | 5ff34cac003ca4c90 | 3FFaDa3fe8be47 | noobfrom@minecraft.net | user  |  45682 |
+| id | username        | password             | email                   | created_at          | is_admin | points_total |
+|----|-----------------|----------------------|-------------------------|---------------------|----------|--------------|
+| 1  | CaptainNemo1870 | $rscrypt$0$EAgC$Z... | pressure@isdanger.io    | 2018-07-23 18:18:24 | 0        | 15134        |
+| 2  | aw3someLand3r   | $rscrypt$0$C$LQO7... | just@readinstructions.sx | 2024-04-13 9:11:06  | 1        | 323543       |
+| 3  | aWater10239     | $rscrypt$0$W$FR31... | avoidturbine@engines.eu | 2034-03-21 19:11:06 | 0        | 425          |
 etc.
 
 ### GAMES
@@ -51,6 +51,14 @@ etc.
 | `2` |    2   |      1     |     62   | 12-06-2018 |
 | `3` |    1   |      2     |    142   | 03-12-2017 |
 etc.
+
+### SESSIONS
+
+| id | expiry              | is_admin | user_id |
+|----|---------------------|----------|---------|
+| 1  | 2018-07-24 07:39:53 | 0        | 1       |
+| 2  | 2018-02-11 17:41:53 | 0        | Null    |
+| 3  | 2018-11-03 12:29:43 | 1        | Null    |
 
 ## Contributing
 
