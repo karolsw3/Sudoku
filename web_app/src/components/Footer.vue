@@ -8,7 +8,7 @@
   span |
   span
     .Footer__led
-  span {{activeUsers}} player{{activeUsers > 1 ? 's' : ''}} online
+  span {{activeUsers}} player{{activeUsers === 1 ? '' : 's'}} online
 </template>
 
 <script>
