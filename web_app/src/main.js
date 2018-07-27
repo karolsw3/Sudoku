@@ -4,7 +4,7 @@ import Vuex from 'vuex'
 import VueCookies from 'vue-cookies'
 import App from './App.vue'
 import router from './router'
-import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple } from 'vue-material/dist/components'
+import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple} from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
@@ -21,7 +21,6 @@ Vue.use(MdCard)
 Vue.use(MdProgress)
 Vue.use(MdSnackbar)
 Vue.use(MdRipple)
-
 /*
   Vuex store
 */
