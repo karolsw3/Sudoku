@@ -2,15 +2,7 @@
 .Menu
   .Menu__slot
     .Menu__logo
-    md-menu(md-size="auto" md-align-trigger)
-      md-button.md-primary(md-menu-trigger) New game
-      md-menu-content
-        md-menu-item
-          router-link(tag='md-button' to="/play/easy") Easy
-        md-menu-item
-          router-link(tag='md-button' to="/play/medium") Medium
-        md-menu-item
-          router-link(tag='md-button' to="/play/hard") Hard
+    router-link.md-primary(tag='md-button' to="/") Dashboard
     router-link(tag='md-button' to="/leaderboard") Leaderboard
   .Menu__slot
     router-link.md-primary(tag='md-button' to="/login" v-if='!this.$store.state.user.logged') Login
