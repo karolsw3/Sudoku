@@ -59,14 +59,16 @@ export default {
     display flex
     align-items center
     justify-content center
-    width 200px
     height 50px
     border-radius 50px
-    color #222
     font-family 'Open Sans', sans-serif
     text-transform uppercase
     font-weight 900
     font-size 30px
+    background linear-gradient(to right, #ff1167, #f00)
+    padding 37px
+    color #fff
+    box-shadow 0 0 34px #000000b3
     &--play
       font-size 50px
   &__difficultySelector
