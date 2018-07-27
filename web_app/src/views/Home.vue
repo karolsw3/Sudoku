@@ -2,12 +2,13 @@
   .home
     .dashboard
       md-button.dashboard__cell(@click="selectorOpen = !selectorOpen")
-        .dashboard__button Play
+        .dashboard__button.dashboard__button--play Play
       .dashboard__difficultySelector(v-if="selectorOpen")
         router-link(tag='md-button' to="/play/easy") Easy
         router-link(tag='md-button' to="/play/medium") Medium
         router-link(tag='md-button' to="/play/hard") Hard
-      md-button.dashboard__cell
+      router-link(tag='md-button' to="/leaderboard").dashboard__cell
+        .dashboard__button Leaderboard
       md-button.dashboard__cell
 </template>
 
@@ -24,6 +25,9 @@ export default {
 
 <style scoped lang="stylus">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:800')
+
+.md-button + .md-button
+    margin 6px 8px
 
 .home
   width 100%
@@ -52,13 +56,9 @@ export default {
       background-image url('../../../images/gui/play.png')
       grid-area a
   &__button
-    position absolute
     display flex
     align-items center
     justify-content center
-    left -100px
-    right 0
-    top 110px
     width 200px
     height 50px
     border-radius 50px
@@ -66,12 +66,14 @@ export default {
     font-family 'Open Sans', sans-serif
     text-transform uppercase
     font-weight 900
-    font-size 50px
+    font-size 30px
+    &--play
+      font-size 50px
   &__difficultySelector
     grid-area selector
     position absolute
     margin 0 auto
-    top 302px
+    top 237px
     left 0
     right 0
     height 50px

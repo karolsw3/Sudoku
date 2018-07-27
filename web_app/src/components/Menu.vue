@@ -3,7 +3,6 @@
   .Menu__slot
     .Menu__logo
     router-link.md-primary(tag='md-button' to="/") Dashboard
-    router-link(tag='md-button' to="/leaderboard") Leaderboard
   .Menu__slot
     router-link.md-primary(tag='md-button' to="/login" v-if='!this.$store.state.user.logged') Login
     router-link(tag='md-button' to="/register" v-if='!this.$store.state.user.logged') Register
