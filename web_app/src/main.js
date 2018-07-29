@@ -1,16 +1,14 @@
 import Vue from 'vue'
 import 'es6-promise/auto'
 import Vuex from 'vuex'
-import VueCookies from 'vue-cookies'
 import App from './App.vue'
 import router from './router'
-import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple} from 'vue-material/dist/components'
+import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
-Vue.use(VueCookies)
 Vue.use(MdButton)
 Vue.use(MdMenu)
 Vue.use(MdField)
