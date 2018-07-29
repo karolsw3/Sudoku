@@ -14,7 +14,7 @@
 <p>That value is then hex-string-encoded (case irrelevant), a JSON-stringified form is constructed, then base64-encoded as &quot;data&quot; and that is sent in a form.</p>
 <p>In other words, with <code>data</code> being the key and value, and doubling as <span id="user-login-data">User Login Data</span> (all keys <code>string</code>s):</p>
 <pre><code class="language-js">let data = base64(JSON.stringify({
-    login: raw_login,
+    username: raw_username,
     email: raw_email, // See note below
     password: scrypt(raw_password, /* With ^ params */)
 }));

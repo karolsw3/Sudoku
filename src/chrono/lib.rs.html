@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/chrono-0.4.4/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/chrono-0.4.5/src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -974,6 +974,28 @@
 <span id="974">974</span>
 <span id="975">975</span>
 <span id="976">976</span>
+<span id="977">977</span>
+<span id="978">978</span>
+<span id="979">979</span>
+<span id="980">980</span>
+<span id="981">981</span>
+<span id="982">982</span>
+<span id="983">983</span>
+<span id="984">984</span>
+<span id="985">985</span>
+<span id="986">986</span>
+<span id="987">987</span>
+<span id="988">988</span>
+<span id="989">989</span>
+<span id="990">990</span>
+<span id="991">991</span>
+<span id="992">992</span>
+<span id="993">993</span>
+<span id="994">994</span>
+<span id="995">995</span>
+<span id="996">996</span>
+<span id="997">997</span>
+<span id="998">998</span>
 </pre><pre class="rust ">
 <span class="comment">// This is a part of Chrono.</span>
 <span class="comment">// See README.md and LICENSE.txt for details.</span>
@@ -1184,10 +1206,13 @@
 <span class="doccomment">//! # }</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
+<span class="doccomment">//! ### Formatting and Parsing</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! Formatting is done via the [`format`](./struct.DateTime.html#method.format) method,</span>
 <span class="doccomment">//! which format is equivalent to the familiar `strftime` format.</span>
-<span class="doccomment">//! (See the [`format::strftime` module documentation](./format/strftime/index.html#specifiers)</span>
-<span class="doccomment">//! for full syntax.)</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! See [`format::strftime`](./format/strftime/index.html#specifiers)</span>
+<span class="doccomment">//! documentation for full syntax and list of specifiers.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The default `to_string` method and `{:?}` specifier also give a reasonable representation.</span>
 <span class="doccomment">//! Chrono also provides [`to_rfc2822`](./struct.DateTime.html#method.to_rfc2822) and</span>
@@ -1265,14 +1290,17 @@
 <span class="doccomment">//! assert!(Utc.datetime_from_str(&quot;Sat Nov 28 12:00:09 2014&quot;, &quot;%a %b %e %T %Y&quot;).is_err());</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
+<span class="doccomment">//! Again : See [`format::strftime`](./format/strftime/index.html#specifiers)</span>
+<span class="doccomment">//! documentation for full syntax and list of specifiers.</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! ### Conversion from and to EPOCH timestamps</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Use [`Utc.timestamp(seconds, nanoseconds)`](./offset/trait.TimeZone.html#method.timestamp) </span>
-<span class="doccomment">//! to construct a [`DateTime&lt;Utc&gt;`](./struct.DateTime.html) from a UNIX timestamp </span>
+<span class="doccomment">//! Use [`Utc.timestamp(seconds, nanoseconds)`](./offset/trait.TimeZone.html#method.timestamp)</span>
+<span class="doccomment">//! to construct a [`DateTime&lt;Utc&gt;`](./struct.DateTime.html) from a UNIX timestamp</span>
 <span class="doccomment">//! (seconds, nanoseconds that passed since January 1st 1970).</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Use [`DateTime.timestamp`](./struct.DateTime.html#method.timestamp) to get the timestamp (in seconds)</span>
-<span class="doccomment">//! from a [`DateTime`](./struct.DateTime.html). Additionally, you can use </span>
+<span class="doccomment">//! from a [`DateTime`](./struct.DateTime.html). Additionally, you can use</span>
 <span class="doccomment">//! [`DateTime.timestamp_subsec_nanos`](./struct.DateTime.html#method.timestamp_subsec_nanos)</span>
 <span class="doccomment">//! to get the number of additional number of nanoseconds.</span>
 <span class="doccomment">//!</span>
@@ -1371,7 +1399,14 @@
 <span class="comment">//</span>
 <span class="comment">// Similarly, redundant_field_names lints on not using the</span>
 <span class="comment">// field-init-shorthand, which was stabilized in rust 1.17.</span>
-<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cargo-clippy&quot;</span>, <span class="ident">allow</span>(<span class="ident">const_static_lifetime</span>, <span class="ident">redundant_field_names</span>))]</span>
+<span class="comment">//</span>
+<span class="comment">// Changing trivially_copy_pass_by_ref would require an incompatible version</span>
+<span class="comment">// bump.</span>
+<span class="attribute">#![<span class="ident">cfg_attr</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;cargo-clippy&quot;</span>, <span class="ident">allow</span>(
+    <span class="ident">const_static_lifetime</span>,
+    <span class="ident">redundant_field_names</span>,
+    <span class="ident">trivially_copy_pass_by_ref</span>,
+))]</span>
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;clock&quot;</span>)]</span>
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">time</span> <span class="kw">as</span> <span class="ident">oldtime</span>;
@@ -1848,7 +1883,16 @@
     <span class="doccomment">/// Returns `None` when the resulting value would be invalid.</span>
     <span class="kw">fn</span> <span class="ident">with_ordinal0</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ordinal0</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
 
-    <span class="doccomment">/// Returns the number of days since January 1, 1 (Day 1) in the proleptic Gregorian calendar.</span>
+    <span class="doccomment">/// Returns the number of days since January 1, Year 1 (aka Day 1) in the</span>
+    <span class="doccomment">/// proleptic Gregorian calendar.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ~~~</span>
+    <span class="doccomment">/// use chrono::{NaiveDate, Datelike};</span>
+    <span class="doccomment">/// assert_eq!(NaiveDate::from_ymd(1970, 1, 1).num_days_from_ce(), 719163);</span>
+    <span class="doccomment">/// assert_eq!(NaiveDate::from_ymd(0, 1, 1).num_days_from_ce(), -365);</span>
+    <span class="doccomment">/// ~~~</span>
     <span class="kw">fn</span> <span class="ident">num_days_from_ce</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">i32</span> {
         <span class="comment">// we know this wouldn&#39;t overflow since year is limited to 1/2^13 of i32&#39;s full range.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">year</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">year</span>() <span class="op">-</span> <span class="number">1</span>;

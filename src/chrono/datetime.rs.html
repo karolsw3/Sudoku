@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/chrono-0.4.4/src/datetime.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>datetime.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/chrono-0.4.5/src/datetime.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>datetime.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">   1</span>
 <span id="2">   2</span>
 <span id="3">   3</span>
 <span id="4">   4</span>
@@ -1510,6 +1510,141 @@
 <span id="1510">1510</span>
 <span id="1511">1511</span>
 <span id="1512">1512</span>
+<span id="1513">1513</span>
+<span id="1514">1514</span>
+<span id="1515">1515</span>
+<span id="1516">1516</span>
+<span id="1517">1517</span>
+<span id="1518">1518</span>
+<span id="1519">1519</span>
+<span id="1520">1520</span>
+<span id="1521">1521</span>
+<span id="1522">1522</span>
+<span id="1523">1523</span>
+<span id="1524">1524</span>
+<span id="1525">1525</span>
+<span id="1526">1526</span>
+<span id="1527">1527</span>
+<span id="1528">1528</span>
+<span id="1529">1529</span>
+<span id="1530">1530</span>
+<span id="1531">1531</span>
+<span id="1532">1532</span>
+<span id="1533">1533</span>
+<span id="1534">1534</span>
+<span id="1535">1535</span>
+<span id="1536">1536</span>
+<span id="1537">1537</span>
+<span id="1538">1538</span>
+<span id="1539">1539</span>
+<span id="1540">1540</span>
+<span id="1541">1541</span>
+<span id="1542">1542</span>
+<span id="1543">1543</span>
+<span id="1544">1544</span>
+<span id="1545">1545</span>
+<span id="1546">1546</span>
+<span id="1547">1547</span>
+<span id="1548">1548</span>
+<span id="1549">1549</span>
+<span id="1550">1550</span>
+<span id="1551">1551</span>
+<span id="1552">1552</span>
+<span id="1553">1553</span>
+<span id="1554">1554</span>
+<span id="1555">1555</span>
+<span id="1556">1556</span>
+<span id="1557">1557</span>
+<span id="1558">1558</span>
+<span id="1559">1559</span>
+<span id="1560">1560</span>
+<span id="1561">1561</span>
+<span id="1562">1562</span>
+<span id="1563">1563</span>
+<span id="1564">1564</span>
+<span id="1565">1565</span>
+<span id="1566">1566</span>
+<span id="1567">1567</span>
+<span id="1568">1568</span>
+<span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
+<span id="1590">1590</span>
+<span id="1591">1591</span>
+<span id="1592">1592</span>
+<span id="1593">1593</span>
+<span id="1594">1594</span>
+<span id="1595">1595</span>
+<span id="1596">1596</span>
+<span id="1597">1597</span>
+<span id="1598">1598</span>
+<span id="1599">1599</span>
+<span id="1600">1600</span>
+<span id="1601">1601</span>
+<span id="1602">1602</span>
+<span id="1603">1603</span>
+<span id="1604">1604</span>
+<span id="1605">1605</span>
+<span id="1606">1606</span>
+<span id="1607">1607</span>
+<span id="1608">1608</span>
+<span id="1609">1609</span>
+<span id="1610">1610</span>
+<span id="1611">1611</span>
+<span id="1612">1612</span>
+<span id="1613">1613</span>
+<span id="1614">1614</span>
+<span id="1615">1615</span>
+<span id="1616">1616</span>
+<span id="1617">1617</span>
+<span id="1618">1618</span>
+<span id="1619">1619</span>
+<span id="1620">1620</span>
+<span id="1621">1621</span>
+<span id="1622">1622</span>
+<span id="1623">1623</span>
+<span id="1624">1624</span>
+<span id="1625">1625</span>
+<span id="1626">1626</span>
+<span id="1627">1627</span>
+<span id="1628">1628</span>
+<span id="1629">1629</span>
+<span id="1630">1630</span>
+<span id="1631">1631</span>
+<span id="1632">1632</span>
+<span id="1633">1633</span>
+<span id="1634">1634</span>
+<span id="1635">1635</span>
+<span id="1636">1636</span>
+<span id="1637">1637</span>
+<span id="1638">1638</span>
+<span id="1639">1639</span>
+<span id="1640">1640</span>
+<span id="1641">1641</span>
+<span id="1642">1642</span>
+<span id="1643">1643</span>
+<span id="1644">1644</span>
+<span id="1645">1645</span>
+<span id="1646">1646</span>
+<span id="1647">1647</span>
 </pre><pre class="rust ">
 <span class="comment">// This is a part of Chrono.</span>
 <span class="comment">// See README.md and LICENSE.txt for details.</span>
@@ -2345,163 +2480,22 @@
     <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">DateTime</span>;
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span><span class="op">=</span><span class="string">&quot;clock&quot;</span>)]</span>
     <span class="kw">use</span> <span class="ident">offset</span>::<span class="ident">Local</span>;
-    <span class="kw">use</span> <span class="ident">offset</span>::{<span class="ident">TimeZone</span>, <span class="ident">Utc</span>, <span class="ident">FixedOffset</span>};
+    <span class="kw">use</span> <span class="ident">offset</span>::{<span class="ident">LocalResult</span>, <span class="ident">TimeZone</span>, <span class="ident">Utc</span>, <span class="ident">FixedOffset</span>};
     <span class="kw">use</span> <span class="ident">serdelib</span>::{<span class="ident">ser</span>, <span class="ident">de</span>};
 
-    <span class="doccomment">/// Ser/de to/from timestamps in seconds</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// Intended for use with `serde`&#39;s `with` attribute.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Example:</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// ```rust</span>
-    <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
-    <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
-    <span class="doccomment">/// # // nightly to actually trigger these.</span>
-    <span class="doccomment">/// #</span>
-    <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
-    <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
-    <span class="doccomment">/// # extern crate chrono;</span>
-    <span class="doccomment">/// # use chrono::{TimeZone, DateTime, Utc};</span>
-    <span class="doccomment">/// use chrono::serde::ts_seconds;</span>
-    <span class="doccomment">/// #[derive(Deserialize, Serialize)]</span>
-    <span class="doccomment">/// struct S {</span>
-    <span class="doccomment">///     #[serde(with = &quot;ts_seconds&quot;)]</span>
-    <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
-    <span class="doccomment">/// }</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
-    <span class="doccomment">/// let time = Utc.ymd(2015, 5, 15).and_hms(10, 0, 0);</span>
-    <span class="doccomment">/// let my_s = S {</span>
-    <span class="doccomment">///     time: time.clone(),</span>
-    <span class="doccomment">/// };</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// let as_string = serde_json::to_string(&amp;my_s)?;</span>
-    <span class="doccomment">/// assert_eq!(as_string, r#&quot;{&quot;time&quot;:1431684000}&quot;#);</span>
-    <span class="doccomment">/// let my_s: S = serde_json::from_str(&amp;as_string)?;</span>
-    <span class="doccomment">/// assert_eq!(my_s.time, time);</span>
-    <span class="doccomment">/// # Ok(my_s)</span>
-    <span class="doccomment">/// # }</span>
-    <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
-    <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ts_seconds</span> {
-        <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
-        <span class="kw">use</span> <span class="ident">serdelib</span>::{<span class="ident">ser</span>, <span class="ident">de</span>};
-
-        <span class="kw">use</span> {<span class="ident">DateTime</span>, <span class="ident">Utc</span>, <span class="ident">FixedOffset</span>};
-        <span class="kw">use</span> <span class="ident">offset</span>::{<span class="ident">LocalResult</span>, <span class="ident">TimeZone</span>};
-
-        <span class="doccomment">/// Deserialize a `DateTime` from a seconds timestamp</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// Intended for use with `serde`s `deserialize_with` attribute.</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// # Example:</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// ```rust</span>
-        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
-        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
-        <span class="doccomment">/// # // nightly to actually trigger these.</span>
-        <span class="doccomment">/// #</span>
-        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
-        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
-        <span class="doccomment">/// # extern crate chrono;</span>
-        <span class="doccomment">/// # use chrono::{DateTime, Utc};</span>
-        <span class="doccomment">/// use chrono::serde::ts_seconds::deserialize as from_ts;</span>
-        <span class="doccomment">/// #[derive(Deserialize)]</span>
-        <span class="doccomment">/// struct S {</span>
-        <span class="doccomment">///     #[serde(deserialize_with = &quot;from_ts&quot;)]</span>
-        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
-        <span class="doccomment">/// }</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
-        <span class="doccomment">/// let my_s: S = serde_json::from_str(r#&quot;{ &quot;time&quot;: 1431684000 }&quot;#)?;</span>
-        <span class="doccomment">/// # Ok(my_s)</span>
-        <span class="doccomment">/// # }</span>
-        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
-        <span class="doccomment">/// ```</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span><span class="op">&gt;</span>(<span class="ident">d</span>: <span class="ident">D</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span>
-            <span class="kw">where</span> <span class="ident">D</span>: <span class="ident">de</span>::<span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>
-        {
-            <span class="prelude-val">Ok</span>(<span class="macro">try</span><span class="macro">!</span>(<span class="ident">d</span>.<span class="ident">deserialize_i64</span>(<span class="ident">SecondsTimestampVisitor</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">dt</span><span class="op">|</span> <span class="ident">dt</span>.<span class="ident">with_timezone</span>(<span class="kw-2">&amp;</span><span class="ident">Utc</span>))))
-        }
-
-        <span class="doccomment">/// Serialize a UTC datetime into an integer number of seconds since the epoch</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// Intended for use with `serde`s `serialize_with` attribute.</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// # Example:</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// ```rust</span>
-        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
-        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
-        <span class="doccomment">/// # // nightly to actually trigger these.</span>
-        <span class="doccomment">/// #</span>
-        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
-        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
-        <span class="doccomment">/// # extern crate chrono;</span>
-        <span class="doccomment">/// # use chrono::{TimeZone, DateTime, Utc};</span>
-        <span class="doccomment">/// use chrono::serde::ts_seconds::serialize as to_ts;</span>
-        <span class="doccomment">/// #[derive(Serialize)]</span>
-        <span class="doccomment">/// struct S {</span>
-        <span class="doccomment">///     #[serde(serialize_with = &quot;to_ts&quot;)]</span>
-        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
-        <span class="doccomment">/// }</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// # fn example() -&gt; Result&lt;String, serde_json::Error&gt; {</span>
-        <span class="doccomment">/// let my_s = S {</span>
-        <span class="doccomment">///     time: Utc.ymd(2015, 5, 15).and_hms(10, 0, 0),</span>
-        <span class="doccomment">/// };</span>
-        <span class="doccomment">/// let as_string = serde_json::to_string(&amp;my_s)?;</span>
-        <span class="doccomment">/// assert_eq!(as_string, r#&quot;{&quot;time&quot;:1431684000}&quot;#);</span>
-        <span class="doccomment">/// # Ok(as_string)</span>
-        <span class="doccomment">/// # }</span>
-        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
-        <span class="doccomment">/// ```</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">dt</span>: <span class="kw-2">&amp;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span>
-            <span class="kw">where</span> <span class="ident">S</span>: <span class="ident">ser</span>::<span class="ident">Serializer</span>
-        {
-            <span class="ident">serializer</span>.<span class="ident">serialize_i64</span>(<span class="ident">dt</span>.<span class="ident">timestamp</span>())
-        }
-
-        <span class="kw">struct</span> <span class="ident">SecondsTimestampVisitor</span>;
-
-        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">de</span>::<span class="ident">Visitor</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SecondsTimestampVisitor</span> {
-            <span class="kw">type</span> <span class="ident">Value</span> <span class="op">=</span> <span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">FixedOffset</span><span class="op">&gt;</span>;
-
-            <span class="kw">fn</span> <span class="ident">expecting</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">formatter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span>
-            {
-                <span class="macro">write</span><span class="macro">!</span>(<span class="ident">formatter</span>, <span class="string">&quot;a unix timestamp in seconds&quot;</span>)
-            }
-
-            <span class="doccomment">/// Deserialize a timestamp in seconds since the epoch</span>
-            <span class="kw">fn</span> <span class="ident">visit_i64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">i64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">FixedOffset</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
-                <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
-            {
-                <span class="ident">from</span>(<span class="ident">FixedOffset</span>::<span class="ident">east</span>(<span class="number">0</span>).<span class="ident">timestamp_opt</span>(<span class="ident">value</span>, <span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">value</span>)
-            }
-
-            <span class="doccomment">/// Deserialize a timestamp in seconds since the epoch</span>
-            <span class="kw">fn</span> <span class="ident">visit_u64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">FixedOffset</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
-                <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
-            {
-                <span class="ident">from</span>(<span class="ident">FixedOffset</span>::<span class="ident">east</span>(<span class="number">0</span>).<span class="ident">timestamp_opt</span>(<span class="ident">value</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">value</span>)
-            }
-        }
-
-        <span class="comment">// try!-like function to convert a LocalResult into a serde-ish Result</span>
-        <span class="kw">fn</span> <span class="ident">from</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">V</span><span class="op">&gt;</span>(<span class="ident">me</span>: <span class="ident">LocalResult</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">ts</span>: <span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span>
-            <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>,
-                  <span class="ident">V</span>: <span class="ident">fmt</span>::<span class="ident">Display</span>,
-                  <span class="ident">T</span>: <span class="ident">fmt</span>::<span class="ident">Display</span>,
-        {
-            <span class="kw">match</span> <span class="ident">me</span> {
-                <span class="ident">LocalResult</span>::<span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">E</span>::<span class="ident">custom</span>(
-                    <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;value is not a legal timestamp: {}&quot;</span>, <span class="ident">ts</span>))),
-                <span class="ident">LocalResult</span>::<span class="ident">Ambiguous</span>(<span class="ident">min</span>, <span class="ident">max</span>) <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">E</span>::<span class="ident">custom</span>(
-                    <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;value is an ambiguous timestamp: {}, could be either of {}, {}&quot;</span>,
-                            <span class="ident">ts</span>, <span class="ident">min</span>, <span class="ident">max</span>))),
-                <span class="ident">LocalResult</span>::<span class="ident">Single</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">val</span>)
-            }
+    <span class="comment">// try!-like function to convert a LocalResult into a serde-ish Result</span>
+    <span class="kw">fn</span> <span class="ident">serde_from</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">V</span><span class="op">&gt;</span>(<span class="ident">me</span>: <span class="ident">LocalResult</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">ts</span>: <span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span>
+        <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>,
+                <span class="ident">V</span>: <span class="ident">fmt</span>::<span class="ident">Display</span>,
+                <span class="ident">T</span>: <span class="ident">fmt</span>::<span class="ident">Display</span>,
+    {
+        <span class="kw">match</span> <span class="ident">me</span> {
+            <span class="ident">LocalResult</span>::<span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">E</span>::<span class="ident">custom</span>(
+                <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;value is not a legal timestamp: {}&quot;</span>, <span class="ident">ts</span>))),
+            <span class="ident">LocalResult</span>::<span class="ident">Ambiguous</span>(<span class="ident">min</span>, <span class="ident">max</span>) <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">E</span>::<span class="ident">custom</span>(
+                <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;value is an ambiguous timestamp: {}, could be either of {}, {}&quot;</span>,
+                        <span class="ident">ts</span>, <span class="ident">min</span>, <span class="ident">max</span>))),
+            <span class="ident">LocalResult</span>::<span class="ident">Single</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">val</span>)
         }
     }
 
@@ -2546,41 +2540,9 @@
         <span class="kw">use</span> <span class="ident">serdelib</span>::{<span class="ident">ser</span>, <span class="ident">de</span>};
 
         <span class="kw">use</span> {<span class="ident">DateTime</span>, <span class="ident">Utc</span>};
-        <span class="kw">use</span> <span class="ident">offset</span>::{<span class="ident">LocalResult</span>, <span class="ident">TimeZone</span>};
+        <span class="kw">use</span> <span class="ident">offset</span>::<span class="ident">TimeZone</span>;
 
-        <span class="doccomment">/// Deserialize a `DateTime` from a nanosecond timestamp</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// Intended for use with `serde`s `deserialize_with` attribute.</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// # Example:</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// ```rust</span>
-        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
-        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
-        <span class="doccomment">/// # // nightly to actually trigger these.</span>
-        <span class="doccomment">/// #</span>
-        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
-        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
-        <span class="doccomment">/// # extern crate chrono;</span>
-        <span class="doccomment">/// # use chrono::{DateTime, Utc};</span>
-        <span class="doccomment">/// use chrono::serde::ts_nanoseconds::deserialize as from_nano_ts;</span>
-        <span class="doccomment">/// #[derive(Deserialize)]</span>
-        <span class="doccomment">/// struct S {</span>
-        <span class="doccomment">///     #[serde(deserialize_with = &quot;from_nano_ts&quot;)]</span>
-        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
-        <span class="doccomment">/// }</span>
-        <span class="doccomment">///</span>
-        <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
-        <span class="doccomment">/// let my_s: S = serde_json::from_str(r#&quot;{ &quot;time&quot;: 1526522699918355733 }&quot;#)?;</span>
-        <span class="doccomment">/// # Ok(my_s)</span>
-        <span class="doccomment">/// # }</span>
-        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
-        <span class="doccomment">/// ```</span>
-        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span><span class="op">&gt;</span>(<span class="ident">d</span>: <span class="ident">D</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span>
-            <span class="kw">where</span> <span class="ident">D</span>: <span class="ident">de</span>::<span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>
-        {
-            <span class="prelude-val">Ok</span>(<span class="macro">try</span><span class="macro">!</span>(<span class="ident">d</span>.<span class="ident">deserialize_i64</span>(<span class="ident">NanoSecondsTimestampVisitor</span>)))
-        }
+        <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">serde_from</span>;
 
         <span class="doccomment">/// Serialize a UTC datetime into an integer number of nanoseconds since the epoch</span>
         <span class="doccomment">///</span>
@@ -2620,6 +2582,40 @@
             <span class="ident">serializer</span>.<span class="ident">serialize_i64</span>(<span class="ident">dt</span>.<span class="ident">timestamp_nanos</span>())
         }
 
+        <span class="doccomment">/// Deserialize a `DateTime` from a nanosecond timestamp</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// Intended for use with `serde`s `deserialize_with` attribute.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # Example:</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```rust</span>
+        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
+        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
+        <span class="doccomment">/// # // nightly to actually trigger these.</span>
+        <span class="doccomment">/// #</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
+        <span class="doccomment">/// # extern crate chrono;</span>
+        <span class="doccomment">/// # use chrono::{DateTime, Utc};</span>
+        <span class="doccomment">/// use chrono::serde::ts_nanoseconds::deserialize as from_nano_ts;</span>
+        <span class="doccomment">/// #[derive(Deserialize)]</span>
+        <span class="doccomment">/// struct S {</span>
+        <span class="doccomment">///     #[serde(deserialize_with = &quot;from_nano_ts&quot;)]</span>
+        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
+        <span class="doccomment">/// }</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
+        <span class="doccomment">/// let my_s: S = serde_json::from_str(r#&quot;{ &quot;time&quot;: 1526522699918355733 }&quot;#)?;</span>
+        <span class="doccomment">/// # Ok(my_s)</span>
+        <span class="doccomment">/// # }</span>
+        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
+        <span class="doccomment">/// ```</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span><span class="op">&gt;</span>(<span class="ident">d</span>: <span class="ident">D</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span>
+            <span class="kw">where</span> <span class="ident">D</span>: <span class="ident">de</span>::<span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>
+        {
+            <span class="prelude-val">Ok</span>(<span class="macro">try</span><span class="macro">!</span>(<span class="ident">d</span>.<span class="ident">deserialize_i64</span>(<span class="ident">NanoSecondsTimestampVisitor</span>)))
+        }
+
         <span class="kw">struct</span> <span class="ident">NanoSecondsTimestampVisitor</span>;
 
         <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">de</span>::<span class="ident">Visitor</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">NanoSecondsTimestampVisitor</span> {
@@ -2630,38 +2626,312 @@
                 <span class="macro">write</span><span class="macro">!</span>(<span class="ident">formatter</span>, <span class="string">&quot;a unix timestamp in seconds&quot;</span>)
             }
 
+            <span class="doccomment">/// Deserialize a timestamp in nanoseconds since the epoch</span>
+            <span class="kw">fn</span> <span class="ident">visit_i64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">i64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
+                <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
+            {
+                <span class="ident">serde_from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>(<span class="ident">value</span> <span class="op">/</span> <span class="number">1_000_000_000</span>,
+                                            (<span class="ident">value</span> <span class="op">%</span> <span class="number">1_000_000_000</span>) <span class="kw">as</span> <span class="ident">u32</span>),
+                     <span class="kw-2">&amp;</span><span class="ident">value</span>)
+            }
+
+            <span class="doccomment">/// Deserialize a timestamp in nanoseconds since the epoch</span>
+            <span class="kw">fn</span> <span class="ident">visit_u64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
+                <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
+            {
+                <span class="ident">serde_from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>((<span class="ident">value</span> <span class="op">/</span> <span class="number">1_000_000_000</span>) <span class="kw">as</span> <span class="ident">i64</span>,
+                                             (<span class="ident">value</span> <span class="op">%</span> <span class="number">1_000_000_000</span>) <span class="kw">as</span> <span class="ident">u32</span>),
+                     <span class="kw-2">&amp;</span><span class="ident">value</span>)
+            }
+        }
+    }
+
+    <span class="doccomment">/// Ser/de to/from timestamps in milliseconds</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Intended for use with `serde`s `with` attribute.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
+    <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
+    <span class="doccomment">/// # // nightly to actually trigger these.</span>
+    <span class="doccomment">/// #</span>
+    <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
+    <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
+    <span class="doccomment">/// # extern crate chrono;</span>
+    <span class="doccomment">/// # use chrono::{TimeZone, DateTime, Utc};</span>
+    <span class="doccomment">/// use chrono::serde::ts_milliseconds;</span>
+    <span class="doccomment">/// #[derive(Deserialize, Serialize)]</span>
+    <span class="doccomment">/// struct S {</span>
+    <span class="doccomment">///     #[serde(with = &quot;ts_milliseconds&quot;)]</span>
+    <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
+    <span class="doccomment">/// }</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
+    <span class="doccomment">/// let time = Utc.ymd(2018, 5, 17).and_hms_milli(02, 04, 59, 918);</span>
+    <span class="doccomment">/// let my_s = S {</span>
+    <span class="doccomment">///     time: time.clone(),</span>
+    <span class="doccomment">/// };</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// let as_string = serde_json::to_string(&amp;my_s)?;</span>
+    <span class="doccomment">/// assert_eq!(as_string, r#&quot;{&quot;time&quot;:1526522699918}&quot;#);</span>
+    <span class="doccomment">/// let my_s: S = serde_json::from_str(&amp;as_string)?;</span>
+    <span class="doccomment">/// assert_eq!(my_s.time, time);</span>
+    <span class="doccomment">/// # Ok(my_s)</span>
+    <span class="doccomment">/// # }</span>
+    <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ts_milliseconds</span> {
+        <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
+        <span class="kw">use</span> <span class="ident">serdelib</span>::{<span class="ident">ser</span>, <span class="ident">de</span>};
+
+        <span class="kw">use</span> {<span class="ident">DateTime</span>, <span class="ident">Utc</span>};
+        <span class="kw">use</span> <span class="ident">offset</span>::<span class="ident">TimeZone</span>;
+
+        <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">serde_from</span>;
+
+        <span class="doccomment">/// Serialize a UTC datetime into an integer number of milliseconds since the epoch</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// Intended for use with `serde`s `serialize_with` attribute.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # Example:</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```rust</span>
+        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
+        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
+        <span class="doccomment">/// # // nightly to actually trigger these.</span>
+        <span class="doccomment">/// #</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
+        <span class="doccomment">/// # extern crate chrono;</span>
+        <span class="doccomment">/// # use chrono::{TimeZone, DateTime, Utc};</span>
+        <span class="doccomment">/// use chrono::serde::ts_milliseconds::serialize as to_milli_ts;</span>
+        <span class="doccomment">/// #[derive(Serialize)]</span>
+        <span class="doccomment">/// struct S {</span>
+        <span class="doccomment">///     #[serde(serialize_with = &quot;to_milli_ts&quot;)]</span>
+        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
+        <span class="doccomment">/// }</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # fn example() -&gt; Result&lt;String, serde_json::Error&gt; {</span>
+        <span class="doccomment">/// let my_s = S {</span>
+        <span class="doccomment">///     time: Utc.ymd(2018, 5, 17).and_hms_milli(02, 04, 59, 918),</span>
+        <span class="doccomment">/// };</span>
+        <span class="doccomment">/// let as_string = serde_json::to_string(&amp;my_s)?;</span>
+        <span class="doccomment">/// assert_eq!(as_string, r#&quot;{&quot;time&quot;:1526522699918}&quot;#);</span>
+        <span class="doccomment">/// # Ok(as_string)</span>
+        <span class="doccomment">/// # }</span>
+        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
+        <span class="doccomment">/// ```</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">dt</span>: <span class="kw-2">&amp;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span>
+            <span class="kw">where</span> <span class="ident">S</span>: <span class="ident">ser</span>::<span class="ident">Serializer</span>
+        {
+            <span class="ident">serializer</span>.<span class="ident">serialize_i64</span>(<span class="ident">dt</span>.<span class="ident">timestamp_millis</span>())
+        }
+
+        <span class="doccomment">/// Deserialize a `DateTime` from a millisecond timestamp</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// Intended for use with `serde`s `deserialize_with` attribute.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # Example:</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```rust</span>
+        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
+        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
+        <span class="doccomment">/// # // nightly to actually trigger these.</span>
+        <span class="doccomment">/// #</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
+        <span class="doccomment">/// # extern crate chrono;</span>
+        <span class="doccomment">/// # use chrono::{DateTime, Utc};</span>
+        <span class="doccomment">/// use chrono::serde::ts_milliseconds::deserialize as from_milli_ts;</span>
+        <span class="doccomment">/// #[derive(Deserialize)]</span>
+        <span class="doccomment">/// struct S {</span>
+        <span class="doccomment">///     #[serde(deserialize_with = &quot;from_milli_ts&quot;)]</span>
+        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
+        <span class="doccomment">/// }</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
+        <span class="doccomment">/// let my_s: S = serde_json::from_str(r#&quot;{ &quot;time&quot;: 1526522699918 }&quot;#)?;</span>
+        <span class="doccomment">/// # Ok(my_s)</span>
+        <span class="doccomment">/// # }</span>
+        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
+        <span class="doccomment">/// ```</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span><span class="op">&gt;</span>(<span class="ident">d</span>: <span class="ident">D</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span>
+            <span class="kw">where</span> <span class="ident">D</span>: <span class="ident">de</span>::<span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>
+        {
+            <span class="prelude-val">Ok</span>(<span class="macro">try</span><span class="macro">!</span>(<span class="ident">d</span>.<span class="ident">deserialize_i64</span>(<span class="ident">MilliSecondsTimestampVisitor</span>).<span class="ident">map</span>(<span class="op">|</span><span class="ident">dt</span><span class="op">|</span> <span class="ident">dt</span>.<span class="ident">with_timezone</span>(<span class="kw-2">&amp;</span><span class="ident">Utc</span>))))
+        }
+
+        <span class="kw">struct</span> <span class="ident">MilliSecondsTimestampVisitor</span>;
+
+        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">de</span>::<span class="ident">Visitor</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">MilliSecondsTimestampVisitor</span> {
+            <span class="kw">type</span> <span class="ident">Value</span> <span class="op">=</span> <span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>;
+
+            <span class="kw">fn</span> <span class="ident">expecting</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">formatter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span>
+            {
+                <span class="ident">formatter</span>.<span class="ident">write_str</span>(<span class="string">&quot;a unix timestamp in milliseconds&quot;</span>)
+            }
+
+            <span class="doccomment">/// Deserialize a timestamp in milliseconds since the epoch</span>
+            <span class="kw">fn</span> <span class="ident">visit_i64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">i64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
+                <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
+            {
+                <span class="ident">serde_from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>(<span class="ident">value</span> <span class="op">/</span> <span class="number">1000</span>,
+                                           ((<span class="ident">value</span> <span class="op">%</span> <span class="number">1000</span>) <span class="op">*</span> <span class="number">1_000_000</span>) <span class="kw">as</span> <span class="ident">u32</span>),
+                    <span class="kw-2">&amp;</span><span class="ident">value</span>)
+            }
+
+            <span class="doccomment">/// Deserialize a timestamp in milliseconds since the epoch</span>
+            <span class="kw">fn</span> <span class="ident">visit_u64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
+                <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
+            {
+                <span class="ident">serde_from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>((<span class="ident">value</span> <span class="op">/</span> <span class="number">1000</span>) <span class="kw">as</span> <span class="ident">i64</span>,
+                                            ((<span class="ident">value</span> <span class="op">%</span> <span class="number">1000</span>) <span class="op">*</span> <span class="number">1_000_000</span>) <span class="kw">as</span> <span class="ident">u32</span>),
+                    <span class="kw-2">&amp;</span><span class="ident">value</span>)
+            }
+        }
+    }
+
+    <span class="doccomment">/// Ser/de to/from timestamps in seconds</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Intended for use with `serde`&#39;s `with` attribute.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Example:</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// ```rust</span>
+    <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
+    <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
+    <span class="doccomment">/// # // nightly to actually trigger these.</span>
+    <span class="doccomment">/// #</span>
+    <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
+    <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
+    <span class="doccomment">/// # extern crate chrono;</span>
+    <span class="doccomment">/// # use chrono::{TimeZone, DateTime, Utc};</span>
+    <span class="doccomment">/// use chrono::serde::ts_seconds;</span>
+    <span class="doccomment">/// #[derive(Deserialize, Serialize)]</span>
+    <span class="doccomment">/// struct S {</span>
+    <span class="doccomment">///     #[serde(with = &quot;ts_seconds&quot;)]</span>
+    <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
+    <span class="doccomment">/// }</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
+    <span class="doccomment">/// let time = Utc.ymd(2015, 5, 15).and_hms(10, 0, 0);</span>
+    <span class="doccomment">/// let my_s = S {</span>
+    <span class="doccomment">///     time: time.clone(),</span>
+    <span class="doccomment">/// };</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// let as_string = serde_json::to_string(&amp;my_s)?;</span>
+    <span class="doccomment">/// assert_eq!(as_string, r#&quot;{&quot;time&quot;:1431684000}&quot;#);</span>
+    <span class="doccomment">/// let my_s: S = serde_json::from_str(&amp;as_string)?;</span>
+    <span class="doccomment">/// assert_eq!(my_s.time, time);</span>
+    <span class="doccomment">/// # Ok(my_s)</span>
+    <span class="doccomment">/// # }</span>
+    <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
+    <span class="doccomment">/// ```</span>
+    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ts_seconds</span> {
+        <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">fmt</span>;
+        <span class="kw">use</span> <span class="ident">serdelib</span>::{<span class="ident">ser</span>, <span class="ident">de</span>};
+
+        <span class="kw">use</span> {<span class="ident">DateTime</span>, <span class="ident">Utc</span>};
+        <span class="kw">use</span> <span class="ident">offset</span>::<span class="ident">TimeZone</span>;
+
+        <span class="kw">use</span> <span class="kw">super</span>::<span class="ident">serde_from</span>;
+
+        <span class="doccomment">/// Serialize a UTC datetime into an integer number of seconds since the epoch</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// Intended for use with `serde`s `serialize_with` attribute.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # Example:</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```rust</span>
+        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
+        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
+        <span class="doccomment">/// # // nightly to actually trigger these.</span>
+        <span class="doccomment">/// #</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
+        <span class="doccomment">/// # extern crate chrono;</span>
+        <span class="doccomment">/// # use chrono::{TimeZone, DateTime, Utc};</span>
+        <span class="doccomment">/// use chrono::serde::ts_seconds::serialize as to_ts;</span>
+        <span class="doccomment">/// #[derive(Serialize)]</span>
+        <span class="doccomment">/// struct S {</span>
+        <span class="doccomment">///     #[serde(serialize_with = &quot;to_ts&quot;)]</span>
+        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
+        <span class="doccomment">/// }</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # fn example() -&gt; Result&lt;String, serde_json::Error&gt; {</span>
+        <span class="doccomment">/// let my_s = S {</span>
+        <span class="doccomment">///     time: Utc.ymd(2015, 5, 15).and_hms(10, 0, 0),</span>
+        <span class="doccomment">/// };</span>
+        <span class="doccomment">/// let as_string = serde_json::to_string(&amp;my_s)?;</span>
+        <span class="doccomment">/// assert_eq!(as_string, r#&quot;{&quot;time&quot;:1431684000}&quot;#);</span>
+        <span class="doccomment">/// # Ok(as_string)</span>
+        <span class="doccomment">/// # }</span>
+        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
+        <span class="doccomment">/// ```</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">serialize</span><span class="op">&lt;</span><span class="ident">S</span><span class="op">&gt;</span>(<span class="ident">dt</span>: <span class="kw-2">&amp;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">serializer</span>: <span class="ident">S</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">S</span>::<span class="prelude-val">Ok</span>, <span class="ident">S</span>::<span class="ident">Error</span><span class="op">&gt;</span>
+            <span class="kw">where</span> <span class="ident">S</span>: <span class="ident">ser</span>::<span class="ident">Serializer</span>
+        {
+            <span class="ident">serializer</span>.<span class="ident">serialize_i64</span>(<span class="ident">dt</span>.<span class="ident">timestamp</span>())
+        }
+
+        <span class="doccomment">/// Deserialize a `DateTime` from a seconds timestamp</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// Intended for use with `serde`s `deserialize_with` attribute.</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # Example:</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// ```rust</span>
+        <span class="doccomment">/// # // We mark this ignored so that we can test on 1.13 (which does not</span>
+        <span class="doccomment">/// # // support custom derive), and run tests with --ignored on beta and</span>
+        <span class="doccomment">/// # // nightly to actually trigger these.</span>
+        <span class="doccomment">/// #</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_derive;</span>
+        <span class="doccomment">/// # #[macro_use] extern crate serde_json;</span>
+        <span class="doccomment">/// # extern crate chrono;</span>
+        <span class="doccomment">/// # use chrono::{DateTime, Utc};</span>
+        <span class="doccomment">/// use chrono::serde::ts_seconds::deserialize as from_ts;</span>
+        <span class="doccomment">/// #[derive(Deserialize)]</span>
+        <span class="doccomment">/// struct S {</span>
+        <span class="doccomment">///     #[serde(deserialize_with = &quot;from_ts&quot;)]</span>
+        <span class="doccomment">///     time: DateTime&lt;Utc&gt;</span>
+        <span class="doccomment">/// }</span>
+        <span class="doccomment">///</span>
+        <span class="doccomment">/// # fn example() -&gt; Result&lt;S, serde_json::Error&gt; {</span>
+        <span class="doccomment">/// let my_s: S = serde_json::from_str(r#&quot;{ &quot;time&quot;: 1431684000 }&quot;#)?;</span>
+        <span class="doccomment">/// # Ok(my_s)</span>
+        <span class="doccomment">/// # }</span>
+        <span class="doccomment">/// # fn main() { example().unwrap(); }</span>
+        <span class="doccomment">/// ```</span>
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">deserialize</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span>, <span class="ident">D</span><span class="op">&gt;</span>(<span class="ident">d</span>: <span class="ident">D</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">D</span>::<span class="ident">Error</span><span class="op">&gt;</span>
+            <span class="kw">where</span> <span class="ident">D</span>: <span class="ident">de</span>::<span class="ident">Deserializer</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span>
+        {
+            <span class="prelude-val">Ok</span>(<span class="macro">try</span><span class="macro">!</span>(<span class="ident">d</span>.<span class="ident">deserialize_i64</span>(<span class="ident">SecondsTimestampVisitor</span>)))
+        }
+
+        <span class="kw">struct</span> <span class="ident">SecondsTimestampVisitor</span>;
+
+        <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="ident">de</span>::<span class="ident">Visitor</span><span class="op">&lt;</span><span class="lifetime">&#39;de</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SecondsTimestampVisitor</span> {
+            <span class="kw">type</span> <span class="ident">Value</span> <span class="op">=</span> <span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>;
+
+            <span class="kw">fn</span> <span class="ident">expecting</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">formatter</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt</span>::<span class="ident">Formatter</span>) <span class="op">-&gt;</span> <span class="ident">fmt</span>::<span class="prelude-ty">Result</span>
+            {
+                <span class="ident">formatter</span>.<span class="ident">write_str</span>(<span class="string">&quot;a unix timestamp in seconds&quot;</span>)
+            }
+
             <span class="doccomment">/// Deserialize a timestamp in seconds since the epoch</span>
             <span class="kw">fn</span> <span class="ident">visit_i64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">i64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
                 <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
             {
-                <span class="ident">from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>(<span class="ident">value</span> <span class="op">/</span> <span class="number">1_000_000_000</span>,
-                                       (<span class="ident">value</span> <span class="op">%</span> <span class="number">1_000_000_000</span>) <span class="kw">as</span> <span class="ident">u32</span>),
-                     <span class="kw-2">&amp;</span><span class="ident">value</span>)
+                <span class="ident">serde_from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>(<span class="ident">value</span>, <span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">value</span>)
             }
 
             <span class="doccomment">/// Deserialize a timestamp in seconds since the epoch</span>
             <span class="kw">fn</span> <span class="ident">visit_u64</span><span class="op">&lt;</span><span class="ident">E</span><span class="op">&gt;</span>(<span class="self">self</span>, <span class="ident">value</span>: <span class="ident">u64</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">Utc</span><span class="op">&gt;</span>, <span class="ident">E</span><span class="op">&gt;</span>
                 <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>
             {
-                <span class="ident">from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>(<span class="ident">value</span> <span class="kw">as</span> <span class="ident">i64</span> <span class="op">/</span> <span class="number">1_000_000_000</span>,
-                                       (<span class="ident">value</span> <span class="kw">as</span> <span class="ident">i64</span> <span class="op">%</span> <span class="number">1_000_000_000</span>) <span class="kw">as</span> <span class="ident">u32</span>),
-                     <span class="kw-2">&amp;</span><span class="ident">value</span>)
-            }
-        }
-
-        <span class="comment">// try!-like function to convert a LocalResult into a serde-ish Result</span>
-        <span class="kw">fn</span> <span class="ident">from</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span>, <span class="ident">V</span><span class="op">&gt;</span>(<span class="ident">me</span>: <span class="ident">LocalResult</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>, <span class="ident">ts</span>: <span class="kw-2">&amp;</span><span class="ident">V</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">T</span>, <span class="ident">E</span><span class="op">&gt;</span>
-            <span class="kw">where</span> <span class="ident">E</span>: <span class="ident">de</span>::<span class="ident">Error</span>,
-                  <span class="ident">V</span>: <span class="ident">fmt</span>::<span class="ident">Display</span>,
-                  <span class="ident">T</span>: <span class="ident">fmt</span>::<span class="ident">Display</span>,
-        {
-            <span class="kw">match</span> <span class="ident">me</span> {
-                <span class="ident">LocalResult</span>::<span class="prelude-val">None</span> <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">E</span>::<span class="ident">custom</span>(
-                    <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;value is not a legal timestamp: {}&quot;</span>, <span class="ident">ts</span>))),
-                <span class="ident">LocalResult</span>::<span class="ident">Ambiguous</span>(<span class="ident">min</span>, <span class="ident">max</span>) <span class="op">=&gt;</span> <span class="prelude-val">Err</span>(<span class="ident">E</span>::<span class="ident">custom</span>(
-                    <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;value is an ambiguous timestamp: {}, could be either of {}, {}&quot;</span>,
-                            <span class="ident">ts</span>, <span class="ident">min</span>, <span class="ident">max</span>))),
-                <span class="ident">LocalResult</span>::<span class="ident">Single</span>(<span class="ident">val</span>) <span class="op">=&gt;</span> <span class="prelude-val">Ok</span>(<span class="ident">val</span>)
+                <span class="ident">serde_from</span>(<span class="ident">Utc</span>.<span class="ident">timestamp_opt</span>(<span class="ident">value</span> <span class="kw">as</span> <span class="ident">i64</span>, <span class="number">0</span>), <span class="kw-2">&amp;</span><span class="ident">value</span>)
             }
         }
     }
