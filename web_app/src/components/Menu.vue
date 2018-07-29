@@ -37,9 +37,8 @@ export default {
 
 <style scoped lang="stylus">
 .Menu
-  width 100%
-  background white
   position relative
+  width 100%
   display flex
   align-items center
   justify-content space-between

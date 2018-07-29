@@ -28,7 +28,7 @@ const store = new Vuex.Store({
     user: {
       logged: false,
       login: '',
-      email : '',
+      email: '',
       pointsTotal: 0,
       isAdmin: false
     }
@@ -46,7 +46,7 @@ const store = new Vuex.Store({
       state.user.login = ''
       state.user.email = ''
       state.user.pointsTotal = 0
-      state.user.isAdmin = false   
+      state.user.isAdmin = false
     }
   }
 })

@@ -1,6 +1,5 @@
 <template lang="pug">
 .Footer
-  .Footer__logo
   p An open-source app by <b>Galactim</b>
 
 </template>
@@ -23,9 +22,4 @@ export default {
   text-align center
   color #cccccc
   bottom 0 !important
-  &__logo
-    width 32px
-    height 30px
-    background-image url('../../../images/galactim_logo_mini.png')
-    background-size cover
 </style>
