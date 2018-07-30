@@ -55,6 +55,9 @@ export default {
       height 369px
       background-image url('../../../images/gui/play.png')
       grid-area a
+    &:nth-child(2)
+      background-image url('../../../images/gui/leaderboard.svg')
+      background-size cover
   &__button
     display flex
     align-items center
