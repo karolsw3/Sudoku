@@ -7,9 +7,14 @@
         router-link(tag='md-button' to="/play/easy") Easy
         router-link(tag='md-button' to="/play/medium") Medium
         router-link(tag='md-button' to="/play/hard") Hard
-      router-link(tag='md-button' to="/leaderboard").dashboard__cell
+      router-link(tag='md-button' to="/leaderboard").dashboard__cell.dashboard__cell--leaderboard
         .dashboard__button Leaderboard
-      md-button.dashboard__cell
+      .dashboard__cell.stats
+        template(v-if='$store.state.user.logged')
+          h1 Your stats
+          p Points: {{$store.state.user.pointsTotal}}
+        template(v-else)
+          h1 Create an account to get points for solving boards.
 </template>
 
 <script>
@@ -56,9 +61,11 @@ export default {
       background-image url('../../../images/gui/play.svg')
       background-size cover
       grid-area a
-    &:nth-child(2)
+    &--leaderboard
       background-image url('../../../images/gui/leaderboard.svg')
       background-size cover
+    &--stats
+      margin 6px 8px
   &__button
     display flex
     align-items center
@@ -91,5 +98,17 @@ export default {
     align-items center
     transition-duration .2s
     box-shadow 0 0 20px rgba(0, 0, 0, .5)
-    z-index 999
+    z-index 2
+.stats
+  padding 20px
+  cursor default
+  text-align left
+  font-family 'Open Sans', sans-serif
+  h1
+    font-size 2em
+    line-height 1.15
+    color #ccc
+  p
+    font-size 1.5em
+    color #444
 </style>
