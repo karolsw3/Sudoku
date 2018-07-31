@@ -83,6 +83,7 @@ export default {
               pointsTotal: responseData.points_total,
               isAdmin: responseData.is_admin
             })
+            this.$router.push('/')
             break
         }
       }
