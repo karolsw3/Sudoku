@@ -53,7 +53,8 @@ export default {
     cursor pointer
     &:nth-child(1)
       height 369px
-      background-image url('../../../images/gui/play.png')
+      background-image url('../../../images/gui/play.svg')
+      background-size cover
       grid-area a
     &:nth-child(2)
       background-image url('../../../images/gui/leaderboard.svg')
