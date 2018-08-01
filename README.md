@@ -10,7 +10,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
 
 `Sudoku` consists of a public API, web app, and in the future – a mobile app.
 
-# <img src="images/vectors/progress.svg" alt="Progress"/>
+# <img src="images/progress.svg" alt="Progress"/>
 
 ## API
 
