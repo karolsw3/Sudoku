@@ -49,10 +49,10 @@ export default {
     align-items center
     justify-content center
   &__logo
-    width 80px
-    height 80px
+    width 300px
+    height 52px
     margin-right 15px
-    background-image url(../../../images/logo.png)
+    background-image url(../../../images/logo.svg)
     background-size cover
     cursor pointer
   &__user
