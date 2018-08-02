@@ -38,7 +38,7 @@ export default {
         this.loading = true
         this.error = false
         let data = {
-          login: this.$refs.login.value,
+          username: this.$refs.login.value,
           password: this.$refs.password.value
         }
         util.methods.derivePassword(

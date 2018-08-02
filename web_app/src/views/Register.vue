@@ -41,7 +41,7 @@ export default {
         this.loading = true
         this.error = false
         let data = {
-          login: this.$refs.login.value,
+          username: this.$refs.login.value,
           email: this.$refs.email.value,
           password: this.$refs.password.value
         }
