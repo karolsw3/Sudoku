@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["parse_errors","Contains errors for the various parsing modes"]],"struct":[["Sudoku","The main structure exposing all the functionality of the library Sudokus can be parsed in either the line format or the block format"]]});

@@ -60,6 +60,7 @@
 <span id="60">60</span>
 <span id="61">61</span>
 <span id="62">62</span>
+<span id="63">63</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="self">self</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">User</span>;
 <span class="kw">use</span> <span class="ident">chrono</span>::{<span class="ident">FixedOffset</span>, <span class="ident">DateTime</span>};
@@ -108,7 +109,8 @@
     <span class="doccomment">/// Whether the user has administrative privileges.</span>
     <span class="kw">pub</span> <span class="ident">is_admin</span>: <span class="ident">bool</span>,
 
-    <span class="doccomment">/// Sum total of the user&#39;s points, calculated according to [`doc/scoring.md#endgame-formula`](../doc/scoring/#endgame-formula).</span>
+    <span class="doccomment">/// Sum total of the user&#39;s points, calculated according to</span>
+    <span class="doccomment">/// [`doc/scoring.md#endgame-formula`](../doc/scoring/#endgame-formula).</span>
     <span class="kw">pub</span> <span class="ident">points_total</span>: <span class="ident">u64</span>,
 }
 

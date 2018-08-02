@@ -1,16 +1,34 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `INITIALISE_DATABASE` constant in crate `sudoku_backend`."><meta name="keywords" content="rust, rustlang, rust-lang, INITIALISE_DATABASE"><title>sudoku_backend::util::INITIALISE_DATABASE - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc constant"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><div class="sidebar-elems"><p class='location'><a href='../index.html'>sudoku_backend</a>::<wbr><a href='index.html'>util</a></p><script>window.sidebarCurrent = {name: 'INITIALISE_DATABASE', ty: 'constant', relpath: ''};</script><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='in-band'>Constant <a href='../index.html'>sudoku_backend</a>::<wbr><a href='index.html'>util</a>::<wbr><a class="constant" href=''>INITIALISE_DATABASE</a></span><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../../src/sudoku_backend/home/travis/build/Galactim/Sudoku/api/target/debug/build/sudoku-backend-be93c18a61dd354b/out/query.rs.html#2-33' title='goto source code'>[src]</a></span></h1><pre class='rust const'>pub const INITIALISE_DATABASE: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><code> = </code><code>r#####&quot;
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `INITIALISE_DATABASE` constant in crate `sudoku_backend`."><meta name="keywords" content="rust, rustlang, rust-lang, INITIALISE_DATABASE"><title>sudoku_backend::util::INITIALISE_DATABASE - Rust</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc constant"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><div class="sidebar-elems"><p class='location'><a href='../index.html'>sudoku_backend</a>::<wbr><a href='index.html'>util</a></p><script>window.sidebarCurrent = {name: 'INITIALISE_DATABASE', ty: 'constant', relpath: ''};</script><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='in-band'>Constant <a href='../index.html'>sudoku_backend</a>::<wbr><a href='index.html'>util</a>::<wbr><a class="constant" href=''>INITIALISE_DATABASE</a></span><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../../src/sudoku_backend/home/travis/build/Galactim/Sudoku/api/target/debug/build/sudoku-backend-be93c18a61dd354b/out/query.rs.html#2-51' title='goto source code'>[src]</a></span></h1><pre class='rust const'>pub const INITIALISE_DATABASE: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a><code> = </code><code>r#####&quot;
 
 
 
 CREATE TABLE IF NOT EXISTS sessions (
-    id         INTEGER PRIMARY KEY ASC,           -- Unique session ID
-    expiry     DATETIME NOT NULL,                 -- Expiry datetime in RFC3339 format
-    is_admin   BOOLEAN NOT NULL DEFAULT 0,        -- Whether the user has authenticated as administrator
-    user_id    INTEGER REFERENCES users (id)      -- ID of user session is logged in as
+    id              INTEGER PRIMARY KEY ASC,                -- Unique session ID
+    expiry          DATETIME NOT NULL,                      -- Expiry datetime in RFC3339 format
+    is_admin        BOOLEAN NOT NULL DEFAULT 0,             -- Whether the user has authenticated as administrator
+    user_id         INTEGER REFERENCES users (id),          -- ID of user session is logged in as
 
-    -- TODO: add reference IDs to actual data (current-played board, etc.)
-    -- product_id INTEGER REFERENCES products (id),  -- ID of product the user selected
+    sudoku_board_id INTEGER REFERENCES sudoku_boards (id),  -- ID of board currently being solved
+    board_skeleton  TEXT,                                   -- The board skeleton sent to the user
+    solve_start     DATETIME,                               -- Time the solving started
+
+    CHECK ((board_skeleton IS NULL) OR (LENGTH(board_skeleton) == 9 * 9))
 );
+
+
+CREATE TABLE IF NOT EXISTS sudoku_boards (
+    id            INTEGER PRIMARY KEY ASC,                                               -- Unique board ID
+    full_board    TEXT NOT NULL UNIQUE,                                                  -- The full &quot;solved&quot; board repr
+    difficulty    INTEGER NOT NULL,                                                      -- Board &quot;difficulty&quot;, between one and three
+    creation_time DATETIME NOT NULL,                                                     -- Time the board was generated
+
+    CHECK (((difficulty &gt;= 1) AND (difficulty &lt;= 3)) AND (LENGTH(full_board) == 9 * 9))
+);
+
+
+
+
+
 
 
 
@@ -21,7 +39,7 @@ CREATE TABLE IF NOT EXISTS users (
     email        TEXT NOT NULL UNIQUE,        -- User&#39;s contact e-mail
     created_at   DATETIME NOT NULL,           -- Time user was created
     is_admin     BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges
-    points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user&#39;s points, calculated according to scoring.md#endgame-formula, non-negative
+    points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user&#39;s points, calculated according to sudoku.md#scoring-formula, non-negative
 
     CHECK (points_total &gt;= 0)
 );

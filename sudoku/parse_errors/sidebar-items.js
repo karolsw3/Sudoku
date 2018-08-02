@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["BlockFormatParseError","A structure representing an error caused when parsing the sudoku"],["LineFormatParseError","A structure representing an error caused when parsing the sudoku"]],"struct":[["Entry","An invalid entry that was parsed"],["NotEnoughRows","Error for lax block format parsing. Contains the number of rows found."]]});

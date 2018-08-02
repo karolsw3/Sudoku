@@ -32,6 +32,24 @@
 <span id="32">32</span>
 <span id="33">33</span>
 <span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
 </pre><pre class="rust ">
 <span class="doccomment">/// Query to run to set up the database.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">INITIALISE_DATABASE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">r#####&quot;
@@ -39,14 +57,32 @@
 
 
 CREATE TABLE IF NOT EXISTS sessions (
-    id         INTEGER PRIMARY KEY ASC,           -- Unique session ID
-    expiry     DATETIME NOT NULL,                 -- Expiry datetime in RFC3339 format
-    is_admin   BOOLEAN NOT NULL DEFAULT 0,        -- Whether the user has authenticated as administrator
-    user_id    INTEGER REFERENCES users (id)      -- ID of user session is logged in as
+    id              INTEGER PRIMARY KEY ASC,                -- Unique session ID
+    expiry          DATETIME NOT NULL,                      -- Expiry datetime in RFC3339 format
+    is_admin        BOOLEAN NOT NULL DEFAULT 0,             -- Whether the user has authenticated as administrator
+    user_id         INTEGER REFERENCES users (id),          -- ID of user session is logged in as
 
-    -- TODO: add reference IDs to actual data (current-played board, etc.)
-    -- product_id INTEGER REFERENCES products (id),  -- ID of product the user selected
+    sudoku_board_id INTEGER REFERENCES sudoku_boards (id),  -- ID of board currently being solved
+    board_skeleton  TEXT,                                   -- The board skeleton sent to the user
+    solve_start     DATETIME,                               -- Time the solving started
+
+    CHECK ((board_skeleton IS NULL) OR (LENGTH(board_skeleton) == 9 * 9))
 );
+
+
+CREATE TABLE IF NOT EXISTS sudoku_boards (
+    id            INTEGER PRIMARY KEY ASC,                                               -- Unique board ID
+    full_board    TEXT NOT NULL UNIQUE,                                                  -- The full &quot;solved&quot; board repr
+    difficulty    INTEGER NOT NULL,                                                      -- Board &quot;difficulty&quot;, between one and three
+    creation_time DATETIME NOT NULL,                                                     -- Time the board was generated
+
+    CHECK (((difficulty &gt;= 1) AND (difficulty &lt;= 3)) AND (LENGTH(full_board) == 9 * 9))
+);
+
+
+
+
+
 
 
 
@@ -57,7 +93,7 @@ CREATE TABLE IF NOT EXISTS users (
     email        TEXT NOT NULL UNIQUE,        -- User&#39;s contact e-mail
     created_at   DATETIME NOT NULL,           -- Time user was created
     is_admin     BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges
-    points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user&#39;s points, calculated according to scoring.md#endgame-formula, non-negative
+    points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user&#39;s points, calculated according to sudoku.md#scoring-formula, non-negative
 
     CHECK (points_total &gt;= 0)
 );

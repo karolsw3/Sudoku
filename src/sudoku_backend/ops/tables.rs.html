@@ -26,6 +26,19 @@
 <span id="26">26</span>
 <span id="27">27</span>
 <span id="28">28</span>
+<span id="29">29</span>
+<span id="30">30</span>
+<span id="31">31</span>
+<span id="32">32</span>
+<span id="33">33</span>
+<span id="34">34</span>
+<span id="35">35</span>
+<span id="36">36</span>
+<span id="37">37</span>
+<span id="38">38</span>
+<span id="39">39</span>
+<span id="40">40</span>
+<span id="41">41</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! `diesel` table definitions, copied over from [`doc/`](../../doc/)umentation.</span>
 
@@ -34,11 +47,13 @@
     <span class="doccomment">/// See [`doc/session.md`](../../doc/session/)</span>
     <span class="ident">sessions</span> {
         <span class="doccomment">/// Nullable wrapper so we can pass NULL to SQLite so it assigns new id</span>
-        <span class="ident">id</span>         <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
-        <span class="ident">expiry</span>     <span class="op">-&gt;</span> <span class="ident">Timestamp</span>,
-        <span class="ident">is_admin</span>   <span class="op">-&gt;</span> <span class="ident">Bool</span>,
-        <span class="ident">user_id</span>    <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
-        <span class="comment">// product_id -&gt; Nullable&lt;Integer&gt;,</span>
+        <span class="ident">id</span>              <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
+        <span class="ident">expiry</span>          <span class="op">-&gt;</span> <span class="ident">Timestamp</span>,
+        <span class="ident">is_admin</span>        <span class="op">-&gt;</span> <span class="ident">Bool</span>,
+        <span class="ident">user_id</span>         <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
+        <span class="ident">sudoku_board_id</span> <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
+        <span class="ident">board_skeleton</span>  <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Text</span><span class="op">&gt;</span>,
+        <span class="ident">solve_start</span>     <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Timestamp</span><span class="op">&gt;</span>,
     }
 }
 
@@ -53,6 +68,17 @@
         <span class="ident">created_at</span>   <span class="op">-&gt;</span> <span class="ident">Timestamp</span>,
         <span class="ident">is_admin</span>     <span class="op">-&gt;</span> <span class="ident">Bool</span>,
         <span class="ident">points_total</span> <span class="op">-&gt;</span> <span class="ident">Integer</span>,
+    }
+}
+
+<span class="macro">table</span><span class="macro">!</span> {
+    <span class="doccomment">/// See [`doc/sudoku.md`](../../doc/sudoku/)</span>
+    <span class="ident">sudoku_boards</span> {
+        <span class="doccomment">/// Nullable wrapper so we can pass NULL to SQLite so it assigns new id</span>
+        <span class="ident">id</span>            <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
+        <span class="ident">full_board</span>    <span class="op">-&gt;</span> <span class="ident">Text</span>,
+        <span class="ident">difficulty</span>    <span class="op">-&gt;</span> <span class="ident">Integer</span>,
+        <span class="ident">creation_time</span> <span class="op">-&gt;</span> <span class="ident">Timestamp</span>,
     }
 }
 </pre>
