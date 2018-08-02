@@ -191,14 +191,14 @@ export default {
     width 100%
     height 100%
     display grid
-    background white
     box-sizing border-box
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
+    border 2px solid #e9e9e9
     &--main
       width 404px
       height 404px
-      background white
-      border-radius 8px
+      border 2px solid #e9e9e9
+      border-radius 6px
   &__slot
     display flex
     align-items center
@@ -213,12 +213,12 @@ export default {
     font-weight 700
     color #123ffc
     cursor pointer
-    transition-duration .25s
-    border-radius 5px
+    transition-duration .12s
     &:hover
       background #e6e8eb
     &--selected
       border 3px solid
+      border-radius 1px
     &--locked
       background #f5f5f5 !important
       color #333 !important
