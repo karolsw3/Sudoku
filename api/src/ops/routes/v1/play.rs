@@ -45,7 +45,7 @@ pub fn new(db: DatabaseConnection, mut cookies: Cookies, difficulty: BoardReques
                     &db)
         .map_err(|e| Custom(Status::InternalServerError, Json((e, GenericErrorSeverity::Danger).into())))?;
 
-    Ok(Custom(Status::Unauthorized,
+    Ok(Custom(Status::Created,
               Json(BoardMessage {
                   board_id: board.id.unwrap(), // Verified above
                   board_skeleton: skeleton.into(),
