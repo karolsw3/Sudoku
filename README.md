@@ -1,4 +1,4 @@
-# <img src="images/logo.svg" height="70" alt="sudoku" />
+# <img src="images/logo.png" height="70" alt="sudoku" />
 A modern, API-based Sudoku app.
 
 ## Introduction
