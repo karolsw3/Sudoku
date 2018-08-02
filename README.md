@@ -18,7 +18,7 @@ The full API documentation is present [HERE](https://cdn.rawgit.com/Galactim/Sud
 
 However, here's an infographic showing its key features:
 
-# <img src="images/api_info.png" alt="Api info"/>
+# <img src="images/api_info.png" alt="Api info" width="635"/>
 
 After a game is won, the player is awarded points, calculated as follows:
 

@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.64"
-     inkscape:cx="669.82951"
-     inkscape:cy="153.46647"
+     inkscape:cx="646.28033"
+     inkscape:cy="219.18346"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -90,7 +90,7 @@
        inkscape:export-xdpi="22.049999"
        inkscape:export-ydpi="22.049999" />
     <rect
-       style="opacity:1;fill:#ebebeb;fill-opacity:1;stroke:none;stroke-width:2.06881618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:none;stroke-width:2.06881618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4638"
        width="127.12324"
        height="29.810474"
@@ -100,7 +100,7 @@
        inkscape:export-xdpi="22.049999"
        inkscape:export-ydpi="22.049999" />
     <rect
-       style="opacity:1;fill:#ebebeb;fill-opacity:1;stroke:none;stroke-width:2.06881618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="opacity:1;fill:#ffdd55;fill-opacity:1;stroke:none;stroke-width:2.06881618;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="rect4652"
        width="138.86887"
        height="29.810474"
@@ -185,7 +185,7 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.17760658px;line-height:1.25;font-family:Sawasdee;-inkscape-font-specification:Sawasdee;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25341401"
-       x="31.338181"
+       x="37.290771"
        y="31.672594"
        id="text4522"
        inkscape:export-xdpi="22.049999"
@@ -193,7 +193,7 @@
        transform="matrix(0,-1.0000899,0.9999101,0,0,0)"><tspan
          sodipodi:role="line"
          id="tspan4520"
-         x="31.338181"
+         x="37.290771"
          y="31.672594"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.25341401">Sudoku</tspan></text>
     <rect
