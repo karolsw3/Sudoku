@@ -5,6 +5,8 @@ use rocket::http::RawStr;
 
 /// How to order a solution list.
 ///
+/// Refer to [`doc/check.rs`](../doc/check/) for more details.
+///
 /// The string reprs are `snake_case`.
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 #[serde(rename_all = "snake_case")]

@@ -93,9 +93,13 @@ impl Deref for DatabaseConnection {
 
 
 /// Configuration of a leaderboard request.
+//
+/// Refer to [`doc/check.rs`](../../doc/check/) for more details.
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord)]
 pub struct LeaderboardConfig {
+    /// How many entries to return
     pub count: usize,
+    /// How to order the returned entries
     pub ordering: SolutionOrdering,
 }
 
@@ -146,9 +150,13 @@ impl cmp::PartialOrd for LeaderboardConfig {
 }
 
 /// Amalgam of max and default leaderboard configurations.
+//
+/// Refer to [`doc/check.rs`](../../doc/check/) for more details.
 #[derive(Serialize, Deserialize, Debug, Copy, Clone, Hash, Eq, PartialEq, Ord, PartialOrd)]
 pub struct LeaderboardSettings {
+    /// Default config to backfill from
     pub default: LeaderboardConfig,
+    /// Unexceedable config
     pub max: LeaderboardConfig,
 }
 
