@@ -119,6 +119,7 @@
 <span id="119">119</span>
 <span id="120">120</span>
 <span id="121">121</span>
+<span id="122">122</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! Data used for general application setup: third-party connexions, et caetera.</span>
 
@@ -219,6 +220,7 @@
 
 <span class="doccomment">/// Configuration of a leaderboard request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Hash</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive_FromForm</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LeaderboardConfig</span> {
     <span class="kw">pub</span> <span class="ident">count</span>: <span class="ident">usize</span>,
 }
