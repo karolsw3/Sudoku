@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["DatabaseConnection","Connection request guard type: a wrapper around an r2d2 pooled connection."]]});
+initSidebarItems({"struct":[["DatabaseConnection","Connection request guard type: a wrapper around an r2d2 pooled connection."],["LeaderboardConfig","Configuration of a leaderboard request."],["LeaderboardSettings","Amalgam of max and default leaderboard configurations."]]});

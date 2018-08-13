@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["auth","Auth-related routes."],["play","Auth-related routes."]]});
+initSidebarItems({"mod":[["auth","Auth-related routes."],["check","Data retrieval related routes."],["play","Auth-related routes."]]});

@@ -39,6 +39,21 @@
 <span id="39">39</span>
 <span id="40">40</span>
 <span id="41">41</span>
+<span id="42">42</span>
+<span id="43">43</span>
+<span id="44">44</span>
+<span id="45">45</span>
+<span id="46">46</span>
+<span id="47">47</span>
+<span id="48">48</span>
+<span id="49">49</span>
+<span id="50">50</span>
+<span id="51">51</span>
+<span id="52">52</span>
+<span id="53">53</span>
+<span id="54">54</span>
+<span id="55">55</span>
+<span id="56">56</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! `diesel` table definitions, copied over from [`doc/`](../../doc/)umentation.</span>
 
@@ -79,6 +94,21 @@
         <span class="ident">full_board</span>    <span class="op">-&gt;</span> <span class="ident">Text</span>,
         <span class="ident">difficulty</span>    <span class="op">-&gt;</span> <span class="ident">Integer</span>,
         <span class="ident">creation_time</span> <span class="op">-&gt;</span> <span class="ident">Timestamp</span>,
+    }
+}
+
+<span class="macro">table</span><span class="macro">!</span> {
+    <span class="doccomment">/// See [`doc/sudoku.md`](../../doc/sudoku/)</span>
+    <span class="ident">sudoku_solutions</span> {
+        <span class="doccomment">/// Nullable wrapper so we can pass NULL to SQLite so it assigns new id</span>
+        <span class="ident">id</span>                     <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">Integer</span><span class="op">&gt;</span>,
+        <span class="ident">display_name</span>           <span class="op">-&gt;</span> <span class="ident">Text</span>,
+        <span class="ident">board_id</span>               <span class="op">-&gt;</span> <span class="ident">Integer</span>,
+        <span class="ident">skeleton</span>               <span class="op">-&gt;</span> <span class="ident">Text</span>,
+        <span class="ident">difficulty</span>             <span class="op">-&gt;</span> <span class="ident">Integer</span>,
+        <span class="ident">solution_duration_secs</span> <span class="op">-&gt;</span> <span class="ident">Integer</span>,
+        <span class="ident">score</span>                  <span class="op">-&gt;</span> <span class="ident">Integer</span>,
+        <span class="ident">solution_time</span>          <span class="op">-&gt;</span> <span class="ident">Timestamp</span>,
     }
 }
 </pre>

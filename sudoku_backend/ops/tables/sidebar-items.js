@@ -1,1 +1,1 @@
-initSidebarItems({"mod":[["sessions","See `doc/session.md`"],["sudoku_boards","See `doc/sudoku.md`"],["users","See `doc/user.md`"]]});
+initSidebarItems({"mod":[["sessions","See `doc/session.md`"],["sudoku_boards","See `doc/sudoku.md`"],["sudoku_solutions","See `doc/sudoku.md`"],["users","See `doc/user.md`"]]});

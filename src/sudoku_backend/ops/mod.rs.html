@@ -23,8 +23,8 @@
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">tables</span>;
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">constraints</span>;
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">model</span>::{<span class="ident">BoardDifficulty</span>, <span class="ident">SudokuBoard</span>, <span class="ident">Session</span>, <span class="ident">User</span>};
-<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">ota</span>::{<span class="ident">SanitisedUserData</span>, <span class="ident">BoardRequestForm</span>, <span class="ident">BoardMessage</span>, <span class="ident">LoginForm</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">model</span>::{<span class="ident">BoardDifficulty</span>, <span class="ident">SudokuSolution</span>, <span class="ident">SudokuBoard</span>, <span class="ident">Session</span>, <span class="ident">User</span>};
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">ota</span>::{<span class="ident">NewBoardRequestForm</span>, <span class="ident">OldBoardRequestForm</span>, <span class="ident">SanitisedUserData</span>, <span class="ident">BoardMessage</span>, <span class="ident">LoginForm</span>};
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">errors</span> {
     <span class="doccomment">//! Various API errors.</span>

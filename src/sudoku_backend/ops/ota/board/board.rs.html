@@ -70,6 +70,7 @@
 <span id="70">70</span>
 <span id="71">71</span>
 <span id="72">72</span>
+<span id="73">73</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="self">self</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">constraints</span>::{<span class="ident">SudokuBoard9x9ConciseLength</span>, <span class="ident">SudokuString</span>};
 <span class="kw">use</span> <span class="ident">serde</span>::<span class="ident">de</span>::{<span class="ident">Deserializer</span>, <span class="ident">Deserialize</span>, <span class="ident">Error</span> <span class="kw">as</span> <span class="ident">DeserializerError</span>};
@@ -82,15 +83,16 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// Consult [`doc/sudoku.md`](../doc/sudoku/)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Hash</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>)]</span>
+<span class="attribute">#[<span class="ident">derive_FromForm</span>]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BoardMessage</span> {
     <span class="doccomment">/// ID of the full original board</span>
     <span class="kw">pub</span> <span class="ident">board_id</span>: <span class="ident">i32</span>,
 
     <span class="doccomment">/// The skeleton to be solved by the user</span>
-    <span class="kw">pub</span> <span class="ident">board_skeleton</span>: <span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">board_skeleton</span>: <span class="ident">String</span>,
 
     <span class="doccomment">/// The solved board from the skeleton, to be present only on board submit</span>
-    <span class="kw">pub</span> <span class="ident">solved_board</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Cow</span><span class="op">&lt;</span><span class="lifetime">&#39;static</span>, <span class="ident">str</span><span class="op">&gt;&gt;</span>,
+    <span class="kw">pub</span> <span class="ident">solved_board</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Deserialize</span>)]</span>
@@ -130,8 +132,8 @@
 
         <span class="prelude-val">Ok</span>(<span class="ident">BoardMessage</span> {
             <span class="ident">board_id</span>: <span class="ident">data</span>.<span class="ident">board_id</span>,
-            <span class="ident">board_skeleton</span>: <span class="ident">data</span>.<span class="ident">board_skeleton</span>,
-            <span class="ident">solved_board</span>: <span class="ident">data</span>.<span class="ident">solved_board</span>,
+            <span class="ident">board_skeleton</span>: <span class="ident">data</span>.<span class="ident">board_skeleton</span>.<span class="ident">into</span>(),
+            <span class="ident">solved_board</span>: <span class="ident">data</span>.<span class="ident">solved_board</span>.<span class="ident">map</span>(<span class="ident">Into</span>::<span class="ident">into</span>),
         })
     }
 }

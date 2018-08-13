@@ -63,6 +63,29 @@
 <span id="63">63</span>
 <span id="64">64</span>
 <span id="65">65</span>
+<span id="66">66</span>
+<span id="67">67</span>
+<span id="68">68</span>
+<span id="69">69</span>
+<span id="70">70</span>
+<span id="71">71</span>
+<span id="72">72</span>
+<span id="73">73</span>
+<span id="74">74</span>
+<span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
+<span id="83">83</span>
+<span id="84">84</span>
+<span id="85">85</span>
+<span id="86">86</span>
+<span id="87">87</span>
+<span id="88">88</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! This module contains the configuration of the application.</span>
 <span class="doccomment">//!</span>
@@ -91,6 +114,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Default: `&quot;./sudoku-backend.db&quot;`</span>
     <span class="kw">pub</span> <span class="ident">database_file</span>: (<span class="ident">String</span>, <span class="ident">PathBuf</span>),
+
+    <span class="doccomment">/// Optional file containing the leaderboard settings.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Parent directory must exist, if specified.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Default: `&quot;./leaderboard.toml&quot;` if exists, otherwise `None`.</span>
+    <span class="kw">pub</span> <span class="ident">leaderboard_settings_file</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span>(<span class="ident">String</span>, <span class="ident">PathBuf</span>)<span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Options</span> {
@@ -99,7 +129,10 @@
         <span class="kw">let</span> <span class="ident">matches</span> <span class="op">=</span> <span class="macro">app_from_crate</span><span class="macro">!</span>(<span class="string">&quot;\n&quot;</span>)
             .<span class="ident">setting</span>(<span class="ident">AppSettings</span>::<span class="ident">ColoredHelp</span>)
             .<span class="ident">arg</span>(<span class="ident">Arg</span>::<span class="ident">from_usage</span>(<span class="string">&quot;[DATABASE_FILE] &#39;File containing the main database. Default: ./sudoku-backend.db&#39;&quot;</span>)
-                .<span class="ident">validator</span>(<span class="ident">Options</span>::<span class="ident">database_file_validator</span>))
+                .<span class="ident">validator</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">Options</span>::<span class="ident">file_validator</span>(<span class="string">&quot;Database&quot;</span>, <span class="ident">s</span>)))
+            .<span class="ident">arg</span>(<span class="ident">Arg</span>::<span class="ident">from_usage</span>(<span class="string">&quot;[LEADERBOARD_SETTINGS_FILE] &#39;Optional file containing the leaderboard settings. \
+                                                               Default: ./leaderboard.toml, then hard defaults&#39;&quot;</span>)
+                .<span class="ident">validator</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">Options</span>::<span class="ident">file_validator</span>(<span class="string">&quot;Leaderboard settings&quot;</span>, <span class="ident">s</span>)))
             .<span class="ident">get_matches</span>();
 
         <span class="ident">Options</span> {
@@ -110,22 +143,35 @@
                     (<span class="ident">s</span>.<span class="ident">to_string</span>(), <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="ident">Path</span>::<span class="ident">new</span>(<span class="ident">s</span>).<span class="ident">parent</span>().<span class="ident">unwrap</span>()).<span class="ident">unwrap</span>().<span class="ident">join</span>(<span class="string">&quot;sudoku-backend.db&quot;</span>))
                 })
                 .<span class="ident">unwrap_or_else</span>(<span class="op">||</span> (<span class="string">&quot;./sudoku-backend.db&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="string">&quot;.&quot;</span>).<span class="ident">unwrap</span>().<span class="ident">join</span>(<span class="string">&quot;sudoku-backend.db&quot;</span>))),
+            <span class="ident">leaderboard_settings_file</span>: <span class="ident">matches</span>.<span class="ident">value_of</span>(<span class="string">&quot;LEADERBOARD_SETTINGS_FILE&quot;</span>)
+                .<span class="ident">map</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">f</span>) <span class="op">=</span> <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="ident">s</span>) {
+                    (<span class="ident">s</span>.<span class="ident">to_string</span>(), <span class="ident">f</span>)
+                } <span class="kw">else</span> {
+                    (<span class="ident">s</span>.<span class="ident">to_string</span>(), <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="ident">Path</span>::<span class="ident">new</span>(<span class="ident">s</span>).<span class="ident">parent</span>().<span class="ident">unwrap</span>()).<span class="ident">unwrap</span>().<span class="ident">join</span>(<span class="string">&quot;leaderboard.toml&quot;</span>))
+                })
+                .<span class="ident">or_else</span>(<span class="op">||</span> {
+                    <span class="ident">fs</span>::<span class="ident">metadata</span>(<span class="string">&quot;./leaderboard.toml&quot;</span>).<span class="ident">ok</span>().<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">m</span><span class="op">|</span> <span class="kw">if</span> <span class="ident">m</span>.<span class="ident">is_file</span>() {
+                        <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="string">&quot;./leaderboard.toml&quot;</span>).<span class="ident">ok</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> (<span class="string">&quot;./leaderboard.toml&quot;</span>.<span class="ident">to_string</span>(), <span class="ident">f</span>))
+                    } <span class="kw">else</span> {
+                        <span class="prelude-val">None</span>
+                    })
+                }),
         }
     }
 
-    <span class="kw">fn</span> <span class="ident">database_file_validator</span>(<span class="ident">s</span>: <span class="ident">String</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">file_validator</span>(<span class="ident">whom</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">s</span>: <span class="ident">String</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="ident">String</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">p</span> <span class="op">=</span> <span class="ident">PathBuf</span>::<span class="ident">from</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>);
         <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Ok</span>(<span class="ident">f</span>) <span class="op">=</span> <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="kw-2">&amp;</span><span class="ident">p</span>) {
             <span class="kw">if</span> <span class="op">!</span><span class="ident">f</span>.<span class="ident">is_file</span>() {
-                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Database file \&quot;{}\&quot; not actually a file&quot;</span>, <span class="ident">s</span>));
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{} file \&quot;{}\&quot; not actually a file&quot;</span>, <span class="ident">whom</span>, <span class="ident">s</span>));
             }
         }
 
         <span class="ident">p</span>.<span class="ident">pop</span>();
-        <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="kw-2">&amp;</span><span class="ident">p</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Database parent directory \&quot;{}\&quot; nonexistant&quot;</span>, <span class="ident">p</span>.<span class="ident">display</span>())).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">f</span>.<span class="ident">is_file</span>() {
+        <span class="ident">fs</span>::<span class="ident">canonicalize</span>(<span class="kw-2">&amp;</span><span class="ident">p</span>).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{} parent directory \&quot;{}\&quot; nonexistant&quot;</span>, <span class="ident">whom</span>, <span class="ident">p</span>.<span class="ident">display</span>())).<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">f</span><span class="op">|</span> <span class="kw">if</span> <span class="op">!</span><span class="ident">f</span>.<span class="ident">is_file</span>() {
             <span class="prelude-val">Ok</span>(())
         } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;Database file \&quot;{}\&quot; actually a file&quot;</span>, <span class="ident">p</span>.<span class="ident">display</span>()))
+            <span class="prelude-val">Err</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{} file \&quot;{}\&quot; actually a file&quot;</span>, <span class="ident">whom</span>, <span class="ident">p</span>.<span class="ident">display</span>()))
         })
     }
 }
