@@ -5,11 +5,15 @@
 <span id="5">5</span>
 <span id="6">6</span>
 <span id="7">7</span>
+<span id="8">8</span>
+<span id="9">9</span>
 </pre><pre class="rust ">
 <span class="kw">mod</span> <span class="ident">user</span>;
 <span class="kw">mod</span> <span class="ident">board</span>;
 <span class="kw">mod</span> <span class="ident">error</span>;
+<span class="kw">mod</span> <span class="ident">solutions</span>;
 
+<span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">solutions</span>::<span class="ident">SolutionOrdering</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">user</span>::{<span class="ident">SanitisedUserData</span>, <span class="ident">LoginForm</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">error</span>::{<span class="ident">GenericErrorSeverity</span>, <span class="ident">GenericError</span>, <span class="ident">LoginError</span>};
 <span class="kw">pub</span> <span class="kw">use</span> <span class="self">self</span>::<span class="ident">board</span>::{<span class="ident">NewBoardRequestForm</span>, <span class="ident">OldBoardRequestForm</span>, <span class="ident">BoardMessage</span>};
