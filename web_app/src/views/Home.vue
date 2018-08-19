@@ -9,12 +9,12 @@
         router-link(tag='md-button' to="/play/hard") Hard
       router-link(tag='md-button' to="/leaderboard").dashboard__cell.dashboard__cell--leaderboard
         .dashboard__button Leaderboard
-      .dashboard__cell.stats
+      .dashboard__cell.dashboard__cell--stats
         template(v-if='$store.state.user.logged')
           h1 Your stats
           p Points: {{$store.state.user.pointsTotal}}
         template(v-else)
-          h1 Create an account to get points for solving boards.
+          h1 Create an account to get points from solving boards.
 </template>
 
 <script>
@@ -66,6 +66,14 @@ export default {
       background-size cover
     &--stats
       margin 6px 8px
+      line-height 2.3em
+      padding 0 12px
+      color #fff
+      text-shadow 0 0 12px #c20d4f
+      text-align left
+      font-family 'Open Sans', sans-serif
+      background-image url('../../../images/gui/stats.svg')
+      background-size cover
   &__button
     display flex
     align-items center
