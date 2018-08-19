@@ -20,8 +20,9 @@ extern crate diesel;
 extern crate serde;
 #[macro_use]
 extern crate clap;
-extern crate time;
 extern crate rand;
+extern crate time;
+extern crate toml;
 
 mod options;
 
