@@ -76,10 +76,9 @@ export default {
     text-transform uppercase
     font-weight 900
     font-size 30px
-    background linear-gradient(to right, #ff1167, #f00)
+    background #ff1167
     padding 37px
     color #fff
-    box-shadow 0 0 34px #000000b3
     &--play
       font-size 50px
   &__difficultySelector
