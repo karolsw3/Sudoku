@@ -40,7 +40,7 @@ export default {
   display flex
   align-items center
   justify-content center
-
+  box-sizing border-box
 .dashboard
   position relative
   margin 0 auto
@@ -57,7 +57,7 @@ export default {
     background #e4e4e4
     cursor pointer
     &:nth-child(1)
-      height 369px
+      height 300px
       background-image url('../../../images/gui/play.svg')
       background-size cover
       grid-area a
@@ -67,6 +67,7 @@ export default {
     &--stats
       margin 6px 8px
       line-height 2.3em
+      cursor default
       padding 0 12px
       color #fff
       text-shadow 0 0 12px #c20d4f

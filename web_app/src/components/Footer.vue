@@ -1,6 +1,6 @@
 <template lang="pug">
 .Footer
-  p An open-source app by <b>Galactim</b>
+  p An app by <b>Galactim</b>
 
 </template>
 
