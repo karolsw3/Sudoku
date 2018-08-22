@@ -1,8 +1,10 @@
 <template lang="pug">
   .play
+    .progressSpinner
+      md-progress-spinner(v-if='loadingBoard' md-mode="indeterminate")
     Board(ref='board')
       Timer(ref='timer')
-      NumberSelector(@numberSelected="numberSelected")
+      NumberSelector(@numberSelected='numberSelected')
 </template>
 
 <script>
@@ -17,6 +19,11 @@ export default {
     Board, NumberSelector, Timer
   },
   props: ['difficulty'],
+  data: function () {
+    return {
+      'loadingBoard': true
+    }
+  },
   methods: {
     numberSelected (number) {
       let board = this.$refs.board
@@ -52,14 +59,28 @@ export default {
   created () {
     axios.get('/api/v1/play/new?difficulty=' + this.difficultyNumber)
       .then((response) => {
+        console.log('Board loaded')
         let board = this.$refs.board
         let timer = this.$refs.timer
         board.slots = this.deserializeBoardSkeleton(response.data.board_skeleton)
         board.countFilledSlots()
         board.lockSlots()
+        this.loadingBoard = false
         timer.start()
       })
-      .catch((error) => {})
+      .catch((error) => {
+        console.error(error)
+      })
   }
 }
 </script>
+
+<style scoped lang="stylus">
+.progressSpinner
+  position fixed
+  display inline-block
+  margin calc(50vh - 155px) auto 0 auto
+  left 0
+  right 0
+  z-index 999
+</style>
