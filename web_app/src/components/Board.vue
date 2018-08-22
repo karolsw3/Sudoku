@@ -39,7 +39,7 @@ export default {
     mutateSelectedSlot (newValue) {
       if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
         this.slots[this.selectedSlot.x][this.selectedSlot.y] = newValue
-      }      
+      }
     },
     keydown (e) {
       if (this.$router.currentRoute.name === 'play') {
@@ -193,16 +193,19 @@ export default {
     display grid
     box-sizing border-box
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
-    border 2px solid #e9e9e9
+    padding 2px
+    border-radius 5px
+    background #e9e9e9
     &--main
-      width 404px
-      height 404px
-      border 2px solid #e9e9e9
+      width 504px
+      height 504px
       border-radius 6px
+      border none
+      background #fafafa
+      grid-gap 12px
   &__slot
-    display flex
-    align-items center
-    justify-content center
+    display block
+    position relative
     background white
     box-sizing border-box
     width 100%
@@ -210,15 +213,21 @@ export default {
     max-height 100%
     max-width 100%
     text-align center
-    font-weight 700
+    font-weight 900
+    font-size 20px
     color #123ffc
     cursor pointer
     transition-duration .12s
+    border 2px solid #e9e9e9
+    p
+      position absolute
+      top -5px
+      left 0
+      right 0
     &:hover
       background #e6e8eb
     &--selected
-      border 3px solid
-      border-radius 1px
+      border 2px solid
     &--locked
       background #f5f5f5 !important
       color #333 !important

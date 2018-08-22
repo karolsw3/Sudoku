@@ -1,6 +1,6 @@
 <template lang="pug">
 .Timer
-  p {{compHours}}h {{compMinutes}}m {{compSeconds}}s {{compMiliseconds}}ms
+  p {{compHours}}h {{compMinutes}}m {{compSeconds}}s
 </template>
 
 <script>
@@ -53,4 +53,5 @@ export default {
   font-size 20px
   color #ddd
   text-align center
+  font-family 'Open Sans'
 </style>

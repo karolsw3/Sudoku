@@ -106,7 +106,7 @@ export default {
     align-items center
     transition-duration .2s
     box-shadow 0 0 20px rgba(0, 0, 0, .5)
-    z-index 2
+    z-index 999
 .stats
   padding 20px
   cursor default

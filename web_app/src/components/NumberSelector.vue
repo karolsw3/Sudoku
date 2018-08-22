@@ -23,6 +23,10 @@ export default {
   width 100%
   height 40px
   display flex
+  font-weight 900
+  font-family 'Open Sans'
+  justify-content center
+  align-items center
   &__slot
     width auto
 </style>
