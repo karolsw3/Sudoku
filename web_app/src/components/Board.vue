@@ -3,7 +3,7 @@
   slot
   .Board__grid.Board__grid--main
     template(v-for="i in 3")
-      .Board__grid(v-for="j in 3")
+      .Board__grid(v-for="j in 3" :class="getOnValidationClass()")
         template(v-for="x in 3")
           .Board__slot(
             v-for="y in 3"
@@ -25,7 +25,8 @@ export default {
         x: 0,
         y: 0
       },
-      shiftPressed: false
+      shiftPressed: false,
+      isFilled: false
     }
   },
   created () {
@@ -144,6 +145,8 @@ export default {
     checkIfBoardIsFullyFilled () {
       if (this.filledSlots === 3 * 3 * 9) {
         // Make an axios request to send the board state
+        console.log('Board has been filled')
+        this.isFilled = true
       }
     },
     getSlotX (i, j, x, y) {
@@ -157,6 +160,16 @@ export default {
     },
     getLockedClass (i, j, x, y) {
       return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
+    },
+    getOnValidationClass () {
+      if (!this.isFilled) {
+        return ''
+      }
+      if (this.isValid()) {
+        return 'Board__grid--valid'
+      } else {
+        return 'Board__grid--invalid'
+      }
     },
     lockSlots () { // Locks all currently filled slots
       for (let row in this.slots) {
@@ -176,7 +189,7 @@ export default {
         }
       }
     },
-    boardIsValid () {
+    isValid () {
       // This is why I love coding..
       return (this.columnsAreValid() && this.rowsAreValid() && this.gridsAreValid())
     },
@@ -250,6 +263,10 @@ export default {
       border none
       background #fafafa
       grid-gap 12px
+    &--valid
+      box-shadow 0 0 3px 1px #44ff75
+    &--invalid
+      box-shadow 0 0 3px 1px #ff4455
   &__slot
     display block
     position relative
