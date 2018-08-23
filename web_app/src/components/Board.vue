@@ -158,11 +158,11 @@ export default {
     getLockedClass (i, j, x, y) {
       return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
     },
-    lockSlots () { // locks all currently filled slots
+    lockSlots () { // Locks all currently filled slots
       for (let row in this.slots) {
         for (let column in this.slots) {
           if (this.slots[row][column] > 0) {
-            this.slots[row][column] += 10 // If value is greater than > 10 it means that the slot is locked
+            this.slots[row][column] += 10 // If value is greater than > 10 that means that the slot is locked
           }
         }
       }
@@ -175,6 +175,53 @@ export default {
           }
         }
       }
+    },
+    boardIsValid () {
+      // This is why I love coding..
+      return (this.columnsAreValid() && this.rowsAreValid() && this.gridsAreValid())
+    },
+    columnsAreValid () {
+      // Lemme check for any repeating numbers..
+      for (let row in this.slots) {
+        let occuringNumbers = new Set()
+        for (let column in this.slots) {
+          if (occuringNumbers.has(this.slots[row][column]) || occuringNumbers.has(0)) {
+            return false
+          }
+          occuringNumbers.add(this.slots[row][column])
+        }
+      }
+      return true
+    },
+    rowsAreValid () {
+      // Same story here
+      for (let row in this.slots) {
+        let occuringNumbers = new Set()
+        for (let column in this.slots) {
+          if (occuringNumbers.has(this.slots[column][row]) || occuringNumbers.has(0)) {
+            return false
+          }
+          occuringNumbers.add(this.slots[column][row])
+        }
+      }
+      return true
+    },
+    gridsAreValid () {
+      // Avoid triple loops they said... but what about quadruple ones?
+      for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+          let occuringNumbers = new Set()
+          for (let x = 0; x < 3; x++) {
+            for (let y = 0; y < 3; y++) {
+              if (occuringNumbers.has(this.slots[i * 3 + x][j * 3 + y]) || occuringNumbers.has(0)) {
+                return false
+              }
+              occuringNumbers.add(this.slots[i * 3 + x][j * 3 + y])
+            }
+          }
+        }
+      }
+      return true
     }
   }
 }

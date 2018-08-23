@@ -31,7 +31,7 @@ export default {
     },
     deserializeBoardSkeleton (boardSkeleton) {
       let boardMatrix = Array(9).fill().map(() => Array(9).fill(0))
-      boardSkeleton.split("").map((number, index) => {
+      boardSkeleton.split('').map((number, index) => {
         if (number === '.') number = 0
         else number = parseInt(number)
         boardMatrix[Math.floor(index / 9)][index % 9] = number
@@ -44,13 +44,10 @@ export default {
       switch (this.difficulty) {
         case 'easy':
           return 1
-          break
         case 'medium':
           return 2
-          break
         case 'hard':
           return 3
-          break
         default:
           return 1
       }
