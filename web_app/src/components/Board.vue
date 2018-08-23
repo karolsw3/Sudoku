@@ -285,13 +285,13 @@ export default {
     border 2px solid #e9e9e9
     p
       position absolute
-      top -5px
+      top -7px
       left 0
       right 0
     &:hover
       background #e6e8eb
     &--selected
-      border 2px solid
+      box-shadow inset 0 0 0 3px
     &--locked
       background #f5f5f5 !important
       color #333 !important
