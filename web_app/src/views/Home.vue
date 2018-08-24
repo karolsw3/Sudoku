@@ -41,6 +41,10 @@ export default {
   align-items center
   justify-content center
   box-sizing border-box
+  background url('../../../images/background.svg')
+  background-position bottom
+  background-repeat repeat-x
+  background-size 1300px
 .dashboard
   position relative
   margin 0 auto
