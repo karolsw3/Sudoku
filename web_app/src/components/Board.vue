@@ -39,7 +39,7 @@ export default {
     },
     mutateSelectedSlot (newValue) {
       if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
-        this.slots[this.selectedSlot.x][this.selectedSlot.y] = newValue
+        this.slots[this.selectedSlot.x][this.selectedSlot.y] = parseInt(newValue)
       }
     },
     keydown (e) {
@@ -145,8 +145,11 @@ export default {
     checkIfBoardIsFullyFilled () {
       if (this.filledSlots === 3 * 3 * 9) {
         // Make an axios request to send the board state
-        console.log('Board has been filled')
         this.isFilled = true
+        if (this.isValid() || true) {
+          // Inform parent that the board is ready to be sent to the server
+          this.$emit('board-is-valid', this.slots)
+        }
       }
     },
     getSlotX (i, j, x, y) {
