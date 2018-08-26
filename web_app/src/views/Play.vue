@@ -22,7 +22,9 @@ export default {
   props: ['difficulty'],
   data: function () {
     return {
-      'loadingBoard': true
+      'loadingBoard': true,
+      'boardId': 0,
+      'boardSkeleton' : ''
     }
   },
   methods: {
@@ -54,23 +56,15 @@ export default {
       return serializedBoard
     },
     submitBoard (board) {
-      let data = {
-        solved_board: this.serializeBoardSkeleton(board)
-      }
       var xhr = new XMLHttpRequest()
       xhr.open('POST', '/api/v1/play/submit', true)
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
       xhr.onload = (response) => {
         this.loading = false
         switch (response.target.status) {
-          case 404:
+          case 412:
             this.error = true
-            this.errorMessage = '404 - Don\'t panic! Just a minor issue with lack of any server at all'
-            break
-          case 409:
-            // Unauthorized
-            this.error = true
-            this.errorMessage = '409 - Shouldn\'t you be logged to do this?'
+            this.errorMessage = 'Cheater!'
             break
           case 201:
             // Success
@@ -79,7 +73,7 @@ export default {
             break
         }
       }
-      xhr.send('data=' + base64.encode(JSON.stringify(data)))
+      xhr.send('board_id=' + this.boardId + '&board_skeleton=' + this.boardSkeleton + '&solved_board=' + this.serializeBoardSkeleton(board))
     }
   },
   computed: {
@@ -103,6 +97,8 @@ export default {
         let board = this.$refs.board
         let timer = this.$refs.timer
         board.slots = this.deserializeBoardSkeleton(response.data.board_skeleton)
+        this.boardSkeleton = response.data.board_skeleton
+        this.boardId = response.data.board_id
         board.countFilledSlots()
         board.lockSlots()
         this.loadingBoard = false
