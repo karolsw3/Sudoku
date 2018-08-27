@@ -2,7 +2,7 @@
   .play
     .progressSpinner
       md-progress-spinner(v-if='loadingBoard' md-mode="indeterminate")
-    Board(ref='board')
+    Board(ref='board' v-on:board-is-valid="submitBoard")
       Timer(ref='timer')
       NumberSelector(@numberSelected='numberSelected')
 </template>
@@ -12,6 +12,7 @@ import Board from '@/components/Board.vue'
 import NumberSelector from '@/components/NumberSelector.vue'
 import Timer from '@/components/Timer.vue'
 import axios from 'axios'
+import base64 from 'base-64'
 
 export default {
   name: 'play',
@@ -21,7 +22,9 @@ export default {
   props: ['difficulty'],
   data: function () {
     return {
-      'loadingBoard': true
+      'loadingBoard': true,
+      'boardId': 0,
+      'boardSkeleton' : ''
     }
   },
   methods: {
@@ -37,6 +40,40 @@ export default {
         boardMatrix[Math.floor(index / 9)][index % 9] = number
       })
       return boardMatrix
+    },
+    serializeBoardSkeleton (boardSkeleton) {
+      let serializedBoard = ''
+      let board = this.$refs.board
+      for (let row in board.slots) {
+        for (let column in board.slots) {
+          if (board.slots[row][column] % 10 === 0) {
+            serializedBoard += '3'
+          } else {
+            serializedBoard += board.slots[row][column] % 10
+          }
+        }
+      }
+      return serializedBoard
+    },
+    submitBoard (board) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('POST', '/api/v1/play/submit', true)
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+      xhr.onload = (response) => {
+        this.loading = false
+        switch (response.target.status) {
+          case 412:
+            this.error = true
+            this.errorMessage = 'Cheater!'
+            break
+          case 201:
+            // Success
+            let responseData = JSON.parse(response.target.response)
+            console.log(responseData)
+            break
+        }
+      }
+      xhr.send('board_id=' + this.boardId + '&board_skeleton=' + this.boardSkeleton + '&solved_board=' + this.serializeBoardSkeleton(board))
     }
   },
   computed: {
@@ -60,6 +97,8 @@ export default {
         let board = this.$refs.board
         let timer = this.$refs.timer
         board.slots = this.deserializeBoardSkeleton(response.data.board_skeleton)
+        this.boardSkeleton = response.data.board_skeleton
+        this.boardId = response.data.board_id
         board.countFilledSlots()
         board.lockSlots()
         this.loadingBoard = false
