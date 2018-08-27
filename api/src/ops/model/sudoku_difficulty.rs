@@ -97,14 +97,14 @@ impl BoardDifficulty {
     ///
     /// ```
     /// # use sudoku_backend::ops::BoardDifficulty;
-    /// assert_eq!(BoardDifficulty::Easy.additional_squares(), 5);
-    /// assert_eq!(BoardDifficulty::Medium.additional_squares(), 2);
+    /// assert_eq!(BoardDifficulty::Easy.additional_squares(), 22);
+    /// assert_eq!(BoardDifficulty::Medium.additional_squares(), 11);
     /// assert_eq!(BoardDifficulty::Hard.additional_squares(), 0);
     /// ```
     pub fn additional_squares(&self) -> usize {
         match self {
-            BoardDifficulty::Easy => 5,
-            BoardDifficulty::Medium => 2,
+            BoardDifficulty::Easy => 22,
+            BoardDifficulty::Medium => 11,
             BoardDifficulty::Hard => 0,
         }
     }
