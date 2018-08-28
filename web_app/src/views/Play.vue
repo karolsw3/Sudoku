@@ -82,6 +82,7 @@ export default {
               difficulty: responseData.difficulty,
               score: responseData.score
             }
+            this.$refs.timer.stop()
             this.$store.commit('addPoints', this.summary.score)
             break
         }
