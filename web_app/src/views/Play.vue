@@ -1,7 +1,8 @@
 <template lang="pug">
   .play
     .progressSpinner
-      md-progress-spinner(v-if='loadingBoard' md-mode="indeterminate")
+      md-progress-spinner(v-if='loading' md-mode="indeterminate")
+    GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false')
     Board(ref='board' v-on:board-is-valid="submitBoard")
       Timer(ref='timer')
       NumberSelector(@numberSelected='numberSelected')
@@ -10,21 +11,27 @@
 <script>
 import Board from '@/components/Board.vue'
 import NumberSelector from '@/components/NumberSelector.vue'
+import GameSummary from '@/components/GameSummary.vue'
 import Timer from '@/components/Timer.vue'
 import axios from 'axios'
-import base64 from 'base-64'
 
 export default {
   name: 'play',
   components: {
-    Board, NumberSelector, Timer
+    Board, NumberSelector, Timer, GameSummary
   },
   props: ['difficulty'],
   data: function () {
     return {
-      'loadingBoard': true,
-      'boardId': 0,
-      'boardSkeleton' : ''
+      loading: true,
+      boardId: 0,
+      boardSkeleton: '',
+      summary: {
+        show: false,
+        solutionDuration: 0,
+        difficulty: '',
+        score: 0
+      }
     }
   },
   methods: {
@@ -47,7 +54,7 @@ export default {
       for (let row in board.slots) {
         for (let column in board.slots) {
           if (board.slots[row][column] % 10 === 0) {
-            serializedBoard += '3'
+            serializedBoard += '.'
           } else {
             serializedBoard += board.slots[row][column] % 10
           }
@@ -56,6 +63,7 @@ export default {
       return serializedBoard
     },
     submitBoard (board) {
+      this.loading = true
       var xhr = new XMLHttpRequest()
       xhr.open('POST', '/api/v1/play/submit', true)
       xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
@@ -66,10 +74,15 @@ export default {
             this.error = true
             this.errorMessage = 'Cheater!'
             break
-          case 201:
+          case 200:
             // Success
             let responseData = JSON.parse(response.target.response)
-            console.log(responseData)
+            this.summary = {
+              show: true,
+              solutionDuration: responseData.solution_duration_secs,
+              difficulty: responseData.difficulty,
+              score: responseData.score
+            }
             break
         }
       }
@@ -101,7 +114,7 @@ export default {
         this.boardId = response.data.board_id
         board.countFilledSlots()
         board.lockSlots()
-        this.loadingBoard = false
+        this.loading = false
         timer.start()
       })
       .catch((error) => {

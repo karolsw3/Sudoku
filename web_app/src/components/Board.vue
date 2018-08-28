@@ -141,7 +141,7 @@ export default {
       newSlotValue = parseInt(newSlotValue)
       if (newSlotValue > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] === 0) {
         this.filledSlots++
-      } else if (newSlotValue === 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10){
+      } else if (newSlotValue === 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) {
         this.filledSlots--
       }
     },
@@ -149,7 +149,7 @@ export default {
       if (this.filledSlots === 3 * 3 * 9) {
         // Make an axios request to send the board state
         this.isFilled = true
-        if (this.isValid() || true) {
+        if (this.isValid()) {
           // Inform parent that the board is ready to be sent to the server
           this.$emit('board-is-valid', this.slots)
         }
