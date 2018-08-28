@@ -71,8 +71,7 @@ export default {
         this.loading = false
         switch (response.target.status) {
           case 412:
-            this.error = true
-            this.errorMessage = 'Cheater!'
+            // That's the thing that shouldn't be
             break
           case 200:
             // Success
@@ -83,6 +82,7 @@ export default {
               difficulty: responseData.difficulty,
               score: responseData.score
             }
+            this.$store.commit('addPoints', this.summary.score)
             break
         }
       }

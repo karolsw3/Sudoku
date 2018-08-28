@@ -47,6 +47,9 @@ const store = new Vuex.Store({
       state.user.email = ''
       state.user.pointsTotal = 0
       state.user.isAdmin = false
+    },
+    addPoints (state, payload) {
+      state.user.pointsTotal += payload
     }
   }
 })
