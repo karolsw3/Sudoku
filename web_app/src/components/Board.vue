@@ -47,6 +47,7 @@ export default {
         if (!isNaN(e.key)) {
           this.checkIfSlotHasBeenFilled(e.key)
           this.mutateSelectedSlot(e.key)
+          this.checkIfBoardIsFullyFilled()
         }
         switch (e.key) {
           case 'h':
@@ -137,9 +138,11 @@ export default {
       }
     },
     checkIfSlotHasBeenFilled (newSlotValue) {
+      newSlotValue = parseInt(newSlotValue)
       if (newSlotValue > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] === 0) {
         this.filledSlots++
-        this.checkIfBoardIsFullyFilled()
+      } else if (newSlotValue === 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10){
+        this.filledSlots--
       }
     },
     checkIfBoardIsFullyFilled () {
