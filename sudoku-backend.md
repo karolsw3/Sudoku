@@ -1,32 +1,58 @@
-sudoku-backend(1) -- Generate a blogue from Markdown (again)
-============================================================
+sudoku-backend(1) -- Back-end of the "modern, API-based sudoku app"
+===================================================================
 
 ## SYNOPSIS
 
-`sudoku-backend` [OPTIONS]
+`sudoku-backend` [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE]
 
 ## DESCRIPTION
 
-The back-end of the "modern, API-based sudoku app".
+The back-end of the "modern, API-based sudoku app",
+separate from the server for the front-end.
 
-<!-- Exit values and possible errors:
-
-    1 - I/O error
-    2 - parsing error
-    3 - file not found
-    4 - file in wrong state
-    5 - incorrect amount of elements
-    6 - required element missing -->
+This document is only concerned with configuring the behaviour
+of the "game"/"server" layer. For configuring the hosting layer, consult
+[the Rocket.rs guide](https://rocket.rs/guide/configuration).
 
 ## OPTIONS
 
-<!--   IN_DIR
+   [DATABASE_FILE]
 
-    File to parse, must exist, must comply with the DESCRIPTOR FORMAT.
+    The file in which to store the database, parent directory must exist.
 
-  OUT_DIR
+    Default: ./sudoku-backend.db.
 
-    File to write the book to, parent directory needn't exist. -->
+  [LEADERBOARD_SETTINGS_FILE]
+
+    Optional file from which to load the leaderboard settings.
+
+    Consult LEADERBOARD SETTINGS for more details
+
+    If not present, defaults to ./leaderboard.toml, if exists,
+    then to builtin defaults.
+
+## LEADERBOARD SETTINGS
+
+The leaderboard settings are stored in TOML format, like so
+(this configuration is also the defaults):
+
+```toml
+[default]
+count = 10
+ordering = 'best_to_worst'
+
+[max]
+count = 42
+ordering = 'best_to_worst'
+```
+
+Both `default` and `max` have the same format:
+
+  * `count` – positive integer – how many entries to return
+  * `ordering` – enum, either `'best_to_worst'`, or `'worst_to_best'` –
+                 which results to obtain, and how to sort them afterward
+
+In the `max` sexion, the `ordering` key is unused (but must still be valid).
 
 ## AUTHOR
 

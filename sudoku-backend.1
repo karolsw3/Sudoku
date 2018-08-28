@@ -1,18 +1,85 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "SUDOKU\-BACKEND" "1" "July 2018" "Galactim" ""
+.TH "SUDOKU\-BACKEND" "1" "August 2018" "Galactim" ""
 .
 .SH "NAME"
-\fBsudoku\-backend\fR \- Generate a blogue from Markdown (again)
+\fBsudoku\-backend\fR \- Back\-end of the "modern, API\-based sudoku app"
 .
 .SH "SYNOPSIS"
-\fBsudoku\-backend\fR \fIOPTIONS\fR
+\fBsudoku\-backend\fR [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE]
 .
 .SH "DESCRIPTION"
-The back\-end of the "modern, API\-based sudoku app"\.
+The back\-end of the "modern, API\-based sudoku app", separate from the server for the front\-end\.
+.
+.P
+This document is only concerned with configuring the behaviour of the "game"/"server" layer\. For configuring the hosting layer, consult the Rocket\.rs guide \fIhttps://rocket\.rs/guide/configuration\fR\.
 .
 .SH "OPTIONS"
+[DATABASE_FILE]
+.
+.IP "" 4
+.
+.nf
+
+The file in which to store the database, parent directory must exist\.
+
+Default: \./sudoku\-backend\.db\.
+.
+.fi
+.
+.IP "" 0
+.
+.P
+[LEADERBOARD_SETTINGS_FILE]
+.
+.IP "" 4
+.
+.nf
+
+Optional file from which to load the leaderboard settings\.
+
+Consult LEADERBOARD SETTINGS for more details
+
+If not present, defaults to \./leaderboard\.toml, if exists,
+then to builtin defaults\.
+.
+.fi
+.
+.IP "" 0
+.
+.SH "LEADERBOARD SETTINGS"
+The leaderboard settings are stored in TOML format, like so (this configuration is also the defaults):
+.
+.IP "" 4
+.
+.nf
+
+[default]
+count = 10
+ordering = \'best_to_worst\'
+
+[max]
+count = 42
+ordering = \'best_to_worst\'
+.
+.fi
+.
+.IP "" 0
+.
+.P
+Both \fBdefault\fR and \fBmax\fR have the same format:
+.
+.IP "\(bu" 4
+\fBcount\fR – positive integer – how many entries to return
+.
+.IP "\(bu" 4
+\fBordering\fR – enum, either \fB\'best_to_worst\'\fR, or \fB\'worst_to_best\'\fR – which results to obtain, and how to sort them afterward
+.
+.IP "" 0
+.
+.P
+In the \fBmax\fR sexion, the \fBordering\fR key is unused (but must still be valid)\.
 .
 .SH "AUTHOR"
 Written by nabijaczleweli <\fInabijaczleweli@gmail\.com\fR>
