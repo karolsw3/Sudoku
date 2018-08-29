@@ -355,6 +355,11 @@
 <span id="355">355</span>
 <span id="356">356</span>
 <span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
 </pre><pre class="rust ">
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">check</span> {
     <span class="doccomment">//! # Data extraxion</span>
@@ -680,9 +685,14 @@
     <span class="doccomment">//!     created_at   DATETIME NOT NULL,           -- Time user was created</span>
     <span class="doccomment">//!     is_admin     BOOLEAN NOT NULL DEFAULT 0,  -- Whether the user has administrative privileges</span>
     <span class="doccomment">//!     points_total INTEGER NOT NULL DEFAULT 0,  -- Sum total of the user&#39;s points, calculated according to sudoku.md#scoring-formula, non-negative</span>
+    <span class="doccomment">//!     games_total  INTEGER NOT NULL DEFAULT 0,  -- Amount of games played, non-negative</span>
     <span class="doccomment">//! </span>
-    <span class="doccomment">//!     CHECK (points_total &gt;= 0)</span>
+    <span class="doccomment">//!     CHECK ((points_total &gt;= 0) AND (games_total &gt;= 0))</span>
     <span class="doccomment">//! );</span>
+    <span class="doccomment">//! </span>
+    <span class="doccomment">//! ALTER TABLE users</span>
+    <span class="doccomment">//! ADD games_total INTEGER NOT NULL DEFAULT 0</span>
+    <span class="doccomment">//! CONSTRAINT CHECK  (games_total &gt;= 0);</span>
     <span class="doccomment">//! ```</span>
     <span class="doccomment">//! </span>
     <span class="doccomment">//! ## Sanitised User data</span>
@@ -690,10 +700,10 @@
     <span class="doccomment">//! ```json</span>
     <span class="doccomment">//! {</span>
     <span class="doccomment">//!     &quot;username&quot;:     &quot;string&quot;,</span>
-    <span class="doccomment">//!     &quot;email&quot;:        &quot;string&quot;,</span>
     <span class="doccomment">//!     &quot;created_at&quot;:   &quot;RFC3339 (string)&quot;,</span>
     <span class="doccomment">//!     &quot;is_admin&quot;:     &quot;boolean&quot;,</span>
-    <span class="doccomment">//!     &quot;points_total&quot;: &quot;number&quot;</span>
+    <span class="doccomment">//!     &quot;points_total&quot;: &quot;number&quot;,</span>
+    <span class="doccomment">//!     &quot;games_total&quot;:  &quot;number&quot;</span>
     <span class="doccomment">//! }</span>
     <span class="doccomment">//! ```</span>
     <span class="doccomment">//! </span>

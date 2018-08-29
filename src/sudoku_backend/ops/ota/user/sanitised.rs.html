@@ -61,6 +61,7 @@
 <span id="61">61</span>
 <span id="62">62</span>
 <span id="63">63</span>
+<span id="64">64</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="self">self</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">User</span>;
 <span class="kw">use</span> <span class="ident">chrono</span>::{<span class="ident">FixedOffset</span>, <span class="ident">DateTime</span>};
@@ -86,22 +87,20 @@
 <span class="doccomment">///                created_at: NaiveDate::from_ymd(2018, 7, 7).and_hms(17, 6, 29),</span>
 <span class="doccomment">///                is_admin: true,</span>
 <span class="doccomment">///                points_total: 1750,</span>
+<span class="doccomment">///                games_total: 3,</span>
 <span class="doccomment">///            }),</span>
 <span class="doccomment">///            SanitisedUserData {</span>
 <span class="doccomment">///                username: &quot;karolsw3&quot;.to_string(),</span>
-<span class="doccomment">///                email: &quot;karol.sw3@gmail.com&quot;.to_string(),</span>
 <span class="doccomment">///                created_at: DateTime::parse_from_rfc3339(&quot;2018-07-07T17:06:29Z&quot;).unwrap(),</span>
 <span class="doccomment">///                is_admin: true,</span>
 <span class="doccomment">///                points_total: 1750,</span>
+<span class="doccomment">///                games_total: 3,</span>
 <span class="doccomment">///            });</span>
 <span class="doccomment">/// ```</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Serialize</span>, <span class="ident">Deserialize</span>, <span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Hash</span>, <span class="ident">Eq</span>, <span class="ident">PartialEq</span>, <span class="ident">Ord</span>, <span class="ident">PartialOrd</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SanitisedUserData</span> {
     <span class="doccomment">/// User&#39;s name or &quot;login&quot; or whatever.</span>
     <span class="kw">pub</span> <span class="ident">username</span>: <span class="ident">String</span>,
-
-    <span class="doccomment">/// User&#39;s contact e-mail</span>
-    <span class="kw">pub</span> <span class="ident">email</span>: <span class="ident">String</span>,
 
     <span class="doccomment">/// Time user was created.</span>
     <span class="kw">pub</span> <span class="ident">created_at</span>: <span class="ident">DateTime</span><span class="op">&lt;</span><span class="ident">FixedOffset</span><span class="op">&gt;</span>,
@@ -112,16 +111,19 @@
     <span class="doccomment">/// Sum total of the user&#39;s points, calculated according to</span>
     <span class="doccomment">/// [`doc/scoring.md#endgame-formula`](../doc/scoring/#endgame-formula).</span>
     <span class="kw">pub</span> <span class="ident">points_total</span>: <span class="ident">u64</span>,
+
+    <span class="doccomment">/// Amount of games played.</span>
+    <span class="kw">pub</span> <span class="ident">games_total</span>: <span class="ident">u64</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">From</span><span class="op">&lt;</span><span class="ident">User</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">SanitisedUserData</span> {
     <span class="kw">fn</span> <span class="ident">from</span>(<span class="ident">u</span>: <span class="ident">User</span>) <span class="op">-&gt;</span> <span class="ident">SanitisedUserData</span> {
         <span class="ident">SanitisedUserData</span> {
             <span class="ident">username</span>: <span class="ident">u</span>.<span class="ident">username</span>,
-            <span class="ident">email</span>: <span class="ident">u</span>.<span class="ident">email</span>,
             <span class="ident">created_at</span>: <span class="ident">DateTime</span>::<span class="ident">from_utc</span>(<span class="ident">u</span>.<span class="ident">created_at</span>, <span class="ident">FixedOffset</span>::<span class="ident">east</span>(<span class="number">0</span>)),
             <span class="ident">is_admin</span>: <span class="ident">u</span>.<span class="ident">is_admin</span>,
             <span class="ident">points_total</span>: <span class="ident">u</span>.<span class="ident">points_total</span> <span class="kw">as</span> <span class="ident">u64</span>, <span class="comment">// CHECKed to be &gt;=0</span>
+            <span class="ident">games_total</span>: <span class="ident">u</span>.<span class="ident">games_total</span> <span class="kw">as</span> <span class="ident">u64</span>, <span class="comment">// CHECKed to be &gt;=0</span>
         }
     }
 }
