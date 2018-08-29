@@ -1,6 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `chrono` crate."><meta name="keywords" content="rust, rustlang, rust-lang, chrono"><title>chrono - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Crate chrono</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#traits">Traits</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'chrono', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/chrono/lib.rs.html#4-998' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>chrono</a></span></h1><div class='docblock'><h1 id="chrono-040" class="section-header"><a href="#chrono-040">Chrono 0.4.0</a></h1>
-<p>Date and time handling for Rust.
-It aims to be a feature-complete superset of
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `chrono` crate."><meta name="keywords" content="rust, rustlang, rust-lang, chrono"><title>chrono - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Crate chrono</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#traits">Traits</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'chrono', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/chrono/lib.rs.html#4-994' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>chrono</a></span></h1><div class='docblock'><h1 id="chrono-date-and-time-for-rust" class="section-header"><a href="#chrono-date-and-time-for-rust">Chrono: Date and Time for Rust</a></h1>
+<p>It aims to be a feature-complete superset of
 the <a href="https://github.com/rust-lang-deprecated/time">time</a> library.
 In particular,</p>
 <ul>
@@ -23,19 +22,11 @@ the <a href="https://github.com/chronotope/chrono/blob/master/CHANGELOG.md"><cod
 <pre><code class="language-toml">[dependencies]
 chrono = &quot;0.4&quot;
 </code></pre>
-<p>Or, if you want <a href="https://github.com/serde-rs/serde">Serde</a> or
-<a href="https://github.com/rust-lang-nursery/rustc-serialize">rustc-serialize</a> support,
-include the features like this:</p>
+<p>Or, if you want <a href="https://github.com/serde-rs/serde">Serde</a> include the
+feature like this:</p>
 <pre><code class="language-toml">[dependencies]
-chrono = { version = &quot;0.4&quot;, features = [&quot;serde&quot;, &quot;rustc-serialize&quot;] }
+chrono = { version = &quot;0.4&quot;, features = [&quot;serde&quot;] }
 </code></pre>
-<blockquote>
-<p>Note that Chrono's support for rustc-serialize is now considered deprecated.
-Starting from 0.4.0 there is no further guarantee that
-the features available in Serde will be also available to rustc-serialize,
-and the support can be removed in any future major version.
-<strong>Rustc-serialize users are strongly recommended to migrate to Serde.</strong></p>
-</blockquote>
 <p>Then put this in your crate root:</p>
 
 <pre class="rust rust-example-rendered">
@@ -47,7 +38,7 @@ If you prefer the glob imports, use the following instead:</p>
 <span class="kw">use</span> <span class="ident">chrono</span>::<span class="ident">prelude</span>::<span class="kw-2">*</span>;</pre>
 <h2 id="overview" class="section-header"><a href="#overview">Overview</a></h2><h3 id="duration" class="section-header"><a href="#duration">Duration</a></h3>
 <p>Chrono currently uses
-the <a href="https://doc.rust-lang.org/time/time/struct.Duration.html"><code>time::Duration</code></a> type
+the <a href="https://docs.rs/time/0.1.40/time/struct.Duration.html"><code>time::Duration</code></a> type
 from the <code>time</code> crate to represent the magnitude of a time span.
 Since this has the same name to the newer, standard type for duration,
 the reference will refer this type as <code>OldDuration</code>.
@@ -55,12 +46,12 @@ Note that this is an &quot;accurate&quot; duration represented as seconds and
 nanoseconds and does not represent &quot;nominal&quot; components such as days or
 months.</p>
 <p>Chrono does not yet natively support
-the standard <a href="https://doc.rust-lang.org/std/time/struct.Duration.html"><code>Duration</code></a> type,
+the standard <a href="https://docs.rs/time/0.1.40/time/struct.Duration.html"><code>Duration</code></a> type,
 but it will be supported in the future.
 Meanwhile you can convert between two types with
-<a href="https://doc.rust-lang.org/time/time/struct.Duration.html#method.from_std"><code>Duration::from_std</code></a>
+<a href="https://docs.rs/time/0.1.40/time/struct.Duration.html#method.from_std"><code>Duration::from_std</code></a>
 and
-<a href="https://doc.rust-lang.org/time/time/struct.Duration.html#method.to_std"><code>Duration::to_std</code></a>
+<a href="https://docs.rs/time/0.1.40/time/struct.Duration.html#method.to_std"><code>Duration::to_std</code></a>
 methods.</p>
 <h3 id="date-and-time" class="section-header"><a href="#date-and-time">Date and Time</a></h3>
 <p>Chrono provides a
@@ -195,7 +186,11 @@ for well-known formats.</p>
 <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">dt</span>.<span class="ident">to_string</span>(), <span class="string">&quot;2014-11-28 12:00:09 UTC&quot;</span>);
 <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">dt</span>.<span class="ident">to_rfc2822</span>(), <span class="string">&quot;Fri, 28 Nov 2014 12:00:09 +0000&quot;</span>);
 <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">dt</span>.<span class="ident">to_rfc3339</span>(), <span class="string">&quot;2014-11-28T12:00:09+00:00&quot;</span>);
-<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">dt</span>), <span class="string">&quot;2014-11-28T12:00:09Z&quot;</span>);</pre>
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">dt</span>), <span class="string">&quot;2014-11-28T12:00:09Z&quot;</span>);
+
+<span class="comment">// Note that milli/nanoseconds are only printed if they are non-zero</span>
+<span class="kw">let</span> <span class="ident">dt_nano</span> <span class="op">=</span> <span class="ident">Utc</span>.<span class="ident">ymd</span>(<span class="number">2014</span>, <span class="number">11</span>, <span class="number">28</span>).<span class="ident">and_hms_nano</span>(<span class="number">12</span>, <span class="number">0</span>, <span class="number">9</span>, <span class="number">1</span>);
+<span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">format</span><span class="macro">!</span>(<span class="string">&quot;{:?}&quot;</span>, <span class="ident">dt_nano</span>), <span class="string">&quot;2014-11-28T12:00:09.000000001Z&quot;</span>);</pre>
 <p>Parsing can be done with three methods:</p>
 <ol>
 <li>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/ryu-0.2.4/src/d2s.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>d2s.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/ryu-0.2.6/src/d2s.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>d2s.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -551,6 +551,34 @@
 <span id="551">551</span>
 <span id="552">552</span>
 <span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
 </pre><pre class="rust ">
 <span class="comment">// Translated from C to Rust. The original C code can be found at</span>
 <span class="comment">// https://github.com/ulfjack/ryu and carries the following license:</span>
@@ -580,8 +608,7 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;small&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">d2s_small_table</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident">digit_table</span>::<span class="kw-2">*</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">not</span>(<span class="ident">integer128</span>))]</span>
-<span class="kw">use</span> <span class="ident">mulshift128</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident">d2s_intrinsics</span>::<span class="kw-2">*</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;no-panic&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident">no_panic</span>::<span class="ident">no_panic</span>;
@@ -597,8 +624,8 @@
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">count</span> <span class="op">=</span> <span class="number">0u32</span>;
     <span class="kw">loop</span> {
         <span class="macro">debug_assert</span><span class="macro">!</span>(<span class="ident">value</span> <span class="op">!=</span> <span class="number">0</span>);
-        <span class="kw">let</span> <span class="ident">q</span> <span class="op">=</span> <span class="ident">value</span> <span class="op">/</span> <span class="number">5</span>;
-        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> <span class="ident">value</span> <span class="op">%</span> <span class="number">5</span>;
+        <span class="kw">let</span> <span class="ident">q</span> <span class="op">=</span> <span class="ident">div5</span>(<span class="ident">value</span>);
+        <span class="kw">let</span> <span class="ident">r</span> <span class="op">=</span> (<span class="ident">value</span> <span class="op">-</span> <span class="number">5</span> <span class="op">*</span> <span class="ident">q</span>) <span class="kw">as</span> <span class="ident">u32</span>;
         <span class="kw">if</span> <span class="ident">r</span> <span class="op">!=</span> <span class="number">0</span> {
             <span class="kw">break</span>;
         }
@@ -797,7 +824,8 @@
             <span class="comment">// This should use q &lt;= 22, but I think 21 is also safe. Smaller values</span>
             <span class="comment">// may still be safe, but it&#39;s more difficult to reason about them.</span>
             <span class="comment">// Only one of mp, mv, and mm can be a multiple of 5, if any.</span>
-            <span class="kw">if</span> <span class="ident">mv</span> <span class="op">%</span> <span class="number">5</span> <span class="op">==</span> <span class="number">0</span> {
+            <span class="kw">let</span> <span class="ident">mv_mod5</span> <span class="op">=</span> (<span class="ident">mv</span> <span class="op">-</span> <span class="number">5</span> <span class="op">*</span> <span class="ident">div5</span>(<span class="ident">mv</span>)) <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw">if</span> <span class="ident">mv_mod5</span> <span class="op">==</span> <span class="number">0</span> {
                 <span class="ident">vr_is_trailing_zeros</span> <span class="op">=</span> <span class="ident">multiple_of_power_of_5</span>(<span class="ident">mv</span>, <span class="ident">q</span>);
             } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">accept_bounds</span> {
                 <span class="comment">// Same as min(e2 + (~mm &amp; 1), pow5_factor(mm)) &gt;= q</span>
@@ -860,22 +888,38 @@
     <span class="comment">// On average, we remove ~2 digits.</span>
     <span class="kw">let</span> <span class="ident">output</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">vm_is_trailing_zeros</span> <span class="op">||</span> <span class="ident">vr_is_trailing_zeros</span> {
         <span class="comment">// General case, which happens rarely (~0.7%).</span>
-        <span class="kw">while</span> <span class="ident">vp</span> <span class="op">/</span> <span class="number">10</span> <span class="op">&gt;</span> <span class="ident">vm</span> <span class="op">/</span> <span class="number">10</span> {
-            <span class="ident">vm_is_trailing_zeros</span> <span class="op">&amp;=</span> <span class="ident">vm</span> <span class="op">-</span> (<span class="ident">vm</span> <span class="op">/</span> <span class="number">10</span>) <span class="op">*</span> <span class="number">10</span> <span class="op">==</span> <span class="number">0</span>;
+        <span class="kw">loop</span> {
+            <span class="kw">let</span> <span class="ident">vp_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vp</span>);
+            <span class="kw">let</span> <span class="ident">vm_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vm</span>);
+            <span class="kw">if</span> <span class="ident">vp_div10</span> <span class="op">&lt;=</span> <span class="ident">vm_div10</span> {
+                <span class="kw">break</span>;
+            }
+            <span class="kw">let</span> <span class="ident">vm_mod10</span> <span class="op">=</span> (<span class="ident">vm</span> <span class="op">-</span> <span class="number">10</span> <span class="op">*</span> <span class="ident">vm_div10</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="kw">let</span> <span class="ident">vr_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vr</span>);
+            <span class="kw">let</span> <span class="ident">vr_mod10</span> <span class="op">=</span> (<span class="ident">vr</span> <span class="op">-</span> <span class="number">10</span> <span class="op">*</span> <span class="ident">vr_div10</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="ident">vm_is_trailing_zeros</span> <span class="op">&amp;=</span> <span class="ident">vm_mod10</span> <span class="op">==</span> <span class="number">0</span>;
             <span class="ident">vr_is_trailing_zeros</span> <span class="op">&amp;=</span> <span class="ident">last_removed_digit</span> <span class="op">==</span> <span class="number">0</span>;
-            <span class="ident">last_removed_digit</span> <span class="op">=</span> (<span class="ident">vr</span> <span class="op">%</span> <span class="number">10</span>) <span class="kw">as</span> <span class="ident">u8</span>;
-            <span class="ident">vr</span> <span class="op">/=</span> <span class="number">10</span>;
-            <span class="ident">vp</span> <span class="op">/=</span> <span class="number">10</span>;
-            <span class="ident">vm</span> <span class="op">/=</span> <span class="number">10</span>;
+            <span class="ident">last_removed_digit</span> <span class="op">=</span> <span class="ident">vr_mod10</span> <span class="kw">as</span> <span class="ident">u8</span>;
+            <span class="ident">vr</span> <span class="op">=</span> <span class="ident">vr_div10</span>;
+            <span class="ident">vp</span> <span class="op">=</span> <span class="ident">vp_div10</span>;
+            <span class="ident">vm</span> <span class="op">=</span> <span class="ident">vm_div10</span>;
             <span class="ident">removed</span> <span class="op">+=</span> <span class="number">1</span>;
         }
         <span class="kw">if</span> <span class="ident">vm_is_trailing_zeros</span> {
-            <span class="kw">while</span> <span class="ident">vm</span> <span class="op">%</span> <span class="number">10</span> <span class="op">==</span> <span class="number">0</span> {
+            <span class="kw">loop</span> {
+                <span class="kw">let</span> <span class="ident">vm_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vm</span>);
+                <span class="kw">let</span> <span class="ident">vm_mod10</span> <span class="op">=</span> (<span class="ident">vm</span> <span class="op">-</span> <span class="number">10</span> <span class="op">*</span> <span class="ident">vm_div10</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+                <span class="kw">if</span> <span class="ident">vm_mod10</span> <span class="op">!=</span> <span class="number">0</span> {
+                    <span class="kw">break</span>;
+                }
+                <span class="kw">let</span> <span class="ident">vp_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vp</span>);
+                <span class="kw">let</span> <span class="ident">vr_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vr</span>);
+                <span class="kw">let</span> <span class="ident">vr_mod10</span> <span class="op">=</span> (<span class="ident">vr</span> <span class="op">-</span> <span class="number">10</span> <span class="op">*</span> <span class="ident">vr_div10</span>) <span class="kw">as</span> <span class="ident">u32</span>;
                 <span class="ident">vr_is_trailing_zeros</span> <span class="op">&amp;=</span> <span class="ident">last_removed_digit</span> <span class="op">==</span> <span class="number">0</span>;
-                <span class="ident">last_removed_digit</span> <span class="op">=</span> (<span class="ident">vr</span> <span class="op">%</span> <span class="number">10</span>) <span class="kw">as</span> <span class="ident">u8</span>;
-                <span class="ident">vr</span> <span class="op">/=</span> <span class="number">10</span>;
-                <span class="ident">vp</span> <span class="op">/=</span> <span class="number">10</span>;
-                <span class="ident">vm</span> <span class="op">/=</span> <span class="number">10</span>;
+                <span class="ident">last_removed_digit</span> <span class="op">=</span> <span class="ident">vr_mod10</span> <span class="kw">as</span> <span class="ident">u8</span>;
+                <span class="ident">vr</span> <span class="op">=</span> <span class="ident">vr_div10</span>;
+                <span class="ident">vp</span> <span class="op">=</span> <span class="ident">vp_div10</span>;
+                <span class="ident">vm</span> <span class="op">=</span> <span class="ident">vm_div10</span>;
                 <span class="ident">removed</span> <span class="op">+=</span> <span class="number">1</span>;
             }
         }
@@ -889,23 +933,34 @@
     } <span class="kw">else</span> {
         <span class="comment">// Specialized for the common case (~99.3%). Percentages below are relative to this.</span>
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">round_up</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="kw">let</span> <span class="ident">vp_div100</span> <span class="op">=</span> <span class="ident">div100</span>(<span class="ident">vp</span>);
+        <span class="kw">let</span> <span class="ident">vm_div100</span> <span class="op">=</span> <span class="ident">div100</span>(<span class="ident">vm</span>);
         <span class="comment">// Optimization: remove two digits at a time (~86.2%).</span>
-        <span class="kw">if</span> <span class="ident">vp</span> <span class="op">/</span> <span class="number">100</span> <span class="op">&gt;</span> <span class="ident">vm</span> <span class="op">/</span> <span class="number">100</span> {
-            <span class="ident">round_up</span> <span class="op">=</span> <span class="ident">vr</span> <span class="op">%</span> <span class="number">100</span> <span class="op">&gt;=</span> <span class="number">50</span>;
-            <span class="ident">vr</span> <span class="op">/=</span> <span class="number">100</span>;
-            <span class="ident">vp</span> <span class="op">/=</span> <span class="number">100</span>;
-            <span class="ident">vm</span> <span class="op">/=</span> <span class="number">100</span>;
+        <span class="kw">if</span> <span class="ident">vp_div100</span> <span class="op">&gt;</span> <span class="ident">vm_div100</span> {
+            <span class="kw">let</span> <span class="ident">vr_div100</span> <span class="op">=</span> <span class="ident">div100</span>(<span class="ident">vr</span>);
+            <span class="kw">let</span> <span class="ident">vr_mod100</span> <span class="op">=</span> (<span class="ident">vr</span> <span class="op">-</span> <span class="number">100</span> <span class="op">*</span> <span class="ident">vr_div100</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="ident">round_up</span> <span class="op">=</span> <span class="ident">vr_mod100</span> <span class="op">&gt;=</span> <span class="number">50</span>;
+            <span class="ident">vr</span> <span class="op">=</span> <span class="ident">vr_div100</span>;
+            <span class="ident">vp</span> <span class="op">=</span> <span class="ident">vp_div100</span>;
+            <span class="ident">vm</span> <span class="op">=</span> <span class="ident">vm_div100</span>;
             <span class="ident">removed</span> <span class="op">+=</span> <span class="number">2</span>;
         }
         <span class="comment">// Loop iterations below (approximately), without optimization above:</span>
         <span class="comment">// 0: 0.03%, 1: 13.8%, 2: 70.6%, 3: 14.0%, 4: 1.40%, 5: 0.14%, 6+: 0.02%</span>
         <span class="comment">// Loop iterations below (approximately), with optimization above:</span>
         <span class="comment">// 0: 70.6%, 1: 27.8%, 2: 1.40%, 3: 0.14%, 4+: 0.02%</span>
-        <span class="kw">while</span> <span class="ident">vp</span> <span class="op">/</span> <span class="number">10</span> <span class="op">&gt;</span> <span class="ident">vm</span> <span class="op">/</span> <span class="number">10</span> {
-            <span class="ident">round_up</span> <span class="op">=</span> <span class="ident">vr</span> <span class="op">%</span> <span class="number">10</span> <span class="op">&gt;=</span> <span class="number">5</span>;
-            <span class="ident">vr</span> <span class="op">/=</span> <span class="number">10</span>;
-            <span class="ident">vp</span> <span class="op">/=</span> <span class="number">10</span>;
-            <span class="ident">vm</span> <span class="op">/=</span> <span class="number">10</span>;
+        <span class="kw">loop</span> {
+            <span class="kw">let</span> <span class="ident">vp_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vp</span>);
+            <span class="kw">let</span> <span class="ident">vm_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vm</span>);
+            <span class="kw">if</span> <span class="ident">vp_div10</span> <span class="op">&lt;=</span> <span class="ident">vm_div10</span> {
+                <span class="kw">break</span>;
+            }
+            <span class="kw">let</span> <span class="ident">vr_div10</span> <span class="op">=</span> <span class="ident">div10</span>(<span class="ident">vr</span>);
+            <span class="kw">let</span> <span class="ident">vr_mod10</span> <span class="op">=</span> (<span class="ident">vr</span> <span class="op">-</span> <span class="number">10</span> <span class="op">*</span> <span class="ident">vr_div10</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+            <span class="ident">round_up</span> <span class="op">=</span> <span class="ident">vr_mod10</span> <span class="op">&gt;=</span> <span class="number">5</span>;
+            <span class="ident">vr</span> <span class="op">=</span> <span class="ident">vr_div10</span>;
+            <span class="ident">vp</span> <span class="op">=</span> <span class="ident">vp_div10</span>;
+            <span class="ident">vm</span> <span class="op">=</span> <span class="ident">vm_div10</span>;
             <span class="ident">removed</span> <span class="op">+=</span> <span class="number">1</span>;
         }
         <span class="comment">// We need to take vr + 1 if vr is outside bounds or we need to round up.</span>
@@ -946,8 +1001,9 @@
     <span class="comment">// so the rest will fit into uint32_t.</span>
     <span class="kw">if</span> (<span class="ident">output</span> <span class="op">&gt;&gt;</span> <span class="number">32</span>) <span class="op">!=</span> <span class="number">0</span> {
         <span class="comment">// Expensive 64-bit division.</span>
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output2</span> <span class="op">=</span> (<span class="ident">output</span> <span class="op">-</span> <span class="number">100000000</span> <span class="op">*</span> (<span class="ident">output</span> <span class="op">/</span> <span class="number">100000000</span>)) <span class="kw">as</span> <span class="ident">u32</span>;
-        <span class="ident">output</span> <span class="op">/=</span> <span class="number">100000000</span>;
+        <span class="kw">let</span> <span class="ident">q</span> <span class="op">=</span> <span class="ident">div100_000_000</span>(<span class="ident">output</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">output2</span> <span class="op">=</span> (<span class="ident">output</span> <span class="op">-</span> <span class="number">100_000_000</span> <span class="op">*</span> <span class="ident">q</span>) <span class="kw">as</span> <span class="ident">u32</span>;
+        <span class="ident">output</span> <span class="op">=</span> <span class="ident">q</span>;
 
         <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">output2</span> <span class="op">%</span> <span class="number">10000</span>;
         <span class="ident">output2</span> <span class="op">/=</span> <span class="number">10000</span>;

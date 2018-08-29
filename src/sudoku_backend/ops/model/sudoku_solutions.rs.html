@@ -283,6 +283,8 @@
 <span id="283">283</span>
 <span id="284">284</span>
 <span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">diesel</span>::<span class="ident">sqlite</span>::{<span class="ident">SqliteConnection</span>, <span class="ident">Sqlite</span> <span class="kw">as</span> <span class="ident">SqliteBackend</span>};
 <span class="kw">use</span> <span class="self">self</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">tables</span>::{<span class="self">self</span>, <span class="ident">sudoku_solutions</span>};
@@ -385,8 +387,8 @@
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// # extern crate sudoku_backend;</span>
     <span class="doccomment">/// # extern crate chrono;</span>
-    <span class="doccomment">/// # use sudoku_backend::ops::setup::DatabaseConnection;</span>
-    <span class="doccomment">/// # use sudoku_backend::ops::SudokuSolution;</span>
+    <span class="doccomment">/// # use sudoku_backend::ops::setup::{DatabaseConnection, LeaderboardConfig};</span>
+    <span class="doccomment">/// # use sudoku_backend::ops::{SolutionOrdering, SudokuSolution};</span>
     <span class="doccomment">/// # use std::env::temp_dir;</span>
     <span class="doccomment">/// # use chrono::NaiveDate;</span>
     <span class="doccomment">/// # use std::fs;</span>
@@ -442,7 +444,10 @@
     <span class="doccomment">/// # for solution in &amp;mut solutions {</span>
     <span class="doccomment">/// #     solution.insert(&amp;db).unwrap();</span>
     <span class="doccomment">/// # }</span>
-    <span class="doccomment">/// let solutions = SudokuSolution::leaders(3, &amp;db).unwrap();</span>
+    <span class="doccomment">/// let solutions = SudokuSolution::leaders(&amp;LeaderboardConfig {</span>
+    <span class="doccomment">///     count: 3,</span>
+    <span class="doccomment">///     ordering: SolutionOrdering::BestToWorst,</span>
+    <span class="doccomment">/// }, &amp;db).unwrap();</span>
     <span class="doccomment">/// assert_eq!(</span>
     <span class="doccomment">///     solutions,</span>
     <span class="doccomment">///     &amp;[SudokuSolution {</span>
@@ -486,9 +491,8 @@
     <span class="kw">fn</span> <span class="ident">leaders_impl</span><span class="op">&lt;</span><span class="ident">OrderExpr</span><span class="op">&gt;</span>(<span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">LeaderboardConfig</span>, <span class="ident">db</span>: <span class="kw-2">&amp;</span><span class="ident">SqliteConnection</span>, <span class="ident">ord</span>: <span class="ident">OrderExpr</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SudokuSolution</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>
         <span class="kw">where</span> <span class="ident">OrderExpr</span>: <span class="ident">Expression</span> <span class="op">+</span> <span class="ident">AppearsOnTable</span><span class="op">&lt;</span><span class="ident">tables</span>::<span class="ident">sudoku_solutions</span>::<span class="ident">table</span><span class="op">&gt;</span> <span class="op">+</span> <span class="ident">QueryId</span> <span class="op">+</span> <span class="ident">QueryFragment</span><span class="op">&lt;</span><span class="ident">SqliteBackend</span><span class="op">&gt;</span>
     {
-        <span class="ident">tables</span>::<span class="ident">sudoku_solutions</span>::<span class="ident">table</span>.<span class="ident">order</span>(<span class="ident">tables</span>::<span class="ident">sudoku_solutions</span>::<span class="ident">score</span>.<span class="ident">desc</span>())
+        <span class="ident">tables</span>::<span class="ident">sudoku_solutions</span>::<span class="ident">table</span>.<span class="ident">order</span>(<span class="ident">ord</span>)
             .<span class="ident">limit</span>(<span class="ident">cfg</span>.<span class="ident">count</span> <span class="kw">as</span> <span class="ident">i64</span>)
-            .<span class="ident">order</span>(<span class="ident">ord</span>)
             .<span class="ident">load</span>(<span class="ident">db</span>)
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;couldn&#39;t load leaderboard&quot;</span>)
     }
