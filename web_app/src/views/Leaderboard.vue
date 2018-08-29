@@ -1,13 +1,12 @@
 <template lang="pug">
   .leaderboard
-    md-table(v-model='leaders', md-sort='position', md-sort-order='asc', md-card)
+    md-table(v-for='(leader, index) in leaders', md-sort='position', md-sort-order='asc', md-card)
       md-table-toolbar
         h1.md-title Leaders
-      md-table-row(slot='md-table-row' slot-scope='{ item }')
-        md-table-cell(md-label='Position' md-numeric) {{ item.position }}
-        md-table-cell(md-label='Username' md-sort-by='username') {{ item.username }}
-        md-table-cell(md-label='Points' md-sort-by='points') {{ item.points }}
-        md-table-cell(md-label='Games played' md-sort-by='gamesPlayed') {{ item.gamesPlayed }}
+      md-table-row(slot='md-table-row')
+        md-table-cell(md-label='Position' md-numeric) {{ index }}
+        md-table-cell(md-label='Username' md-sort-by='username') {{ leader.username }}
+        md-table-cell(md-label='Points' md-sort-by='points') {{ leader.points_total }}
     .leaderboard__navigation
       .leaderboard__slot(v-for='n in 5' v-if='(page - n) > 0')
         NumberButton {{page - n}}
@@ -23,28 +22,25 @@
 
 <script>
 import NumberButton from '@/components/NumberButton.vue'
+import axios from 'axios'
 
 export default {
   name: 'leaderboard',
   components: { NumberButton },
+  created () {
+    axios.get('/api/v1/check/leaderboard?of=users')
+      .then((response) => {
+        this.leaders = response.data
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  },
   data: function () {
     return {
       page: 0,
       lastPage: 93,
-      leaders: [
-        {
-          position: 1,
-          username: 'John Smith',
-          points: 10987,
-          gamesPlayed: 546
-        },
-        {
-          position: 2,
-          username: 'Mark Brown',
-          points: 7451,
-          gamesPlayed: 394
-        }
-      ]
+      leaders: []
     }
   }
 }

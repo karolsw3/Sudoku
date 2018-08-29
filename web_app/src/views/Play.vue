@@ -107,7 +107,6 @@ export default {
   created () {
     axios.get('/api/v1/play/new?difficulty=' + this.difficultyNumber)
       .then((response) => {
-        console.log('Board loaded')
         let board = this.$refs.board
         let timer = this.$refs.timer
         board.slots = this.deserializeBoardSkeleton(response.data.board_skeleton)
