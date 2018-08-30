@@ -250,7 +250,7 @@ export default {
 .Board
   display inline-block
   position relative
-  margin 110px auto 0 auto
+  margin 169px auto 0 auto
   box-sizing border-box
   &__grid
     position relative
