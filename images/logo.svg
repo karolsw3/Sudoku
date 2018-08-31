@@ -15,7 +15,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
-   sodipodi:docname="logo.svg">
+   sodipodi:docname="logo.svg"
+   inkscape:export-filename="C:\Users\Karol\Documents\GitHub\Sudoku\images\logo.png"
+   inkscape:export-xdpi="72.995697"
+   inkscape:export-ydpi="72.995697">
   <defs
      id="defs2">
     <inkscape:perspective
@@ -33,9 +36,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2"
-     inkscape:cx="160.99818"
-     inkscape:cy="86.956011"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="380.39897"
+     inkscape:cy="26.415553"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
