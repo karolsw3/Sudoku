@@ -6,23 +6,23 @@
   ColumnPanel
     Input(placeholder="Login" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
-    Button(@clicked="login" :disabled="!allInputsFilled") Login
+    MainButton(@clicked="login" :disabled="!allInputsFilled") Login
   md-snackbar(:md-active.sync='error' md-persistent)
     span {{errorMessage}}
-    md-button.md-accent(@click='error = false') Close
+    MainButton.md-accent(@click='error = false') Close
 </template>
 
 <script>
 import Input from '@/components/Input.vue'
 import ColumnPanel from '@/components/ColumnPanel.vue'
-import Button from '@/components/Button.vue'
 import util from '@/util.js'
 import base64 from 'base-64'
+import MainButton from '@/components/MainButton.vue'
 
 export default {
   name: 'Login',
   components: {
-    ColumnPanel, Input, Button
+    ColumnPanel, Input, MainButton
   },
   data: function () {
     return {

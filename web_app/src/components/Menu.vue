@@ -2,17 +2,23 @@
 .Menu
   .Menu__slot
     .Menu__logo
-    router-link.md-primary(tag='md-button' to="/") Dashboard
+    router-link(to="/")
+      MainButton Dashboard
   .Menu__slot
-    router-link.md-primary(tag='md-button' to="/login" v-if='!this.$store.state.user.logged') Login
-    router-link(tag='md-button' to="/register" v-if='!this.$store.state.user.logged') Register
+    router-link(to="/login" v-if='!this.$store.state.user.logged')
+      MainButton Login
+    router-link(to="/register" v-if='!this.$store.state.user.logged')
+      MainButton Register
     .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
-    md-button(v-if='this.$store.state.user.logged' @click='logout') Logout
+    MainButton(v-if='this.$store.state.user.logged' @click='logout') Logout
 </template>
 
 <script>
+import MainButton from '@/components/MainButton.vue'
+
 export default {
   name: 'Menu',
+  components: { MainButton },
   methods: {
     logout () {
       var xhr = new XMLHttpRequest()

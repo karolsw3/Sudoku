@@ -41,7 +41,8 @@ export default {
   align-items center
   justify-content center
   box-sizing border-box
-  background url('../../../images/background.svg')
+  background-color white
+  background-image url('../../../images/background.svg')
   background-position bottom
   background-repeat repeat-x
   background-size 1300px
@@ -77,7 +78,7 @@ export default {
       text-shadow 0 0 12px #c20d4f
       text-align left
       font-family 'Open Sans', sans-serif
-      background-image url('../../../images/gui/stats.svg')
+      background-image url('../../../images/gui/createAccount.svg')
       background-size cover
   &__button
     display flex
