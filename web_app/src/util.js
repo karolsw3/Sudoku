@@ -16,7 +16,6 @@ export default ({
             }
             password += item.toString(16)
           })
-          console.log(password)
           successCallback(password)
         }
       })

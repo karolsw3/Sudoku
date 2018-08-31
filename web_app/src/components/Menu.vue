@@ -10,7 +10,7 @@
     router-link(to="/register" v-if='!this.$store.state.user.logged')
       MainButton Register
     .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
-    MainButton(v-if='this.$store.state.user.logged' @click='logout') Logout
+    MainButton(v-if='this.$store.state.user.logged' v-on:clicked='logout') Logout
 </template>
 
 <script>
