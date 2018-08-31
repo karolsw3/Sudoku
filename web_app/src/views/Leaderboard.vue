@@ -12,17 +12,6 @@
         td {{ leader.username }}
         td {{ leader.points_total }}
         td {{ leader.games_total }}
-    .leaderboard__navigation
-      .leaderboard__slot(v-for='n in 5' v-if='(page - n) > 0')
-        NumberButton {{page - n}}
-      .leaderboard__slot
-        NumberButton {{page}}
-      .leaderboard__slot(v-for='n in 5')
-        NumberButton {{page + n}}
-      .leaderboard__slot
-        p ...
-      .leaderboard__slot
-        NumberButton {{lastPage}}
 </template>
 
 <script>
@@ -65,13 +54,6 @@ export default {
   flex-direction column
   justify-content center
   align-items center
-  &__navigation
-    width auto
-    height 40px
-    margin 20px auto
-    display flex
-  &__slot
-    width auto
 table
   width 100%
   border-collapse collapse
