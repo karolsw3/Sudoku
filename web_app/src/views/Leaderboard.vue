@@ -1,19 +1,17 @@
 <template lang="pug">
   .leaderboard
     ProgressSpinner(:loading='loading')
-    md-table( md-sort='position' md-sort-order='asc' md-card)
-      md-table-toolbar
-        h1.md-title Leaders
-      md-table-row(slot='md-table-row')
-        md-table-cell(md-label='Position') Position
-        md-table-cell(md-label='Username') Username
-        md-table-cell(md-label='Points') Points
-        md-table-cell(md-label='Games played') Games played
-      md-table-row(slot='md-table-row' v-for='(leader, index) in leaders' :key='index')
-        md-table-cell {{ index }}
-        md-table-cell {{ leader.username }}
-        md-table-cell {{ leader.points_total }}
-        md-table-cell {{ leader.games_total }}
+    table
+      tr
+        th Position
+        th Username
+        th Points
+        th Games played
+      tr(v-for='(leader, index) in leaders' :key='index')
+        td {{ index + 1 }}
+        td {{ leader.username }}
+        td {{ leader.points_total }}
+        td {{ leader.games_total }}
     .leaderboard__navigation
       .leaderboard__slot(v-for='n in 5' v-if='(page - n) > 0')
         NumberButton {{page - n}}
@@ -59,7 +57,9 @@ export default {
 
 <style lang="stylus">
 .leaderboard
+  margin 0 auto
   width 100%
+  max-width 900px
   height 100%
   display flex
   flex-direction column
@@ -72,4 +72,16 @@ export default {
     display flex
   &__slot
     width auto
+table
+  width 100%
+  border-collapse collapse
+  border 2px solid #eee
+  td, th
+    border 2px solid #eee
+    padding 7px 12px
+    color #222
+    font-size 1.2em
+  th
+    color #123ffc
+    font-weight 900
 </style>
