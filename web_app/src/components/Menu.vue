@@ -63,13 +63,14 @@ export default {
     cursor pointer
   &__user
     border none
+    font-weight 900
     height 40px
-    padding 0 10px
+    padding 0 20px
     border-radius 2px
     display flex
     align-items center
     justify-content center
-    color #222
+    color #333
     cursor default
     background #eee
     transition-duration .12s

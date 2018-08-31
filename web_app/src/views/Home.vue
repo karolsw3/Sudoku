@@ -9,10 +9,15 @@
         router-link(tag='md-button' to="/play/hard") Hard
       router-link(tag='md-button' to="/leaderboard").dashboard__cell.dashboard__cell--leaderboard
         .dashboard__button Leaderboard
-      .dashboard__cell.dashboard__cell--stats
-        template(v-if='$store.state.user.logged')
-          h1 Your stats
-          h2 Points: {{$store.state.user.pointsTotal}}
+      .dashboard__cell(:class='$store.state.user.logged ? "dashboard__cell--stats-logged" : "dashboard__cell--stats"')
+        .stats(v-if='$store.state.user.logged')
+          h1.stats__header Your stats
+          .stats__row
+            .stats__statName Points
+            .stats__statValue {{$store.state.user.pointsTotal}}
+          .stats__row
+            .stats__statName Games played
+            .stats__statValue {{$store.state.user.gamesTotal}}
         template(v-else)
           h1 Create an account to get points from solving boards.
 </template>
@@ -80,6 +85,10 @@ export default {
       font-family 'Open Sans', sans-serif
       background-image url('../../../images/gui/createAccount.svg')
       background-size cover
+    &--stats-logged
+      cursor default
+      background-image url('../../../images/gui/stats.svg')
+      background-size cover
   &__button
     display flex
     align-items center
@@ -113,15 +122,30 @@ export default {
     box-shadow 0 0 20px rgba(0, 0, 0, .5)
     z-index 999
 .stats
-  padding 20px
-  cursor default
-  text-align left
-  font-family 'Open Sans', sans-serif
-  h1
-    font-size 2em
-    line-height 1.15
-    color #ccc
-  p
-    font-size 1.5em
-    color #444
+  padding 20px 70px
+  box-sizing border-box
+  &__header
+    display block
+    text-transform uppercase
+    font-weight 900
+    color #123ffc
+    margin-top 30px
+  &__row
+    margin 10px 0
+    height 20px
+    display flex
+    justify-content space-around
+    align-items center
+  &__statName
+    width 50%
+    text-align left
+    color #b3b3b3
+    font-size 18px
+    text-transform capitalize
+  &__statValue
+    width 50%
+    text-align right
+    color black
+    font-size 22px
+    font-weight 900
 </style>

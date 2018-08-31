@@ -39,6 +39,7 @@ const store = new Vuex.Store({
       state.user.login = payload.login
       state.user.email = payload.email
       state.user.pointsTotal = payload.pointsTotal
+      state.user.gamesTotal = payload.gamesTotal
       state.user.isAdmin = payload.isAdmin
     },
     logout (state) {
@@ -46,6 +47,7 @@ const store = new Vuex.Store({
       state.user.login = ''
       state.user.email = ''
       state.user.pointsTotal = 0
+      state.user.gamesTotal = 0
       state.user.isAdmin = false
     },
     addPoints (state, payload) {
