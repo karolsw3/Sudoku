@@ -49,7 +49,7 @@ export default {
 .leaderboard
   margin 0 auto
   width 100%
-  max-width 900px
+  background white
   height 100%
   display flex
   flex-direction column
@@ -64,6 +64,7 @@ export default {
     margin 20px auto
 table
   width 100%
+  max-width 900px
   border-collapse collapse
   border 2px solid #eee
   td, th
@@ -74,4 +75,8 @@ table
   th
     color #123ffc
     font-weight 900
+  tr
+    background white
+    &:nth-child(even)
+      background #f4f4f4
 </style>
