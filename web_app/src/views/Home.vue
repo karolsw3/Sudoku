@@ -66,6 +66,7 @@ export default {
     border-radius 5px
     background #e4e4e4
     cursor pointer
+    box-shadow: 0 0 16px 3px #e4e4e4
     &:nth-child(1)
       height 300px
       background-image url('../../../images/gui/play.svg')
@@ -86,6 +87,7 @@ export default {
       background-image url('../../../images/gui/createAccount.svg')
       background-size cover
     &--stats-logged
+      margin 6px 8px
       cursor default
       background-image url('../../../images/gui/stats.svg')
       background-size cover
@@ -122,7 +124,7 @@ export default {
     box-shadow 0 0 20px rgba(0, 0, 0, .5)
     z-index 999
 .stats
-  padding 20px 70px
+  padding 20px 60px
   box-sizing border-box
   &__header
     display block

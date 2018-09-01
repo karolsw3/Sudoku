@@ -1,6 +1,6 @@
 <template lang="pug">
   .play
-    ProgressSpinner(:loading='loading')
+    ProgressSpinner(v-if='loading')
     GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false')
     Board(ref='board' v-on:board-is-valid="submitBoard")
       Timer(ref='timer')

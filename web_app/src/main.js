@@ -30,6 +30,7 @@ const store = new Vuex.Store({
       login: '',
       email: '',
       pointsTotal: 0,
+      gamesTotal: 0,
       isAdmin: false
     }
   },

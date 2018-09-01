@@ -1,12 +1,11 @@
 <template lang="pug">
 .ProgressSpinner
-  md-progress-spinner(v-if='loading' md-mode="indeterminate")
+  md-progress-spinner(md-mode="indeterminate")
 </template>
 
 <script>
 export default {
-  name: 'ProgressSpinner',
-  props: ['loading']
+  name: 'ProgressSpinner'
 }
 </script>
 
