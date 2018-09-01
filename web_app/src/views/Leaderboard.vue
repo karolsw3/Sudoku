@@ -1,6 +1,7 @@
 <template lang="pug">
   .leaderboard
     ProgressSpinner(:loading='loading')
+    .leaderboard__title Top 10 players
     table
       tr
         th Position
@@ -54,6 +55,13 @@ export default {
   flex-direction column
   justify-content center
   align-items center
+  &__title
+    text-align center
+    font-size 30px
+    font-weight 900
+    color #222
+    text-transform uppercase
+    margin 20px auto
 table
   width 100%
   border-collapse collapse
