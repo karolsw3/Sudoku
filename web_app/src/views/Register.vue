@@ -8,7 +8,6 @@
     Input(placeholder="Email" type="email" ref="email" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Repeat password" type="password" ref="confirm_password" @valueChanged='validatePasswords(); checkIfInputsAreFilled()')
-    p TODO: I'm not a robot
     MainButton(@clicked="register" :disabled="!allInputsFilled") Register
   md-snackbar(:md-active.sync='error' md-persistent)
     span {{errorMessage}}

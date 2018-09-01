@@ -8,7 +8,7 @@
       .GameSummary__statName Time
       .GameSummary__statValue
         span(v-if='solutionDurationHours > 0') {{solutionDurationHours}}h
-        span(v-if='solutionDurationMinutes > 0') {{solutionDurationMinutes}}min 
+        span(v-if='solutionDurationMinutes > 0') {{solutionDurationMinutes}}min
         span {{solutionDuration % 60}}s
     .GameSummary__row
       .GameSummary__statName Difficulty
@@ -16,13 +16,16 @@
     .GameSummary__row
       .GameSummary__statName Points gained
       .GameSummary__statValue.GameSummary__statValue--bold {{score}}
-    md-button.md-raised.md-primary(v-on:click='$emit("summaryClosed")') Close
+    MainButton(v-on:clicked='$emit("summaryClosed")') Close
 </template>
 
 <script>
+import MainButton from '@/components/MainButton.vue'
+
 export default {
   name: 'GameSummary',
   props: ['solutionDuration', 'difficulty', 'score'],
+  components: { MainButton },
   computed: {
     difficultyName: function () {
       switch (this.difficulty) {
@@ -51,7 +54,7 @@ export default {
   position fixed
   left 0
   right 0
-  margin 0 auto
+  margin 30px auto
   width 481px
   background white
   border-radius 5px
@@ -70,7 +73,7 @@ export default {
     font-size 40px
     text-transform uppercase
     font-weight 900
-    color #00115b
+    color #0037dd
     margin-top 30px
   &__subtitle
     color #808080
