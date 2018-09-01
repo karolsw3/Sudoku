@@ -1,5 +1,5 @@
 {
-  "name": "web_app",
+  "name": "sudoku-app",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "validator": "^10.6.0",
     "vue": "^2.5.17",
     "vue-material": "^1.0.0-beta-10.2",
+    "vue-meta": "^1.5.3",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },

@@ -1,6 +1,6 @@
 <template lang="pug">
   .leaderboard
-    ProgressSpinner(:loading='loading')
+    ProgressSpinner(v-if='loading')
     .leaderboard__title Top 10 players
     table
       tr

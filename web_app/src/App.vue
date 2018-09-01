@@ -11,9 +11,12 @@ import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
 
 export default {
-  name: 'App',
+  name: 'Sudoku',
   components: {
     Menu, Footer
+  },
+  metaInfo: {
+    title: 'The best Sudoku app on the web'
   }
 }
 </script>
