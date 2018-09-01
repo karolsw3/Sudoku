@@ -52,6 +52,9 @@ const store = new Vuex.Store({
     },
     addPoints (state, payload) {
       state.user.pointsTotal += payload
+    },
+    addGames (state) {
+      state.user.gamesTotal++
     }
   }
 })
