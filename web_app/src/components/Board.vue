@@ -301,4 +301,13 @@ export default {
     &--locked
       background #f5f5f5 !important
       color #333 !important
+@media screen and (max-width: 560px)
+  .Board
+    margin-top 60px
+    &__slot
+      font-size 12px
+  .Board__grid--main
+    width 90vw
+    height 90vw
+    grid-gap 3px
 </style>

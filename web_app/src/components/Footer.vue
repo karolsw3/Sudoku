@@ -1,7 +1,6 @@
 <template lang="pug">
 .Footer
   p An app by <b>Galactim</b>
-
 </template>
 
 <script>
@@ -22,4 +21,8 @@ export default {
   text-align center
   color #cccccc
   bottom 0 !important
+  z-index 0
+@media screen and (max-width: 700px)
+  .Footer
+    display none
 </style>

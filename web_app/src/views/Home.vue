@@ -166,6 +166,7 @@ export default {
       justify-content center
       align-items center
       margin 10px auto
+      z-index 1
       &--stats, &--stats-logged, &--leaderboard, &:nth-child(1)
         margin 6px auto
         text-align center

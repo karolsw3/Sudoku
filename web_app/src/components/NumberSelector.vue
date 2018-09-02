@@ -29,4 +29,11 @@ export default {
   align-items center
   &__slot
     width auto
+@media screen and (max-width: 420px)
+  .NumberSelector
+    display block
+    height 60px
+    padding 10px 0
+    &__slot
+      display inline-block
 </style>
