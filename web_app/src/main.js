@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
 import Meta from 'vue-meta'
+import axios from 'axios'
 import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
@@ -67,6 +68,19 @@ const store = new Vuex.Store({
 new Vue({
   router,
   store,
+  beforeCreate () {
+    axios.get('/api/v1/auth/user_data')
+      .then((response) => {
+        let responseData = response.data
+        this.$store.commit('login', {
+          login: responseData.username,
+          email: responseData.email,
+          pointsTotal: responseData.points_total,
+          gamesTotal: responseData.games_total,
+          isAdmin: responseData.is_admin
+        })
+      })
+  },
   render: h => h(App)
 }).$mount('#app')
 
