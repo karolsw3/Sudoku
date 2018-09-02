@@ -2,7 +2,7 @@
   .home
     .dashboard
       md-button.dashboard__cell(@click="selectorOpen = !selectorOpen")
-        .dashboard__button.dashboard__button--play Play
+        .dashboard__button New game
       .dashboard__difficultySelector(v-if="selectorOpen")
         router-link(tag='md-button' to="/play/easy") Easy
         router-link(tag='md-button' to="/play/medium") Medium
@@ -101,12 +101,10 @@ export default {
     font-family 'Open Sans', sans-serif
     text-transform uppercase
     font-weight 900
-    font-size 30px
+    font-size 32px
     background #ff1167
     padding 37px
     color #fff
-    &--play
-      font-size 50px
   &__difficultySelector
     grid-area selector
     position absolute
@@ -127,12 +125,15 @@ export default {
 .stats
   padding 20px 60px
   box-sizing border-box
+  font-family 'Open Sans', sans-serif
   &__header
     display block
     text-transform uppercase
     font-weight 900
     color #123ffc
+    font-size 32px
     margin-top 30px
+    white-space pre
   &__row
     margin 10px 0
     height 20px
@@ -145,16 +146,20 @@ export default {
     color #b3b3b3
     font-size 18px
     text-transform capitalize
+    white-space pre
   &__statValue
     width 50%
     text-align right
     color black
     font-size 22px
     font-weight 900
+    white-space pre
 
 @media screen and (max-width: 850px)
   .md-button + .md-button
       margin 6px 0
+  .home
+    height auto
   .dashboard
     display block
     margin-bottom 6px
@@ -169,8 +174,17 @@ export default {
       margin 10px auto
       z-index 1
       &--stats, &--stats-logged, &--leaderboard, &:nth-child(1)
-        margin 6px auto
+        margin 12px auto
+        height 190px
         text-align center
+    &__difficultySelector
+      top 170px
+    &__button
+      font-size 24px
   .stats
     width 90%
+    padding 20px 30px
+    &__header
+      margin-top 0
+      font-size 24px
 </style>

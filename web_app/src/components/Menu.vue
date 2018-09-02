@@ -80,6 +80,8 @@ export default {
       display block
     &__logo
       margin 0 auto
+      width 281px
+      height 49px
     &__user
       display inline
 </style>

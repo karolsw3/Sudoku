@@ -291,6 +291,8 @@ export default {
     border 2px solid #e9e9e9
     p
       position absolute
+      font-family 'Open Sans', sans-serif
+      font-weight 900
       top -7px
       left 0
       right 0
@@ -305,7 +307,7 @@ export default {
   .Board
     margin-top 60px
     &__slot
-      font-size 12px
+      font-size 1rem
   .Board__grid--main
     width 90vw
     height 90vw
