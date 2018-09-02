@@ -152,15 +152,22 @@ export default {
     font-weight 900
 
 @media screen and (max-width: 850px)
+  .md-button + .md-button
+      margin 6px 0
   .dashboard
     display block
+    margin-bottom 6px
+    height 100%
+    width 95%
     &__cell
       width 100%
       height 190px
       display inline-flex
       justify-content center
       align-items center
-      &--stats
+      margin 10px auto
+      &--stats, &--stats-logged, &--leaderboard, &:nth-child(1)
+        margin 6px auto
         text-align center
   .stats
     width 90%

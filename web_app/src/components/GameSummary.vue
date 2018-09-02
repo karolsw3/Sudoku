@@ -43,7 +43,7 @@ export default {
       return Math.floor(this.solutionDuration / (60 * 60))
     },
     solutionDurationMinutes: function () {
-      return Math.floor(this.solutionDuration / 60)
+      return Math.floor((this.solutionDuration / 60) % 60)
     }
   }
 }
@@ -98,7 +98,9 @@ export default {
     text-align right
     color black
     font-size 19px
+    span
+      margin 0 5px
     &--bold
       font-weight 900
-      color #00115b
+      color #0037dd
 </style>

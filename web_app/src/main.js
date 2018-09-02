@@ -11,6 +11,7 @@ import 'vue-material/dist/theme/default.css'
 Vue.config.productionTip = false
 Vue.use(Vuex)
 Vue.use(Meta)
+
 Vue.use(MdButton)
 Vue.use(MdMenu)
 Vue.use(MdField)
