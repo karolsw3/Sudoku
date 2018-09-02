@@ -64,8 +64,7 @@ export default {
   &__user
     border none
     font-weight 900
-    height 40px
-    padding 0 20px
+    padding 9px 14px
     border-radius 2px
     display flex
     align-items center
@@ -74,4 +73,13 @@ export default {
     cursor default
     background #eee
     transition-duration .12s
+@media screen and (max-width: 850px)
+  .Menu
+    display block
+    &__slot
+      display block
+    &__logo
+      margin 0 auto
+    &__user
+      display inline
 </style>

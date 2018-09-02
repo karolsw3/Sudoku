@@ -156,9 +156,12 @@ export default {
     display block
     &__cell
       width 100%
+      height 190px
       display inline-flex
       justify-content center
       align-items center
       &--stats
         text-align center
+  .stats
+    width 90%
 </style>
