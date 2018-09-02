@@ -23,8 +23,23 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'home',
+  beforeCreate () {
+    axios.get('/api/v1/auth/user_data')
+      .then((response) => {
+        let responseData = response.data
+        this.$store.commit('login', {
+          login: responseData.username,
+          email: responseData.email,
+          pointsTotal: responseData.points_total,
+          gamesTotal: responseData.games_total,
+          isAdmin: responseData.is_admin
+        })
+      })
+  },
   data: function () {
     return {
       selectorOpen: false
