@@ -150,4 +150,15 @@ export default {
     color black
     font-size 22px
     font-weight 900
+
+@media screen and (max-width: 850px)
+  .dashboard
+    display block
+    &__cell
+      width 100%
+      display inline-flex
+      justify-content center
+      align-items center
+      &--stats
+        text-align center
 </style>
