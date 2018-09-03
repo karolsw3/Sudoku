@@ -51,27 +51,39 @@ export default {
         }
         switch (e.key) {
           case 'h':
+          case 'a':
+          case 'ArrowLeft':
             this.selectSlotLeft()
             break
           case 'j':
+          case 's':
+          case 'ArrowDown':
             this.selectSlotDown()
             break
           case 'k':
+          case 'w':
+          case 'ArrowUp':
             this.selectSlotUp()
             break
           case 'l':
+          case 'd':
+          case 'ArrowRight':
             this.selectSlotRight()
             break
           case 'H':
+          case 'A':
             this.selectSlotLeftWarp()
             break
           case 'J':
+          case 'S':
             this.selectSlotDownWarp()
             break
           case 'K':
+          case 'W':
             this.selectSlotUpWarp()
             break
           case 'L':
+          case 'D':
             this.selectSlotRightWarp()
             break
         }
