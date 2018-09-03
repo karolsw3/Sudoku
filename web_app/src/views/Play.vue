@@ -126,6 +126,13 @@ export default {
 </script>
 
 <style scoped lang="stylus">
+.play
+  position relative
+  display flex
+  justify-content center
+  height 100%
+  padding-bottom 60px
+  align-items center
 .progressSpinner
   position fixed
   display inline-block

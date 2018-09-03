@@ -19,7 +19,7 @@
             .stats__statName Games played
             .stats__statValue {{$store.state.user.gamesTotal}}
         template(v-else)
-          h1 Create an account to get points from solving boards.
+          h1 Create an account to get points and compete with others!
 </template>
 
 <script>
