@@ -68,7 +68,7 @@ export default {
           case 401:
             // Unauthorized
             this.error = true
-            this.errorMessage = 'You have entered John Doe\'s password. Maybe your login is "john_doe1997"?'
+            this.errorMessage = 'Wrong login or password'
             break
           case 202:
             // Success
