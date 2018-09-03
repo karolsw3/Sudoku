@@ -158,8 +158,6 @@ export default {
 @media screen and (max-width: 850px)
   .md-button + .md-button
       margin 6px 0
-  .home
-    height auto
   .dashboard
     display block
     margin-bottom 6px

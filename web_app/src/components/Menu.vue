@@ -1,16 +1,28 @@
 <template lang="pug">
-.Menu
-  .Menu__slot
-    .Menu__logo
-    router-link(to="/")
-      MainButton Dashboard
-  .Menu__slot
-    router-link(to="/login" v-if='!this.$store.state.user.logged')
-      MainButton Login
-    router-link(to="/register" v-if='!this.$store.state.user.logged')
-      MainButton Register
-    .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
-    MainButton(v-if='this.$store.state.user.logged' v-on:clicked='logout') Logout
+div
+  .Menu
+    .Menu__slot
+      .Menu__logo
+      router-link(to="/")
+        MainButton Dashboard
+    .Menu__slot
+      router-link(to="/login" v-if='!this.$store.state.user.logged')
+        MainButton Login
+      router-link(to="/register" v-if='!this.$store.state.user.logged')
+        MainButton Register
+      .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
+      MainButton(v-if='this.$store.state.user.logged' v-on:clicked='logout') Logout
+  .Menu.Menu--mobile
+    .Menu__slot(@click='selectedButton = "dashboard"')
+      router-link.Menu__icon.iconButton.iconButton--dashboard(to="/" tag='div' :class='selectedButton === "dashboard" ? "iconButton--dashboardActive" : ""')
+    .Menu__slot(v-if='!this.$store.state.user.logged')
+      div(@click='selectedButton = "login"')
+        router-link.Menu__icon.iconButton.iconButton--login(to="/login" tag='div' :class='selectedButton === "login" ? "iconButton--loginActive" : ""')
+      div(@click='selectedButton = "register"')
+        router-link.Menu__icon.iconButton.iconButton--register(to="/register" tag='div' :class='selectedButton === "register" ? "iconButton--registerActive" : ""')
+    .Menu__slot(v-else)
+      p Hello, {{this.$store.state.user.login}}!
+      .Menu__icon.iconButton.iconButton--logout(@click='logout' tag='div')
 </template>
 
 <script>
@@ -19,6 +31,11 @@ import MainButton from '@/components/MainButton.vue'
 export default {
   name: 'Menu',
   components: { MainButton },
+  data: function () {
+    return {
+      selectedButton: 'dashboard'
+    }
+  },
   methods: {
     logout () {
       var xhr = new XMLHttpRequest()
@@ -50,10 +67,13 @@ export default {
   justify-content space-between
   box-sizing border-box
   padding 5px 20px
+  &--mobile
+    display none
   &__slot
     display flex
     align-items center
     justify-content center
+    font-family 'Open Sans', sans-serif
   &__logo
     width 300px
     height 52px
@@ -73,15 +93,32 @@ export default {
     cursor default
     background #eee
     transition-duration .12s
-@media screen and (max-width: 850px)
+  &__icon
+    margin 0 5px
+    width 55px
+    height 55px
+    background white
+    border-radius 100%
+    cursor pointer
+.iconButton
+  background-size contain
+  &--dashboard
+    background-image url('../../../images/icons/dashboard.svg')
+  &--dashboardActive
+    background-image url('../../../images/icons/dashboard_active.svg')
+  &--login
+    background-image url('../../../images/icons/login.svg')
+  &--loginActive
+    background-image url('../../../images/icons/login_active.svg')
+  &--register
+    background-image url('../../../images/icons/register.svg')
+  &--registerActive
+    background-image url('../../../images/icons/register_active.svg')
+  &--logout
+    background-image url('../../../images/icons/logout.svg')
+@media screen and (max-width: 860px)
   .Menu
-    display block
-    &__slot
-      display block
-    &__logo
-      margin 0 auto
-      width 281px
-      height 49px
-    &__user
-      display inline
+    display none
+    &--mobile
+      display flex
 </style>
