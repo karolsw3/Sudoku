@@ -31,7 +31,7 @@ export default {
       let startTime = Date.now()
       this.interval = setInterval(() => {
         this.miliseconds = Date.now() - startTime
-      })
+      }, 1000)
     },
     stop () {
       clearInterval(this.interval)
