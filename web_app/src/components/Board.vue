@@ -40,6 +40,7 @@ export default {
     mutateSelectedSlot (newValue) {
       if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
         this.slots[this.selectedSlot.x][this.selectedSlot.y] = parseInt(newValue)
+        this.$forceUpdate()
       }
     },
     keydown (e) {
