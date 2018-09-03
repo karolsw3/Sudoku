@@ -80,6 +80,7 @@ export default {
               login: this.$refs.login.value,
               email: responseData.email,
               pointsTotal: responseData.points_total,
+              gamesTotal: responseData.games_total,
               isAdmin: responseData.is_admin
             })
             this.$router.push('/')
