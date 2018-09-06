@@ -49,9 +49,9 @@ export default {
   box-sizing border-box
   background-color white
   background-image url('../../../images/background.svg')
-  background-position bottom
-  background-repeat repeat-x
-  background-size 1300px
+  background-position bottom right
+  background-repeat no-repeat
+  background-size 1950px
 .dashboard
   position relative
   margin 0 auto
@@ -64,7 +64,7 @@ export default {
   &__cell
     position relative
     height 220px
-    border-radius 8px
+    border-radius 10px
     background #e4e4e4
     cursor pointer
     box-shadow: 0 0 16px 3px #e4e4e4
