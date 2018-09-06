@@ -26,7 +26,7 @@ html,body
   margin 0
   padding 0
   font-size 14px
-  height 100vh
+  height 100%
 a
   text-decoration none
   margin 0
@@ -37,7 +37,7 @@ a
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  height 100vh
+  height 100%
   display flex
   flex-direction column
   overflow-x hidden

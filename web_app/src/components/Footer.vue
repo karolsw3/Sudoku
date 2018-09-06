@@ -21,7 +21,7 @@ export default {
   text-align center
   color #cccccc
   bottom 0 !important
-  z-index 0
+  z-index 3
   span
     display inline-block
     margin 0 5px

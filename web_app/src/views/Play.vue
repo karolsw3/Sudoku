@@ -133,7 +133,7 @@ export default {
   display flex
   justify-content center
   height 100%
-  padding-bottom 60px
+  padding-bottom 100px
   align-items center
 .progressSpinner
   position fixed

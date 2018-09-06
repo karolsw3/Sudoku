@@ -48,7 +48,7 @@ export default {
 <style lang="stylus">
 .leaderboard
   margin 0 auto
-  width 100%
+  width 95%
   background white
   height 100%
   display flex
@@ -69,7 +69,7 @@ table
   border 2px solid #eee
   td, th
     border 2px solid #eee
-    padding 7px 12px
+    padding 7px 3px
     color #222
     font-size 1.2em
   th

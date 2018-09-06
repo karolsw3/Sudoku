@@ -39,7 +39,6 @@ export default {
 
 .md-button + .md-button
     margin 6px 8px
-
 .home
   width 100%
   height 100%
@@ -155,12 +154,14 @@ export default {
     font-weight 900
     white-space pre
 
-@media screen and (max-width: 850px)
+@media screen and (max-width: 800px)
   .md-button + .md-button
       margin 6px 0
+  .home
+    min-height 100%
+    margin-bottom 25px
   .dashboard
     display block
-    margin-bottom 6px
     height 100%
     width 95%
     &__cell
@@ -175,6 +176,8 @@ export default {
         margin 12px auto
         height 190px
         text-align center
+      &--stats
+        background-size auto
     &__difficultySelector
       top 170px
     &__button
