@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.9.2/src/line_wrap.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>line_wrap.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `/home/travis/.cargo/registry/src/github.com-1ecc6299db9ec823/base64-0.6.0/src/line_wrap.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>line_wrap.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -348,53 +348,12 @@
 <span id="348">348</span>
 <span id="349">349</span>
 <span id="350">350</span>
-<span id="351">351</span>
-<span id="352">352</span>
-<span id="353">353</span>
-<span id="354">354</span>
-<span id="355">355</span>
-<span id="356">356</span>
-<span id="357">357</span>
-<span id="358">358</span>
-<span id="359">359</span>
-<span id="360">360</span>
-<span id="361">361</span>
-<span id="362">362</span>
-<span id="363">363</span>
-<span id="364">364</span>
-<span id="365">365</span>
-<span id="366">366</span>
-<span id="367">367</span>
-<span id="368">368</span>
-<span id="369">369</span>
-<span id="370">370</span>
-<span id="371">371</span>
-<span id="372">372</span>
-<span id="373">373</span>
-<span id="374">374</span>
-<span id="375">375</span>
-<span id="376">376</span>
-<span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
 </pre><pre class="rust ">
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">safemem</span>;
 
 <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">str</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LineWrapParameters</span> {
@@ -407,16 +366,13 @@
     <span class="comment">// length of all lines, including endings for the ones that need them</span>
     <span class="kw">pub</span> <span class="ident">total_len</span>: <span class="ident">usize</span>,
     <span class="comment">// length of the line endings only</span>
-    <span class="kw">pub</span> <span class="ident">total_line_endings_len</span>: <span class="ident">usize</span>,
+    <span class="kw">pub</span> <span class="ident">total_line_endings_len</span>: <span class="ident">usize</span>
 }
 
 <span class="doccomment">/// Calculations about how many lines we&#39;ll get for a given line length, line ending, etc.</span>
 <span class="doccomment">/// This assumes that the last line will not get an ending, even if it is the full line length.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line_wrap_parameters</span>(
-    <span class="ident">input_len</span>: <span class="ident">usize</span>,
-    <span class="ident">line_len</span>: <span class="ident">usize</span>,
-    <span class="ident">line_ending</span>: <span class="ident">LineEnding</span>,
-) <span class="op">-&gt;</span> <span class="ident">LineWrapParameters</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line_wrap_parameters</span>(<span class="ident">input_len</span>: <span class="ident">usize</span>, <span class="ident">line_len</span>: <span class="ident">usize</span>, <span class="ident">line_ending</span>: <span class="ident">LineEnding</span>)
+                            <span class="op">-&gt;</span> <span class="ident">LineWrapParameters</span> {
     <span class="kw">let</span> <span class="ident">line_ending_len</span> <span class="op">=</span> <span class="ident">line_ending</span>.<span class="ident">len</span>();
 
     <span class="kw">if</span> <span class="ident">input_len</span> <span class="op">&lt;=</span> <span class="ident">line_len</span> {
@@ -426,7 +382,7 @@
             <span class="ident">last_line_len</span>: <span class="ident">input_len</span>,
             <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">0</span>,
             <span class="ident">total_len</span>: <span class="ident">input_len</span>,
-            <span class="ident">total_line_endings_len</span>: <span class="number">0</span>,
+            <span class="ident">total_line_endings_len</span>: <span class="number">0</span>
         };
     };
 
@@ -445,19 +401,16 @@
     <span class="comment">// line wrapping out of the normal encode path and have it be a separate step. Then only users</span>
     <span class="comment">// who need line wrapping would care about the possibility for error.</span>
 
-    <span class="kw">let</span> <span class="ident">single_full_line_with_ending_len</span> <span class="op">=</span> <span class="ident">line_len</span>
-        .<span class="ident">checked_add</span>(<span class="ident">line_ending_len</span>)
+    <span class="kw">let</span> <span class="ident">single_full_line_with_ending_len</span> <span class="op">=</span> <span class="ident">line_len</span>.<span class="ident">checked_add</span>(<span class="ident">line_ending_len</span>)
         .<span class="ident">expect</span>(<span class="string">&quot;Line length with ending exceeds usize&quot;</span>);
     <span class="comment">// length of just the full lines with line endings</span>
     <span class="kw">let</span> <span class="ident">total_full_wrapped_lines_len</span> <span class="op">=</span> <span class="ident">num_lines_with_endings</span>
         .<span class="ident">checked_mul</span>(<span class="ident">single_full_line_with_ending_len</span>)
         .<span class="ident">expect</span>(<span class="string">&quot;Full lines with endings length exceeds usize&quot;</span>);
     <span class="comment">// all lines with appropriate endings, including the last line</span>
-    <span class="kw">let</span> <span class="ident">total_all_wrapped_len</span> <span class="op">=</span> <span class="ident">total_full_wrapped_lines_len</span>
-        .<span class="ident">checked_add</span>(<span class="ident">last_line_length</span>)
+    <span class="kw">let</span> <span class="ident">total_all_wrapped_len</span> <span class="op">=</span> <span class="ident">total_full_wrapped_lines_len</span>.<span class="ident">checked_add</span>(<span class="ident">last_line_length</span>)
         .<span class="ident">expect</span>(<span class="string">&quot;All lines with endings length exceeds usize&quot;</span>);
-    <span class="kw">let</span> <span class="ident">total_line_endings_len</span> <span class="op">=</span> <span class="ident">num_lines_with_endings</span>
-        .<span class="ident">checked_mul</span>(<span class="ident">line_ending_len</span>)
+    <span class="kw">let</span> <span class="ident">total_line_endings_len</span> <span class="op">=</span> <span class="ident">num_lines_with_endings</span>.<span class="ident">checked_mul</span>(<span class="ident">line_ending_len</span>)
         .<span class="ident">expect</span>(<span class="string">&quot;Total line endings length exceeds usize&quot;</span>);
 
     <span class="ident">LineWrapParameters</span> {
@@ -465,9 +418,10 @@
         <span class="ident">last_line_len</span>: <span class="ident">last_line_length</span>,
         <span class="ident">total_full_wrapped_lines_len</span>: <span class="ident">total_full_wrapped_lines_len</span>,
         <span class="ident">total_len</span>: <span class="ident">total_all_wrapped_len</span>,
-        <span class="ident">total_line_endings_len</span>: <span class="ident">total_line_endings_len</span>,
+        <span class="ident">total_line_endings_len</span>: <span class="ident">total_line_endings_len</span>
     }
 }
+
 
 <span class="doccomment">/// Insert line endings into the encoded base64 after each complete line (except the last line, even</span>
 <span class="doccomment">/// if it is complete).</span>
@@ -476,38 +430,24 @@
 <span class="doccomment">/// `input_len` is the length of the encoded data in `encoded_buf`.</span>
 <span class="doccomment">/// `line_len` is the width without line ending characters.</span>
 <span class="doccomment">/// Returns the number of line ending bytes added.</span>
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line_wrap</span>(
-    <span class="ident">encoded_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>],
-    <span class="ident">input_len</span>: <span class="ident">usize</span>,
-    <span class="ident">line_len</span>: <span class="ident">usize</span>,
-    <span class="ident">line_ending</span>: <span class="ident">LineEnding</span>,
-) <span class="op">-&gt;</span> <span class="ident">usize</span> {
+<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">line_wrap</span>(<span class="ident">encoded_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>], <span class="ident">input_len</span>: <span class="ident">usize</span>, <span class="ident">line_len</span>: <span class="ident">usize</span>, <span class="ident">line_ending</span>: <span class="ident">LineEnding</span>) <span class="op">-&gt;</span> <span class="ident">usize</span> {
     <span class="kw">let</span> <span class="ident">line_wrap_params</span> <span class="op">=</span> <span class="ident">line_wrap_parameters</span>(<span class="ident">input_len</span>, <span class="ident">line_len</span>, <span class="ident">line_ending</span>);
 
     <span class="comment">// ptr.offset() is undefined if it wraps, and there is no checked_offset(). However, because</span>
     <span class="comment">// we perform this check up front to make sure we have enough capacity, we know that none of</span>
     <span class="comment">// the subsequent pointer operations (assuming they implement the desired behavior of course!)</span>
     <span class="comment">// will overflow.</span>
-    <span class="macro">assert</span><span class="macro">!</span>(
-        <span class="ident">encoded_buf</span>.<span class="ident">len</span>() <span class="op">&gt;=</span> <span class="ident">line_wrap_params</span>.<span class="ident">total_len</span>,
-        <span class="string">&quot;Buffer must be able to hold encoded data after line wrapping&quot;</span>
-    );
+    <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">encoded_buf</span>.<span class="ident">len</span>() <span class="op">&gt;=</span> <span class="ident">line_wrap_params</span>.<span class="ident">total_len</span>,
+        <span class="string">&quot;Buffer must be able to hold encoded data after line wrapping&quot;</span>);
 
     <span class="comment">// Move the last line, either partial or full, by itself as it does not have a line ending</span>
     <span class="comment">// afterwards</span>
-    <span class="kw">let</span> <span class="ident">last_line_start</span> <span class="op">=</span> <span class="ident">line_wrap_params</span>
-        .<span class="ident">lines_with_endings</span>
-        .<span class="ident">checked_mul</span>(<span class="ident">line_len</span>)
+    <span class="kw">let</span> <span class="ident">last_line_start</span> <span class="op">=</span> <span class="ident">line_wrap_params</span>.<span class="ident">lines_with_endings</span>.<span class="ident">checked_mul</span>(<span class="ident">line_len</span>)
         .<span class="ident">expect</span>(<span class="string">&quot;Start of last line in input exceeds usize&quot;</span>);
     <span class="comment">// last line starts immediately after all the wrapped full lines</span>
     <span class="kw">let</span> <span class="ident">new_line_start</span> <span class="op">=</span> <span class="ident">line_wrap_params</span>.<span class="ident">total_full_wrapped_lines_len</span>;
 
-    <span class="ident">safemem</span>::<span class="ident">copy_over</span>(
-        <span class="ident">encoded_buf</span>,
-        <span class="ident">last_line_start</span>,
-        <span class="ident">new_line_start</span>,
-        <span class="ident">line_wrap_params</span>.<span class="ident">last_line_len</span>,
-    );
+    <span class="ident">safemem</span>::<span class="ident">copy_over</span>(<span class="ident">encoded_buf</span>, <span class="ident">last_line_start</span>, <span class="ident">new_line_start</span>, <span class="ident">line_wrap_params</span>.<span class="ident">last_line_len</span>);
 
     <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">line_ending_bytes</span> <span class="op">=</span> <span class="number">0</span>;
 
@@ -517,18 +457,15 @@
     <span class="kw">for</span> <span class="ident">line_num</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">line_wrap_params</span>.<span class="ident">lines_with_endings</span> {
         <span class="comment">// doesn&#39;t underflow because line_num &lt; lines_with_endings</span>
         <span class="kw">let</span> <span class="ident">lines_before_this_line</span> <span class="op">=</span> <span class="ident">line_wrap_params</span>.<span class="ident">lines_with_endings</span> <span class="op">-</span> <span class="number">1</span> <span class="op">-</span> <span class="ident">line_num</span>;
-        <span class="kw">let</span> <span class="ident">old_line_start</span> <span class="op">=</span> <span class="ident">lines_before_this_line</span>
-            .<span class="ident">checked_mul</span>(<span class="ident">line_len</span>)
+        <span class="kw">let</span> <span class="ident">old_line_start</span> <span class="op">=</span> <span class="ident">lines_before_this_line</span>.<span class="ident">checked_mul</span>(<span class="ident">line_len</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;Old line start index exceeds usize&quot;</span>);
-        <span class="kw">let</span> <span class="ident">new_line_start</span> <span class="op">=</span> <span class="ident">lines_before_this_line</span>
-            .<span class="ident">checked_mul</span>(<span class="ident">line_ending_len</span>)
+        <span class="kw">let</span> <span class="ident">new_line_start</span> <span class="op">=</span> <span class="ident">lines_before_this_line</span>.<span class="ident">checked_mul</span>(<span class="ident">line_ending_len</span>)
             .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">i</span><span class="op">|</span> <span class="ident">i</span>.<span class="ident">checked_add</span>(<span class="ident">old_line_start</span>))
             .<span class="ident">expect</span>(<span class="string">&quot;New line start index exceeds usize&quot;</span>);
 
         <span class="ident">safemem</span>::<span class="ident">copy_over</span>(<span class="ident">encoded_buf</span>, <span class="ident">old_line_start</span>, <span class="ident">new_line_start</span>, <span class="ident">line_len</span>);
 
-        <span class="kw">let</span> <span class="ident">after_new_line</span> <span class="op">=</span> <span class="ident">new_line_start</span>
-            .<span class="ident">checked_add</span>(<span class="ident">line_len</span>)
+        <span class="kw">let</span> <span class="ident">after_new_line</span> <span class="op">=</span> <span class="ident">new_line_start</span>.<span class="ident">checked_add</span>(<span class="ident">line_len</span>)
             .<span class="ident">expect</span>(<span class="string">&quot;Line ending index exceeds usize&quot;</span>);
 
         <span class="kw">match</span> <span class="ident">line_ending</span> {
@@ -538,9 +475,8 @@
             }
             <span class="ident">LineEnding</span>::<span class="ident">CRLF</span> <span class="op">=&gt;</span> {
                 <span class="ident">encoded_buf</span>[<span class="ident">after_new_line</span>] <span class="op">=</span> <span class="string">b&#39;\r&#39;</span>;
-                <span class="ident">encoded_buf</span>[<span class="ident">after_new_line</span>
-                                .<span class="ident">checked_add</span>(<span class="number">1</span>)
-                                .<span class="ident">expect</span>(<span class="string">&quot;Line ending index exceeds usize&quot;</span>)] <span class="op">=</span> <span class="string">b&#39;\n&#39;</span>;
+                <span class="ident">encoded_buf</span>[<span class="ident">after_new_line</span>.<span class="ident">checked_add</span>(<span class="number">1</span>).<span class="ident">expect</span>(<span class="string">&quot;Line ending index exceeds usize&quot;</span>)]
+                    <span class="op">=</span> <span class="string">b&#39;\n&#39;</span>;
                 <span class="ident">line_ending_bytes</span> <span class="op">+=</span> <span class="number">2</span>;
             }
         }
@@ -555,96 +491,82 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">rand</span>;
 
+    <span class="kw">use</span> <span class="kw">super</span>::<span class="kw">super</span>::<span class="kw-2">*</span>;
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
 
-    <span class="kw">use</span> <span class="self">self</span>::<span class="ident">rand</span>::<span class="ident">distributions</span>::{<span class="ident">IndependentSample</span>, <span class="ident">Range</span>};
     <span class="kw">use</span> <span class="self">self</span>::<span class="ident">rand</span>::<span class="ident">Rng</span>;
+    <span class="kw">use</span> <span class="self">self</span>::<span class="ident">rand</span>::<span class="ident">distributions</span>::{<span class="ident">IndependentSample</span>, <span class="ident">Range</span>};
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">line_params_perfect_multiple_of_line_length_lf</span>() {
         <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">line_wrap_parameters</span>(<span class="number">100</span>, <span class="number">20</span>, <span class="ident">LineEnding</span>::<span class="ident">LF</span>);
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
-            <span class="ident">LineWrapParameters</span> {
-                <span class="ident">lines_with_endings</span>: <span class="number">4</span>,
-                <span class="ident">last_line_len</span>: <span class="number">20</span>,
-                <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">84</span>,
-                <span class="ident">total_len</span>: <span class="number">104</span>,
-                <span class="ident">total_line_endings_len</span>: <span class="number">4</span>,
-            },
-            <span class="ident">params</span>
-        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">LineWrapParameters</span> {
+            <span class="ident">lines_with_endings</span>: <span class="number">4</span>,
+            <span class="ident">last_line_len</span>: <span class="number">20</span>,
+            <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">84</span>,
+            <span class="ident">total_len</span>: <span class="number">104</span>,
+            <span class="ident">total_line_endings_len</span>: <span class="number">4</span>
+        }, <span class="ident">params</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">line_params_partial_last_line_crlf</span>() {
         <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">line_wrap_parameters</span>(<span class="number">103</span>, <span class="number">20</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>);
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
-            <span class="ident">LineWrapParameters</span> {
-                <span class="ident">lines_with_endings</span>: <span class="number">5</span>,
-                <span class="ident">last_line_len</span>: <span class="number">3</span>,
-                <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">110</span>,
-                <span class="ident">total_len</span>: <span class="number">113</span>,
-                <span class="ident">total_line_endings_len</span>: <span class="number">10</span>,
-            },
-            <span class="ident">params</span>
-        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">LineWrapParameters</span> {
+            <span class="ident">lines_with_endings</span>: <span class="number">5</span>,
+            <span class="ident">last_line_len</span>: <span class="number">3</span>,
+            <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">110</span>,
+            <span class="ident">total_len</span>: <span class="number">113</span>,
+            <span class="ident">total_line_endings_len</span>: <span class="number">10</span>
+        }, <span class="ident">params</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">line_params_line_len_1_crlf</span>() {
         <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">line_wrap_parameters</span>(<span class="number">100</span>, <span class="number">1</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>);
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
-            <span class="ident">LineWrapParameters</span> {
-                <span class="ident">lines_with_endings</span>: <span class="number">99</span>,
-                <span class="ident">last_line_len</span>: <span class="number">1</span>,
-                <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">99</span> <span class="op">*</span> <span class="number">3</span>,
-                <span class="ident">total_len</span>: <span class="number">99</span> <span class="op">*</span> <span class="number">3</span> <span class="op">+</span> <span class="number">1</span>,
-                <span class="ident">total_line_endings_len</span>: <span class="number">99</span> <span class="op">*</span> <span class="number">2</span>,
-            },
-            <span class="ident">params</span>
-        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">LineWrapParameters</span> {
+            <span class="ident">lines_with_endings</span>: <span class="number">99</span>,
+            <span class="ident">last_line_len</span>: <span class="number">1</span>,
+            <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">99</span> <span class="op">*</span> <span class="number">3</span>,
+            <span class="ident">total_len</span>: <span class="number">99</span> <span class="op">*</span> <span class="number">3</span> <span class="op">+</span> <span class="number">1</span>,
+            <span class="ident">total_line_endings_len</span>: <span class="number">99</span> <span class="op">*</span> <span class="number">2</span>
+        }, <span class="ident">params</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">line_params_line_len_longer_than_input_crlf</span>() {
         <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">line_wrap_parameters</span>(<span class="number">100</span>, <span class="number">200</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>);
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
-            <span class="ident">LineWrapParameters</span> {
-                <span class="ident">lines_with_endings</span>: <span class="number">0</span>,
-                <span class="ident">last_line_len</span>: <span class="number">100</span>,
-                <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">0</span>,
-                <span class="ident">total_len</span>: <span class="number">100</span>,
-                <span class="ident">total_line_endings_len</span>: <span class="number">0</span>,
-            },
-            <span class="ident">params</span>
-        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">LineWrapParameters</span> {
+            <span class="ident">lines_with_endings</span>: <span class="number">0</span>,
+            <span class="ident">last_line_len</span>: <span class="number">100</span>,
+            <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">0</span>,
+            <span class="ident">total_len</span>: <span class="number">100</span>,
+            <span class="ident">total_line_endings_len</span>: <span class="number">0</span>
+        }, <span class="ident">params</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">line_params_line_len_same_as_input_crlf</span>() {
         <span class="kw">let</span> <span class="ident">params</span> <span class="op">=</span> <span class="ident">line_wrap_parameters</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>);
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
-            <span class="ident">LineWrapParameters</span> {
-                <span class="ident">lines_with_endings</span>: <span class="number">0</span>,
-                <span class="ident">last_line_len</span>: <span class="number">100</span>,
-                <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">0</span>,
-                <span class="ident">total_len</span>: <span class="number">100</span>,
-                <span class="ident">total_line_endings_len</span>: <span class="number">0</span>,
-            },
-            <span class="ident">params</span>
-        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">LineWrapParameters</span> {
+            <span class="ident">lines_with_endings</span>: <span class="number">0</span>,
+            <span class="ident">last_line_len</span>: <span class="number">100</span>,
+            <span class="ident">total_full_wrapped_lines_len</span>: <span class="number">0</span>,
+            <span class="ident">total_len</span>: <span class="number">100</span>,
+            <span class="ident">total_line_endings_len</span>: <span class="number">0</span>
+        }, <span class="ident">params</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">line_wrap_length_1_lf</span>() {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0x3</span>, <span class="number">0x4</span>];
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">3</span>, <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">1</span>, <span class="ident">LineEnding</span>::<span class="ident">LF</span>));
+        <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">1</span>, <span class="ident">LineEnding</span>::<span class="ident">LF</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0xA</span>, <span class="number">0x2</span>, <span class="number">0xA</span>, <span class="number">0x3</span>, <span class="number">0xA</span>, <span class="number">0x4</span>], <span class="ident">buf</span>);
     }
@@ -653,7 +575,7 @@
     <span class="kw">fn</span> <span class="ident">line_wrap_length_1_crlf</span>() {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0x3</span>, <span class="number">0x4</span>];
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">6</span>, <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">1</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>));
+        <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">1</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0xD</span>, <span class="number">0xA</span>, <span class="number">0x2</span>, <span class="number">0xD</span>, <span class="number">0xA</span>, <span class="number">0x3</span>, <span class="number">0xD</span>, <span class="number">0xA</span>, <span class="number">0x4</span>], <span class="ident">buf</span>);
     }
@@ -662,7 +584,7 @@
     <span class="kw">fn</span> <span class="ident">line_wrap_length_2_lf_full_lines</span>() {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0x3</span>, <span class="number">0x4</span>];
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">1</span>, <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">LF</span>));
+        <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">LF</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0xA</span>, <span class="number">0x3</span>, <span class="number">0x4</span>], <span class="ident">buf</span>);
     }
@@ -671,7 +593,7 @@
     <span class="kw">fn</span> <span class="ident">line_wrap_length_2_crlf_full_lines</span>() {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0x3</span>, <span class="number">0x4</span>];
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">2</span>, <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>));
+        <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0xD</span>, <span class="number">0xA</span>, <span class="number">0x3</span>, <span class="number">0x4</span>], <span class="ident">buf</span>);
     }
@@ -680,7 +602,7 @@
     <span class="kw">fn</span> <span class="ident">line_wrap_length_2_lf_partial_line</span>() {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0x3</span>, <span class="number">0x4</span>, <span class="number">0x5</span>];
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">2</span>, <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">LF</span>));
+        <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">LF</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0xA</span>, <span class="number">0x3</span>, <span class="number">0x4</span>, <span class="number">0xA</span>, <span class="number">0x5</span>], <span class="ident">buf</span>);
     }
@@ -689,7 +611,7 @@
     <span class="kw">fn</span> <span class="ident">line_wrap_length_2_crlf_partial_line</span>() {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">buf</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0x3</span>, <span class="number">0x4</span>, <span class="number">0x5</span>];
 
-        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="number">4</span>, <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>));
+        <span class="ident">do_line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf</span>, <span class="number">2</span>, <span class="ident">LineEnding</span>::<span class="ident">CRLF</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0xD</span>, <span class="number">0xA</span>, <span class="number">0x3</span>, <span class="number">0x4</span>, <span class="number">0xD</span>, <span class="number">0xA</span>, <span class="number">0x5</span>], <span class="ident">buf</span>);
     }
@@ -728,7 +650,7 @@
                 <span class="kw">let</span> <span class="ident">line_ending_offset</span> <span class="op">=</span> (<span class="ident">line_ending_num</span> <span class="op">+</span> <span class="number">1</span>) <span class="op">*</span> <span class="ident">line_len</span>;
 
                 <span class="kw">for</span> <span class="kw">_</span> <span class="kw">in</span> <span class="number">0</span>..<span class="ident">line_ending_len</span> {
-                    <span class="kw">let</span> <span class="kw">_</span> <span class="op">=</span> <span class="ident">buf</span>.<span class="ident">remove</span>(<span class="ident">line_ending_offset</span>);
+                    <span class="ident">buf</span>.<span class="ident">remove</span>(<span class="ident">line_ending_offset</span>);
                 }
             }
 
@@ -760,25 +682,17 @@
 
         <span class="comment">// make sure line_wrap didn&#39;t touch anything beyond what it should</span>
         <span class="kw">let</span> <span class="ident">start_of_untouched_data</span> <span class="op">=</span> <span class="ident">orig_len</span> <span class="op">+</span> <span class="ident">bytes_written</span>;
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
-            <span class="ident">before_line_wrap</span>[<span class="ident">start_of_untouched_data</span>..],
-            <span class="ident">buf</span>[<span class="ident">start_of_untouched_data</span>..]
-        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">before_line_wrap</span>[<span class="ident">start_of_untouched_data</span>..],
+            <span class="ident">buf</span>[<span class="ident">start_of_untouched_data</span>..]);
 
         <span class="comment">// also make sure that line wrapping will fit into a slice no bigger than what it should</span>
         <span class="comment">// need</span>
-        <span class="kw">let</span> <span class="ident">bytes_written_precise_fit</span> <span class="op">=</span> <span class="ident">line_wrap</span>(
-            <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">before_line_wrap</span>[<span class="number">0</span>..(<span class="ident">params</span>.<span class="ident">total_len</span>)],
-            <span class="ident">orig_len</span>,
-            <span class="ident">line_len</span>,
-            <span class="ident">line_ending</span>,
-        );
+        <span class="kw">let</span> <span class="ident">bytes_written_precise_fit</span> <span class="op">=</span>
+            <span class="ident">line_wrap</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">before_line_wrap</span>[<span class="number">0</span>..(<span class="ident">params</span>.<span class="ident">total_len</span>)], <span class="ident">orig_len</span>, <span class="ident">line_len</span>,
+                      <span class="ident">line_ending</span>);
 
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">bytes_written</span>, <span class="ident">bytes_written_precise_fit</span>);
-        <span class="macro">assert_eq</span><span class="macro">!</span>(
-            <span class="kw-2">&amp;</span><span class="ident">buf</span>[<span class="number">0</span>..(<span class="ident">params</span>.<span class="ident">total_len</span>)],
-            <span class="kw-2">&amp;</span><span class="ident">before_line_wrap</span>[<span class="number">0</span>..(<span class="ident">params</span>.<span class="ident">total_len</span>)]
-        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="kw-2">&amp;</span><span class="ident">buf</span>[<span class="number">0</span>..(<span class="ident">params</span>.<span class="ident">total_len</span>)], <span class="kw-2">&amp;</span><span class="ident">before_line_wrap</span>[<span class="number">0</span>..(<span class="ident">params</span>.<span class="ident">total_len</span>)]);
 
         <span class="ident">buf</span>.<span class="ident">truncate</span>(<span class="ident">orig_len</span> <span class="op">+</span> <span class="ident">bytes_written</span>);
 
