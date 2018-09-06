@@ -37,7 +37,9 @@ export default {
   methods: {
     numberSelected (number) {
       let board = this.$refs.board
+      board.checkIfSlotHasBeenFilled(number)
       board.mutateSelectedSlot(number)
+      board.checkIfBoardIsFullyFilled()
     },
     deserializeBoardSkeleton (boardSkeleton) {
       let boardMatrix = Array(9).fill().map(() => Array(9).fill(0))
