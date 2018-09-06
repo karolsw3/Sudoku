@@ -21,13 +21,13 @@ export default {
   padding 7px 20px
   box-sizing border-box
   border none
-  border-radius 3px
+  border-radius 100px
   font-size 16px
   font-family 'Open Sans'
   font-weight 700
   text-transform uppercase
   cursor pointer
-  box-shadow inset 0 0 8px 4px #1349ff
+  box-shadow inset 0 0 8px 2px #1349ff
   transition-duration .2s
   &:hover
     opacity 0.95
