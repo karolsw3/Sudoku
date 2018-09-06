@@ -25,7 +25,7 @@ export default {
   components: { NumberButton, ProgressSpinner },
   created () {
     this.loading = true
-    axios.get('/api/v1/check/leaderboard?of=users')
+    axios.get('/api/v1/check/leaderboard?of=users&count=10')
       .then((response) => {
         this.loading = false
         this.leaders = response.data
