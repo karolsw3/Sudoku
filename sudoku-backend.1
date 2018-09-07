@@ -1,13 +1,13 @@
 .\" generated with Ronn/v0.7.3
 .\" http://github.com/rtomayko/ronn/tree/0.7.3
 .
-.TH "SUDOKU\-BACKEND" "1" "August 2018" "Galactim" ""
+.TH "SUDOKU\-BACKEND" "1" "September 2018" "Galactim" ""
 .
 .SH "NAME"
 \fBsudoku\-backend\fR \- Back\-end of the "modern, API\-based sudoku app"
 .
 .SH "SYNOPSIS"
-\fBsudoku\-backend\fR [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE]
+\fBsudoku\-backend\fR [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE] [ACTIVITY_TIMEOUT]
 .
 .SH "DESCRIPTION"
 The back\-end of the "modern, API\-based sudoku app", separate from the server for the front\-end\.
@@ -43,6 +43,22 @@ Consult LEADERBOARD SETTINGS for more details
 
 If not present, defaults to \./leaderboard\.toml, if exists,
 then to builtin defaults\.
+.
+.fi
+.
+.IP "" 0
+.
+.P
+[ACTIVITY_TIMEOUT]
+.
+.IP "" 4
+.
+.nf
+
+Amount of time in milliseconds after last request a session/user is considered
+to have "left the site"\.
+
+Default: 600\'000 (10 minutes)\.
 .
 .fi
 .

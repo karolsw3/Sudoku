@@ -76,7 +76,7 @@
 
 <h2 id="SYNOPSIS">SYNOPSIS</h2>
 
-<p><code>sudoku-backend</code> [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE]</p>
+<p><code>sudoku-backend</code> [DATABASE_FILE] [LEADERBOARD_SETTINGS_FILE] [ACTIVITY_TIMEOUT]</p>
 
 <h2 id="DESCRIPTION">DESCRIPTION</h2>
 
@@ -104,6 +104,14 @@ Consult LEADERBOARD SETTINGS for more details
 
 If not present, defaults to ./leaderboard.toml, if exists,
 then to builtin defaults.
+</code></pre>
+
+<p>  [ACTIVITY_TIMEOUT]</p>
+
+<pre><code>Amount of time in milliseconds after last request a session/user is considered
+to have "left the site".
+
+Default: 600'000 (10 minutes).
 </code></pre>
 
 <h2 id="LEADERBOARD-SETTINGS">LEADERBOARD SETTINGS</h2>
@@ -145,7 +153,7 @@ the <code>person</code> one – for those of registered in players.</p>
 
 <h2 id="AUTHOR">AUTHOR</h2>
 
-<p>Written by nabijaczleweli &lt;<a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#110;&#97;&#x62;&#x69;&#x6a;&#x61;&#x63;&#122;&#x6c;&#101;&#119;&#101;&#x6c;&#105;&#x40;&#103;&#109;&#x61;&#105;&#108;&#x2e;&#99;&#x6f;&#109;" data-bare-link="true">&#110;&#97;&#98;&#105;&#x6a;&#97;&#x63;&#x7a;&#108;&#x65;&#119;&#x65;&#108;&#105;&#x40;&#x67;&#109;&#97;&#x69;&#108;&#46;&#99;&#111;&#109;</a>&gt;</p>
+<p>Written by nabijaczleweli &lt;<a href="&#x6d;&#x61;&#105;&#108;&#x74;&#x6f;&#58;&#x6e;&#x61;&#x62;&#105;&#x6a;&#97;&#x63;&#122;&#x6c;&#x65;&#119;&#101;&#x6c;&#x69;&#64;&#103;&#109;&#x61;&#x69;&#108;&#x2e;&#99;&#x6f;&#x6d;" data-bare-link="true">&#110;&#97;&#98;&#105;&#106;&#x61;&#99;&#x7a;&#108;&#101;&#119;&#101;&#108;&#x69;&#64;&#x67;&#109;&#97;&#x69;&#108;&#x2e;&#99;&#111;&#109;</a>&gt;</p>
 
 <h2 id="REPORTING-BUGS">REPORTING BUGS</h2>
 
@@ -158,7 +166,7 @@ the <code>person</code> one – for those of registered in players.</p>
 
   <ol class='man-decor man-foot man foot'>
     <li class='tl'>Galactim</li>
-    <li class='tc'>August 2018</li>
+    <li class='tc'>September 2018</li>
     <li class='tr'>sudoku-backend(1)</li>
   </ol>
 
