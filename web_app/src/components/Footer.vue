@@ -3,11 +3,47 @@
   span An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
   span |
   span Design by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
+  span |
+  span
+    .Footer__led
+      li
+        button
+  span {{activeUsers}} player{{activeUsers > 1 ? 's' : ''}} online
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  data: function () {
+    return {
+      activeUsers: 1,
+      interval: null
+    }
+  },
+  methods: {
+    checkActiveUsers () {
+      axios.get('/api/v1/check/active_users')
+        .then((response) => {
+          this.activeUsers = parseInt(response.data)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    },
+    startCheckingActiveUsers () {
+      this.interval = setInterval(() => {
+        this.checkActiveUsers()
+      }, 20000)
+    },
+    stopCheckingActiveUsers () {
+      clearInterval(this.interval)
+    },
+  },
+  created() {
+    this.startCheckingActiveUsers()
+  }
 }
 </script>
 
@@ -27,6 +63,47 @@ export default {
     margin 0 5px
   a
     text-decoration none
+  &__led
+    position relative
+    li
+      list-style none
+    button
+      position relative
+      width 12px
+      height 12px
+      background-color #00db83
+      margin 0
+      border 0
+      border-radius 50%
+      &:after
+        content ''
+        width 12px
+        height 12px
+        position absolute
+        top 50%
+        left 50%
+        transform translateX(-50%) translateY(-50%)
+        border 3px solid #00db83
+        border-radius 50%
+        animation beacon 2s infinite linear
+        animation-fill-mode forwards
+
+@keyframes beacon
+  0%
+  	width 0
+    height 0
+    opacity 1
+  25%
+    width 10px
+    height 10px
+    opacity 0.7
+  60%
+    width 17px
+    height 17px
+  100%
+    width 20px
+    height 20px
+    opacity 0
 @media screen and (max-width: 700px)
   .Footer
     display none
