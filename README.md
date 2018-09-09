@@ -16,10 +16,6 @@ We want to make our take modern, secure, well-designed and open to everyone – 
 
 The full API documentation is present [HERE](https://cdn.rawgit.com/Galactim/Sudoku/backend-doc/sudoku_backend/index.html)
 
-However, here's an infographic showing its key features:
-
-# <img src="images/api_info.png" alt="Api info" width="635"/>
-
 After a game is won, the player is awarded points, calculated as follows:
 
 ```c
