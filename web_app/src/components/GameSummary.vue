@@ -54,30 +54,28 @@ export default {
   position fixed
   left 0
   right 0
-  margin 30px auto
-  width 481px
+  margin 0 auto
+  width 306px
   background white
-  border-radius 5px
+  border-radius 10px
   z-index 4999
   box-shadow 0 0 22px #aaa
   &__image
-    width 481px
-    height 250px
+    height 177px
     background url('../../../images/gui/gameSummary.svg')
+    border-radius 10px 10px 0 0
     background-size cover
   &__stats
-    padding 10px 70px
+    padding 20px 25px
     box-sizing border-box
   &__header
     display block
-    font-size 40px
     text-transform uppercase
     font-weight 900
     color #0037dd
-    margin-top 30px
   &__subtitle
     color #808080
-    font-size 18px
+    font-size 16px
     text-align left
     font-weight 400
     text-transform uppercase
@@ -92,12 +90,12 @@ export default {
     width 50%
     text-align left
     color #b3b3b3
-    font-size 15px
+    font-size 13px
   &__statValue
     width 50%
     text-align right
     color black
-    font-size 19px
+    font-size 15px
     span
       margin 0 5px
     &--bold
