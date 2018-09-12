@@ -272,7 +272,7 @@ export default {
     display grid
     box-sizing border-box
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
-    padding 2px
+    padding 1px
     border-radius 5px
     background #e9e9e9
     &--main
@@ -301,16 +301,16 @@ export default {
     color #123ffc
     cursor pointer
     transition-duration .12s
-    border 2px solid #e9e9e9
+    border 1px solid #e9e9e9
     p
       position absolute
       font-family 'Open Sans', sans-serif
-      font-weight 900
-      top -7px
+      font-weight 700
+      top -5px
       left 0
       right 0
     &:hover
-      background #e6e8eb
+      background #eeeeee
     &--selected
       box-shadow inset 0 0 0 3px
     &--locked
