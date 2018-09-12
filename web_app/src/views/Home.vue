@@ -35,7 +35,6 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:800')
 
 .md-button + .md-button
     margin 6px 8px
