@@ -66,7 +66,7 @@ export default {
     border-radius 10px
     background #e4e4e4
     cursor pointer
-    box-shadow: 0 0 16px 3px #e4e4e4
+    box-shadow 0 0 16px 3px #e4e4e4
     &:nth-child(1)
       height 300px
       background-image url('../../../images/gui/play.svg')

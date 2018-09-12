@@ -3,13 +3,13 @@
     ProgressSpinner(v-if='loading')
     .leaderboard__title Top 10 players
     table
-      tr
+      tr.mainRow
         th Position
         th Username
         th Points
         th Games played
       tr(v-for='(leader, index) in leaders' :key='index')
-        td {{ index + 1 }}
+        td <b>{{ index + 1 }}</b>
         td {{ leader.username }}
         td {{ leader.points_total }}
         td {{ leader.games_total }}
@@ -61,15 +61,14 @@ export default {
     font-weight 900
     color #222
     text-transform uppercase
-    margin 20px auto
+    margin 30px auto
 table
   width 100%
   max-width 900px
   border-collapse collapse
-  border 2px solid #eee
+  box-shadow 0 0 16px 3px #e4e4e4
   td, th
-    border 2px solid #eee
-    padding 7px 3px
+    padding 15px 6px
     color #222
     font-size 1.2em
   th
@@ -77,6 +76,13 @@ table
     font-weight 900
   tr
     background white
+    transition-duration .25s
     &:nth-child(even)
       background #f4f4f4
+    &:hover
+      background #eee
+  .mainRow
+    background white
+    &:hover
+      background white
 </style>

@@ -37,6 +37,7 @@ a
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
+  background white
   height 100%
   display flex
   flex-direction column
