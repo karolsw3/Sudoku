@@ -1,6 +1,6 @@
 <template lang="pug">
   .leaderboard
-    ProgressSpinner(v-if='loading')
+    ProgressBar(v-if='loading')
     .leaderboard__title Top 10 players
     table
       tr.mainRow
@@ -17,12 +17,14 @@
 
 <script>
 import NumberButton from '@/components/NumberButton.vue'
-import ProgressSpinner from '@/components/ProgressSpinner.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 import axios from 'axios'
 
 export default {
   name: 'leaderboard',
-  components: { NumberButton, ProgressSpinner },
+  components: {
+    NumberButton, ProgressBar
+  },
   created () {
     this.loading = true
     axios.get('/api/v1/check/leaderboard?of=users&count=10')
@@ -48,9 +50,10 @@ export default {
 <style lang="stylus">
 .leaderboard
   margin 0 auto
-  width 95%
+  width 100%
   background white
   height 100%
+  position relative
   display flex
   flex-direction column
   justify-content center
@@ -63,7 +66,8 @@ export default {
     text-transform uppercase
     margin 30px auto
 table
-  width 100%
+  margin 0 auto
+  width 95%
   max-width 900px
   border-collapse collapse
   box-shadow 0 0 16px 3px #e4e4e4

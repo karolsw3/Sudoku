@@ -1,8 +1,6 @@
 <template lang="pug">
 .Register
-  div(v-if="loading")
-    md-progress-bar(md-mode='indeterminate')
-    md-progress-bar.md-primary(md-mode='indeterminate')
+  ProgressBar(v-if="loading")
   ColumnPanel
     Input(placeholder="Login" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Email" type="email" ref="email" @valueChanged='checkIfInputsAreFilled')
@@ -20,11 +18,12 @@ import ColumnPanel from '@/components/ColumnPanel.vue'
 import base64 from 'base-64'
 import util from '@/util.js'
 import MainButton from '@/components/MainButton.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 
 export default {
   name: 'Register',
   components: {
-    ColumnPanel, Input, MainButton
+    ColumnPanel, Input, MainButton, ProgressBar
   },
   data: function () {
     return {

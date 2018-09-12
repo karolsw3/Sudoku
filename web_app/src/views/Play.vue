@@ -1,6 +1,6 @@
 <template lang="pug">
   .play
-    ProgressSpinner(v-if='loading')
+    ProgressBar(v-if='loading')
     GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false')
     Board(ref='board' v-on:board-is-valid="submitBoard")
       Timer(ref='timer')
@@ -10,7 +10,7 @@
 <script>
 import Board from '@/components/Board.vue'
 import NumberSelector from '@/components/NumberSelector.vue'
-import ProgressSpinner from '@/components/ProgressSpinner.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 import GameSummary from '@/components/GameSummary.vue'
 import Timer from '@/components/Timer.vue'
 import axios from 'axios'
@@ -18,7 +18,7 @@ import axios from 'axios'
 export default {
   name: 'play',
   components: {
-    Board, NumberSelector, Timer, GameSummary, ProgressSpinner
+    Board, NumberSelector, Timer, GameSummary, ProgressBar
   },
   props: ['difficulty'],
   data: function () {
@@ -135,11 +135,4 @@ export default {
   height 100%
   padding-bottom 100px
   align-items center
-.progressSpinner
-  position fixed
-  display inline-block
-  margin calc(50vh - 155px) auto 0 auto
-  left 0
-  right 0
-  z-index 999
 </style>

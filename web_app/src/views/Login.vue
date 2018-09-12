@@ -1,8 +1,6 @@
 <template lang="pug">
 .Login
-  div(v-if="loading")
-    md-progress-bar(md-mode='indeterminate')
-    md-progress-bar.md-primary(md-mode='indeterminate')
+  ProgressBar(v-if="loading")
   ColumnPanel
     Input(placeholder="Login" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
     Input(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
@@ -18,11 +16,12 @@ import ColumnPanel from '@/components/ColumnPanel.vue'
 import util from '@/util.js'
 import base64 from 'base-64'
 import MainButton from '@/components/MainButton.vue'
+import ProgressBar from '@/components/ProgressBar.vue'
 
 export default {
   name: 'Login',
   components: {
-    ColumnPanel, Input, MainButton
+    ColumnPanel, Input, MainButton, ProgressBar
   },
   data: function () {
     return {
