@@ -103,7 +103,8 @@ export default {
     border-radius 100%
     cursor pointer
 .iconButton
-  background-size contain
+  background-size cover
+  background-position center
   &--dashboard
     background-image url('../../../images/icons/dashboard.svg')
   &--dashboardActive
