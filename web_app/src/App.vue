@@ -14,9 +14,6 @@ export default {
   name: 'Sudoku',
   components: {
     Menu, Footer
-  },
-  metaInfo: {
-    title: 'The best Sudoku app on the web'
   }
 }
 </script>

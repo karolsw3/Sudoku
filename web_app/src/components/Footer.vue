@@ -56,6 +56,7 @@ export default {
   padding 10px 0
   text-align center
   color #cccccc
+  border-top 1px solid #f1f1f1
   bottom 0 !important
   z-index 3
   span

@@ -3,7 +3,6 @@ import 'es6-promise/auto'
 import Vuex from 'vuex'
 import App from './App.vue'
 import router from './router'
-import Meta from 'vue-meta'
 import axios from 'axios'
 import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
@@ -11,7 +10,6 @@ import 'vue-material/dist/theme/default.css'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
-Vue.use(Meta)
 
 Vue.use(MdButton)
 Vue.use(MdMenu)
@@ -83,10 +81,3 @@ new Vue({
   },
   render: h => h(App)
 }).$mount('#app')
-
-Vue.use(Meta, {
-  keyName: 'metaInfo', // the component option name that vue-meta looks for meta info on.
-  attribute: 'data-vue-meta', // the attribute name vue-meta adds to the tags it observes
-  ssrAttribute: 'data-vue-meta-server-rendered', // the attribute name that lets vue-meta know that meta info has already been server-rendered
-  tagIDKeyName: 'vmid' // the property name that vue-meta uses to determine whether to overwrite or append a tag
-})
