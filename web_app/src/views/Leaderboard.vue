@@ -51,7 +51,6 @@ export default {
 .leaderboard
   margin 0 auto
   width 100%
-  background white
   height 100%
   position relative
   display flex

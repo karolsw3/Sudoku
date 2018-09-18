@@ -26,6 +26,11 @@ html,body
   padding 0
   font-size 14px
   height 100%
+  background-color white
+  background-image url('../../images_compressed/background.svg')
+  background-position bottom right
+  background-repeat no-repeat
+  background-size 1950px
 a
   text-decoration none
   margin 0
@@ -36,7 +41,6 @@ a
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  background white
   height 100%
   display flex
   flex-direction column

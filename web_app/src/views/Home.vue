@@ -1,13 +1,13 @@
 <template lang="pug">
   .home
     .dashboard
-      md-button.dashboard__cell(@click="selectorOpen = !selectorOpen")
+      .dashboard__cell.dashboard__cell--button(@click="selectorOpen = !selectorOpen")
         .dashboard__button New game
       .dashboard__difficultySelector(v-if="selectorOpen")
-        router-link(tag='md-button' to="/play/easy") Easy
-        router-link(tag='md-button' to="/play/medium") Medium
-        router-link(tag='md-button' to="/play/hard") Hard
-      router-link(tag='md-button' to="/leaderboard").dashboard__cell.dashboard__cell--leaderboard
+        router-link(to="/play/easy") Easy
+        router-link(to="/play/medium") Medium
+        router-link(to="/play/hard") Hard
+      router-link(tag='p' to="/leaderboard").dashboard__cell.dashboard__cell--button.dashboard__cell--leaderboard
         .dashboard__button Leaderboard
       .dashboard__cell(:class='$store.state.user.logged ? "dashboard__cell--stats-logged" : "dashboard__cell--stats"')
         .stats(v-if='$store.state.user.logged')
@@ -45,11 +45,6 @@ export default {
   align-items center
   justify-content center
   box-sizing border-box
-  background-color white
-  background-image url('../../../images_compressed/background.svg')
-  background-position bottom right
-  background-repeat no-repeat
-  background-size 1950px
 .dashboard
   position relative
   margin 0 auto
@@ -64,16 +59,25 @@ export default {
     height 220px
     border-radius 10px
     background #e4e4e4
+    background-position center
     cursor pointer
     box-shadow 0 0 16px 3px #e4e4e4
+    display flex
+    align-items center
+    justify-content center
     &:nth-child(1)
       height 300px
       background-image url('../../../images_compressed/gui/play.svg')
-      background-size cover
+      background-size 100%
       grid-area a
+    &--button
+      transition-duration .4s
+      &:hover
+        box-shadow 0 0 22px 1px #9a9a9a
+        background-size 120% !important
     &--leaderboard
       background-image url('../../../images_compressed/gui/leaderboard.svg')
-      background-size cover
+      background-size 100%
     &--stats
       margin 6px 8px
       line-height 2.3em
@@ -85,11 +89,13 @@ export default {
       font-family 'Open Sans', sans-serif
       background-image url('../../../images_compressed/gui/createAccount.svg')
       background-size cover
+      align-items flex-start
     &--stats-logged
       margin 6px 8px
       cursor default
       background-image url('../../../images_compressed/gui/stats.svg')
       background-size cover
+      align-items flex-start
   &__button
     display flex
     align-items center
@@ -102,6 +108,7 @@ export default {
     font-size 32px
     background #ff1167
     padding 37px
+    text-decoration none
     color #fff
   &__difficultySelector
     grid-area selector
