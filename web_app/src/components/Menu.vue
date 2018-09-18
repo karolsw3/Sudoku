@@ -80,7 +80,7 @@ export default {
     width 300px
     height 52px
     margin-right 15px
-    background-image url(../../../images/logo.svg)
+    background-image url(../../../images_compressed/logo.svg)
     background-size cover
     cursor pointer
   &__user
@@ -106,19 +106,19 @@ export default {
   background-size cover
   background-position center
   &--dashboard
-    background-image url('../../../images/icons/dashboard.svg')
+    background-image url('../../../images_compressed/icons/dashboard.svg')
   &--dashboardActive
-    background-image url('../../../images/icons/dashboard_active.svg')
+    background-image url('../../../images_compressed/icons/dashboard_active.svg')
   &--login
-    background-image url('../../../images/icons/login.svg')
+    background-image url('../../../images_compressed/icons/login.svg')
   &--loginActive
-    background-image url('../../../images/icons/login_active.svg')
+    background-image url('../../../images_compressed/icons/login_active.svg')
   &--register
-    background-image url('../../../images/icons/register.svg')
+    background-image url('../../../images_compressed/icons/register.svg')
   &--registerActive
-    background-image url('../../../images/icons/register_active.svg')
+    background-image url('../../../images_compressed/icons/register_active.svg')
   &--logout
-    background-image url('../../../images/icons/logout.svg')
+    background-image url('../../../images_compressed/icons/logout.svg')
 @media screen and (max-width: 860px)
   .Menu
     display none

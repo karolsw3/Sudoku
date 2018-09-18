@@ -46,7 +46,7 @@ export default {
   justify-content center
   box-sizing border-box
   background-color white
-  background-image url('../../../images/background.svg')
+  background-image url('../../../images_compressed/background.svg')
   background-position bottom right
   background-repeat no-repeat
   background-size 1950px
@@ -68,11 +68,11 @@ export default {
     box-shadow 0 0 16px 3px #e4e4e4
     &:nth-child(1)
       height 300px
-      background-image url('../../../images/gui/play.svg')
+      background-image url('../../../images_compressed/gui/play.svg')
       background-size cover
       grid-area a
     &--leaderboard
-      background-image url('../../../images/gui/leaderboard.svg')
+      background-image url('../../../images_compressed/gui/leaderboard.svg')
       background-size cover
     &--stats
       margin 6px 8px
@@ -83,12 +83,12 @@ export default {
       text-shadow 0 0 12px #c20d4f
       text-align left
       font-family 'Open Sans', sans-serif
-      background-image url('../../../images/gui/createAccount.svg')
+      background-image url('../../../images_compressed/gui/createAccount.svg')
       background-size cover
     &--stats-logged
       margin 6px 8px
       cursor default
-      background-image url('../../../images/gui/stats.svg')
+      background-image url('../../../images_compressed/gui/stats.svg')
       background-size cover
   &__button
     display flex

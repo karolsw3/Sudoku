@@ -10,5 +10,7 @@
 !design/**
 !images
 !images/**
+!images_compressed
+!images_compressed/**
 !web_app
 !web_app/**
