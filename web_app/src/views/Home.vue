@@ -74,10 +74,11 @@ export default {
       transition-duration .4s
       &:hover
         box-shadow 0 0 22px 1px #9a9a9a
-        background-size 120% !important
+        background-size 115% !important
     &--leaderboard
+      margin 6px 8px
       background-image url('../../../images_compressed/gui/leaderboard.svg')
-      background-size 100%
+      background-size 105%
     &--stats
       margin 6px 8px
       line-height 2.3em

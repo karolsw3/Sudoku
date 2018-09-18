@@ -6,8 +6,6 @@
   span |
   span
     .Footer__led
-      li
-        button
   span {{activeUsers}} player{{activeUsers > 1 ? 's' : ''}} online
 </template>
 
@@ -65,29 +63,27 @@ export default {
   a
     text-decoration none
   &__led
+    width 12px
+    height 12px
+    background-color #00db83
+    border none
+    border-radius 25px
+    display block
+    padding 0px 5px 2px 4px
     position relative
-    li
-      list-style none
-    button
-      position relative
+    top 2px
+    &:after
+      content ''
       width 12px
       height 12px
-      background-color #00db83
-      margin 0
-      border 0
+      position absolute
+      top 50%
+      left 50%
+      transform translateX(-50%) translateY(-50%)
+      border 3px solid #00db83
       border-radius 50%
-      &:after
-        content ''
-        width 12px
-        height 12px
-        position absolute
-        top 50%
-        left 50%
-        transform translateX(-50%) translateY(-50%)
-        border 3px solid #00db83
-        border-radius 50%
-        animation beacon 2s infinite linear
-        animation-fill-mode forwards
+      animation beacon 2s infinite linear
+      animation-fill-mode forwards
 
 @keyframes beacon
   0%
