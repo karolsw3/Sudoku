@@ -2,7 +2,9 @@
 .Footer
   span An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
   span |
-  span Design by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
+  span Frontend by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
+  span |
+  span Backend by <a href='https://github.com/nabijaczleweli' target='_blank'><b>Nabijaczleweli</b></a>
   span |
   span
     .Footer__led
