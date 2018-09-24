@@ -12,6 +12,7 @@
     .fb-page(data-href='https://www.facebook.com/pg/thebestsudoku/', data-tabs='timeline', data-width='500', data-height='350', data-small-header='false', data-adapt-container-width='true', data-hide-cover='false', data-show-facepile='true')
       blockquote.fb-xfbml-parse-ignore(cite='https://www.facebook.com/pg/thebestsudoku/')
     .News__arrow(@click='toggle()')
+      img(src="../../../images/icons/arrow.svg" width="12")
 </template>
 
 <script>
@@ -52,7 +53,7 @@ fjs.parentNode.insertBefore(js, fjs)
   z-index 3
   background white
   margin 0
-  box-shadow 2px 0 14px #eee
+  box-shadow 2px 0 14px #a7a7a750
   text-align left
   transition-duration 0.4s
   h1
@@ -75,21 +76,26 @@ fjs.parentNode.insertBefore(js, fjs)
     min-width 600px
     padding 60px 50px
   &__arrow
-    width 33px
-    height 32px
     background-color #0037dd
+    color white
+    font-weight 900
+    font-size 16px
     border none
     border-radius 45px
-    display flex
-    justify-content center
-    align-items center
-    padding 0px 5px 2px 4px
+    padding: 4px 11px 7px 8px
     position absolute
     right -16px
     top calc(50% - 16px)
     z-index 3
     cursor pointer
-    transition-duration .2s
+    transition-duration .25s
     &:hover
       opacity .9
+@media screen and (max-width: 1400px)
+  .News
+    position absolute
+    top 45px
+@media screen and (max-width: 800px)
+  .News
+    display none
 </style>
