@@ -49,8 +49,8 @@ export default {
 
 <style lang="stylus">
 .leaderboard
-  margin 0 auto
   width 100%
+  margin 0 auto
   height 100%
   position relative
   display flex

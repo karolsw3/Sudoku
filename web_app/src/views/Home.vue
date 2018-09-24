@@ -39,7 +39,8 @@ export default {
 .md-button + .md-button
     margin 6px 8px
 .home
-  width 100%
+  width auto
+  margin 0 auto
   height 100%
   display flex
   align-items center
@@ -48,7 +49,7 @@ export default {
 .dashboard
   position relative
   margin 0 auto
-  width 90%
+  width 100%
   max-width 800px
   display grid
   grid-gap 20px
@@ -68,7 +69,7 @@ export default {
     &:nth-child(1)
       height 300px
       background-image url('../../../images_compressed/gui/play.svg')
-      background-size 100%
+      background-size 104%
       grid-area a
     &--button
       transition-duration .4s
@@ -78,7 +79,7 @@ export default {
     &--leaderboard
       margin 6px 8px
       background-image url('../../../images_compressed/gui/leaderboard.svg')
-      background-size 105%
+      background-size 104%
     &--stats
       margin 6px 8px
       line-height 2.3em

@@ -130,9 +130,11 @@ export default {
 <style scoped lang="stylus">
 .play
   position relative
+  margin 0 auto
   display flex
   justify-content center
   height 100%
+  width 100%
   padding-bottom 100px
   align-items center
 </style>

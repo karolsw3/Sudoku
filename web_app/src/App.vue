@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <Menu/>
-    <router-view/>
+    <div class="container">
+      <News/>
+      <router-view/>
+    </div>
     <Footer/>
   </div>
 </template>
@@ -9,11 +12,12 @@
 <script>
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
+import News from '@/components/News.vue'
 
 export default {
   name: 'Sudoku',
   components: {
-    Menu, Footer
+    Menu, Footer, News
   }
 }
 </script>
@@ -45,4 +49,7 @@ a
   display flex
   flex-direction column
   overflow-x hidden
+.container
+  height 100%
+  display flex
 </style>

@@ -105,6 +105,7 @@ export default {
   box-sizing border-box
   height 100%
   width 100%
+  margin 0 auto
   background white
   display flex
   align-items center
