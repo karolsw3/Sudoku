@@ -36,6 +36,7 @@ export default new Router({
       path: '/leaderboard',
       name: 'leaderboard',
       component: Leaderboard
-    }
+    },
+    { path: '/index.html', redirect: '/' }
   ]
 })

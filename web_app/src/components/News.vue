@@ -6,7 +6,7 @@
     h3
       | Sudoku is one of the most popular combinatorial games. <br>
       | The objective is to fill a 9×9 grid with digits so that each column, each row, and each of the nine 3×3 subgrids that compose the grid contains all of the digits from 1 to 9.
-    h3 You can practive solving sudoku boards here and gain points for it. The best players are listed on the leaderboard. Notice that in order to gain points you have to login or create an account.
+    h3 You can practive solving sudoku boards and gain points for it here. The best players are listed on the leaderboard. Notice that in order to gain points you have to login or create an account.
     h3 Happy playing!
     h1 News
     .fb-page(data-href='https://www.facebook.com/pg/thebestsudoku/', data-tabs='timeline', data-width='500', data-height='350', data-small-header='false', data-adapt-container-width='true', data-hide-cover='false', data-show-facepile='true')
