@@ -30,6 +30,7 @@ html,body
   padding 0
   font-size 14px
   height 100%
+  color #222
   background-color white
   background-image url('../../images_compressed/background.svg')
   background-position bottom right
@@ -37,6 +38,7 @@ html,body
   background-size 1950px
 a
   text-decoration none
+  color inherit
   margin 0
   padding 0
 #app

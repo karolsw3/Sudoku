@@ -4,9 +4,18 @@
       .dashboard__cell.dashboard__cell--button(@click="selectorOpen = !selectorOpen")
         .dashboard__button New game
       .dashboard__difficultySelector(v-if="selectorOpen")
-        router-link(to="/play/easy") Easy
-        router-link(to="/play/medium") Medium
-        router-link(to="/play/hard") Hard
+        router-link.dashboard__difficultySelectorButton(tag='div' to="/play/easy")
+          .dashboard__difficultySelectorIcon.dashboard__difficultySelectorIcon--easy
+          span
+            p Easy
+        router-link.dashboard__difficultySelectorButton(tag='div' to="/play/medium")
+          .dashboard__difficultySelectorIcon.dashboard__difficultySelectorIcon--medium
+          span
+            p Medium
+        router-link.dashboard__difficultySelectorButton(tag='div' to="/play/hard")
+          .dashboard__difficultySelectorIcon.dashboard__difficultySelectorIcon--hard
+          span
+            p Hard
       router-link(tag='p' to="/leaderboard").dashboard__cell.dashboard__cell--button.dashboard__cell--leaderboard
         .dashboard__button Leaderboard
       .dashboard__cell(:class='$store.state.user.logged ? "dashboard__cell--stats-logged" : "dashboard__cell--stats"')
@@ -120,15 +129,47 @@ export default {
     left 0
     right 0
     height 50px
-    width 350px
+    width 380px
     border-radius 5px
-    background white
     display flex
     justify-content space-around
     align-items center
     transition-duration .2s
-    box-shadow 0 0 20px rgba(0, 0, 0, .5)
     z-index 999
+  &__difficultySelectorButton
+    background #eee
+    height 50px
+    min-width 112px
+    padding 12px 15px 12px 8px
+    border-radius 50px
+    cursor pointer
+    box-sizing border-box
+    display flex
+    justify-content space-between
+    align-items center
+    font-weight 900
+    color #222
+    font-family 'Open Sans', sans-serif
+    text-transform uppercase
+    text-decoration none
+    transition-duration .2s
+    box-shadow 0 0 20px rgba(0, 0, 0, .5)
+    &:hover
+      background #ddd
+  &__difficultySelectorIcon
+    width 38px
+    height 38px
+    border-radius 32px
+    margin-right 10px
+    background-color white
+    background-size cover
+    display inline-block
+    &--easy
+      background-image url('../../../images/icons/easy.svg')
+    &--medium
+      background-image url('../../../images/icons/medium.svg')
+    &--hard
+      background-image url('../../../images/icons/hard.svg')
 .stats
   padding 20px 60px
   box-sizing border-box
