@@ -274,7 +274,7 @@ export default {
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
     padding 1px
     border-radius 5px
-    background #e9e9e9
+    background #ccc
     &--main
       width 504px
       height 504px
@@ -301,7 +301,7 @@ export default {
     color #123ffc
     cursor pointer
     transition-duration .12s
-    border 1px solid #e9e9e9
+    border 1px solid #ccc
     p
       position absolute
       font-family 'Open Sans', sans-serif

@@ -61,13 +61,13 @@ fjs.parentNode.insertBefore(js, fjs)
     font-weight 900
     font-family 'Open Sans', sans-serif
     text-transform uppercase
-    color #eaeaea
+    color #ddd
     margin 30px 0
   h3
     font-size 17px
     font-weight 100
     line-height 1.35em
-    color #778
+    color #667
   &--visible
     left 0
     width 600px
