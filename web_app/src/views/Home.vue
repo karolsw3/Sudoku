@@ -103,6 +103,7 @@ export default {
       align-items flex-start
     &--stats-logged
       margin 6px 8px
+      padding 0 27px
       cursor default
       background-image url('../../../images_compressed/gui/stats.svg')
       background-size cover
