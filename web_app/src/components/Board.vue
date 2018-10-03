@@ -45,7 +45,7 @@ export default {
     },
     keydown (e) {
       if (this.$router.currentRoute.name === 'play') {
-        if (!isNaN(e.key)) {
+        if (!isNaN(e.key) && e.key !== ' ') {
           this.checkIfSlotHasBeenFilled(e.key)
           this.mutateSelectedSlot(e.key)
           this.checkIfBoardIsFullyFilled()
