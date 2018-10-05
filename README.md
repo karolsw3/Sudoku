@@ -12,7 +12,7 @@ We want to make our take modern, secure, well-designed and open to everyone – 
 
 # ![Progress](images/progress.svg)
 
-## [API documentation](https://cdn.rawgit.com/Galactim/Sudoku/backend-doc/sudoku_backend/index.html)
+## [API documentation](https://rawcdn.githack.com/Galactim/Sudoku/backend-doc/sudoku_backend/index.html)
 
 ## Contributing
 
