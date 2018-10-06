@@ -179,7 +179,7 @@ export default {
     width 95%
     &__cell
       width 100%
-      height 190px
+      height 205px
       display inline-flex
       justify-content center
       align-items center

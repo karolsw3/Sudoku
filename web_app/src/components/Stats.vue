@@ -21,8 +21,12 @@
       .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 10}')
         .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 10') <b>Good start</b>: 10 boards solved
         .Stats__tooltip(v-else) <b>Good start</b>: Solve 10 boards ({{$store.state.user.gamesTotal}}/10)
-      .Stats__badge
-      .Stats__badge
+      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 40}')
+        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 40') <b>Confident player</b>: 40 boards solved
+        .Stats__tooltip(v-else) <b>Confident player</b>: Solve 40 boards ({{$store.state.user.gamesTotal}}/40)
+      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 100}')
+        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 100') <b>Sudokuphile</b>: 100 boards solved
+        .Stats__tooltip(v-else) <b>Sudokuphile</b>: Solve 100 boards ({{$store.state.user.gamesTotal}}/100)
       .Stats__badge
       .Stats__badge
       .Stats__badge
@@ -104,7 +108,14 @@ export default {
     filter grayscale(100%)
     transition-duration 0.2s
     &:nth-child(1)
-      background-image url('../../../images/badges/numbers.svg')
+      background-image url('../../../images/badges/numbers1.svg')
+      border 2px solid #eee
+    &:nth-child(2)
+      background-image url('../../../images/badges/numbers2.svg')
+      border 2px solid #ff1166
+    &:nth-child(3)
+      background-image url('../../../images/badges/numbers3.svg')
+      border 2px solid #0037dd
     &--active
       filter none
     &:hover
@@ -114,9 +125,9 @@ export default {
   &__tooltip
     display none
     position absolute
-    left -89px
+    left -99px
     top -33px
-    width 220px
+    width 240px
     height auto
     border-radius 3px
     border 1px solid #333
