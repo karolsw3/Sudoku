@@ -5,7 +5,7 @@
     .Stats__row
       .Stats__statName Points
       .Stats__statValue {{$store.state.user.pointsTotal}}
-    h2 Games won
+    h2 Boards solved
     .Stats__row
       .Stats__statName Easy
       .Stats__statValue {{$store.state.user.gamesTotalEasy}}
@@ -18,7 +18,9 @@
   .Stats__column
     h1 Badges
     .Stats__badges
-      .Stats__badge
+      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 10}')
+        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 10') <b>Good start</b>: 10 boards solved
+        .Stats__tooltip(v-else) <b>Good start</b>: Solve 10 boards ({{$store.state.user.gamesTotal}}/10)
       .Stats__badge
       .Stats__badge
       .Stats__badge
@@ -92,8 +94,37 @@ export default {
     grid-gap 5px
     width 136px
   &__badge
+    position relative
     width 42px
     height 42px
     border-radius 100px
     background #eee
+    background-size cover
+    cursor pointer
+    filter grayscale(100%)
+    transition-duration 0.2s
+    &:nth-child(1)
+      background-image url('../../../images/badges/numbers.svg')
+    &--active
+      filter none
+    &:hover
+      opacity 0.9
+      .Stats__tooltip
+        display block
+  &__tooltip
+    display none
+    position absolute
+    left -89px
+    top -33px
+    width 220px
+    height auto
+    border-radius 3px
+    border 1px solid #333
+    background #222
+    color white
+    cursor default
+    font-size 12px
+    font-family 'Arial', sans-serif
+    padding 3px
+    z-index 3
 </style>
