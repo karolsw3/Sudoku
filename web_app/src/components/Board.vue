@@ -215,12 +215,12 @@ export default {
     columnsAreValid () {
       // Lemme check for any repeating numbers..
       for (let row in this.slots) {
-        let occuringNumbers = new Set()
+        let occurringNumbers = new Set()
         for (let column in this.slots) {
-          if (occuringNumbers.has(this.slots[row][column]) || occuringNumbers.has(0)) {
+          if (occurringNumbers.has(this.slots[row][column]) || occurringNumbers.has(0)) {
             return false
           }
-          occuringNumbers.add(this.slots[row][column])
+          occurringNumbers.add(this.slots[row][column])
         }
       }
       return true
@@ -228,12 +228,12 @@ export default {
     rowsAreValid () {
       // Same story here
       for (let row in this.slots) {
-        let occuringNumbers = new Set()
+        let occurringNumbers = new Set()
         for (let column in this.slots) {
-          if (occuringNumbers.has(this.slots[column][row]) || occuringNumbers.has(0)) {
+          if (occurringNumbers.has(this.slots[column][row]) || occurringNumbers.has(0)) {
             return false
           }
-          occuringNumbers.add(this.slots[column][row])
+          occurringNumbers.add(this.slots[column][row])
         }
       }
       return true
@@ -242,13 +242,13 @@ export default {
       // Avoid triple loops they said... but what about quadruple ones?
       for (let i = 0; i < 3; i++) {
         for (let j = 0; j < 3; j++) {
-          let occuringNumbers = new Set()
+          let occurringNumbers = new Set()
           for (let x = 0; x < 3; x++) {
             for (let y = 0; y < 3; y++) {
-              if (occuringNumbers.has(this.slots[i * 3 + x][j * 3 + y]) || occuringNumbers.has(0)) {
+              if (occurringNumbers.has(this.slots[i * 3 + x][j * 3 + y]) || occurringNumbers.has(0)) {
                 return false
               }
-              occuringNumbers.add(this.slots[i * 3 + x][j * 3 + y])
+              occurringNumbers.add(this.slots[i * 3 + x][j * 3 + y])
             }
           }
         }
