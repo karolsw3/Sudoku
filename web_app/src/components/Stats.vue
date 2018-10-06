@@ -8,13 +8,13 @@
     h2 Games won
     .Stats__row
       .Stats__statName Easy
-      .Stats__statValue {{$store.state.user.gamesTotal}}
+      .Stats__statValue {{$store.state.user.gamesTotalEasy}}
     .Stats__row
       .Stats__statName Medium
-      .Stats__statValue {{$store.state.user.gamesTotal}}
+      .Stats__statValue {{$store.state.user.gamesTotalMedium}}
     .Stats__row
       .Stats__statName Hard
-      .Stats__statValue {{$store.state.user.gamesTotal}}
+      .Stats__statValue {{$store.state.user.gamesTotalHard}}
   .Stats__column
     h1 Badges
     .Stats__badges

@@ -86,7 +86,7 @@ export default {
             }
             this.$refs.timer.stop()
             this.$store.commit('addPoints', this.summary.score)
-            this.$store.commit('addGames')
+            this.$store.commit('addGames', this.summary.difficulty)
             break
         }
       }

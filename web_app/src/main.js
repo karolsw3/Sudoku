@@ -34,6 +34,9 @@ const store = new Vuex.Store({
       email: '',
       pointsTotal: 0,
       gamesTotal: 0,
+      gamesTotalEasy : 0,
+      gamesTotalMedium : 0,
+      gamesTotalHard : 0,
       isAdmin: false
     }
   },
@@ -44,6 +47,9 @@ const store = new Vuex.Store({
       state.user.email = payload.email
       state.user.pointsTotal = payload.pointsTotal
       state.user.gamesTotal = payload.gamesTotal
+      state.user.gamesTotalEasy = payload.gamesTotalEasy
+      state.user.gamesTotalMedium = payload.gamesTotalMedium
+      state.user.gamesTotalHard = payload.gamesTotalHard
       state.user.isAdmin = payload.isAdmin
     },
     logout (state) {
@@ -52,13 +58,27 @@ const store = new Vuex.Store({
       state.user.email = ''
       state.user.pointsTotal = 0
       state.user.gamesTotal = 0
+      state.user.gamesTotalEasy = 0
+      state.user.gamesTotalMedium = 0
+      state.user.gamesTotalHard = 0
       state.user.isAdmin = false
     },
     addPoints (state, payload) {
       state.user.pointsTotal += payload
     },
-    addGames (state) {
+    addGames (state, difficulty) {
       state.user.gamesTotal++
+      switch (difficulty) {
+        case 1:
+          state.user.gamesTotalEasy++
+          break
+        case 2:
+          state.user.gamesTotalMedium++
+          break
+        case 3:
+          state.user.gamesTotalHard++
+          break
+      }
     }
   }
 })
@@ -75,6 +95,9 @@ new Vue({
           email: responseData.email,
           pointsTotal: responseData.points_total,
           gamesTotal: responseData.games_total,
+          gamesTotalEasy: responseData.games_total_easy,
+          gamesTotalMedium: responseData.games_total_medium,
+          gamesTotalHard: responseData.games_total_hard,
           isAdmin: responseData.is_admin
         })
       })
