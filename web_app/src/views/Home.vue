@@ -19,22 +19,17 @@
       router-link(tag='p' to="/leaderboard").dashboard__cell.dashboard__cell--button.dashboard__cell--leaderboard
         .dashboard__button Leaderboard
       .dashboard__cell(:class='$store.state.user.logged ? "dashboard__cell--stats-logged" : "dashboard__cell--stats"')
-        .stats(v-if='$store.state.user.logged')
-          h1.stats__header Your stats
-          .stats__row
-            .stats__statName Points
-            .stats__statValue {{$store.state.user.pointsTotal}}
-          .stats__row
-            .stats__statName Games played
-            .stats__statValue {{$store.state.user.gamesTotal}}
+        Stats(v-if='$store.state.user.logged')
         template(v-else)
           h1 Create an account to get points and compete with others!
 </template>
 
 <script>
+import Stats from '@/components/Stats.vue'
 
 export default {
   name: 'home',
+  components: { Stats },
   data: function () {
     return {
       selectorOpen: false
@@ -90,6 +85,7 @@ export default {
       background-size 104%
     &--stats
       margin 3px 3px 6px 0
+      width 372px
       line-height 2.3em
       cursor default
       padding 0 20px
@@ -101,10 +97,10 @@ export default {
       background-size cover
       align-items flex-start
     &--stats-logged
+      width 372px
       margin 3px 3px 6px 0
-      padding 0 27px
       cursor default
-      background-image url('../../../images_compressed/gui/stats.svg')
+      background white
       background-size cover
       align-items flex-start
   &__button
@@ -170,38 +166,6 @@ export default {
       background-image url('../../../images/icons/medium.svg')
     &--hard
       background-image url('../../../images/icons/hard.svg')
-.stats
-  padding 20px 60px
-  box-sizing border-box
-  font-family 'Open Sans', sans-serif
-  &__header
-    display block
-    text-transform uppercase
-    font-weight 900
-    color #123ffc
-    font-size 32px
-    margin-top 30px
-    white-space pre
-  &__row
-    margin 10px 0
-    height 20px
-    display flex
-    justify-content space-around
-    align-items center
-  &__statName
-    width 50%
-    text-align left
-    color #b3b3b3
-    font-size 18px
-    text-transform capitalize
-    white-space pre
-  &__statValue
-    width 50%
-    text-align right
-    color black
-    font-size 22px
-    font-weight 900
-    white-space pre
 
 @media screen and (max-width: 800px)
   .md-button + .md-button
