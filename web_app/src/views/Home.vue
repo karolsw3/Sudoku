@@ -67,9 +67,8 @@ export default {
   &__cell
     position relative
     height 220px
-    border-radius 10px
+    border-radius 6px
     background #e4e4e4
-    background-position center
     cursor pointer
     box-shadow 0 0 16px 3px #e4e4e4
     display flex
@@ -86,11 +85,11 @@ export default {
         box-shadow 0 0 22px 1px #9a9a9a
         background-size 109% !important
     &--leaderboard
-      margin 6px 8px
+      margin 3px 3px 6px 0
       background-image url('../../../images_compressed/gui/leaderboard.svg')
       background-size 104%
     &--stats
-      margin 6px 8px
+      margin 3px 3px 6px 0
       line-height 2.3em
       cursor default
       padding 0 20px
@@ -102,7 +101,7 @@ export default {
       background-size cover
       align-items flex-start
     &--stats-logged
-      margin 6px 8px
+      margin 3px 3px 6px 0
       padding 0 27px
       cursor default
       background-image url('../../../images_compressed/gui/stats.svg')

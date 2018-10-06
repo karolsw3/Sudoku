@@ -21,7 +21,7 @@ export default {
   padding 7px 20px
   box-sizing border-box
   border none
-  border-radius 100px
+  border-radius 4px
   font-size 16px
   font-family 'Open Sans'
   font-weight 700
