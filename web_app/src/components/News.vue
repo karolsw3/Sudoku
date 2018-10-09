@@ -75,6 +75,7 @@ fjs.parentNode.insertBefore(js, fjs)
   &__container
     min-width 600px
     padding 60px 50px
+    overflow-y auto
   &__arrow
     background-color #0037dd
     color white
