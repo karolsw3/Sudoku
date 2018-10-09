@@ -193,6 +193,14 @@ export default {
         background-size auto
     &__difficultySelector
       top 170px
+      width 310px
+    &__difficultySelectorButton
+      height 43px
+      font-size 11px
+      min-width 90px
+    &__difficultySelectorIcon
+      width 29px
+      height 29px
     &__button
       font-size 24px
   .stats
