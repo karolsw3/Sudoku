@@ -8,9 +8,9 @@
           .Board__slot(
             v-for="y in 3"
             @click="onSlotClick(getSlotX(i, j, x, y), getSlotY(i, j, x, y))"
-            :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y)]"
+            :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y)]"
           )
-            p(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0" ) {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
+            p(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
 </template>
 
 <script>
@@ -25,6 +25,7 @@ export default {
         x: 0,
         y: 0
       },
+      highlightedNumber: 0,
       shiftPressed: false,
       isFilled: false
     }
@@ -36,6 +37,7 @@ export default {
     onSlotClick (x, y) {
       this.selectedSlot.x = x
       this.selectedSlot.y = y
+      this.highlightedNumber = this.slots[x][y]
     },
     mutateSelectedSlot (newValue) {
       if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
@@ -180,6 +182,9 @@ export default {
     getLockedClass (i, j, x, y) {
       return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
     },
+    getHighlightedClass (i, j, x, y) {
+      return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] === this.highlightedNumber ? 'Board__slot--highlighted' : ''
+    },
     getOnValidationClass () {
       if (!this.isFilled) {
         return ''
@@ -313,9 +318,11 @@ export default {
       background #eeeeee
     &--selected
       box-shadow inset 0 0 0 3px
+    &--highlighted
+      color #1349ff !important
     &--locked
-      background #f5f5f5 !important
-      color #333 !important
+      background #f5f5f5
+      color #333
 @media screen and (max-width: 560px)
   .Board
     margin-top 60px
