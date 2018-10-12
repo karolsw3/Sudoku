@@ -8,7 +8,7 @@
           .Board__slot(
             v-for="y in 3"
             @click="onSlotClick(getSlotX(i, j, x, y), getSlotY(i, j, x, y))"
-            :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y)]"
+            :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y), getDimmedClass(i, j, x, y)]"
           )
             p(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
 </template>
@@ -185,6 +185,12 @@ export default {
     getHighlightedClass (i, j, x, y) {
       return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] === this.highlightedNumber ? 'Board__slot--highlighted' : ''
     },
+    getDimmedClass (i, j, x, y) {
+      return !((i === (Math.floor(this.selectedSlot.x / 3) + 1) &&
+               j === (Math.floor(this.selectedSlot.y / 3) + 1)) ||
+               this.getSlotX(i, j, x, y) === this.selectedSlot.x || this.getSlotY(i, j, x, y) === this.selectedSlot.y
+             ) ? 'Board__slot--dimmed' : ''
+    },
     getOnValidationClass () {
       if (!this.isFilled) {
         return ''
@@ -279,7 +285,7 @@ export default {
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
     padding 1px
     border-radius 5px
-    background #ccc
+    background #a3a3a3
     &--main
       width 504px
       height 504px
@@ -320,8 +326,10 @@ export default {
       box-shadow inset 0 0 0 3px
     &--highlighted
       color #1349ff !important
+    &--dimmed
+      opacity .4
     &--locked
-      background #f5f5f5
+      background #eee
       color #333
 @media screen and (max-width: 560px)
   .Board
