@@ -26,7 +26,7 @@ div
 </template>
 
 <script>
-import MainButton from '@/components/MainButton.vue'
+import MainButton from '@/components/buttons/MainButton.vue'
 
 export default {
   name: 'Menu',

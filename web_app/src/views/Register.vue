@@ -17,7 +17,7 @@ import Input from '@/components/Input.vue'
 import ColumnPanel from '@/components/ColumnPanel.vue'
 import base64 from 'base-64'
 import util from '@/util.js'
-import MainButton from '@/components/MainButton.vue'
+import MainButton from '@/components/buttons/MainButton.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 
 export default {

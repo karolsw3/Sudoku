@@ -1,7 +1,7 @@
 <template lang="pug">
   .play
     ProgressBar(v-if='loading')
-    GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false')
+    GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false' v-on:reload='reload')
     Board(ref='board' v-on:board-is-valid="submitBoard")
       Timer(ref='timer')
       NumberSelector(@numberSelected='numberSelected')
@@ -91,6 +91,28 @@ export default {
         }
       }
       xhr.send('board_id=' + this.boardId + '&board_skeleton=' + this.boardSkeleton + '&solved_board=' + this.serializeBoardSkeleton(board))
+    },
+    reload () {
+      let timer = this.$refs.timer
+      timer.stop()
+      this.newGame()
+    },
+    newGame () {
+      axios.get('/api/v1/play/new?difficulty=' + this.difficultyNumber)
+        .then((response) => {
+          let board = this.$refs.board
+          let timer = this.$refs.timer
+          board.slots = this.deserializeBoardSkeleton(response.data.board_skeleton)
+          this.boardSkeleton = response.data.board_skeleton
+          this.boardId = response.data.board_id
+          board.countFilledSlots()
+          board.lockSlots()
+          this.loading = false
+          timer.start()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
     }
   },
   computed: {
@@ -108,21 +130,7 @@ export default {
     }
   },
   created () {
-    axios.get('/api/v1/play/new?difficulty=' + this.difficultyNumber)
-      .then((response) => {
-        let board = this.$refs.board
-        let timer = this.$refs.timer
-        board.slots = this.deserializeBoardSkeleton(response.data.board_skeleton)
-        this.boardSkeleton = response.data.board_skeleton
-        this.boardId = response.data.board_id
-        board.countFilledSlots()
-        board.lockSlots()
-        this.loading = false
-        timer.start()
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    this.newGame()
   }
 }
 </script>

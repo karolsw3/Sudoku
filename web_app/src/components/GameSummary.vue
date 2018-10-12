@@ -1,6 +1,7 @@
 <template lang="pug">
 .GameSummary
   .GameSummary__image
+    CloseButton(v-on:clicked='$emit("summaryClosed")')
   .GameSummary__stats
     h1.GameSummary__header Magnificent!
     h2.GameSummary__subtitle Game summary
@@ -16,16 +17,17 @@
     .GameSummary__row
       .GameSummary__statName Points gained
       .GameSummary__statValue.GameSummary__statValue--bold {{score}}
-    MainButton(v-on:clicked='$emit("summaryClosed")') Close
+    MainButton(v-on:clicked='$emit("reload"); $emit("summaryClosed")') New Game
 </template>
 
 <script>
-import MainButton from '@/components/MainButton.vue'
+import MainButton from '@/components/buttons/MainButton.vue'
+import CloseButton from '@/components/buttons/CloseButton.vue'
 
 export default {
   name: 'GameSummary',
   props: ['solutionDuration', 'difficulty', 'score'],
-  components: { MainButton },
+  components: { MainButton, CloseButton },
   computed: {
     difficultyName: function () {
       switch (this.difficulty) {
