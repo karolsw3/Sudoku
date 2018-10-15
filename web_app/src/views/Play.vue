@@ -158,5 +158,5 @@ export default {
   .PencilModeSwitch
     position absolute
     right 10px
-    top -48px
+    top -56px
 </style>

@@ -112,10 +112,10 @@ export default {
       border 2px solid #eee
     &:nth-child(2)
       background-image url('../../../images/badges/numbers2.svg')
-      border 2px solid #ff1166
+      border 2px solid #0037dd
     &:nth-child(3)
       background-image url('../../../images/badges/numbers3.svg')
-      border 2px solid #0037dd
+      border 2px solid #ff1166
     &--active
       filter none
     &:hover
