@@ -11,7 +11,7 @@
             :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y), getDimmedClass(i, j, x, y)]"
           )
             p(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
-            .Board__pencilGrid
+            .Board__pencilGrid(v-else)
               .slot(v-for='number in 9') {{pencilSlots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)][number] % 10 ? number:''}}
 </template>
 
@@ -46,7 +46,7 @@ export default {
     mutateSelectedSlot (newValue) {
       if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
         if (this.pencilMode) {
-          this.pencilSlots[this.selectedSlot.x][this.selectedSlot.y][parseInt(newValue)] = true
+          this.pencilSlots[this.selectedSlot.x][this.selectedSlot.y][parseInt(newValue)] = !this.pencilSlots[this.selectedSlot.x][this.selectedSlot.y][parseInt(newValue)]
         } else {
           this.slots[this.selectedSlot.x][this.selectedSlot.y] = parseInt(newValue)
         }
