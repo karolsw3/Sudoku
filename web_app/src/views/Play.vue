@@ -2,9 +2,11 @@
   .play
     ProgressBar(v-if='loading')
     GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false' v-on:reload='reload')
-    Board(ref='board' v-on:board-is-valid="submitBoard")
+    Board(ref='board' v-on:board-is-valid="submitBoard" :pencilMode='pencilMode')
       Timer(ref='timer')
       NumberSelector(@numberSelected='numberSelected')
+      SwitchButton.PencilModeSwitch(tooltip='Pencil mode' v-on:clicked='pencilMode = !pencilMode')
+        img(src='../../../images/icons/pencil.svg')
 </template>
 
 <script>
@@ -12,13 +14,14 @@ import Board from '@/components/Board.vue'
 import NumberSelector from '@/components/NumberSelector.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import GameSummary from '@/components/GameSummary.vue'
+import SwitchButton from '@/components/buttons/SwitchButton.vue'
 import Timer from '@/components/Timer.vue'
 import axios from 'axios'
 
 export default {
   name: 'play',
   components: {
-    Board, NumberSelector, Timer, GameSummary, ProgressBar
+    Board, NumberSelector, Timer, GameSummary, ProgressBar, SwitchButton
   },
   props: ['difficulty'],
   data: function () {
@@ -26,6 +29,7 @@ export default {
       loading: true,
       boardId: 0,
       boardSkeleton: '',
+      pencilMode: false,
       summary: {
         show: false,
         solutionDuration: 0,
@@ -145,4 +149,8 @@ export default {
   width 100%
   padding-bottom 100px
   align-items center
+.PencilModeSwitch
+  position absolute
+  right -64px
+  top 10px
 </style>

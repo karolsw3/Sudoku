@@ -11,6 +11,8 @@
             :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y), getDimmedClass(i, j, x, y)]"
           )
             p(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
+            .Board__pencilGrid
+              .slot(v-for='number in 9') {{pencilSlots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)][number] % 10 ? number:''}}
 </template>
 
 <script>
@@ -20,6 +22,7 @@ export default {
   data: function () {
     return {
       slots: Array(9).fill().map(() => Array(9).fill(0)),
+      pencilSlots: Array(9).fill().map(() => Array(9).fill().map(() => Array(9).fill(false))), // This isn't that hard... trust me!
       filledSlots: 0,
       selectedSlot: {
         x: 0,
@@ -30,6 +33,7 @@ export default {
       isFilled: false
     }
   },
+  props: ['pencilMode'],
   created () {
     window.addEventListener('keydown', this.keydown)
   },
@@ -41,7 +45,11 @@ export default {
     },
     mutateSelectedSlot (newValue) {
       if (this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) { // If the value is greater than 9 it means that the slot is locked (see Play.vue)
-        this.slots[this.selectedSlot.x][this.selectedSlot.y] = parseInt(newValue)
+        if (this.pencilMode) {
+          this.pencilSlots[this.selectedSlot.x][this.selectedSlot.y][parseInt(newValue)] = true
+        } else {
+          this.slots[this.selectedSlot.x][this.selectedSlot.y] = parseInt(newValue)
+        }
         this.$forceUpdate()
       }
     },
@@ -297,6 +305,21 @@ export default {
       box-shadow 0 0 3px 1px #44ff75
     &--invalid
       box-shadow 0 0 3px 1px #ff4455
+  &__pencilGrid
+    display grid
+    position absolute
+    top 0
+    right 0
+    width 100%
+    height 100%
+    grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
+    font-size 9px
+    color #aaa
+    .slot
+      margin 0
+      padding 0
+      height 16px
+      width 16px
   &__slot
     display block
     position relative
@@ -320,12 +343,13 @@ export default {
       top -5px
       left 0
       right 0
+      z-index 2
     &:hover
       background #eeeeee
     &--selected
       box-shadow inset 0 0 0 3px
     &--highlighted
-      color #ff1167 !important
+      text-shadow 0 0 13px
     &--dimmed
       opacity .4
     &--locked
