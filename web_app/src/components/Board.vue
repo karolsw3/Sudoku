@@ -318,8 +318,8 @@ export default {
     .slot
       margin 0
       padding 0
-      height 16px
-      width 16px
+      max-height 16px
+      max-width 16px
   &__slot
     display block
     position relative
