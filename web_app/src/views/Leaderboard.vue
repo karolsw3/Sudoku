@@ -1,18 +1,29 @@
 <template lang="pug">
   .leaderboard
     ProgressBar(v-if='loading')
-    .leaderboard__title Top 10 players
-    table
+    .leaderboard__title Top 10 {{$route.params.type === "games" ? "games":"players"}}
+    table(v-if='$route.params.type === "players"')
       tr.mainRow
         th Position
         th Username
         th Points
         th Games played
-      tr(v-for='(leader, index) in leaders' :key='index')
+      tr(v-for='(leader, index) in results' :key='index')
         td <b>{{ index + 1 }}</b>
         td {{ leader.username }}
         td {{ leader.points_total }}
         td {{ leader.games_total }}
+    table(v-if='$route.params.type === "games"')
+      tr.mainRow
+        th Position
+        th Username
+        th Difficulty
+        th Time
+      tr(v-for='(game, index) in results' :key='index')
+        td <b>{{ index + 1 }}</b>
+        td {{ game.display_name }}
+        td {{ game.difficulty === 1 ? "Easy":(game.difficulty === 2 ? "Medium":"Hard") }}
+        td {{ Math.floor(game.solution_duration_secs / 60) + "m " + game.solution_duration_secs % 60 + "s"}}
 </template>
 
 <script>
@@ -27,10 +38,11 @@ export default {
   },
   created () {
     this.loading = true
-    axios.get('/api/v1/check/leaderboard?of=users&count=10')
+    let url = this.$route.params.type === "games" ? '/api/v1/check/leaderboard?count=10':'/api/v1/check/leaderboard?of=users&count=10'
+    axios.get(url)
       .then((response) => {
         this.loading = false
-        this.leaders = response.data
+        this.results = response.data
       })
       .catch((error) => {
         console.error(error)
@@ -40,7 +52,7 @@ export default {
     return {
       page: 0,
       lastPage: 93,
-      leaders: [],
+      results: [],
       loading: false
     }
   }

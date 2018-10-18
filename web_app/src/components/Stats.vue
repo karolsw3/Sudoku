@@ -29,7 +29,7 @@
         .Stats__tooltip(v-else) <b>Sudokuphile</b>: Solve 100 boards ({{$store.state.user.gamesTotal}}/100)
       .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotalHard >= 3}')
         .Stats__tooltip(v-if='$store.state.user.gamesTotalHard >= 3') <b>Intellectual</b>: 3 hard boards solved
-        .Stats__tooltip(v-else) <b>Intellectual</b>: Solve 3 hard boards ({{$store.state.user.gamesTotalHard}}/100)
+        .Stats__tooltip(v-else) <b>Intellectual</b>: Solve 3 hard boards ({{$store.state.user.gamesTotalHard}}/3)
       .Stats__badge
       .Stats__badge
       .Stats__badge

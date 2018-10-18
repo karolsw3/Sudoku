@@ -1,23 +1,32 @@
 <template lang="pug">
   .home
     .dashboard
-      .dashboard__cell.dashboard__cell--button(@click="selectorOpen = !selectorOpen")
+      .dashboard__cell.dashboard__cell--button(@click="difficultySelectorOpen = !difficultySelectorOpen")
         .dashboard__button New game
-      .dashboard__difficultySelector(v-if="selectorOpen")
-        router-link.dashboard__difficultySelectorButton(tag='div' to="/play/easy")
-          .dashboard__difficultySelectorIcon.dashboard__difficultySelectorIcon--easy
-          span
-            p Easy
-        router-link.dashboard__difficultySelectorButton(tag='div' to="/play/medium")
-          .dashboard__difficultySelectorIcon.dashboard__difficultySelectorIcon--medium
-          span
-            p Medium
-        router-link.dashboard__difficultySelectorButton(tag='div' to="/play/hard")
-          .dashboard__difficultySelectorIcon.dashboard__difficultySelectorIcon--hard
-          span
-            p Hard
-      router-link(tag='p' to="/leaderboard").dashboard__cell.dashboard__cell--button.dashboard__cell--leaderboard
+        .dashboard__selector(v-if="difficultySelectorOpen")
+          router-link.dashboard__selectorButton(tag='div' to="/play/easy")
+            .dashboard__selectorIcon.dashboard__selectorIcon--easy
+            span
+              p Easy
+          router-link.dashboard__selectorButton(tag='div' to="/play/medium")
+            .dashboard__selectorIcon.dashboard__selectorIcon--medium
+            span
+              p Medium
+          router-link.dashboard__selectorButton(tag='div' to="/play/hard")
+            .dashboard__selectorIcon.dashboard__selectorIcon--hard
+            span
+              p Hard
+      .dashboard__cell.dashboard__cell--button.dashboard__cell--leaderboard(@click="leaderboardSelectorOpen = !leaderboardSelectorOpen")
         .dashboard__button Leaderboard
+        .dashboard__selector.dashboard__selector--small(v-if="leaderboardSelectorOpen")
+          router-link.dashboard__selectorButton(tag='div' to="/leaderboard/players")
+            .dashboard__selectorIcon.dashboard__selectorIcon--players
+            span
+              p Players
+          router-link.dashboard__selectorButton(tag='div' to="/leaderboard/games")
+            .dashboard__selectorIcon.dashboard__selectorIcon--games
+            span
+              p Games
       .dashboard__cell(:class='$store.state.user.logged ? "dashboard__cell--stats-logged" : "dashboard__cell--stats"')
         Stats(v-if='$store.state.user.logged')
         template(v-else)
@@ -32,7 +41,8 @@ export default {
   components: { Stats },
   data: function () {
     return {
-      selectorOpen: false
+      difficultySelectorOpen: false,
+      leaderboardSelectorOpen: false
     }
   }
 }
@@ -117,11 +127,11 @@ export default {
     padding 37px
     text-decoration none
     color #fff
-  &__difficultySelector
+  &__selector
     grid-area selector
     position absolute
     margin 0 auto
-    top 237px
+    bottom 11px
     left 0
     right 0
     height 50px
@@ -132,7 +142,9 @@ export default {
     align-items center
     transition-duration .2s
     z-index 999
-  &__difficultySelectorButton
+    &--small
+      width 275px
+  &__selectorButton
     background #eee
     height 50px
     min-width 112px
@@ -152,7 +164,7 @@ export default {
     box-shadow 0 0 20px rgba(0, 0, 0, .5)
     &:hover
       background #ddd
-  &__difficultySelectorIcon
+  &__selectorIcon
     width 38px
     height 38px
     border-radius 32px
@@ -166,7 +178,10 @@ export default {
       background-image url('../../../images/icons/medium.svg')
     &--hard
       background-image url('../../../images/icons/hard.svg')
-
+    &--players
+      background-image url('../../../images/icons/players.svg')
+    &--games
+      background-image url('../../../images/icons/games.svg')
 @media screen and (max-width: 800px)
   .md-button + .md-button
       margin 6px 0
@@ -191,14 +206,14 @@ export default {
         text-align center
       &--stats
         background-size auto
-    &__difficultySelector
+    &__selector
       top 170px
       width 310px
-    &__difficultySelectorButton
+    &__selectorButton
       height 43px
       font-size 11px
       min-width 90px
-    &__difficultySelectorIcon
+    &__selectorIcon
       width 29px
       height 29px
     &__button

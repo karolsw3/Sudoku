@@ -33,7 +33,7 @@ export default new Router({
       props: true
     },
     {
-      path: '/leaderboard',
+      path: '/leaderboard/:type',
       name: 'leaderboard',
       component: Leaderboard
     },
