@@ -19,15 +19,17 @@
     h1 Badges
     .Stats__badges
       .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 10}')
-        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 10') <b>Good start</b>: 10 boards solved
+        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 10') <b>Good start</b>: Solved 10 boards
         .Stats__tooltip(v-else) <b>Good start</b>: Solve 10 boards ({{$store.state.user.gamesTotal}}/10)
       .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 40}')
-        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 40') <b>Confident player</b>: 40 boards solved
+        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 40') <b>Confident player</b>: Solved 40 boards
         .Stats__tooltip(v-else) <b>Confident player</b>: Solve 40 boards ({{$store.state.user.gamesTotal}}/40)
       .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 100}')
-        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 100') <b>Sudokuphile</b>: 100 boards solved
+        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 100') <b>Sudokuphile</b>: Solved 100 boards
         .Stats__tooltip(v-else) <b>Sudokuphile</b>: Solve 100 boards ({{$store.state.user.gamesTotal}}/100)
-      .Stats__badge
+      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotalHard >= 3}')
+        .Stats__tooltip(v-if='$store.state.user.gamesTotalHard >= 3') <b>Intellectual</b>: 3 hard boards solved
+        .Stats__tooltip(v-else) <b>Intellectual</b>: Solve 3 hard boards ({{$store.state.user.gamesTotalHard}}/100)
       .Stats__badge
       .Stats__badge
       .Stats__badge
@@ -116,6 +118,9 @@ export default {
     &:nth-child(3)
       background-image url('../../../images/badges/numbers3.svg')
       border 2px solid #ff1166
+    &:nth-child(4)
+      background-image url('../../../images/badges/hard1.svg')
+      border 2px solid #eee
     &--active
       filter none
     &:hover
