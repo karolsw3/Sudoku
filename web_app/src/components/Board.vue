@@ -161,11 +161,13 @@ export default {
       }
     },
     checkIfSlotHasBeenFilled (newSlotValue) {
-      newSlotValue = parseInt(newSlotValue)
-      if (newSlotValue > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] === 0) {
-        this.filledSlots++
-      } else if (newSlotValue === 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) {
-        this.filledSlots--
+      if (!this.pencilMode) {
+        newSlotValue = parseInt(newSlotValue)
+        if (newSlotValue > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] === 0) {
+          this.filledSlots++
+        } else if (newSlotValue === 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] > 0 && this.slots[this.selectedSlot.x][this.selectedSlot.y] < 10) {
+          this.filledSlots--
+        }
       }
     },
     checkIfBoardIsFullyFilled () {
