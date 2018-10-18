@@ -106,6 +106,7 @@ export default {
         .then((response) => {
           let board = this.$refs.board
           let timer = this.$refs.timer
+          board.reset()
           board.slots = this.deserializeBoardSkeleton(response.data.board_skeleton)
           this.boardSkeleton = response.data.board_skeleton
           this.boardId = response.data.board_id
