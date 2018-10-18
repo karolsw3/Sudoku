@@ -77,8 +77,8 @@ export default {
     &--button
       transition-duration .4s
       &:hover
-        box-shadow 0 0 22px 1px #9a9a9a
-        background-size 109% !important
+        box-shadow 0 0 22px 1px #aaa
+        background-size 108% !important
     &--leaderboard
       margin 3px 3px 6px 0
       background-image url('../../../images_compressed/gui/leaderboard.svg')

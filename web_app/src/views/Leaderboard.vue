@@ -71,7 +71,7 @@ table
   border-collapse collapse
   box-shadow 0 0 16px 3px #e4e4e4
   td, th
-    padding 15px 6px
+    padding 10px 6px
     color #222
     font-size 1.2em
   th

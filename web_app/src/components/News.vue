@@ -47,13 +47,14 @@ fjs.parentNode.insertBefore(js, fjs)
   width 0
   position relative
   height 100%
+  max-height 100%
   left -600px
   top 0
   display block
   z-index 3
   background white
   margin 0
-  box-shadow 2px 0 14px #a7a7a750
+  border-right 1px solid #f1f1f1
   text-align left
   transition-duration 0.4s
   h1
@@ -75,6 +76,7 @@ fjs.parentNode.insertBefore(js, fjs)
   &__container
     min-width 600px
     padding 60px 50px
+    max-height 100%
     overflow-y auto
   &__arrow
     background-color #0037dd
@@ -95,7 +97,7 @@ fjs.parentNode.insertBefore(js, fjs)
 @media screen and (max-width: 1400px)
   .News
     position absolute
-    top 45px
+    padding-top 45px
 @media screen and (max-width: 800px)
   .News
     display none

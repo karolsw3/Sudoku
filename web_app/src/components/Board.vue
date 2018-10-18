@@ -42,10 +42,6 @@ export default {
       this.slots = Array(9).fill().map(() => Array(9).fill(0))
       this.pencilSlots = Array(9).fill().map(() => Array(9).fill().map(() => Array(9).fill(false)))
       this.filledSlots = 0
-      this.selectedSlot = {
-        x: 0
-        y: 0
-      }
       this.highlightedNumber = 0
       this.shiftPressed = false
       this.isFilled = false

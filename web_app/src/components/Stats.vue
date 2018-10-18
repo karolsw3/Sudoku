@@ -119,10 +119,10 @@ export default {
     &--active
       filter none
     &:hover
-      opacity 0.9
       .Stats__tooltip
         display block
   &__tooltip
+    opacity 0.9
     display none
     position absolute
     left -99px
