@@ -70,6 +70,7 @@ export default {
         }
         switch (e.key) {
           case 'Backspace':
+            e.preventDefault()
             this.checkIfSlotHasBeenFilled(0)
             this.mutateSelectedSlot(0)
             break
