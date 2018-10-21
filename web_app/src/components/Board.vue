@@ -69,6 +69,10 @@ export default {
           this.checkIfBoardIsFullyFilled()
         }
         switch (e.key) {
+          case 'Backspace':
+            this.checkIfSlotHasBeenFilled(0)
+            this.mutateSelectedSlot(0)
+            break
           case 'h':
           case 'a':
           case 'ArrowLeft':
@@ -294,6 +298,7 @@ export default {
   position relative
   margin 0 auto
   box-sizing border-box
+  user-select none
   &__grid
     position relative
     width 100%

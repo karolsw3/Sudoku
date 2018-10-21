@@ -60,6 +60,7 @@ export default {
   align-items center
   justify-content center
   box-sizing border-box
+  user-select none
 .dashboard
   position relative
   margin 0 auto

@@ -68,7 +68,6 @@ export default {
   box-sizing border-box
   background #f7f7f7
   padding 5px 20px
-  z-index 999
   &--mobile
     display none
   &__slot
