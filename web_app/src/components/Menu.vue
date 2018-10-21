@@ -66,7 +66,6 @@ export default {
   align-items center
   justify-content space-between
   box-sizing border-box
-  background #f7f7f7
   padding 5px 20px
   &--mobile
     display none

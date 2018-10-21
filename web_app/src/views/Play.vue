@@ -158,6 +158,6 @@ export default {
 @media screen and (max-width: 690px)
   .PencilModeSwitch
     position absolute
-    right 10px
+    right 25px
     top -56px
 </style>

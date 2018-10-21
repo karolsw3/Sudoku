@@ -359,6 +359,7 @@ export default {
       left 0
       right 0
       z-index 2
+      user-select none
     &:hover
       background #eeeeee
     &--selected

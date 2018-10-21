@@ -142,7 +142,7 @@ export default {
     justify-content space-around
     align-items center
     transition-duration .2s
-    z-index 999
+    z-index 2
     &--small
       width 275px
   &__selectorButton
@@ -208,8 +208,9 @@ export default {
       &--stats
         background-size auto
     &__selector
-      top 170px
       width 310px
+      &--small
+        width 235px
     &__selectorButton
       height 43px
       font-size 11px

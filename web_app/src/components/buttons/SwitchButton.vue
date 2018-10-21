@@ -33,7 +33,7 @@ export default {
   box-sizing border-box
   transition-duration .2s
   filter hue-rotate(0deg)
-  z-index 3
+  z-index 4
   &--switched
     filter hue-rotate(90deg)
   &:hover
@@ -58,5 +58,5 @@ export default {
     font-size 12px
     font-family 'Arial', sans-serif
     padding 3px
-    z-index 3
+    z-index 4
 </style>
