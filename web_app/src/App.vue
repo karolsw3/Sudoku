@@ -52,6 +52,6 @@ a
   flex-direction column
   overflow-x hidden
 .container
-  height 100%
+  height calc(100% - 62px)
   display flex
 </style>
