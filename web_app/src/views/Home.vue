@@ -29,7 +29,7 @@
               p Games
       .dashboard__cell(:class='$store.state.user.logged ? "dashboard__cell--stats-logged" : "dashboard__cell--stats"')
         Stats(v-if='$store.state.user.logged')
-        template(v-else)
+        router-link(v-else to="/register" tag="div")
           h1 Create an account to get points and compete with others!
 </template>
 

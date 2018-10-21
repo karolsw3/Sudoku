@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS sudoku_boards (
 After game validates, points are awarded accordingly:
 
 ```c
-point_count = difficulty * (30 + (3000 / solve_time))
+point_count = difficulty * 50000 / (solve_time + 30))
 ```
 
 Where `solve_time` is in seconds (but without the unit) and `difficulty ϵ {1, 2, 3}`.

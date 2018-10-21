@@ -35,7 +35,7 @@ impl BoardDifficulty {
         if solve_time < &Duration::zero() {
             None
         } else {
-            Some(self.to_numeric() * (30 + (3000 / solve_time.num_seconds())) as u64)
+            Some(self.to_numeric() * 50000 / (solve_time.num_seconds() + 30)) as u64)
         }
     }
 
