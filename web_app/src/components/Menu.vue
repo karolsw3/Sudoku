@@ -2,14 +2,13 @@
 div
   .Menu
     .Menu__slot
-      .Menu__logo
-      router-link(to="/")
-        MainButton Dashboard
+      router-link(tag="div" to="/")
+        .Menu__logo
     .Menu__slot
-      router-link(to="/login" v-if='!this.$store.state.user.logged')
+      router-link(tag="div" to="/login" v-if='!this.$store.state.user.logged')
         MainButton Login
-      router-link(to="/register" v-if='!this.$store.state.user.logged')
-        MainButton Register
+      router-link(tag="div" to="/register" v-if='!this.$store.state.user.logged')
+        MainButton(primary='true') Register
       .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
       MainButton(v-if='this.$store.state.user.logged' v-on:clicked='logout') Logout
   .Menu.Menu--mobile
@@ -66,7 +65,8 @@ export default {
   align-items center
   justify-content space-between
   box-sizing border-box
-  padding 5px 20px
+  padding 3px 15px
+  border-bottom 1px solid #f4f4f4
   &--mobile
     display none
   &__slot
@@ -75,12 +75,15 @@ export default {
     justify-content center
     font-family 'Open Sans', sans-serif
   &__logo
-    width 300px
-    height 52px
+    width 254px
+    height 44px
     margin-right 15px
     background-image url(../../../images_compressed/logo.svg)
     background-size cover
     cursor pointer
+    transition-duration .15s
+    &:hover
+      opacity .8
   &__user
     border none
     font-weight 900
@@ -93,33 +96,10 @@ export default {
     cursor default
     background #eee
     transition-duration .12s
-  &__icon
-    margin 0 5px
-    width 55px
-    height 55px
-    background white
-    border-radius 100%
-    cursor pointer
-.iconButton
-  background-size cover
-  background-position center
-  &--dashboard
-    background-image url('../../../images_compressed/icons/dashboard.svg')
-  &--dashboardActive
-    background-image url('../../../images_compressed/icons/dashboard_active.svg')
-  &--login
-    background-image url('../../../images_compressed/icons/login.svg')
-  &--loginActive
-    background-image url('../../../images_compressed/icons/login_active.svg')
-  &--register
-    background-image url('../../../images_compressed/icons/register.svg')
-  &--registerActive
-    background-image url('../../../images_compressed/icons/register_active.svg')
-  &--logout
-    background-image url('../../../images_compressed/icons/logout.svg')
-@media screen and (max-width: 860px)
+@media screen and (max-width: 490px)
   .Menu
-    display none
-    &--mobile
-      display flex
+    height 50px
+    &__logo
+      width 150px
+      height 26px
 </style>

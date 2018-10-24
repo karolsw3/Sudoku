@@ -1,35 +1,35 @@
 <template lang="pug">
-.MainButton(@click="$emit('clicked')" :disabled="disabled")
-  slot
+.MainButton(:class="primary ? 'MainButton--primary':''")
+  .MainButton__clicker(@click="$emit('clicked')")
+    slot
 </template>
 
 <script>
 
 export default {
   name: 'MainButton',
-  props: ['disabled']
+  props: ['primary']
 }
 </script>
 
 <style scoped lang="stylus">
 .MainButton
   display inline-block
-  margin 5px 20px
-  width 140px
-  color white
-  background #0037dd
-  padding 7px 20px
+  margin 0 20px
+  padding 0
+  color #aaa
   box-sizing border-box
   border none
-  border-radius 4px
-  font-size 16px
-  font-family 'Open Sans'
-  font-weight 700
+  cursor default
+  font-size 14px
+  font-family 'Open Sans', sans-serif
+  font-weight 100
   text-transform uppercase
-  cursor pointer
-  box-shadow inset 0 0 8px 2px #1349ff
-  transition-duration .2s
-  &:hover
-    opacity 0.95
-    background #1349ff
+  &--primary
+    color #0037dd
+  &__clicker
+    cursor pointer
+    transition-duration .15s
+    &:hover
+      opacity 0.6
 </style>
