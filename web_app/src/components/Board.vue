@@ -378,8 +378,10 @@ export default {
     margin-top 60px
     &__slot
       font-size 1rem
+  .Board__grid
+    border-radius 0
   .Board__grid--main
-    width 90vw
-    height 90vw
-    grid-gap 3px
+    width 96vw
+    height 96vw
+    grid-gap 0
 </style>
