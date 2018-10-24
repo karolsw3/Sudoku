@@ -102,4 +102,7 @@ export default {
     &__logo
       width 150px
       height 26px
+    &__user
+      padding 1px
+      font-size 14px
 </style>

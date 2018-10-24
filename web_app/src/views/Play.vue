@@ -146,7 +146,6 @@ export default {
   margin 0 auto
   display flex
   justify-content center
-  height 100%
   width 100%
   padding-bottom 100px
   align-items center
@@ -155,7 +154,10 @@ export default {
   right -64px
   top 10px
 
-@media screen and (max-width: 690px)
+@media screen and (max-width: 560px)
+  .play
+    display inline-block
+    padding-top 10px
   .PencilModeSwitch
     position absolute
     right 25px
