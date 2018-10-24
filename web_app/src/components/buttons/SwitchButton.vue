@@ -21,12 +21,11 @@ export default {
 .SwitchButton
   display inline-block
   margin 5px
-  width 48px
-  height 48px
-  background #0037dd
+  width 42px
+  height 42px
+  background #aaa
   padding 7px 7px
   box-sizing border-box
-  border none
   border-radius 4px
   font-size 16px
   cursor pointer
@@ -35,18 +34,18 @@ export default {
   filter hue-rotate(0deg)
   z-index 4
   &--switched
-    filter hue-rotate(90deg)
+    background #0037dd
   &:hover
-    opacity .9
+    opacity .95
     .SwitchButton__tooltip
       display block
   img
-    width 32px
-    height 32px
+    width 26px
+    height 28px
   &__tooltip
     display none
     position absolute
-    left -30px
+    left -35px
     top -33px
     width 120px
     height auto

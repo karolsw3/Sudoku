@@ -335,8 +335,12 @@ export default {
     .slot
       margin 0
       padding 0
-      max-height 16px
-      max-width 16px
+      max-height 100%
+      max-width 100%
+      padding 0
+      display flex
+      justify-content center
+      align-items center
   &__slot
     display block
     position relative

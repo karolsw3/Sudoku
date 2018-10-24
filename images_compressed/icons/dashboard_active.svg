@@ -1,1 +1,116 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="165" height="177" viewBox="0 0 43.567 46.642"><g stroke-linejoin="round" stroke-linecap="round" stroke="#0037dd" fill="#0037dd"><path d="M8.377 21.85H35.19L21.783 8.849z" stroke-width="3.391"/><rect style="paint-order:normal" width="18.822" height="15.206" x="12.501" y="20.869" ry="2.828" stroke-width="6.828"/></g><g fill="#fff"><rect style="paint-order:normal" width="5.651" height="7.643" x="19.18" y="29.591" ry="1.9"/><rect ry="1.382" y="25.333" x="26.614" height="5.559" width="5.651" style="paint-order:normal"/><rect style="paint-order:normal" width="5.651" height="5.559" x="11.745" y="25.333" ry="1.382"/><rect style="paint-order:normal" width="5.651" height="5.187" x="19.18" y="32.048" ry="0"/><rect ry="0" y="26.982" x="26.614" height="3.909" width="5.651" style="paint-order:normal"/><rect style="paint-order:normal" width="5.651" height="3.909" x="11.745" y="26.982" ry="0"/></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="165"
+   height="177"
+   viewBox="0 0 43.567 46.642"
+   version="1.1"
+   id="svg22"
+   sodipodi:docname="dashboard_active.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata28">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs26" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview24"
+     showgrid="false"
+     inkscape:zoom="2.6666667"
+     inkscape:cx="41.167751"
+     inkscape:cy="80.074525"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg22" />
+  <path
+     inkscape:connector-curvature="0"
+     style="fill:#0037dd;fill-opacity:1;stroke:#0037dd;stroke-width:1.98243058;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path2"
+     d="M 6.3187056,22.746255 H 37.247296 L 21.783001,7.6247395 Z" />
+  <rect
+     id="rect4"
+     ry="0"
+     y="21.313082"
+     x="9.7062664"
+     height="17.202271"
+     width="24.41647"
+     style="fill:#0037dd;fill-opacity:1;stroke:#0037dd;stroke-width:3.37710261;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;paint-order:normal;stroke-opacity:1" />
+  <g
+     id="g20"
+     transform="translate(0,0.29704773)"
+     style="fill:#ffffff">
+    <rect
+       style="paint-order:normal"
+       width="5.7670002"
+       height="7.8000002"
+       x="19.125999"
+       y="29.719999"
+       ry="1.1468719"
+       id="rect8" />
+    <rect
+       ry="0"
+       y="25.374001"
+       x="26.714001"
+       height="5.6729999"
+       width="5.7670002"
+       style="paint-order:normal"
+       id="rect10" />
+    <rect
+       style="paint-order:normal"
+       width="5.7670002"
+       height="5.6729999"
+       x="11.538"
+       y="25.374001"
+       ry="0"
+       id="rect12" />
+    <rect
+       style="paint-order:normal"
+       width="5.7670002"
+       height="5.2930002"
+       x="19.125999"
+       y="32.227001"
+       ry="0"
+       id="rect14" />
+    <rect
+       ry="0"
+       y="27.056999"
+       x="26.714001"
+       height="3.9890001"
+       width="5.7670002"
+       style="paint-order:normal"
+       id="rect16" />
+    <rect
+       style="paint-order:normal"
+       width="5.7670002"
+       height="3.9890001"
+       x="11.538"
+       y="27.056999"
+       ry="0"
+       id="rect18" />
+  </g>
+</svg>
