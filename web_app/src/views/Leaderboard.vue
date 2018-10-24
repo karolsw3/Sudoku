@@ -100,4 +100,8 @@ table
     background white
     &:hover
       background white
+@media screen and (max-width: 560px)
+  .leaderboard
+    display inline-block
+    padding-top 10px
 </style>

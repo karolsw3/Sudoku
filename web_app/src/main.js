@@ -101,6 +101,7 @@ new Vue({
           isAdmin: responseData.is_admin
         })
       })
+      this.$forceUpdate()
   },
   render: h => h(App)
 }).$mount('#app')

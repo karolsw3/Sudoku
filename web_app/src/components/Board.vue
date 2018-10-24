@@ -207,7 +207,7 @@ export default {
       return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
     },
     getHighlightedClass (i, j, x, y) {
-      return (this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] % 10) === (this.highlightedNumber % 10) ? 'Board__slot--highlighted' : ''
+      return ((this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] % 10) === (this.highlightedNumber % 10) && this.highlightedNumber !== 0) ? 'Board__slot--highlighted' : ''
     },
     getDimmedClass (i, j, x, y) {
       return !((i === (Math.floor(this.selectedSlot.x / 3) + 1) &&
@@ -371,7 +371,9 @@ export default {
     &--selected
       box-shadow inset 0 0 0 3px
     &--highlighted
-      text-shadow 0 0 13px
+      text-shadow 0 0 13px #004bff
+      background #9ebaff !important
+      opacity 1 !important
     &--dimmed
       opacity .4
     &--locked
