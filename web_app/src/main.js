@@ -41,7 +41,7 @@ const store = new Vuex.Store({
       gamesTotalHard : 0,
       isAdmin: false
     },
-    nightMode: true
+    nightMode: false
   },
   mutations: {
     login (state, payload) {

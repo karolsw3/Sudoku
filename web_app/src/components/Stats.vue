@@ -1,5 +1,5 @@
 <template lang="pug">
-.Stats
+.Stats(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
   .Stats__column
     h1 Your stats
     .Stats__row
@@ -143,4 +143,10 @@ export default {
     font-family 'Arial', sans-serif
     padding 3px
     z-index 3
+
+// Color themes
+
+.nightMode
+  .Stats__badge
+    background #0f0f0f
 </style>

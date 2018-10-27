@@ -117,7 +117,6 @@ export default {
       width 372px
       margin 3px 3px 6px 0
       cursor default
-      background white
       background-size cover
       align-items flex-start
     &--settings
@@ -253,4 +252,6 @@ export default {
     border-radius 0
     &:nth-child(1)
       background-image url('../../../images_compressed/gui/play_night.svg')
+    &--stats-logged
+      background #121212
 </style>
