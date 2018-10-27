@@ -77,6 +77,9 @@ export default {
               email: responseData.email,
               pointsTotal: responseData.points_total,
               gamesTotal: responseData.games_total,
+              gamesTotalEasy: responseData.games_total_easy,
+              gamesTotalMedium: responseData.games_total_medium,
+              gamesTotalHard: responseData.games_total_hard,
               isAdmin: responseData.is_admin
             })
             this.$router.push('/')
