@@ -7,6 +7,7 @@ import axios from 'axios'
 import { MdButton, MdMenu, MdField, MdList, MdTable, MdContent, MdCard, MdProgress, MdSnackbar, MdRipple } from 'vue-material/dist/components'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
+import createPersistedState from 'vuex-persistedstate'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
@@ -27,6 +28,7 @@ Vue.use(MdRipple)
 */
 
 const store = new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     user: {
       logged: false,
@@ -38,7 +40,8 @@ const store = new Vuex.Store({
       gamesTotalMedium : 0,
       gamesTotalHard : 0,
       isAdmin: false
-    }
+    },
+    nightMode: true
   },
   mutations: {
     login (state, payload) {
@@ -65,6 +68,9 @@ const store = new Vuex.Store({
     },
     addPoints (state, payload) {
       state.user.pointsTotal += payload
+    },
+    switchNightMode (state) {
+      state.nightMode = !state.nightMode
     },
     addGames (state, difficulty) {
       state.user.gamesTotal++

@@ -1,5 +1,5 @@
 <template lang="pug">
-  .leaderboard
+  .leaderboard(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
     ProgressBar(v-if='loading')
     .leaderboard__title Top 10 {{$route.params.type === "games" ? "games":"players"}}
     table(v-if='$route.params.type === "players"')
@@ -66,6 +66,7 @@ export default {
   height 100%
   position relative
   display flex
+  background transparent
   flex-direction column
   justify-content center
   align-items center
@@ -104,4 +105,15 @@ table
   .leaderboard
     display inline-block
     padding-top 10px
+
+// Color themes
+
+.nightMode
+  table
+    box-shadow 0 0 16px 3px #111
+    tr
+      background #171821
+      &:hover
+        background #191a24
+
 </style>

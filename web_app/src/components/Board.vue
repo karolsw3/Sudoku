@@ -1,5 +1,5 @@
 <template lang="pug">
-.Board
+.Board(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
   slot
   .Board__grid.Board__grid--main
     template(v-for="i in 3")
@@ -390,4 +390,21 @@ export default {
     width 96vw
     height 96vw
     grid-gap 0
+
+// Color themes
+
+.dayMode
+  background white
+.nightMode
+  background #171821
+  border none
+  .Board
+    &__grid
+      background #222
+      &--main
+        background #121212
+    &__slot
+      background #171821
+      border-color #121212
+      color #254aff
 </style>

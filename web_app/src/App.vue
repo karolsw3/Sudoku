@@ -1,12 +1,10 @@
-<template>
-  <div id="app">
-    <Menu/>
-    <div class="container">
-      <News/>
-      <router-view/>
-    </div>
-    <Footer/>
-  </div>
+<template lang="pug">
+  #app(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
+    Menu
+    .container
+      News
+      router-view
+    Footer
 </template>
 
 <script>
@@ -30,12 +28,6 @@ html,body
   padding 0
   font-size 14px
   height 100%
-  color #222
-  background-color white
-  background-image url('../../images_compressed/background.svg')
-  background-position bottom right
-  background-repeat no-repeat
-  background-size 1950px
 a
   text-decoration none
   color inherit
@@ -51,7 +43,20 @@ a
   display flex
   flex-direction column
   overflow-x hidden
+  background-position bottom right
+  background-repeat no-repeat
+  background-size 1950px
 .container
-  height calc(100% - 62px)
+  min-height calc(100% - 62px)
   display flex
+
+// Color themes
+
+.dayMode
+  color #222
+  background-color white
+  background-image url('../../images_compressed/background.svg')
+.nightMode
+  color #fff
+  background-color #121212
 </style>

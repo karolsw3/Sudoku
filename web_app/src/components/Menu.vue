@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  .Menu
+  .Menu(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
     .Menu__slot
       router-link(tag="div" to="/")
         .Menu__logo
@@ -66,7 +66,7 @@ export default {
   justify-content space-between
   box-sizing border-box
   padding 3px 15px
-  border-bottom 1px solid #f4f4f4
+  background transparent
   &--mobile
     display none
   &__slot
@@ -96,6 +96,7 @@ export default {
     cursor default
     background #eee
     transition-duration .12s
+
 @media screen and (max-width: 490px)
   .Menu
     height 50px
@@ -105,4 +106,11 @@ export default {
     &__user
       padding 1px
       font-size 14px
+
+// Color themes
+
+.dayMode
+  border-bottom 1px solid #f4f4f4
+.nightMode
+  border-bottom 1px solid #171821
 </style>

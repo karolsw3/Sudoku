@@ -121,7 +121,7 @@ export default {
   height 100%
   width 100%
   margin 0 auto
-  background white
+  background transparent
   display flex
   align-items center
   justify-content center

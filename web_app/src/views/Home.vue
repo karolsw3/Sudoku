@@ -1,5 +1,5 @@
 <template lang="pug">
-  .home
+  .home(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
     .dashboard
       .dashboard__cell.dashboard__cell--button(@click="difficultySelectorOpen = !difficultySelectorOpen")
         .dashboard__button New game
@@ -31,6 +31,8 @@
         Stats(v-if='$store.state.user.logged')
         router-link(v-else to="/register" tag="div")
           h1 Create an account to get points and compete with others!
+      .dashboard__cell.dashboard__cell--settings
+        a(@click="$store.commit('switchNightMode')") {{$store.state.nightMode ? 'Day mode':'Night mode'}}
 </template>
 
 <script>
@@ -60,10 +62,12 @@ export default {
   margin 0 auto
   height 100%
   display flex
+  flex-direction column
   align-items center
   justify-content center
   box-sizing border-box
   user-select none
+  background transparent
 .dashboard
   position relative
   margin 0 auto
@@ -72,19 +76,18 @@ export default {
   display grid
   grid-gap 20px
   grid-template 1fr 1fr/ 1fr 1fr
-  grid-template-areas "a a" "b c"
+  grid-template-areas "a a" "b c" "d d"
   &__cell
     position relative
     height 220px
     border-radius 6px
     background #e4e4e4
     cursor pointer
-    box-shadow 0 0 16px 3px #e4e4e4
     display flex
     align-items center
     justify-content center
     &:nth-child(1)
-      height 300px
+      height 229px
       background-image url('../../../images_compressed/gui/play.svg')
       background-size 104%
       grid-area a
@@ -117,6 +120,15 @@ export default {
       background white
       background-size cover
       align-items flex-start
+    &--settings
+      grid-area d
+      display flex
+      height auto
+      background none
+      justify-content center
+      align-items center
+      box-shadow none !important
+      cursor default
   &__button
     display flex
     align-items center
@@ -229,4 +241,16 @@ export default {
     &__header
       margin-top 0
       font-size 24px
+
+// Color themes
+
+.dayMode
+  .dashboard__cell
+    box-shadow 0 0 16px 3px #e4e4e4
+.nightMode
+  .dashboard__cell
+    box-shadow 0 0 16px 3px #111, inset 0 0 6px #0f0f0f
+    border-radius 0
+    &:nth-child(1)
+      background-image url('../../../images_compressed/gui/play_night.svg')
 </style>

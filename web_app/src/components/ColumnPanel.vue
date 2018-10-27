@@ -13,7 +13,6 @@ export default {
 .ColumnPanel
   width 100%
   max-width 500px
-  background #fff
   border-radius 2px
   padding 20px
   display flex

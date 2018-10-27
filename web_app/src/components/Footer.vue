@@ -1,5 +1,5 @@
 <template lang="pug">
-.Footer
+.Footer(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
   span An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
   span |
   span Frontend by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
@@ -50,7 +50,6 @@ export default {
 <style scoped lang="stylus">
 .Footer
   position absolute
-  background white
   width 100%
   display block
   padding 10px 0
@@ -105,4 +104,11 @@ export default {
 @media screen and (max-width: 700px)
   .Footer
     display none
+
+// Color themes
+
+.dayMode
+  background white
+.nightMode
+  background #171821
 </style>
