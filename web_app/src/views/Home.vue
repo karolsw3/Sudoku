@@ -44,6 +44,9 @@ export default {
       difficultySelectorOpen: false,
       leaderboardSelectorOpen: false
     }
+  },
+  created () {
+    window.onbeforeunload = null
   }
 }
 </script>

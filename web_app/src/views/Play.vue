@@ -136,6 +136,16 @@ export default {
   },
   created () {
     this.newGame()
+    window.onbeforeunload = function () {
+      return true
+    }
+  },
+  beforeRouteLeave (to, from, next) {
+    if (window.confirm('You have a game in progress! Do you really want to leave?')) {
+      next()
+    } else {
+      next(false)
+    }
   }
 }
 </script>
