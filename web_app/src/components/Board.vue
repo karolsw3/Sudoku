@@ -406,5 +406,6 @@ export default {
     &__slot
       background #171821
       border-color #121212
-      color #254aff
+      &--locked
+        color #888
 </style>

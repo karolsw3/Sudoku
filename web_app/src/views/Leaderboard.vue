@@ -111,6 +111,8 @@ table
 .nightMode
   table
     box-shadow 0 0 16px 3px #111
+    td, th
+      color #959595
     tr
       background #171821
       &:hover

@@ -104,7 +104,7 @@ export default {
     width 42px
     height 42px
     border-radius 100px
-    background #eee
+    background-color #eee
     background-size cover
     cursor pointer
     filter grayscale(100%)
@@ -148,5 +148,5 @@ export default {
 
 .nightMode
   .Stats__badge
-    background #0f0f0f
+    background-color #0f0f0f
 </style>
