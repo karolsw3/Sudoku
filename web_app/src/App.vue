@@ -47,7 +47,7 @@ a
   background-repeat no-repeat
   background-size 1950px
 .container
-  min-height calc(100% - 62px)
+  height calc(100% - 62px)
   display flex
 
 // Color themes
