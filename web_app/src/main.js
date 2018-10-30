@@ -41,6 +41,9 @@ const store = new Vuex.Store({
       gamesTotalHard : 0,
       isAdmin: false
     },
+    game: {
+      pencilMode: false
+    },
     nightMode: false
   },
   mutations: {
@@ -71,6 +74,9 @@ const store = new Vuex.Store({
     },
     switchNightMode (state) {
       state.nightMode = !state.nightMode
+    },
+    switchPencilMode (state) {
+      state.game.pencilMode = !state.game.pencilMode
     },
     addGames (state, difficulty) {
       state.user.gamesTotal++

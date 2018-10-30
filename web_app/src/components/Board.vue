@@ -1,6 +1,5 @@
 <template lang="pug">
 .Board(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
-  slot
   .Board__grid.Board__grid--main
     template(v-for="i in 3")
       .Board__grid(v-for="j in 3" :class="getOnValidationClass()")

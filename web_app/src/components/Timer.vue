@@ -45,11 +45,9 @@ export default {
 
 <style scoped lang="stylus">
 .Timer
-  position absolute
   top -55px
   left 0
   width 100%
-  height 60px
   font-size 20px
   color #ddd
   text-align center
