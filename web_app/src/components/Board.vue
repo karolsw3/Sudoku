@@ -209,10 +209,11 @@ export default {
       return ((this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] % 10) === (this.highlightedNumber % 10) && this.highlightedNumber !== 0) ? 'Board__slot--highlighted' : ''
     },
     getDimmedClass (i, j, x, y) {
-      return !((i === (Math.floor(this.selectedSlot.x / 3) + 1) &&
+      return (!((i === (Math.floor(this.selectedSlot.x / 3) + 1) &&
                j === (Math.floor(this.selectedSlot.y / 3) + 1)) ||
-               this.getSlotX(i, j, x, y) === this.selectedSlot.x || this.getSlotY(i, j, x, y) === this.selectedSlot.y
-             ) ? 'Board__slot--dimmed' : ''
+               this.getSlotX(i, j, x, y) === this.selectedSlot.x ||
+               this.getSlotY(i, j, x, y) === this.selectedSlot.y) &&
+               this.$store.state.game.dimmedCellsMode) ? 'Board__slot--dimmed' : ''
     },
     getOnValidationClass () {
       if (!this.isFilled) {

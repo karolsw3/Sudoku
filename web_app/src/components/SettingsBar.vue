@@ -3,6 +3,9 @@
   .SwitchButton(@click='$store.commit("switchPencilMode")' :class='$store.state.game.pencilMode ? "SwitchButton--switched":""')
     .SwitchButton__tooltip Pencil mode {{$store.state.game.pencilMode ? "ON":"OFF"}}
     img(src='../../../images/icons/pencil.svg')
+  .SwitchButton(@click='$store.commit("switchDimmedCellsMode")' :class='$store.state.game.dimmedCellsMode ? "SwitchButton--switched":""')
+    .SwitchButton__tooltip Dimming cells {{$store.state.game.dimmedCellsMode ? "ON":"OFF"}}
+    img(src='../../../images/icons/bulb.svg')
 </template>
 
 <script>

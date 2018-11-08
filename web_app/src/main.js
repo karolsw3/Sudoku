@@ -42,7 +42,8 @@ const store = new Vuex.Store({
       isAdmin: false
     },
     game: {
-      pencilMode: false
+      pencilMode: false,
+      dimmedCellsMode: true
     },
     nightMode: false
   },
@@ -77,6 +78,9 @@ const store = new Vuex.Store({
     },
     switchPencilMode (state) {
       state.game.pencilMode = !state.game.pencilMode
+    },
+    switchDimmedCellsMode (state) {
+      state.game.dimmedCellsMode = !state.game.dimmedCellsMode
     },
     addGames (state, difficulty) {
       state.user.gamesTotal++
