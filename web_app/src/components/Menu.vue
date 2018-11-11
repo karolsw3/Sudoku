@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  .Menu(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
+  .Menu
     .Menu__slot
       router-link(tag="div" to="/")
         .Menu__logo
@@ -67,6 +67,7 @@ export default {
   box-sizing border-box
   padding 3px 15px
   background transparent
+  border-bottom 1px solid #f4f4f4
   &--mobile
     display none
   &__slot
@@ -106,11 +107,4 @@ export default {
     &__user
       padding 1px
       font-size 14px
-
-// Color themes
-
-.dayMode
-  border-bottom 1px solid #f4f4f4
-.nightMode
-  border-bottom 1px solid #171821
 </style>

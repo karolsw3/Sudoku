@@ -1,5 +1,5 @@
 <template lang="pug">
-.News(:class='[visible ? "News--visible" : "", $store.state.nightMode ? "nightMode":"dayMode"]')
+.News(:class='[visible ? "News--visible" : ""]')
   .News__container
     #fb-root
     h1 The best sudoku online
@@ -55,6 +55,7 @@ fjs.parentNode.insertBefore(js, fjs)
   background white
   margin 0
   border-right 1px solid #f1f1f1
+  background white
   text-align left
   transition-duration 0.4s
   h1
@@ -101,12 +102,4 @@ fjs.parentNode.insertBefore(js, fjs)
 @media screen and (max-width: 800px)
   .News
     display none
-
-// Color themes
-
-.dayMode
-  background white
-.nightMode
-  background #171821
-  border none
 </style>

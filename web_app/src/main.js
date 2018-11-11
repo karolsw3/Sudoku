@@ -44,8 +44,7 @@ const store = new Vuex.Store({
     game: {
       pencilMode: false,
       dimmedCellsMode: true
-    },
-    nightMode: false
+    }
   },
   mutations: {
     login (state, payload) {
@@ -72,9 +71,6 @@ const store = new Vuex.Store({
     },
     addPoints (state, payload) {
       state.user.pointsTotal += payload
-    },
-    switchNightMode (state) {
-      state.nightMode = !state.nightMode
     },
     switchPencilMode (state) {
       state.game.pencilMode = !state.game.pencilMode

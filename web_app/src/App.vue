@@ -1,5 +1,5 @@
 <template lang="pug">
-  #app(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
+  #app
     Menu
     .container
       News
@@ -41,6 +41,9 @@ a
   color #2c3e50
   height 100%
   display flex
+  color #222
+  background-color white
+  background-image url('../../images_compressed/background.svg')
   flex-direction column
   overflow-x hidden
   background-position bottom right
@@ -49,14 +52,4 @@ a
 .container
   height calc(100% - 62px)
   display flex
-
-// Color themes
-
-.dayMode
-  color #222
-  background-color white
-  background-image url('../../images_compressed/background.svg')
-.nightMode
-  color #fff
-  background-color #121212
 </style>
