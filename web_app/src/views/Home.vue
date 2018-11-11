@@ -84,6 +84,7 @@ export default {
     display flex
     align-items center
     justify-content center
+    box-shadow 0 0 3px #00000033
     &:nth-child(1)
       height 229px
       background-image url('../../../images_compressed/gui/play.svg')
@@ -92,7 +93,7 @@ export default {
     &--button
       transition-duration .4s
       &:hover
-        box-shadow 0 0 22px 1px #aaa
+        box-shadow 0 0 4px #aaa
         background-size 108% !important
     &--leaderboard
       margin 3px 3px 6px 0
@@ -149,7 +150,7 @@ export default {
     &--small
       width 275px
   &__selectorButton
-    background #eee
+    background #fff
     height 50px
     min-width 112px
     padding 12px 15px 12px 8px
@@ -165,9 +166,9 @@ export default {
     text-transform uppercase
     text-decoration none
     transition-duration .2s
-    box-shadow 0 0 20px rgba(0, 0, 0, .5)
+    box-shadow 0 0 3px #00000033
     &:hover
-      background #ddd
+      background #eee
   &__selectorIcon
     width 38px
     height 38px
