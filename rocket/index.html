@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `rocket` crate."><meta name="keywords" content="rust, rustlang, rust-lang, rocket"><title>rocket - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Crate rocket</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'rocket', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/rocket/lib.rs.html#1-159' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>rocket</a></span></h1><div class='docblock'><h1 id="rocket---core-api-documentation" class="section-header"><a href="#rocket---core-api-documentation">Rocket - Core API Documentation</a></h1>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `rocket` crate."><meta name="keywords" content="rust, rustlang, rust-lang, rocket"><title>rocket - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Crate rocket</p><div class="sidebar-elems"><a id='all-types' href='all.html'><p>See all rocket's items</p></a><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'rocket', ty: 'mod', relpath: '../'};</script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/rocket/lib.rs.html#1-159' title='goto source code'>[src]</a></span><span class='in-band'>Crate <a class="mod" href=''>rocket</a></span></h1><div class='docblock'><h1 id="rocket---core-api-documentation" class="section-header"><a href="#rocket---core-api-documentation">Rocket - Core API Documentation</a></h1>
 <p>Hello, and welcome to the core Rocket API documentation!</p>
 <p>This API documentation is highly technical and is purely a reference.
 There's an <a href="https://rocket.rs/overview">overview</a> of Rocket on the main site
@@ -24,23 +24,23 @@ makes Rocket easier and safer to use and allows a somewhat stable API as
 Rocket matures. To use Rocket with the code generation plugin in your
 Cargo-based project, add the following to <code>Cargo.toml</code>:</p>
 
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><pre class="rust rust-example-rendered ignore">
+<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
 [<span class="ident">dependencies</span>]
 <span class="ident">rocket</span> <span class="op">=</span> <span class="string">&quot;*&quot;</span>
-<span class="ident">rocket_codegen</span> <span class="op">=</span> <span class="string">&quot;*&quot;</span></pre>
+<span class="ident">rocket_codegen</span> <span class="op">=</span> <span class="string">&quot;*&quot;</span></pre></div>
 <p>If you'll be deploying your project to <a href="https://crates.io">crates.io</a>,
 you'll need to change the &quot;*&quot; to the current version of Rocket.</p>
 <p>Then, add the following to the top of your <code>main.rs</code> file:</p>
 
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#![<span class="ident">feature</span>(<span class="ident">plugin</span>)]</span>
 <span class="attribute">#![<span class="ident">plugin</span>(<span class="ident">rocket_codegen</span>)]</span>
 
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">rocket</span>;</pre>
+<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">rocket</span>;</pre></div>
 <p>See the <a href="https://rocket.rs/guide">guide</a> for more information on how to
 write Rocket applications. Here's a simple example to get you started:</p>
 
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#![<span class="ident">feature</span>(<span class="ident">plugin</span>)]</span>
 <span class="attribute">#![<span class="ident">plugin</span>(<span class="ident">rocket_codegen</span>)]</span>
 
@@ -53,7 +53,7 @@ write Rocket applications. Here's a simple example to get you started:</p>
 
 <span class="kw">fn</span> <span class="ident">main</span>() {
     <span class="ident">rocket</span>::<span class="ident">ignite</span>().<span class="ident">mount</span>(<span class="string">&quot;/&quot;</span>, <span class="macro">routes</span><span class="macro">!</span>[<span class="ident">hello</span>]).<span class="ident">launch</span>();
-}</pre>
+}</pre></div>
 <h2 id="configuration" class="section-header"><a href="#configuration">Configuration</a></h2>
 <p>Rocket and Rocket libraries are configured via the <code>Rocket.toml</code> file and/or
 <code>ROCKET_{PARAM}</code> environment variables. For more information on how to

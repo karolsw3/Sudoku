@@ -1,7 +1,7 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `table` macro in crate `diesel`."><meta name="keywords" content="rust, rustlang, rust-lang, table"><title>diesel::table - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc macro"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><div class="sidebar-elems"><p class='location'><a href='index.html'>diesel</a></p><script>window.sidebarCurrent = {name: 'table', ty: 'macro', relpath: ''};</script><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/diesel/macros/mod.rs.html#263-267' title='goto source code'>[src]</a></span><span class='in-band'>Macro <a href='index.html'>diesel</a>::<wbr><a class="macro" href=''>table</a></span></h1><div class="docblock type-decl"><pre class="rust macro">
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `table` macro in crate `diesel`."><meta name="keywords" content="rust, rustlang, rust-lang, table"><title>diesel::table - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc macro"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><div class="sidebar-elems"><p class='location'><a href='index.html'>diesel</a></p><script>window.sidebarCurrent = {name: 'table', ty: 'macro', relpath: ''};</script><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/diesel/macros/mod.rs.html#263-267' title='goto source code'>[src]</a></span><span class='in-band'>Macro <a href='index.html'>diesel</a>::<wbr><a class="macro" href=''>table</a></span></h1><div class="docblock type-decl hidden-by-usual-hider"><div class="example-wrap"><pre class="rust macro">
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">table</span> {
     ($(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">tokens</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> { ... };
-}</pre>
+}</pre></div>
 </div><div class='docblock'><p>Specifies that a table exists, and what columns it has. This will create a
 new public module, with the same name, as the name of the table. In this
 module, you'll find a unit struct named <code>table</code>, and a unit struct with the
@@ -19,41 +19,41 @@ by disabling the default features of Diesel.
 Note that enabling 64 column tables or larger will substantially increase
 the compile time of Diesel.</p>
 <h2 id="example-usage" class="section-header"><a href="#example-usage">Example usage</a></h2>
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="macro">table</span><span class="macro">!</span> {
     <span class="ident">users</span> {
         <span class="ident">id</span> <span class="op">-&gt;</span> <span class="ident">Integer</span>,
         <span class="ident">name</span> <span class="op">-&gt;</span> <span class="ident">VarChar</span>,
         <span class="ident">favorite_color</span> <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">VarChar</span><span class="op">&gt;</span>,
     }
-}</pre>
+}</pre></div>
 <p>You may also specify a primary key if it's called something other than <code>id</code>.
 Tables with no primary key, or a composite primary key containing more than 5
 columns are not supported.</p>
 
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="macro">table</span><span class="macro">!</span> {
     <span class="ident">users</span> (<span class="ident">non_standard_primary_key</span>) {
         <span class="ident">non_standard_primary_key</span> <span class="op">-&gt;</span> <span class="ident">Integer</span>,
         <span class="ident">name</span> <span class="op">-&gt;</span> <span class="ident">VarChar</span>,
         <span class="ident">favorite_color</span> <span class="op">-&gt;</span> <span class="ident">Nullable</span><span class="op">&lt;</span><span class="ident">VarChar</span><span class="op">&gt;</span>,
     }
-}</pre>
+}</pre></div>
 <p>For tables with composite primary keys, list all of the columns in the
 primary key.</p>
 
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="macro">table</span><span class="macro">!</span> {
     <span class="ident">followings</span> (<span class="ident">user_id</span>, <span class="ident">post_id</span>) {
         <span class="ident">user_id</span> <span class="op">-&gt;</span> <span class="ident">Integer</span>,
         <span class="ident">post_id</span> <span class="op">-&gt;</span> <span class="ident">Integer</span>,
         <span class="ident">favorited</span> <span class="op">-&gt;</span> <span class="ident">Bool</span>,
     }
-}</pre>
+}</pre></div>
 <p>If you are using types that aren't from Diesel's core types, you can specify
 which types to import.</p>
 
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#[<span class="ident">macro_use</span>]</span> <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">diesel</span>;
 <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">diesel_full_text_search</span>;
 
@@ -66,11 +66,11 @@ which types to import.</p>
         <span class="ident">title</span> <span class="op">-&gt;</span> <span class="ident">Text</span>,
         <span class="ident">keywords</span> <span class="op">-&gt;</span> <span class="ident">TsVector</span>,
     }
-}</pre>
+}</pre></div>
 <p>If you want to add documentation to the generated code you can use the
 following syntax:</p>
 
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#[<span class="ident">macro_use</span>]</span> <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">diesel</span>;
 
 <span class="macro">table</span><span class="macro">!</span> {
@@ -82,11 +82,11 @@ following syntax:</p>
         <span class="doccomment">/// The post&#39;s title</span>
         <span class="ident">title</span> <span class="op">-&gt;</span> <span class="ident">Text</span>,
     }
-}</pre>
+}</pre></div>
 <p>If you have a column with the same name as a Rust reserved keyword, you can use
 the <code>sql_name</code> attribute like this:</p>
 
-<pre class="rust rust-example-rendered">
+<div class="example-wrap"><pre class="rust rust-example-rendered">
 <span class="attribute">#[<span class="ident">macro_use</span>]</span> <span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">diesel</span>;
 
 <span class="macro">table</span><span class="macro">!</span> {
@@ -96,7 +96,7 @@ the <code>sql_name</code> attribute like this:</p>
         <span class="attribute">#[<span class="ident">sql_name</span> <span class="op">=</span> <span class="string">&quot;type&quot;</span>]</span>
         <span class="ident">mytype</span> <span class="op">-&gt;</span> <span class="ident">Text</span>,
     }
-}</pre>
+}</pre></div>
 <p>This module will also contain several helper types:</p>
 <h2 id="dsl" class="section-header"><a href="#dsl">dsl</a></h2>
 <p>This simply re-exports the table, renamed to the same name as the module,
@@ -120,6 +120,6 @@ method.</p>
 <code>all_columns</code>. The SQL type is needed for things like <a href="query_dsl/trait.QueryDsl.html#method.into_boxed">returning boxed
 queries</a>.</p>
 <h2 id="boxedquery" class="section-header"><a href="#boxedquery"><code>BoxedQuery</code></a></h2>
-<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><pre class="rust rust-example-rendered ignore">
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BoxedQuery</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">DB</span>, <span class="ident">ST</span> <span class="op">=</span> <span class="ident">SqlType</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">BoxedSelectStatement</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">ST</span>, <span class="ident">table</span>, <span class="ident">DB</span><span class="op">&gt;</span>;</pre>
+<div class='information'><div class='tooltip ignore'>ⓘ<span class='tooltiptext'>This example is not tested</span></div></div><div class="example-wrap"><pre class="rust rust-example-rendered ignore">
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BoxedQuery</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">DB</span>, <span class="ident">ST</span> <span class="op">=</span> <span class="ident">SqlType</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">BoxedSelectStatement</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span>, <span class="ident">ST</span>, <span class="ident">table</span>, <span class="ident">DB</span><span class="op">&gt;</span>;</pre></div>
 </div></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "diesel";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

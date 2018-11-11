@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/ops/model/user.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>user.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script src="../../../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/ops/model/user.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>user.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../../light.css" id="themeStyle"><script src="../../../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../../../settings.html"><img src="../../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -208,7 +208,46 @@
 <span id="208">208</span>
 <span id="209">209</span>
 <span id="210">210</span>
-</pre><pre class="rust ">
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+</pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">diesel</span>::<span class="ident">sqlite</span>::{<span class="ident">SqliteConnection</span>, <span class="ident">Sqlite</span> <span class="kw">as</span> <span class="ident">SqliteBackend</span>};
 <span class="kw">use</span> <span class="ident">diesel</span>::<span class="ident">query_builder</span>::{<span class="ident">QueryFragment</span>, <span class="ident">QueryId</span>};
 <span class="kw">use</span> <span class="ident">diesel</span>::<span class="ident">expression_methods</span>::<span class="ident">ExpressionMethods</span>;
@@ -217,6 +256,7 @@
 <span class="kw">use</span> <span class="ident">diesel</span>::{<span class="self">self</span>, <span class="ident">AppearsOnTable</span>, <span class="ident">Expression</span>};
 <span class="kw">use</span> <span class="self">self</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">tables</span>::{<span class="self">self</span>, <span class="ident">users</span>};
 <span class="kw">use</span> <span class="self">self</span>::<span class="kw">super</span>::<span class="kw">super</span>::<span class="ident">SolutionOrdering</span>;
+<span class="kw">use</span> <span class="self">self</span>::<span class="kw">super</span>::<span class="ident">BoardDifficulty</span>;
 <span class="kw">use</span> <span class="ident">chrono</span>::{<span class="ident">NaiveDateTime</span>, <span class="ident">Utc</span>};
 
 
@@ -247,8 +287,17 @@
     <span class="doccomment">/// Sum total of the user&#39;s points, calculated according to `doc/scoring.md#endgame-formula`, `CHECK`ed to nonnegativity.</span>
     <span class="kw">pub</span> <span class="ident">points_total</span>: <span class="ident">i32</span>,
 
-    <span class="doccomment">/// Amount of games played, `CHECK`ed to nonnegativity.</span>
+    <span class="doccomment">/// Total amount of games played, `CHECK`ed to nonnegativity.</span>
     <span class="kw">pub</span> <span class="ident">games_total</span>: <span class="ident">i32</span>,
+
+    <span class="doccomment">/// Amount of easy games played, `CHECK`ed to nonnegativity.</span>
+    <span class="kw">pub</span> <span class="ident">games_total_easy</span>: <span class="ident">i32</span>,
+
+    <span class="doccomment">/// Amount of medium games played, `CHECK`ed to nonnegativity.</span>
+    <span class="kw">pub</span> <span class="ident">games_total_medium</span>: <span class="ident">i32</span>,
+
+    <span class="doccomment">/// Amount of hard games played, `CHECK`ed to nonnegativity.</span>
+    <span class="kw">pub</span> <span class="ident">games_total_hard</span>: <span class="ident">i32</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">User</span> {
@@ -267,6 +316,9 @@
             <span class="ident">is_admin</span>: <span class="bool-val">false</span>,
             <span class="ident">points_total</span>: <span class="number">0</span>,
             <span class="ident">games_total</span>: <span class="number">0</span>,
+            <span class="ident">games_total_easy</span>: <span class="number">0</span>,
+            <span class="ident">games_total_medium</span>: <span class="number">0</span>,
+            <span class="ident">games_total_hard</span>: <span class="number">0</span>,
         }
     }
 
@@ -281,9 +333,14 @@
     }
 
     <span class="doccomment">/// Update in-memory and in-DB repr by the specified point count.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">solve</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">for_points</span>: <span class="ident">usize</span>, <span class="ident">db</span>: <span class="kw-2">&amp;</span><span class="ident">SqliteConnection</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">solve</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">for_points</span>: <span class="ident">usize</span>, <span class="ident">for_difficulty</span>: <span class="ident">BoardDifficulty</span>, <span class="ident">db</span>: <span class="kw-2">&amp;</span><span class="ident">SqliteConnection</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>(), <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
         <span class="self">self</span>.<span class="ident">points_total</span> <span class="op">+=</span> <span class="ident">for_points</span> <span class="kw">as</span> <span class="ident">i32</span>;
         <span class="self">self</span>.<span class="ident">games_total</span> <span class="op">+=</span> <span class="number">1</span>;
+        <span class="kw-2">*</span><span class="kw">match</span> <span class="ident">for_difficulty</span> {
+            <span class="ident">BoardDifficulty</span>::<span class="ident">Easy</span> <span class="op">=&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">games_total_easy</span>,
+            <span class="ident">BoardDifficulty</span>::<span class="ident">Medium</span> <span class="op">=&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">games_total_medium</span>,
+            <span class="ident">BoardDifficulty</span>::<span class="ident">Hard</span> <span class="op">=&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">games_total_hard</span>,
+        } <span class="op">+=</span> <span class="number">1</span>;
         <span class="ident">diesel</span>::<span class="ident">update</span>(<span class="ident">tables</span>::<span class="ident">users</span>::<span class="ident">table</span>.<span class="ident">filter</span>(<span class="ident">tables</span>::<span class="ident">users</span>::<span class="ident">id</span>.<span class="ident">eq</span>(<span class="self">self</span>.<span class="ident">id</span>.<span class="ident">unwrap</span>()))).<span class="ident">set</span>(<span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="self">self</span>).<span class="ident">execute</span>(<span class="ident">db</span>).<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> ()).<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;update failed&quot;</span>)
     }
 
@@ -295,13 +352,13 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// ```sql</span>
     <span class="doccomment">/// INSERT INTO &quot;users&quot;</span>
-    <span class="doccomment">///     VALUES(1, &#39;karolsw3&#39;,       &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 18:18:24&#39;, 0, 435);</span>
+    <span class="doccomment">///     VALUES(1, &#39;karolsw3&#39;,       &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 18:18:24&#39;, 0, 435, 1, 1, 0, 0);</span>
     <span class="doccomment">/// INSERT INTO &quot;users&quot;</span>
-    <span class="doccomment">///     VALUES(2, &#39;nabijaczleweli&#39;, &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 19:08:09&#39;, 1, 732);</span>
+    <span class="doccomment">///     VALUES(2, &#39;nabijaczleweli&#39;, &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 19:08:09&#39;, 1, 732, 1, 0, 1, 0);</span>
     <span class="doccomment">/// INSERT INTO &quot;users&quot;</span>
-    <span class="doccomment">///     VALUES(3, &#39;sehe&#39;,           &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 19:08:56&#39;, 0, 1230);</span>
+    <span class="doccomment">///     VALUES(3, &#39;sehe&#39;,           &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 19:08:56&#39;, 0, 1230, 2, 0, 0, 2);</span>
     <span class="doccomment">/// INSERT INTO &quot;users&quot;</span>
-    <span class="doccomment">///     VALUES(4, &#39;skorezore&#39;,      &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 19:11:06&#39;, 0, 222);</span>
+    <span class="doccomment">///     VALUES(4, &#39;skorezore&#39;,      &#39;password&#39;, &#39;email&#39;, &#39;2018-07-23 19:11:06&#39;, 0, 222, 1, 0, 0, 1);</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// The following holds:</span>
@@ -332,6 +389,9 @@
     <span class="doccomment">/// #          is_admin: false,</span>
     <span class="doccomment">/// #          points_total: 435,</span>
     <span class="doccomment">/// #          games_total: 1,</span>
+    <span class="doccomment">/// #          games_total_easy: 1,</span>
+    <span class="doccomment">/// #          games_total_medium: 0,</span>
+    <span class="doccomment">/// #          games_total_hard: 0,</span>
     <span class="doccomment">/// #      },</span>
     <span class="doccomment">/// #      User {</span>
     <span class="doccomment">/// #          id: None,</span>
@@ -342,6 +402,9 @@
     <span class="doccomment">/// #          is_admin: true,</span>
     <span class="doccomment">/// #          points_total: 732,</span>
     <span class="doccomment">/// #          games_total: 1,</span>
+    <span class="doccomment">/// #          games_total_easy: 0,</span>
+    <span class="doccomment">/// #          games_total_medium: 1,</span>
+    <span class="doccomment">/// #          games_total_hard: 0,</span>
     <span class="doccomment">/// #      },</span>
     <span class="doccomment">/// #      User {</span>
     <span class="doccomment">/// #          id: None,</span>
@@ -352,6 +415,9 @@
     <span class="doccomment">/// #          is_admin: false,</span>
     <span class="doccomment">/// #          points_total: 1230,</span>
     <span class="doccomment">/// #          games_total: 2,</span>
+    <span class="doccomment">/// #          games_total_easy: 0,</span>
+    <span class="doccomment">/// #          games_total_medium: 0,</span>
+    <span class="doccomment">/// #          games_total_hard: 2,</span>
     <span class="doccomment">/// #      },</span>
     <span class="doccomment">/// #      User {</span>
     <span class="doccomment">/// #          id: None,</span>
@@ -362,6 +428,9 @@
     <span class="doccomment">/// #          is_admin: false,</span>
     <span class="doccomment">/// #          points_total: 222,</span>
     <span class="doccomment">/// #          games_total: 1,</span>
+    <span class="doccomment">/// #          games_total_easy: 0,</span>
+    <span class="doccomment">/// #          games_total_medium: 0,</span>
+    <span class="doccomment">/// #          games_total_hard: 1,</span>
     <span class="doccomment">/// #      }];</span>
     <span class="doccomment">/// # for user in &amp;mut users {</span>
     <span class="doccomment">/// #     user.add(&amp;db).unwrap();</span>
@@ -381,6 +450,9 @@
     <span class="doccomment">///           is_admin: false,</span>
     <span class="doccomment">///           points_total: 222,</span>
     <span class="doccomment">///           games_total: 1,</span>
+    <span class="doccomment">///           games_total_easy: 0,</span>
+    <span class="doccomment">///           games_total_medium: 0,</span>
+    <span class="doccomment">///           games_total_hard: 1,</span>
     <span class="doccomment">///       },</span>
     <span class="doccomment">///       User {</span>
     <span class="doccomment">///           id: Some(1),</span>
@@ -391,6 +463,9 @@
     <span class="doccomment">///           is_admin: false,</span>
     <span class="doccomment">///           points_total: 435,</span>
     <span class="doccomment">///           games_total: 1,</span>
+    <span class="doccomment">///           games_total_easy: 1,</span>
+    <span class="doccomment">///           games_total_medium: 0,</span>
+    <span class="doccomment">///           games_total_hard: 0,</span>
     <span class="doccomment">///       },</span>
     <span class="doccomment">///       User {</span>
     <span class="doccomment">///           id: Some(2),</span>
@@ -401,6 +476,9 @@
     <span class="doccomment">///           is_admin: true,</span>
     <span class="doccomment">///           points_total: 732,</span>
     <span class="doccomment">///           games_total: 1,</span>
+    <span class="doccomment">///           games_total_easy: 0,</span>
+    <span class="doccomment">///           games_total_medium: 1,</span>
+    <span class="doccomment">///           games_total_hard: 0,</span>
     <span class="doccomment">///       }]);</span>
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">leaders</span>(<span class="ident">cfg</span>: <span class="kw-2">&amp;</span><span class="ident">LeaderboardConfig</span>, <span class="ident">db</span>: <span class="kw-2">&amp;</span><span class="ident">SqliteConnection</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">User</span><span class="op">&gt;</span>, <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
@@ -419,5 +497,5 @@
             .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="string">&quot;couldn&#39;t load leaderboard&quot;</span>)
     }
 }
-</pre>
+</pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../../../";window.currentCrate = "sudoku_backend";</script><script src="../../../../aliases.js"></script><script src="../../../../main.js"></script><script defer src="../../../../search-index.js"></script></body></html>
