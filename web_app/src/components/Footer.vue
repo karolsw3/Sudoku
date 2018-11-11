@@ -1,5 +1,5 @@
 <template lang="pug">
-.Footer(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
+.Footer
   span An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
   span |
   span Frontend by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
@@ -105,10 +105,4 @@ export default {
   .Footer
     display none
 
-// Color themes
-
-.dayMode
-  background white
-.nightMode
-  background #171821
 </style>
