@@ -11,17 +11,6 @@ div
         MainButton(primary='true') Register
       .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
       MainButton(v-if='this.$store.state.user.logged' v-on:clicked='logout') Logout
-  .Menu.Menu--mobile
-    .Menu__slot(@click='selectedButton = "dashboard"')
-      router-link.Menu__icon.iconButton.iconButton--dashboard(to="/" tag='div' :class='selectedButton === "dashboard" ? "iconButton--dashboardActive" : ""')
-    .Menu__slot(v-if='!this.$store.state.user.logged')
-      div(@click='selectedButton = "login"')
-        router-link.Menu__icon.iconButton.iconButton--login(to="/login" tag='div' :class='selectedButton === "login" ? "iconButton--loginActive" : ""')
-      div(@click='selectedButton = "register"')
-        router-link.Menu__icon.iconButton.iconButton--register(to="/register" tag='div' :class='selectedButton === "register" ? "iconButton--registerActive" : ""')
-    .Menu__slot(v-else)
-      p Hello, {{this.$store.state.user.login}}!
-      .Menu__icon.iconButton.iconButton--logout(@click='logout' tag='div')
 </template>
 
 <script>
@@ -86,19 +75,11 @@ export default {
     &:hover
       opacity .8
   &__user
-    border none
     font-weight 900
-    padding 9px 14px
-    border-radius 2px
-    display flex
-    align-items center
-    justify-content center
+    margin-right 10px
     color #333
-    cursor default
-    background #eee
-    transition-duration .12s
 
-@media screen and (max-width: 490px)
+@media screen and (max-width: 520px)
   .Menu
     height 50px
     &__logo

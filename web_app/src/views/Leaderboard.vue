@@ -82,7 +82,8 @@ table
   width 95%
   max-width 900px
   border-collapse collapse
-  box-shadow 0 0 16px 3px #e4e4e4
+  border-radius 4px
+  box-shadow 0 0 3px #e4e4e4
   td, th
     padding 10px 6px
     color #222

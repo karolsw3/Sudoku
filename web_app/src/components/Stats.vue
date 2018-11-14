@@ -46,6 +46,7 @@ export default {
 .Stats
   width 100%
   display flex
+  background white
   box-sizing border-box
   font-family 'Open Sans', sans-serif
   padding 15px
