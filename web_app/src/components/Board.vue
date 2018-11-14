@@ -9,7 +9,7 @@
             @click="onSlotClick(getSlotX(i, j, x, y), getSlotY(i, j, x, y))"
             :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y), getDimmedClass(i, j, x, y)]"
           )
-            p(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
+            template(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
             .Board__pencilGrid(v-else)
               .slot(v-for='number in 9') {{pencilSlots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)][number] % 10 ? number:''}}
 </template>
@@ -311,13 +311,13 @@ export default {
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
     padding 1px
     border-radius 5px
-    background #a3a3a3
+    background #c5c5c5
     &--main
       width 504px
       height 504px
       border-radius 6px
       border none
-      background #fafafa
+      background transparent
       grid-gap 12px
     &--valid
       box-shadow 0 0 3px 1px #44ff75
@@ -331,19 +331,22 @@ export default {
     width 100%
     height 100%
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
-    font-size 9px
+    font-size 11px
     color #aaa
     .slot
       margin 0
       padding 0
-      max-height 100%
-      max-width 100%
+      max-height 16px
+      max-width 16px
       padding 0
+      line-height 0
       display flex
       justify-content center
       align-items center
   &__slot
-    display block
+    display flex
+    justify-content center
+    align-items center
     position relative
     background white
     box-sizing border-box
@@ -356,17 +359,11 @@ export default {
     font-size 20px
     color #123ffc
     cursor pointer
+    font-family 'Open Sans', sans-serif
+    font-weight 700
+    user-select none
     transition-duration .12s
-    border 1px solid #ccc
-    p
-      position absolute
-      font-family 'Open Sans', sans-serif
-      font-weight 700
-      top -5px
-      left 0
-      right 0
-      z-index 2
-      user-select none
+    border 1px solid #ececec
     &:hover
       background #eeeeee
     &--selected

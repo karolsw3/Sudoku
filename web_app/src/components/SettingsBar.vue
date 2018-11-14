@@ -40,7 +40,8 @@ export default {
   cursor pointer
   box-sizing border-box
   transition-duration .2s
-  box-shadow 0 0 16px #bbb
+  box-shadow 0 0 3px #bbb
+  background white
   z-index 4
   &--switched
     background #0037dd
