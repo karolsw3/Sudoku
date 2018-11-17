@@ -51,70 +51,14 @@ definition, The SHA-1 algorithm uses:</p>
 <p>Some of these functions are commonly found in all hash digest
 algorithms, but some, like &quot;parity&quot; is only found in SHA-1.</p>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Sha1.html"
-                                  title='struct crypto::sha1::Sha1'>Sha1</a></td>
-                           <td class='docblock-short'>
-                                <p>Structure representing the state of a Sha1 computation</p>
-
-                           </td>
-                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.sha1_first.html"
-                                  title='fn crypto::sha1::sha1_first'>sha1_first</a></td>
-                           <td class='docblock-short'>
-                                <p>Not an intrinsic, but gets the first element of a vector.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.sha1_first_add.html"
-                                  title='fn crypto::sha1::sha1_first_add'>sha1_first_add</a></td>
-                           <td class='docblock-short'>
-                                <p>Not an intrinsic, but adds a word to the first element of a vector.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.sha1_first_half.html"
-                                  title='fn crypto::sha1::sha1_first_half'>sha1_first_half</a></td>
-                           <td class='docblock-short'>
-                                <p>Emulates <code>llvm.x86.sha1nexte</code> intrinsic.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.sha1_digest_block.html"
-                                  title='fn crypto::sha1::sha1_digest_block'>sha1_digest_block</a></td>
-                           <td class='docblock-short'>
-                                <p>Process a block with the SHA-1 algorithm. (See more...)</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.sha1_digest_block_u32.html"
-                                  title='fn crypto::sha1::sha1_digest_block_u32'>sha1_digest_block_u32</a></td>
-                           <td class='docblock-short'>
-                                <p>Process a block with the SHA-1 algorithm.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.sha1_digest_round_x4.html"
-                                  title='fn crypto::sha1::sha1_digest_round_x4'>sha1_digest_round_x4</a></td>
-                           <td class='docblock-short'>
-                                <p>Emulates <code>llvm.x86.sha1rnds4</code> intrinsic.
+<table><tr class='module-item'><td><a class="struct" href="struct.Sha1.html" title='crypto::sha1::Sha1 struct'>Sha1</a></td><td class='docblock-short'><p>Structure representing the state of a Sha1 computation</p>
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.sha1_first.html" title='crypto::sha1::sha1_first fn'>sha1_first</a></td><td class='docblock-short'><p>Not an intrinsic, but gets the first element of a vector.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sha1_first_add.html" title='crypto::sha1::sha1_first_add fn'>sha1_first_add</a></td><td class='docblock-short'><p>Not an intrinsic, but adds a word to the first element of a vector.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sha1_first_half.html" title='crypto::sha1::sha1_first_half fn'>sha1_first_half</a></td><td class='docblock-short'><p>Emulates <code>llvm.x86.sha1nexte</code> intrinsic.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sha1_digest_block.html" title='crypto::sha1::sha1_digest_block fn'>sha1_digest_block</a></td><td class='docblock-short'><p>Process a block with the SHA-1 algorithm. (See more...)</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sha1_digest_block_u32.html" title='crypto::sha1::sha1_digest_block_u32 fn'>sha1_digest_block_u32</a></td><td class='docblock-short'><p>Process a block with the SHA-1 algorithm.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sha1_digest_round_x4.html" title='crypto::sha1::sha1_digest_round_x4 fn'>sha1_digest_round_x4</a></td><td class='docblock-short'><p>Emulates <code>llvm.x86.sha1rnds4</code> intrinsic.
 Performs 4 rounds of the message block digest.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.sha1_schedule_x4.html"
-                                  title='fn crypto::sha1::sha1_schedule_x4'>sha1_schedule_x4</a></td>
-                           <td class='docblock-short'>
-                                <p>Performs 4 rounds of the message schedule update.</p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "crypto";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sha1_schedule_x4.html" title='crypto::sha1::sha1_schedule_x4 fn'>sha1_schedule_x4</a></td><td class='docblock-short'><p>Performs 4 rounds of the message schedule update.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "crypto";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>

@@ -325,143 +325,31 @@ and consequently <code>Utc.ymd(2014, 1, 30).with_month(2)</code> returns <code>N
 For now you can try the <a href="https://github.com/chronotope/chrono-tz/">Chrono-tz</a> crate instead.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Re-exports</a></h2>
 <table><tr><td><code>pub use offset::<a class="struct" href="../chrono/offset/struct.Local.html" title="struct chrono::offset::Local">Local</a>;</code></td></tr><tr><td><code>pub use offset::<a class="trait" href="../chrono/offset/trait.TimeZone.html" title="trait chrono::offset::TimeZone">TimeZone</a>;</code></td></tr><tr><td><code>pub use offset::<a class="trait" href="../chrono/offset/trait.Offset.html" title="trait chrono::offset::Offset">Offset</a>;</code></td></tr><tr><td><code>pub use offset::<a class="enum" href="../chrono/offset/enum.LocalResult.html" title="enum chrono::offset::LocalResult">LocalResult</a>;</code></td></tr><tr><td><code>pub use offset::<a class="struct" href="../chrono/offset/struct.Utc.html" title="struct chrono::offset::Utc">Utc</a>;</code></td></tr><tr><td><code>pub use offset::<a class="struct" href="../chrono/offset/struct.FixedOffset.html" title="struct chrono::offset::FixedOffset">FixedOffset</a>;</code></td></tr><tr><td><code>pub use naive::<a class="struct" href="../chrono/naive/struct.NaiveDate.html" title="struct chrono::naive::NaiveDate">NaiveDate</a>;</code></td></tr><tr><td><code>pub use naive::<a class="struct" href="../chrono/naive/struct.IsoWeek.html" title="struct chrono::naive::IsoWeek">IsoWeek</a>;</code></td></tr><tr><td><code>pub use naive::<a class="struct" href="../chrono/naive/struct.NaiveTime.html" title="struct chrono::naive::NaiveTime">NaiveTime</a>;</code></td></tr><tr><td><code>pub use naive::<a class="struct" href="../chrono/naive/struct.NaiveDateTime.html" title="struct chrono::naive::NaiveDateTime">NaiveDateTime</a>;</code></td></tr><tr><td><code>pub use format::<a class="struct" href="../chrono/format/struct.ParseError.html" title="struct chrono::format::ParseError">ParseError</a>;</code></td></tr><tr><td><code>pub use format::<a class="type" href="../chrono/format/type.ParseResult.html" title="type chrono::format::ParseResult">ParseResult</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="format/index.html"
-                                  title='mod chrono::format'>format</a></td>
-                           <td class='docblock-short'>
-                                <p>Formatting (and parsing) utilities for date and time.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="naive/index.html"
-                                  title='mod chrono::naive'>naive</a></td>
-                           <td class='docblock-short'>
-                                <p>Date and time types which do not concern about the timezones.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="offset/index.html"
-                                  title='mod chrono::offset'>offset</a></td>
-                           <td class='docblock-short'>
-                                <p>The time zone, which calculates offsets from the local time to UTC.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="prelude/index.html"
-                                  title='mod chrono::prelude'>prelude</a></td>
-                           <td class='docblock-short'>
-                                <p>A convenience module appropriate for glob imports (<code>use chrono::prelude::*;</code>).</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="serde/index.html"
-                                  title='mod chrono::serde'>serde</a></td>
-                           <td class='docblock-short'>
-                                <p>Serialization/Deserialization in alternate formats</p>
-
-                           </td>
-                       </tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Date.html"
-                                  title='struct chrono::Date'>Date</a></td>
-                           <td class='docblock-short'>
-                                <p>ISO 8601 calendar date with time zone.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.DateTime.html"
-                                  title='struct chrono::DateTime'>DateTime</a></td>
-                           <td class='docblock-short'>
-                                <p>ISO 8601 combined date and time with time zone.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Duration.html"
-                                  title='struct chrono::Duration'>Duration</a></td>
-                           <td class='docblock-short'>
-                                <p>ISO 8601 time duration with nanosecond precision.
+<table><tr class='module-item'><td><a class="mod" href="format/index.html" title='chrono::format mod'>format</a></td><td class='docblock-short'><p>Formatting (and parsing) utilities for date and time.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="naive/index.html" title='chrono::naive mod'>naive</a></td><td class='docblock-short'><p>Date and time types which do not concern about the timezones.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="offset/index.html" title='chrono::offset mod'>offset</a></td><td class='docblock-short'><p>The time zone, which calculates offsets from the local time to UTC.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="prelude/index.html" title='chrono::prelude mod'>prelude</a></td><td class='docblock-short'><p>A convenience module appropriate for glob imports (<code>use chrono::prelude::*;</code>).</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="serde/index.html" title='chrono::serde mod'>serde</a></td><td class='docblock-short'><p>Serialization/Deserialization in alternate formats</p>
+</td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr class='module-item'><td><a class="struct" href="struct.Date.html" title='chrono::Date struct'>Date</a></td><td class='docblock-short'><p>ISO 8601 calendar date with time zone.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.DateTime.html" title='chrono::DateTime struct'>DateTime</a></td><td class='docblock-short'><p>ISO 8601 combined date and time with time zone.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Duration.html" title='chrono::Duration struct'>Duration</a></td><td class='docblock-short'><p>ISO 8601 time duration with nanosecond precision.
 This also allows for the negative duration; see individual methods for details.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.ParseWeekdayError.html"
-                                  title='struct chrono::ParseWeekdayError'>ParseWeekdayError</a></td>
-                           <td class='docblock-short'>
-                                <p>An error resulting from reading <code>Weekday</code> value with <code>FromStr</code>.</p>
-
-                           </td>
-                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.SecondsFormat.html"
-                                  title='enum chrono::SecondsFormat'>SecondsFormat</a></td>
-                           <td class='docblock-short'>
-                                <p>Specific formatting options for seconds. This may be extended in the
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.ParseWeekdayError.html" title='chrono::ParseWeekdayError struct'>ParseWeekdayError</a></td><td class='docblock-short'><p>An error resulting from reading <code>Weekday</code> value with <code>FromStr</code>.</p>
+</td></tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table><tr class='module-item'><td><a class="enum" href="enum.SecondsFormat.html" title='chrono::SecondsFormat enum'>SecondsFormat</a></td><td class='docblock-short'><p>Specific formatting options for seconds. This may be extended in the
 future, so exhaustive matching in external code is not recommended.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.Weekday.html"
-                                  title='enum chrono::Weekday'>Weekday</a></td>
-                           <td class='docblock-short'>
-                                <p>The day of week.</p>
-
-                           </td>
-                       </tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.MAX_DATE.html"
-                                  title='constant chrono::MAX_DATE'>MAX_DATE</a></td>
-                           <td class='docblock-short'>
-                                <p>The maximum possible <code>Date</code>.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.MIN_DATE.html"
-                                  title='constant chrono::MIN_DATE'>MIN_DATE</a></td>
-                           <td class='docblock-short'>
-                                <p>The minimum possible <code>Date</code>.</p>
-
-                           </td>
-                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.Datelike.html"
-                                  title='trait chrono::Datelike'>Datelike</a></td>
-                           <td class='docblock-short'>
-                                <p>The common set of methods for date component.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.SubsecRound.html"
-                                  title='trait chrono::SubsecRound'>SubsecRound</a></td>
-                           <td class='docblock-short'>
-                                <p>Extension trait for subsecond rounding or truncation to a maximum number
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.Weekday.html" title='chrono::Weekday enum'>Weekday</a></td><td class='docblock-short'><p>The day of week.</p>
+</td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table><tr class='module-item'><td><a class="constant" href="constant.MAX_DATE.html" title='chrono::MAX_DATE constant'>MAX_DATE</a></td><td class='docblock-short'><p>The maximum possible <code>Date</code>.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.MIN_DATE.html" title='chrono::MIN_DATE constant'>MIN_DATE</a></td><td class='docblock-short'><p>The minimum possible <code>Date</code>.</p>
+</td></tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table><tr class='module-item'><td><a class="trait" href="trait.Datelike.html" title='chrono::Datelike trait'>Datelike</a></td><td class='docblock-short'><p>The common set of methods for date component.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.SubsecRound.html" title='chrono::SubsecRound trait'>SubsecRound</a></td><td class='docblock-short'><p>Extension trait for subsecond rounding or truncation to a maximum number
 of digits. Rounding can be used to decrease the error variance when
 serializing/persisting to lower precision. Truncation is the default
 behavior in Chrono display formatting.  Either can be used to guarantee
 equality (e.g. for testing) when round-tripping through a lower precision
 format.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.Timelike.html"
-                                  title='trait chrono::Timelike'>Timelike</a></td>
-                           <td class='docblock-short'>
-                                <p>The common set of methods for time component.</p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "chrono";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.Timelike.html" title='chrono::Timelike trait'>Timelike</a></td><td class='docblock-short'><p>The common set of methods for time component.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "chrono";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

@@ -87,117 +87,19 @@ a <code>NetworkStream</code> and contain headers, a status, and an http version.
 implement <code>Reader</code> and can be read to get the data out of a <code>Response</code>.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Re-exports</a></h2>
 <table><tr><td><code>pub use client::<a class="struct" href="../hyper/client/struct.Client.html" title="struct hyper::client::Client">Client</a>;</code></td></tr><tr><td><code>pub use error::<a class="type" href="../hyper/error/type.Result.html" title="type hyper::error::Result">Result</a>;</code></td></tr><tr><td><code>pub use error::<a class="enum" href="../hyper/error/enum.Error.html" title="enum hyper::error::Error">Error</a>;</code></td></tr><tr><td><code>pub use method::Method::<a class="enum" href="../hyper/method/enum.Method.html" title="enum hyper::method::Method">Get</a>;</code></td></tr><tr><td><code>pub use method::Method::<a class="enum" href="../hyper/method/enum.Method.html" title="enum hyper::method::Method">Head</a>;</code></td></tr><tr><td><code>pub use method::Method::<a class="enum" href="../hyper/method/enum.Method.html" title="enum hyper::method::Method">Post</a>;</code></td></tr><tr><td><code>pub use method::Method::<a class="enum" href="../hyper/method/enum.Method.html" title="enum hyper::method::Method">Delete</a>;</code></td></tr><tr><td><code>pub use status::StatusCode::<a class="enum" href="../hyper/status/enum.StatusCode.html" title="enum hyper::status::StatusCode">Ok</a>;</code></td></tr><tr><td><code>pub use status::StatusCode::<a class="enum" href="../hyper/status/enum.StatusCode.html" title="enum hyper::status::StatusCode">BadRequest</a>;</code></td></tr><tr><td><code>pub use status::StatusCode::<a class="enum" href="../hyper/status/enum.StatusCode.html" title="enum hyper::status::StatusCode">NotFound</a>;</code></td></tr><tr><td><code>pub use server::<a class="struct" href="../hyper/server/struct.Server.html" title="struct hyper::server::Server">Server</a>;</code></td></tr></table><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="client/index.html"
-                                  title='mod hyper::client'>client</a></td>
-                           <td class='docblock-short'>
-                                <p>HTTP Client</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="error/index.html"
-                                  title='mod hyper::error'>error</a></td>
-                           <td class='docblock-short'>
-                                <p>Error and Result module.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="header/index.html"
-                                  title='mod hyper::header'>header</a></td>
-                           <td class='docblock-short'>
-                                <p>Headers container, and common header fields.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="http/index.html"
-                                  title='mod hyper::http'>http</a></td>
-                           <td class='docblock-short'>
-                                <p>Pieces pertaining to the HTTP message protocol.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="method/index.html"
-                                  title='mod hyper::method'>method</a></td>
-                           <td class='docblock-short'>
-                                <p>The HTTP request method</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="mime/index.html"
-                                  title='mod hyper::mime'>mime</a></td>
-                           <td class='docblock-short'>
-                                <p>Re-exporting the mime crate, for convenience.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="net/index.html"
-                                  title='mod hyper::net'>net</a></td>
-                           <td class='docblock-short'>
-                                <p>A collection of traits abstracting over Listeners and Streams.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="server/index.html"
-                                  title='mod hyper::server'>server</a></td>
-                           <td class='docblock-short'>
-                                <p>HTTP Server</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="status/index.html"
-                                  title='mod hyper::status'>status</a></td>
-                           <td class='docblock-short'>
-                                <p>HTTP status codes</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="uri/index.html"
-                                  title='mod hyper::uri'>uri</a></td>
-                           <td class='docblock-short'>
-                                <p>HTTP RequestUris</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="version/index.html"
-                                  title='mod hyper::version'>version</a></td>
-                           <td class='docblock-short'>
-                                <p>HTTP Versions enum</p>
-
-                           </td>
-                       </tr></table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="macro" href="macro.header.html"
-                                  title='macro hyper::header'>header</a></td>
-                           <td class='docblock-short'>
-                                
-                           </td>
-                       </tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.LanguageTag.html"
-                                  title='struct hyper::LanguageTag'>LanguageTag</a></td>
-                           <td class='docblock-short'>
-                                <p>A language tag as described in <a href="http://tools.ietf.org/html/bcp47">BCP47</a>.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Url.html"
-                                  title='struct hyper::Url'>Url</a></td>
-                           <td class='docblock-short'>
-                                <p>A parsed URL record.</p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "hyper";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
+<table><tr class='module-item'><td><a class="mod" href="client/index.html" title='hyper::client mod'>client</a></td><td class='docblock-short'><p>HTTP Client</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="error/index.html" title='hyper::error mod'>error</a></td><td class='docblock-short'><p>Error and Result module.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="header/index.html" title='hyper::header mod'>header</a></td><td class='docblock-short'><p>Headers container, and common header fields.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="http/index.html" title='hyper::http mod'>http</a></td><td class='docblock-short'><p>Pieces pertaining to the HTTP message protocol.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="method/index.html" title='hyper::method mod'>method</a></td><td class='docblock-short'><p>The HTTP request method</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="mime/index.html" title='hyper::mime mod'>mime</a></td><td class='docblock-short'><p>Re-exporting the mime crate, for convenience.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="net/index.html" title='hyper::net mod'>net</a></td><td class='docblock-short'><p>A collection of traits abstracting over Listeners and Streams.</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="server/index.html" title='hyper::server mod'>server</a></td><td class='docblock-short'><p>HTTP Server</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="status/index.html" title='hyper::status mod'>status</a></td><td class='docblock-short'><p>HTTP status codes</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="uri/index.html" title='hyper::uri mod'>uri</a></td><td class='docblock-short'><p>HTTP RequestUris</p>
+</td></tr><tr class='module-item'><td><a class="mod" href="version/index.html" title='hyper::version mod'>version</a></td><td class='docblock-short'><p>HTTP Versions enum</p>
+</td></tr></table><h2 id='macros' class='section-header'><a href="#macros">Macros</a></h2>
+<table><tr class='module-item'><td><a class="macro" href="macro.header.html" title='hyper::header macro'>header</a></td><td class='docblock-short'></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr class='module-item'><td><a class="struct" href="struct.LanguageTag.html" title='hyper::LanguageTag struct'>LanguageTag</a></td><td class='docblock-short'><p>A language tag as described in <a href="http://tools.ietf.org/html/bcp47">BCP47</a>.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Url.html" title='hyper::Url struct'>Url</a></td><td class='docblock-short'><p>A parsed URL record.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "hyper";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

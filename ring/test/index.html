@@ -84,52 +84,17 @@ stack backtrace:
 stack trace to the line in the test code that panicked: entry 9 in the
 stack trace pointing to line 652 of the file <code>example.rs</code>.</p>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="rand/index.html"
-                                  title='mod ring::test::rand'>rand</a></td>
-                           <td class='docblock-short'>
-                                <p>Deterministic implementations of <code>ring::rand::SecureRandom</code>.</p>
-
-                           </td>
-                       </tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.TestCase.html"
-                                  title='struct ring::test::TestCase'>TestCase</a></td>
-                           <td class='docblock-short'>
-                                <p>A test case. A test case consists of a set of named attributes. Every
+<table><tr class='module-item'><td><a class="mod" href="rand/index.html" title='ring::test::rand mod'>rand</a></td><td class='docblock-short'><p>Deterministic implementations of <code>ring::rand::SecureRandom</code>.</p>
+</td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr class='module-item'><td><a class="struct" href="struct.TestCase.html" title='ring::test::TestCase struct'>TestCase</a></td><td class='docblock-short'><p>A test case. A test case consists of a set of named attributes. Every
 attribute in the test case must be consumed exactly once; this helps catch
 typos and omissions.</p>
-
-                           </td>
-                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.from_file.html"
-                                  title='fn ring::test::from_file'>from_file</a></td>
-                           <td class='docblock-short'>
-                                <p>Reads test cases out of the file with the path given by
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.from_file.html" title='ring::test::from_file fn'>from_file</a></td><td class='docblock-short'><p>Reads test cases out of the file with the path given by
 <code>test_data_relative_file_path</code>, calling <code>f</code> on each vector until <code>f</code> fails
 or until all the test vectors have been read. <code>f</code> can indicate failure
 either by returning <code>Err()</code> or by panicking.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.from_hex.html"
-                                  title='fn ring::test::from_hex'>from_hex</a></td>
-                           <td class='docblock-short'>
-                                <p>Decode an string of hex digits into a sequence of bytes. The input must
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.from_hex.html" title='ring::test::from_hex fn'>from_hex</a></td><td class='docblock-short'><p>Decode an string of hex digits into a sequence of bytes. The input must
 have an even number of digits.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.ring_src_path.html"
-                                  title='fn ring::test::ring_src_path'>ring_src_path</a></td>
-                           <td class='docblock-short'>
-                                <p>Returns the path for <em>ring</em> source code root.</p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "ring";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.ring_src_path.html" title='ring::test::ring_src_path fn'>ring_src_path</a></td><td class='docblock-short'><p>Returns the path for <em>ring</em> source code root.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "ring";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>

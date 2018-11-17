@@ -11,86 +11,16 @@ appropriate type.</p>
 also implement <a href="trait.AsExpression.html"><code>AsExpression</code></a>, allowing it to be
 used as an argument to any of the methods described here.</p>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.SqlLiteral.html"
-                                  title='struct diesel::expression::SqlLiteral'>SqlLiteral</a></td>
-                           <td class='docblock-short'>
-                                <p>Returned by the <a href="../dsl/fn.sql.html"><code>sql()</code></a> function.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.UncheckedBind.html"
-                                  title='struct diesel::expression::UncheckedBind'>UncheckedBind</a></td>
-                           <td class='docblock-short'>
-                                <p>Returned by the <a href="../../diesel/expression/struct.SqlLiteral.html#method.bind" title="`SqlLiteral::bind()`"><code>SqlLiteral::bind()</code></a> method when binding a value to a fragment of SQL.</p>
-
-                           </td>
-                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.AppearsOnTable.html"
-                                  title='trait diesel::expression::AppearsOnTable'>AppearsOnTable</a></td>
-                           <td class='docblock-short'>
-                                <p>Indicates that all elements of an expression are valid given a from clause.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.AsExpression.html"
-                                  title='trait diesel::expression::AsExpression'>AsExpression</a></td>
-                           <td class='docblock-short'>
-                                <p>Converts a type to its representation for use in Diesel's query builder.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.AsExpressionList.html"
-                                  title='trait diesel::expression::AsExpressionList'>AsExpressionList</a></td>
-                           <td class='docblock-short'>
-                                <p>Converts a tuple of values into a tuple of Diesel expressions.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.BoxableExpression.html"
-                                  title='trait diesel::expression::BoxableExpression'>BoxableExpression</a></td>
-                           <td class='docblock-short'>
-                                <p>Helper trait used when boxing expressions.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.Expression.html"
-                                  title='trait diesel::expression::Expression'>Expression</a></td>
-                           <td class='docblock-short'>
-                                <p>Represents a typed fragment of SQL.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.IntoSql.html"
-                                  title='trait diesel::expression::IntoSql'>IntoSql</a></td>
-                           <td class='docblock-short'>
-                                <p>Converts a type to its representation for use in Diesel's query builder.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.NonAggregate.html"
-                                  title='trait diesel::expression::NonAggregate'>NonAggregate</a></td>
-                           <td class='docblock-short'>
-                                <p>Marker trait to indicate that an expression does not include any aggregate
+<table><tr class='module-item'><td><a class="struct" href="struct.SqlLiteral.html" title='diesel::expression::SqlLiteral struct'>SqlLiteral</a></td><td class='docblock-short'><p>Returned by the <a href="../dsl/fn.sql.html"><code>sql()</code></a> function.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.UncheckedBind.html" title='diesel::expression::UncheckedBind struct'>UncheckedBind</a></td><td class='docblock-short'><p>Returned by the <a href="../../diesel/expression/struct.SqlLiteral.html#method.bind" title="`SqlLiteral::bind()`"><code>SqlLiteral::bind()</code></a> method when binding a value to a fragment of SQL.</p>
+</td></tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table><tr class='module-item'><td><a class="trait" href="trait.AppearsOnTable.html" title='diesel::expression::AppearsOnTable trait'>AppearsOnTable</a></td><td class='docblock-short'><p>Indicates that all elements of an expression are valid given a from clause.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.AsExpression.html" title='diesel::expression::AsExpression trait'>AsExpression</a></td><td class='docblock-short'><p>Converts a type to its representation for use in Diesel's query builder.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.AsExpressionList.html" title='diesel::expression::AsExpressionList trait'>AsExpressionList</a></td><td class='docblock-short'><p>Converts a tuple of values into a tuple of Diesel expressions.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.BoxableExpression.html" title='diesel::expression::BoxableExpression trait'>BoxableExpression</a></td><td class='docblock-short'><p>Helper trait used when boxing expressions.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.Expression.html" title='diesel::expression::Expression trait'>Expression</a></td><td class='docblock-short'><p>Represents a typed fragment of SQL.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.IntoSql.html" title='diesel::expression::IntoSql trait'>IntoSql</a></td><td class='docblock-short'><p>Converts a type to its representation for use in Diesel's query builder.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.NonAggregate.html" title='diesel::expression::NonAggregate trait'>NonAggregate</a></td><td class='docblock-short'><p>Marker trait to indicate that an expression does not include any aggregate
 functions.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.SelectableExpression.html"
-                                  title='trait diesel::expression::SelectableExpression'>SelectableExpression</a></td>
-                           <td class='docblock-short'>
-                                <p>Indicates that an expression can be selected from a source.</p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "diesel";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.SelectableExpression.html" title='diesel::expression::SelectableExpression trait'>SelectableExpression</a></td><td class='docblock-short'><p>Indicates that an expression can be selected from a source.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "diesel";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>

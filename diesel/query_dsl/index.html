@@ -5,54 +5,12 @@ unless it conflicts with a Rust keyword (such as <code>WHERE</code>/<code>where<
 Methods for executing queries live on <a href="trait.RunQueryDsl.html"><code>RunQueryDsl</code></a>.</p>
 <p>See also <a href="../expression_methods/index.html"><code>expression_methods</code></a> and <a href="../dsl/index.html"><code>dsl</code></a>.</p>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="mod" href="methods/index.html"
-                                  title='mod diesel::query_dsl::methods'>methods</a></td>
-                           <td class='docblock-short'>
-                                <p>The traits used by <code>QueryDsl</code>.</p>
-
-                           </td>
-                       </tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.BelongingToDsl.html"
-                                  title='trait diesel::query_dsl::BelongingToDsl'>BelongingToDsl</a></td>
-                           <td class='docblock-short'>
-                                <p>Constructs a query that finds record(s) based on directional association with other record(s).</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.JoinOnDsl.html"
-                                  title='trait diesel::query_dsl::JoinOnDsl'>JoinOnDsl</a></td>
-                           <td class='docblock-short'>
-                                <p>Specify the <code>ON</code> clause for a join statement. This will override
+<table><tr class='module-item'><td><a class="mod" href="methods/index.html" title='diesel::query_dsl::methods mod'>methods</a></td><td class='docblock-short'><p>The traits used by <code>QueryDsl</code>.</p>
+</td></tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table><tr class='module-item'><td><a class="trait" href="trait.BelongingToDsl.html" title='diesel::query_dsl::BelongingToDsl trait'>BelongingToDsl</a></td><td class='docblock-short'><p>Constructs a query that finds record(s) based on directional association with other record(s).</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.JoinOnDsl.html" title='diesel::query_dsl::JoinOnDsl trait'>JoinOnDsl</a></td><td class='docblock-short'><p>Specify the <code>ON</code> clause for a join statement. This will override
 any implicit <code>ON</code> clause that would come from <a href="../macro.joinable.html"><code>joinable!</code></a></p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.QueryDsl.html"
-                                  title='trait diesel::query_dsl::QueryDsl'>QueryDsl</a></td>
-                           <td class='docblock-short'>
-                                <p>Methods used to construct select statements.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.RunQueryDsl.html"
-                                  title='trait diesel::query_dsl::RunQueryDsl'>RunQueryDsl</a></td>
-                           <td class='docblock-short'>
-                                <p>Methods used to execute queries.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="trait" href="trait.SaveChangesDsl.html"
-                                  title='trait diesel::query_dsl::SaveChangesDsl'>SaveChangesDsl</a></td>
-                           <td class='docblock-short'>
-                                <p>Sugar for types which implement both <code>AsChangeset</code> and <code>Identifiable</code></p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "diesel";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.QueryDsl.html" title='diesel::query_dsl::QueryDsl trait'>QueryDsl</a></td><td class='docblock-short'><p>Methods used to construct select statements.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.RunQueryDsl.html" title='diesel::query_dsl::RunQueryDsl trait'>RunQueryDsl</a></td><td class='docblock-short'><p>Methods used to execute queries.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.SaveChangesDsl.html" title='diesel::query_dsl::SaveChangesDsl trait'>SaveChangesDsl</a></td><td class='docblock-short'><p>Sugar for types which implement both <code>AsChangeset</code> and <code>Identifiable</code></p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "diesel";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>

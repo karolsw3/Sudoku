@@ -13,89 +13,19 @@ massive wins.</p>
 <code>-C target_cpu=native</code> allows the detection to become compile time checks,
 making it <em>even</em> faster.</p>
 </div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Header.html"
-                                  title='struct httparse::Header'>Header</a></td>
-                           <td class='docblock-short'>
-                                <p>Represents a parsed header.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.InvalidChunkSize.html"
-                                  title='struct httparse::InvalidChunkSize'>InvalidChunkSize</a></td>
-                           <td class='docblock-short'>
-                                <p>An error in parsing a chunk size.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Request.html"
-                                  title='struct httparse::Request'>Request</a></td>
-                           <td class='docblock-short'>
-                                <p>A parsed Request.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="struct" href="struct.Response.html"
-                                  title='struct httparse::Response'>Response</a></td>
-                           <td class='docblock-short'>
-                                <p>A parsed Response.</p>
-
-                           </td>
-                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.Error.html"
-                                  title='enum httparse::Error'>Error</a></td>
-                           <td class='docblock-short'>
-                                <p>An error in parsing.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="enum" href="enum.Status.html"
-                                  title='enum httparse::Status'>Status</a></td>
-                           <td class='docblock-short'>
-                                <p>The result of a successful parse pass.</p>
-
-                           </td>
-                       </tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="constant" href="constant.EMPTY_HEADER.html"
-                                  title='constant httparse::EMPTY_HEADER'>EMPTY_HEADER</a></td>
-                           <td class='docblock-short'>
-                                <p>An empty header, useful for constructing a <code>Header</code> array to pass in for
+<table><tr class='module-item'><td><a class="struct" href="struct.Header.html" title='httparse::Header struct'>Header</a></td><td class='docblock-short'><p>Represents a parsed header.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.InvalidChunkSize.html" title='httparse::InvalidChunkSize struct'>InvalidChunkSize</a></td><td class='docblock-short'><p>An error in parsing a chunk size.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Request.html" title='httparse::Request struct'>Request</a></td><td class='docblock-short'><p>A parsed Request.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Response.html" title='httparse::Response struct'>Response</a></td><td class='docblock-short'><p>A parsed Response.</p>
+</td></tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table><tr class='module-item'><td><a class="enum" href="enum.Error.html" title='httparse::Error enum'>Error</a></td><td class='docblock-short'><p>An error in parsing.</p>
+</td></tr><tr class='module-item'><td><a class="enum" href="enum.Status.html" title='httparse::Status enum'>Status</a></td><td class='docblock-short'><p>The result of a successful parse pass.</p>
+</td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table><tr class='module-item'><td><a class="constant" href="constant.EMPTY_HEADER.html" title='httparse::EMPTY_HEADER constant'>EMPTY_HEADER</a></td><td class='docblock-short'><p>An empty header, useful for constructing a <code>Header</code> array to pass in for
 parsing.</p>
-
-                           </td>
-                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.parse_chunk_size.html"
-                                  title='fn httparse::parse_chunk_size'>parse_chunk_size</a></td>
-                           <td class='docblock-short'>
-                                <p>Parse a buffer of bytes as a chunk size.</p>
-
-                           </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="fn" href="fn.parse_headers.html"
-                                  title='fn httparse::parse_headers'>parse_headers</a></td>
-                           <td class='docblock-short'>
-                                <p>Parse a buffer of bytes as headers.</p>
-
-                           </td>
-                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
-<table>
-                       <tr class=' module-item'>
-                           <td><a class="type" href="type.Result.html"
-                                  title='type httparse::Result'>Result</a></td>
-                           <td class='docblock-short'>
-                                <p>A Result of any parsing action.</p>
-
-                           </td>
-                       </tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "httparse";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.parse_chunk_size.html" title='httparse::parse_chunk_size fn'>parse_chunk_size</a></td><td class='docblock-short'><p>Parse a buffer of bytes as a chunk size.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.parse_headers.html" title='httparse::parse_headers fn'>parse_headers</a></td><td class='docblock-short'><p>Parse a buffer of bytes as headers.</p>
+</td></tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table><tr class='module-item'><td><a class="type" href="type.Result.html" title='httparse::Result type'>Result</a></td><td class='docblock-short'><p>A Result of any parsing action.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "httparse";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>
