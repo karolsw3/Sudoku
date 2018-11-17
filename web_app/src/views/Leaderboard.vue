@@ -38,7 +38,7 @@ export default {
   },
   created () {
     this.loading = true
-    let url = this.$route.params.type === "games" ? '/api/v1/check/leaderboard?count=10':'/api/v1/check/leaderboard?of=users&count=10'
+    let url = this.$route.params.type === 'games' ? '/api/v1/check/leaderboard?count=10' : '/api/v1/check/leaderboard?of=users&count=10'
     axios.get(url)
       .then((response) => {
         this.loading = false

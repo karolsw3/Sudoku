@@ -8,12 +8,11 @@
 <script>
 import Menu from '@/components/Menu.vue'
 import Footer from '@/components/Footer.vue'
-import News from '@/components/News.vue'
 
 export default {
   name: 'Sudoku',
   components: {
-    Menu, Footer, News
+    Menu, Footer
   }
 }
 </script>
