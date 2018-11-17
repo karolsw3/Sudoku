@@ -1,9 +1,7 @@
 <template lang="pug">
   #app
     Menu
-    .container
-      News
-      router-view
+    router-view
     Footer
 </template>
 
@@ -49,7 +47,4 @@ a
   background-position bottom right
   background-repeat no-repeat
   background-size 1950px
-.container
-  height calc(100% - 62px)
-  display flex
 </style>

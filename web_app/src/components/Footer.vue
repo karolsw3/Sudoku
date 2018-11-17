@@ -49,7 +49,6 @@ export default {
 
 <style scoped lang="stylus">
 .Footer
-  position absolute
   width 100%
   display block
   padding 10px 0

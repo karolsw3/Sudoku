@@ -152,12 +152,12 @@ export default {
 .play
   position relative
   margin 0 auto
-  display flex
   flex-direction column
   justify-content center
   width 100%
   padding-bottom 100px
   align-items center
+  height calc(100% - 51px)
 .PencilModeSwitch
   position absolute
   right -64px
