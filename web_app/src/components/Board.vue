@@ -303,21 +303,25 @@ export default {
   background white
   user-select none
   &__grid
-    position relative
-    width 100%
-    height 100%
-    display grid
+    background #cacaca
+    border-radius 9px
     box-sizing border-box
+    display grid
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
-    padding 1px
-    border-radius 5px
-    background #c5c5c5
+    height 100%
+    padding 0px
+    position relative
+    box-shadow 0 0 3px #bbb
+    overflow hidden
+    width 100%
     &--main
       width 504px
       height 504px
       border-radius 6px
+      padding 1px
       border none
       background transparent
+      box-shadow none
       grid-gap 12px
     &--valid
       box-shadow 0 0 3px 1px #44ff75
@@ -365,12 +369,11 @@ export default {
     transition-duration .12s
     border 1px solid #ececec
     &:hover
-      background #eeeeee
+      background #f4f4f4
     &--selected
       box-shadow inset 0 0 0 3px
     &--highlighted
-      text-shadow 0 0 13px #004bff
-      background #9ebaff !important
+      background #718cfd !important
       opacity 1 !important
     &--dimmed
       opacity .4

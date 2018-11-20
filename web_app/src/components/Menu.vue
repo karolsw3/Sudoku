@@ -54,7 +54,7 @@ export default {
   align-items center
   justify-content space-between
   box-sizing border-box
-  padding 3px 15px
+  padding 3px 0
   background transparent
   border-bottom 1px solid #f4f4f4
   &--mobile
@@ -67,7 +67,6 @@ export default {
   &__logo
     width 254px
     height 44px
-    margin-right 15px
     background-image url(../../../images_compressed/logo.svg)
     background-size cover
     cursor pointer
