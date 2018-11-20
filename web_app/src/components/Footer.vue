@@ -6,6 +6,8 @@
   span |
   span Backend by <a href='https://nabijaczleweli.xyz' target='_blank'><b>nabijaczleweli</b></a>
   span |
+  span <a href='https://www.facebook.com/thebestsudoku/' target='_blank'><b>Our Facebook</b></a>
+  span |
   span
     .Footer__led
   span {{activeUsers}} player{{activeUsers === 1 ? '' : 's'}} online
