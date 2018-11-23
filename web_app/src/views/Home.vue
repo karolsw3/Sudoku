@@ -191,7 +191,7 @@ export default {
   .md-button + .md-button
       margin 6px 0
   .home
-    min-height 100%
+    min-height 112%
     margin-bottom 25px
   .dashboard
     display block

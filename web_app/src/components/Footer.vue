@@ -1,10 +1,10 @@
 <template lang="pug">
 .Footer
-  span An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
-  span Frontend by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
-  span Backend by <a href='https://nabijaczleweli.xyz' target='_blank'><b>nabijaczleweli</b></a>
-  span <a href='https://www.facebook.com/thebestsudoku/' target='_blank'><b>Our Facebook</b></a>
-  span
+  span.entry An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
+  span.entry Frontend by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
+  span.entry Backend by <a href='https://nabijaczleweli.xyz' target='_blank'><b>nabijaczleweli</b></a>
+  span.entry <a href='https://www.facebook.com/thebestsudoku/' target='_blank'><b>Our Facebook</b></a>
+  span.entry
     span.short_span.Footer__led
     span {{activeUsers}} player{{activeUsers === 1 ? '' : 's'}} online
 </template>
@@ -101,6 +101,10 @@ export default {
     height 20px
     opacity 0
 @media screen and (max-width: 700px)
+  .entry
+    width 100%
+  .short_span
+    width auto !important
   .Footer
     text-align center
 
