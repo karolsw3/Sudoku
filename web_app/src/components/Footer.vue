@@ -1,16 +1,12 @@
 <template lang="pug">
 .Footer
   span An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
-  span |
   span Frontend by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
-  span |
   span Backend by <a href='https://nabijaczleweli.xyz' target='_blank'><b>nabijaczleweli</b></a>
-  span |
   span <a href='https://www.facebook.com/thebestsudoku/' target='_blank'><b>Our Facebook</b></a>
-  span |
   span
-    .Footer__led
-  span {{activeUsers}} player{{activeUsers === 1 ? '' : 's'}} online
+    span.short_span.Footer__led
+    span {{activeUsers}} player{{activeUsers === 1 ? '' : 's'}} online
 </template>
 
 <script>
@@ -60,7 +56,9 @@ export default {
   z-index 3
   span
     display inline-block
-    margin 0 5px
+    margin 0 16px 0 0
+  .short_span
+    margin 0 4px 0 0
   a
     text-decoration none
   &__led
@@ -104,6 +102,6 @@ export default {
     opacity 0
 @media screen and (max-width: 700px)
   .Footer
-    display none
+    text-align center
 
 </style>
