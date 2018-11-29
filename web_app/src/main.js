@@ -41,7 +41,7 @@ const store = new Vuex.Store({
     },
     game: {
       pencilMode: false,
-      dimmedCellsMode: true
+      dimmedCellsMode: false
     }
   },
   mutations: {
