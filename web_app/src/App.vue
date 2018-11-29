@@ -24,7 +24,7 @@ html,body
   margin 0
   padding 0
   font-size 14px
-  height 100%
+  min-height 100vh
 a
   text-decoration none
   color inherit
@@ -36,7 +36,7 @@ a
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  height 100%
+  min-height 100vh
   display flex
   color #222
   background-color white

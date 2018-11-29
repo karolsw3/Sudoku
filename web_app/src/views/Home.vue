@@ -57,7 +57,7 @@ export default {
     margin 6px 8px
 .home
   width auto
-  margin 0 auto
+  margin 120px auto 20px auto
   height 100%
   display flex
   flex-direction column
@@ -191,8 +191,7 @@ export default {
   .md-button + .md-button
       margin 6px 0
   .home
-    min-height 112%
-    margin-bottom 25px
+    margin-top 20px
   .dashboard
     display block
     height 100%
