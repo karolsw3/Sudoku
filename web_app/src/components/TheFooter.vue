@@ -37,9 +37,9 @@ export default {
     },
     stopCheckingActiveUsers () {
       clearInterval(this.interval)
-    },
+    }
   },
-  created() {
+  created () {
     this.startCheckingActiveUsers()
   }
 }
@@ -86,7 +86,7 @@ export default {
 
 @keyframes beacon
   0%
-  	width 0
+    width 0
     height 0
     opacity 1
   25%
