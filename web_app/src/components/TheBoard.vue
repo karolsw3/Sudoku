@@ -1,23 +1,23 @@
 <template lang="pug">
-.Board
-  .Board__grid.Board__grid--main
+.TheBoard
+  .TheBoard__grid.TheBoard__grid--main
     template(v-for="i in 3")
-      .Board__grid(v-for="j in 3" :class="getOnValidationClass()")
+      .TheBoard__grid(v-for="j in 3" :class="getOnValidationClass()")
         template(v-for="x in 3")
-          .Board__slot(
+          .TheBoard__slot(
             v-for="y in 3"
             @click="onSlotClick(getSlotX(i, j, x, y), getSlotY(i, j, x, y))"
             :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y), getDimmedClass(i, j, x, y)]"
           )
             template(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
-            .Board__pencilGrid(v-else)
+            .TheBoard__pencilGrid(v-else)
               .slot(v-for='number in 9') {{pencilSlots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)][number] % 10 ? number:''}}
 </template>
 
 <script>
 
 export default {
-  name: 'Board',
+  name: 'TheBoard',
   data: function () {
     return {
       slots: Array(9).fill().map(() => Array(9).fill(0)),
@@ -295,7 +295,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.Board
+.TheBoard
   display inline-block
   position relative
   margin 0 auto

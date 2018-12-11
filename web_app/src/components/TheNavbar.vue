@@ -1,15 +1,15 @@
 <template lang="pug">
-div
-  .Menu
-    .Menu__slot
+nav
+  .TheNavbar
+    .TheNavbar__slot
       router-link(tag="div" to="/")
-        .Menu__logo
-    .Menu__slot
+        .TheNavbar__logo
+    .TheNavbar__slot
       router-link(tag="div" to="/login" v-if='!this.$store.state.user.logged')
         MainButton Login
       router-link(tag="div" to="/register" v-if='!this.$store.state.user.logged')
         MainButton(primary='true') Register
-      .Menu__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
+      .TheNavbar__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
       MainButton(v-if='this.$store.state.user.logged' v-on:clicked='logout') Logout
 </template>
 
@@ -17,7 +17,7 @@ div
 import MainButton from '@/components/buttons/MainButton.vue'
 
 export default {
-  name: 'Menu',
+  name: 'TheNavbar',
   components: { MainButton },
   data: function () {
     return {
@@ -47,7 +47,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.Menu
+.TheNavbar
   position relative
   width 100%
   display flex
@@ -79,7 +79,7 @@ export default {
     color #333
 
 @media screen and (max-width: 520px)
-  .Menu
+  .TheNavbar
     height 50px
     &__logo
       width 150px

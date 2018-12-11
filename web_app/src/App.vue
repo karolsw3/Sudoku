@@ -1,18 +1,18 @@
 <template lang="pug">
   #app
-    Menu
+    TheNavbar
     router-view
-    Footer
+    TheFooter
 </template>
 
 <script>
-import Menu from '@/components/Menu.vue'
-import Footer from '@/components/Footer.vue'
+import TheNavbar from '@/components/TheNavbar.vue'
+import TheFooter from '@/components/TheFooter.vue'
 
 export default {
   name: 'Sudoku',
   components: {
-    Menu, Footer
+    TheNavbar, TheFooter
   }
 }
 </script>

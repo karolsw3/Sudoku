@@ -1,7 +1,7 @@
 <template lang="pug">
-  .leaderboard
+  .LeaderboardPage
     ProgressBar(v-if='loading')
-    .leaderboard__title Top 10 {{$route.params.type === "games" ? "games":"players"}}
+    .LeaderboardPage__title Top 10 {{$route.params.type === "games" ? "games":"players"}}
     table(v-if='$route.params.type === "players"')
       tr.mainRow
         th Position
@@ -32,7 +32,7 @@ import ProgressBar from '@/components/ProgressBar.vue'
 import axios from 'axios'
 
 export default {
-  name: 'leaderboard',
+  name: 'LeaderboardPage',
   components: {
     NumberButton, ProgressBar
   },
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="stylus">
-.leaderboard
+.LeaderboardPage
   width 100%
   margin 0 auto
   height 100%

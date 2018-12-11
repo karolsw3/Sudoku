@@ -1,26 +1,26 @@
 <template lang="pug">
-  .play
+  .PlayPage
     ProgressBar(v-if='loading')
     GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false' v-on:reload='reload')
-    Timer(ref='timer')
-    Board(ref='board' v-on:board-is-valid="submitBoard" :pencilMode='$store.state.game.pencilMode')
+    TheTimer(ref='timer')
+    TheBoard(ref='board' v-on:board-is-valid="submitBoard" :pencilMode='$store.state.game.pencilMode')
     SettingsBar
     NumberSelector(@numberSelected='numberSelected')
 </template>
 
 <script>
-import Board from '@/components/Board.vue'
+import TheBoard from '@/components/TheBoard.vue'
 import NumberSelector from '@/components/NumberSelector.vue'
 import SettingsBar from '@/components/SettingsBar.vue'
 import ProgressBar from '@/components/ProgressBar.vue'
 import GameSummary from '@/components/GameSummary.vue'
-import Timer from '@/components/Timer.vue'
+import TheTimer from '@/components/TheTimer.vue'
 import axios from 'axios'
 
 export default {
-  name: 'play',
+  name: 'PlayPage',
   components: {
-    Board, NumberSelector, Timer, GameSummary, ProgressBar, SettingsBar
+    TheBoard, NumberSelector, TheTimer, GameSummary, ProgressBar, SettingsBar
   },
   props: ['difficulty'],
   data: function () {
@@ -149,7 +149,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.play
+.PlayPage
   position relative
   margin 0 auto
   flex-direction column
@@ -165,7 +165,7 @@ export default {
   top 10px
 
 @media screen and (max-width: 560px)
-  .play
+  .PlayPage
     display inline-block
     padding-top 10px
   .PencilModeSwitch

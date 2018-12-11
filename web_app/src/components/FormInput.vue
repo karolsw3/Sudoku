@@ -9,7 +9,7 @@ md-field(:class="{'md-invalid' : invalid}")
 import validator from 'validator'
 
 export default {
-  name: 'Input',
+  name: 'FormInput',
   props: ['placeholder', 'type'],
   data: function () {
     return {

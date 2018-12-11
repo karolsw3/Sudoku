@@ -1,11 +1,11 @@
 <template lang="pug">
-.Timer
+.TheTimer
   p {{compHours}}h {{compMinutes}}m {{compSeconds}}s
 </template>
 
 <script>
 export default {
-  name: 'Timer',
+  name: 'TheTimer',
   data: function () {
     return {
       miliseconds: 0,
@@ -44,7 +44,7 @@ export default {
 </script>
 
 <style scoped lang="stylus">
-.Timer
+.TheTimer
   top -55px
   left 0
   width 100%

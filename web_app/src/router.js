@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Login from './views/Login.vue'
-import Register from './views/Register.vue'
-import Play from './views/Play.vue'
-import Leaderboard from './views/Leaderboard.vue'
+import HomePage from './pages/HomePage.vue'
+import LoginPage from './pages/LoginPage.vue'
+import RegisterPage from './pages/RegisterPage.vue'
+import PlayPage from './pages/PlayPage.vue'
+import LeaderboardPage from './pages/LeaderboardPage.vue'
 
 Vue.use(Router)
 
@@ -14,28 +14,28 @@ export default new Router({
     {
       path: '/',
       name: 'home',
-      component: Home
+      component: HomePage
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: LoginPage
     },
     {
       path: '/register',
       name: 'register',
-      component: Register
+      component: RegisterPage
     },
     {
       path: '/play/:difficulty',
       name: 'play',
-      component: Play,
+      component: PlayPage,
       props: true
     },
     {
       path: '/leaderboard/:type',
       name: 'leaderboard',
-      component: Leaderboard
+      component: LeaderboardPage
     },
     { path: '/index.html', redirect: '/' }
   ]

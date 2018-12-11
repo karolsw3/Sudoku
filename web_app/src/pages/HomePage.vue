@@ -1,5 +1,5 @@
 <template lang="pug">
-  .home
+  .HomePage
     .dashboard
       .dashboard__cell.dashboard__cell--button(@click="difficultySelectorOpen = !difficultySelectorOpen")
         .dashboard__button New game
@@ -28,17 +28,17 @@
             span
               p Games
       .dashboard__cell(:class='$store.state.user.logged ? "dashboard__cell--stats-logged" : "dashboard__cell--stats"')
-        Stats(v-if='$store.state.user.logged')
+        TheStats(v-if='$store.state.user.logged')
         router-link(v-else to="/register" tag="div")
           h1 Create an account to get points and compete with others!
 </template>
 
 <script>
-import Stats from '@/components/Stats.vue'
+import TheStats from '@/components/TheStats.vue'
 
 export default {
-  name: 'home',
-  components: { Stats },
+  name: 'HomePage',
+  components: { TheStats },
   data: function () {
     return {
       difficultySelectorOpen: false,
@@ -55,7 +55,7 @@ export default {
 
 .md-button + .md-button
     margin 6px 8px
-.home
+.HomePage
   width auto
   margin 120px auto 20px auto
   height 100%

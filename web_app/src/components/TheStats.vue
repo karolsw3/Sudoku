@@ -1,49 +1,49 @@
 <template lang="pug">
-.Stats(:class="$store.state.nightMode ? 'nightMode':'dayMode'")
-  .Stats__column
-    h1 Your stats
-    .Stats__row
-      .Stats__statName Points
-      .Stats__statValue {{$store.state.user.pointsTotal}}
+.TheStats
+  .TheStats__column
+    h1 Your TheStats
+    .TheStats__row
+      .TheStats__statName Points
+      .TheStats__statValue {{$store.state.user.pointsTotal}}
     h2 Boards solved
-    .Stats__row
-      .Stats__statName Easy
-      .Stats__statValue {{$store.state.user.gamesTotalEasy}}
-    .Stats__row
-      .Stats__statName Medium
-      .Stats__statValue {{$store.state.user.gamesTotalMedium}}
-    .Stats__row
-      .Stats__statName Hard
-      .Stats__statValue {{$store.state.user.gamesTotalHard}}
-  .Stats__column
+    .TheStats__row
+      .TheStats__statName Easy
+      .TheStats__statValue {{$store.state.user.gamesTotalEasy}}
+    .TheStats__row
+      .TheStats__statName Medium
+      .TheStats__statValue {{$store.state.user.gamesTotalMedium}}
+    .TheStats__row
+      .TheStats__statName Hard
+      .TheStats__statValue {{$store.state.user.gamesTotalHard}}
+  .TheStats__column
     h1 Badges
-    .Stats__badges
-      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 10}')
-        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 10') <b>Good start</b>: Solved 10 boards
-        .Stats__tooltip(v-else) <b>Good start</b>: Solve 10 boards ({{$store.state.user.gamesTotal}}/10)
-      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 40}')
-        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 40') <b>Confident player</b>: Solved 40 boards
-        .Stats__tooltip(v-else) <b>Confident player</b>: Solve 40 boards ({{$store.state.user.gamesTotal}}/40)
-      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotal >= 100}')
-        .Stats__tooltip(v-if='$store.state.user.gamesTotal >= 100') <b>Sudokuphile</b>: Solved 100 boards
-        .Stats__tooltip(v-else) <b>Sudokuphile</b>: Solve 100 boards ({{$store.state.user.gamesTotal}}/100)
-      .Stats__badge(:class='{"Stats__badge--active" : $store.state.user.gamesTotalHard >= 3}')
-        .Stats__tooltip(v-if='$store.state.user.gamesTotalHard >= 3') <b>Intellectual</b>: 3 hard boards solved
-        .Stats__tooltip(v-else) <b>Intellectual</b>: Solve 3 hard boards ({{$store.state.user.gamesTotalHard}}/3)
-      .Stats__badge
-      .Stats__badge
-      .Stats__badge
-      .Stats__badge
+    .TheStats__badges
+      .TheStats__badge(:class='{"TheStats__badge--active" : $store.state.user.gamesTotal >= 10}')
+        .TheStats__tooltip(v-if='$store.state.user.gamesTotal >= 10') <b>Good start</b>: Solved 10 boards
+        .TheStats__tooltip(v-else) <b>Good start</b>: Solve 10 boards ({{$store.state.user.gamesTotal}}/10)
+      .TheStats__badge(:class='{"TheStats__badge--active" : $store.state.user.gamesTotal >= 40}')
+        .TheStats__tooltip(v-if='$store.state.user.gamesTotal >= 40') <b>Confident player</b>: Solved 40 boards
+        .TheStats__tooltip(v-else) <b>Confident player</b>: Solve 40 boards ({{$store.state.user.gamesTotal}}/40)
+      .TheStats__badge(:class='{"TheStats__badge--active" : $store.state.user.gamesTotal >= 100}')
+        .TheStats__tooltip(v-if='$store.state.user.gamesTotal >= 100') <b>Sudokuphile</b>: Solved 100 boards
+        .TheStats__tooltip(v-else) <b>Sudokuphile</b>: Solve 100 boards ({{$store.state.user.gamesTotal}}/100)
+      .TheStats__badge(:class='{"TheStats__badge--active" : $store.state.user.gamesTotalHard >= 3}')
+        .TheStats__tooltip(v-if='$store.state.user.gamesTotalHard >= 3') <b>Intellectual</b>: 3 hard boards solved
+        .TheStats__tooltip(v-else) <b>Intellectual</b>: Solve 3 hard boards ({{$store.state.user.gamesTotalHard}}/3)
+      .TheStats__badge
+      .TheStats__badge
+      .TheStats__badge
+      .TheStats__badge
 </template>
 
 <script>
 export default {
-  name: 'Stats'
+  name: 'TheStats'
 }
 </script>
 
 <style scoped lang="stylus">
-.Stats
+.TheStats
   width 100%
   display flex
   background white
@@ -125,7 +125,7 @@ export default {
     &--active
       filter none
     &:hover
-      .Stats__tooltip
+      .TheStats__tooltip
         display block
   &__tooltip
     opacity 0.9
@@ -144,10 +144,4 @@ export default {
     font-family 'Arial', sans-serif
     padding 3px
     z-index 3
-
-// Color themes
-
-.nightMode
-  .Stats__badge
-    background-color #0f0f0f
 </style>
