@@ -5,12 +5,23 @@ nav
       router-link(tag="div" to="/")
         .TheNavbar__logo
     .TheNavbar__slot
-      router-link(tag="div" to="/login" v-if='!this.$store.state.user.logged')
+      router-link(
+        tag="div"
+        to="/login"
+        v-if='!this.$store.state.user.logged'
+      )
         MainButton Login
-      router-link(tag="div" to="/register" v-if='!this.$store.state.user.logged')
+      router-link(
+        tag="div"
+        to="/register"
+        v-if='!this.$store.state.user.logged'
+      )
         MainButton(primary='true') Register
       .TheNavbar__user(v-if='this.$store.state.user.logged') Hello, {{this.$store.state.user.login}}!
-      MainButton(v-if='this.$store.state.user.logged' v-on:clicked='logout') Logout
+      MainButton(
+        v-if='this.$store.state.user.logged'
+        v-on:clicked='logout'
+      ) Logout
 </template>
 
 <script>

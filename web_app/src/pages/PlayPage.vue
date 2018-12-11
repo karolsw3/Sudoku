@@ -1,9 +1,20 @@
 <template lang="pug">
   .PlayPage
     ProgressBar(v-if='loading')
-    GameSummary(v-if='summary.show' :solutionDuration='summary.solutionDuration' :difficulty='summary.difficulty' :score='summary.score' v-on:summaryClosed='summary.show = false' v-on:reload='reload')
+    GameSummary(
+      v-if='summary.show'
+      :solutionDuration='summary.solutionDuration'
+      :difficulty='summary.difficulty'
+      :score='summary.score'
+      v-on:summaryClosed='summary.show = false'
+      v-on:reload='reload'
+    )
     TheTimer(ref='timer')
-    TheBoard(ref='board' v-on:board-is-valid="submitBoard" :pencilMode='$store.state.game.pencilMode')
+    TheBoard(
+      ref='board'
+      v-on:board-is-valid="submitBoard"
+      :pencilMode='$store.state.game.pencilMode'
+    )
     SettingsBar
     NumberSelector(@numberSelected='numberSelected')
 </template>

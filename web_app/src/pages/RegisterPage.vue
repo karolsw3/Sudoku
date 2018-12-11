@@ -2,11 +2,34 @@
 .RegisterPage
   ProgressBar(v-if="loading")
   ColumnPanel
-    FormInput(placeholder="Login" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
-    FormInput(placeholder="Email" type="email" ref="email" @valueChanged='checkIfInputsAreFilled')
-    FormInput(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
-    FormInput(placeholder="Repeat password" type="password" ref="confirm_password" @valueChanged='validatePasswords(); checkIfInputsAreFilled()')
-    MainButton(@clicked="register" :disabled="!allInputsFilled") Register
+    FormInput(
+      placeholder="Login"
+      type="text"
+      ref="login"
+      @valueChanged='checkIfInputsAreFilled'
+    )
+    FormInput(
+      placeholder="Email"
+      type="email"
+      ref="email"
+      @valueChanged='checkIfInputsAreFilled'
+    )
+    FormInput(
+      placeholder="Password"
+      type="password"
+      ref="password"
+      @valueChanged='checkIfInputsAreFilled'
+    )
+    FormInput(
+      placeholder="Repeat password"
+      type="password"
+      ref="confirm_password"
+      @valueChanged='validatePasswords(); checkIfInputsAreFilled()'
+    )
+    MainButton(
+      @clicked="register"
+      :disabled="!allInputsFilled"
+    ) Register
   md-snackbar(:md-active.sync='error' md-persistent)
     span {{errorMessage}}
     MainButton(@click='error = false') Close

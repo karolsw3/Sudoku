@@ -2,9 +2,21 @@
 .LoginPage
   ProgressBar(v-if="loading")
   ColumnPanel
-    FormInput(placeholder="Login" type="text" ref="login" @valueChanged='checkIfInputsAreFilled')
-    FormInput(placeholder="Password" type="password" ref="password" @valueChanged='checkIfInputsAreFilled')
-    MainButton(@clicked="login" :disabled="!allInputsFilled") Login
+    FormInput(
+      placeholder="Login"
+      type="text" ref="login"
+      @valueChanged='checkIfInputsAreFilled'
+    )
+    FormInput(
+      placeholder="Password"
+      type="password"
+      ref="password"
+      @valueChanged='checkIfInputsAreFilled'
+    )
+    MainButton(
+      @clicked="login"
+      :disabled="!allInputsFilled"
+    ) Login
   md-snackbar(:md-active.sync='error' md-persistent)
     span {{errorMessage}}
     MainButton.md-accent(@click='error = false') Close

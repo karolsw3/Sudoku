@@ -2,7 +2,10 @@
 .TheBoard
   .TheBoard__grid.TheBoard__grid--main
     template(v-for="i in 3")
-      .TheBoard__grid(v-for="j in 3" :class="getOnValidationClass()")
+      .TheBoard__grid(
+        v-for="j in 3"
+        :class="getOnValidationClass()"
+      )
         template(v-for="x in 3")
           .TheBoard__slot(
             v-for="y in 3"
