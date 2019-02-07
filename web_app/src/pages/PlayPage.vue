@@ -7,14 +7,12 @@
       :difficulty='summary.difficulty'
       :score='summary.score'
       v-on:summaryClosed='summary.show = false'
-      v-on:reload='reload'
-    )
+      v-on:reload='reload')
     TheTimer(ref='timer')
     TheBoard(
       ref='board'
       v-on:board-is-valid="submitBoard"
-      :pencilMode='$store.state.game.pencilMode'
-    )
+      :pencilMode='$store.state.game.pencilMode')
     SettingsBar
     NumberSelector(@numberSelected='numberSelected')
 </template>
@@ -161,15 +159,15 @@ export default {
 
 <style scoped lang="stylus">
 .PlayPage
-  position relative
   margin 0 auto
+  padding 0
+  display flex
+  box-sizing border-box
   flex-direction column
   justify-content center
+  height 100%
   width 100%
-  padding-bottom 100px
   align-items center
-  height calc(100% - 51px)
-  min-height 700px
 .PencilModeSwitch
   position absolute
   right -64px

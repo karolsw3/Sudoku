@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
     TheNavbar
-    router-view
+    router-view.routerView
     TheFooter
 </template>
 
@@ -24,25 +24,23 @@ html,body
   margin 0
   padding 0
   font-size 14px
-  min-height 100vh
+  height 100%
+  min-height 100%
+
 a
   text-decoration none
   color inherit
   margin 0
   padding 0
+
 #app
   font-family 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
   text-align center
-  color #2c3e50
-  min-height 100vh
-  display flex
+  min-height 100%
+  height 100%
   color #222
   background-color white
   background-image url('../../images_compressed/background.svg')
-  flex-direction column
-  overflow-x hidden
   background-position bottom right
   background-repeat no-repeat
   background-size 1950px

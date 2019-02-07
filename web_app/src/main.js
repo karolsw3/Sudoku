@@ -34,9 +34,9 @@ const store = new Vuex.Store({
       email: '',
       pointsTotal: 0,
       gamesTotal: 0,
-      gamesTotalEasy : 0,
-      gamesTotalMedium : 0,
-      gamesTotalHard : 0,
+      gamesTotalEasy: 0,
+      gamesTotalMedium: 0,
+      gamesTotalHard: 0,
       isAdmin: false
     },
     game: {
@@ -111,7 +111,7 @@ new Vue({
           isAdmin: responseData.is_admin
         })
       })
-      this.$forceUpdate()
+    this.$forceUpdate()
   },
   render: h => h(App)
 }).$mount('#app')

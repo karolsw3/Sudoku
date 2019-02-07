@@ -1,6 +1,6 @@
 <template lang="pug">
 .TheFooter
-  span.entry An open-source app by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
+  span.entry An open-source game by <a href='https://github.com/Galactim' target='_blank'><b>Galactim</b></a>
   span.entry Frontend by <a href='https://github.com/karolsw3' target='_blank'><b>Karol Świerczek</b></a>
   span.entry Backend by <a href='https://nabijaczleweli.xyz' target='_blank'><b>nabijaczleweli</b></a>
   span.entry <a href='https://www.facebook.com/thebestsudoku/' target='_blank'><b>Our Facebook</b></a>
@@ -47,13 +47,17 @@ export default {
 
 <style scoped lang="stylus">
 .TheFooter
+  position absolute
+  bottom 10px
   width 100%
+  height 30px
   display block
+  clear both
+  font-size 13px
+  box-sizing border-box
   padding 10px 0
   text-align center
   color #999
-  bottom 0 !important
-  z-index 3
   span
     display inline-block
     margin 0 16px 0 0

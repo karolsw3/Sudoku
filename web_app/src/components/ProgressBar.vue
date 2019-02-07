@@ -15,8 +15,8 @@ export default {
   top 0
   left 0
   width 100%
-  height 2px
+  height 1px
   z-index 999
 .md-progress-bar
-  height 2px !important
+  height 1px !important
 </style>

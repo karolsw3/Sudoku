@@ -59,7 +59,8 @@ export default {
 
 <style scoped lang="stylus">
 .TheNavbar
-  position relative
+  position fixed
+  top 0
   width 100%
   display flex
   align-items center
@@ -68,6 +69,7 @@ export default {
   padding 3px 0
   background transparent
   border-bottom 1px solid #f4f4f4
+  z-index 2
   &--mobile
     display none
   &__slot
@@ -79,11 +81,10 @@ export default {
     width 254px
     height 44px
     background-image url(../../../images_compressed/logo.svg)
-    background-size cover
+    background-size 240px
+    background-position center
     cursor pointer
     transition-duration .15s
-    &:hover
-      opacity .8
   &__user
     font-weight 900
     margin-right 10px

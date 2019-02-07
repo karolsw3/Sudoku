@@ -17,10 +17,8 @@ export default {
 
 <style scoped lang="stylus">
 .NumberSelector
-  bottom -60px
-  left 0
   width 100%
-  margin-top 15px
+  margin-top 2px
   display flex
   font-weight 900
   font-family 'Open Sans'

@@ -54,11 +54,10 @@ export default {
 <style scoped lang="stylus">
 
 .md-button + .md-button
-    margin 6px 8px
+  margin 6px 8px
 .HomePage
-  width auto
-  margin 120px auto 20px auto
   height 100%
+  width 100%
   display flex
   flex-direction column
   align-items center
@@ -69,11 +68,10 @@ export default {
 .dashboard
   position relative
   margin 0 auto
-  width 100%
   max-width 800px
   display grid
   grid-gap 20px
-  grid-template 1fr 1fr/ 1fr 1fr
+  grid-template 1fr 1fr / 1fr 1fr
   grid-template-areas "a a" "b c"
   &__cell
     position relative

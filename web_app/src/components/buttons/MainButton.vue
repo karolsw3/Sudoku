@@ -31,5 +31,5 @@ export default {
     cursor pointer
     transition-duration .15s
     &:hover
-      opacity 0.6
+      opacity 0.9
 </style>

@@ -28,8 +28,7 @@
     )
     MainButton(
       @clicked="register"
-      :disabled="!allInputsFilled"
-    ) Register
+      :disabled="!allInputsFilled") Register
   md-snackbar(:md-active.sync='error' md-persistent)
     span {{errorMessage}}
     MainButton(@click='error = false') Close

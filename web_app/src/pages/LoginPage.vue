@@ -118,8 +118,8 @@ export default {
 .LoginPage
   position relative
   box-sizing border-box
-  height 100%
   width 100%
+  height 100%
   margin 0 auto
   background transparent
   display flex
