@@ -4,14 +4,12 @@
     template(v-for="i in 3")
       .TheBoard__grid(
         v-for="j in 3"
-        :class="getOnValidationClass()"
-      )
+        :class="getOnValidationClass()")
         template(v-for="x in 3")
           .TheBoard__slot(
             v-for="y in 3"
             @click="onSlotClick(getSlotX(i, j, x, y), getSlotY(i, j, x, y))"
-            :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y), getDimmedClass(i, j, x, y)]"
-          )
+            :class="[getSelectedClass(i, j, x, y), getLockedClass(i, j, x, y), getHighlightedClass(i, j, x, y), getDimmedClass(i, j, x, y)]")
             template(v-if="slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] != 0") {{slots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)] % 10}}
             .TheBoard__pencilGrid(v-else)
               .slot(v-for='number in 9') {{pencilSlots[getSlotX(i, j, x, y)][getSlotY(i, j, x, y)][number] % 10 ? number:''}}
@@ -203,29 +201,29 @@ export default {
       return (j - 1) * 3 + (y - 1)
     },
     getSelectedClass (i, j, x, y) {
-      return this.getSlotX(i, j, x, y) === this.selectedSlot.x && this.getSlotY(i, j, x, y) === this.selectedSlot.y ? 'Board__slot--selected' : ''
+      return this.getSlotX(i, j, x, y) === this.selectedSlot.x && this.getSlotY(i, j, x, y) === this.selectedSlot.y ? 'TheBoard__slot--selected' : ''
     },
     getLockedClass (i, j, x, y) {
-      return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'Board__slot--locked' : ''
+      return this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] > 10 ? 'TheBoard__slot--locked' : ''
     },
     getHighlightedClass (i, j, x, y) {
-      return ((this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] % 10) === (this.highlightedNumber % 10) && this.highlightedNumber !== 0) ? 'Board__slot--highlighted' : ''
+      return ((this.slots[this.getSlotX(i, j, x, y)][this.getSlotY(i, j, x, y)] % 10) === (this.highlightedNumber % 10) && this.highlightedNumber !== 0) ? 'TheBoard__slot--highlighted' : ''
     },
     getDimmedClass (i, j, x, y) {
       return (!((i === (Math.floor(this.selectedSlot.x / 3) + 1) &&
-               j === (Math.floor(this.selectedSlot.y / 3) + 1)) ||
-               this.getSlotX(i, j, x, y) === this.selectedSlot.x ||
-               this.getSlotY(i, j, x, y) === this.selectedSlot.y) &&
-               this.$store.state.game.dimmedCellsMode) ? 'Board__slot--dimmed' : ''
+        j === (Math.floor(this.selectedSlot.y / 3) + 1)) ||
+        this.getSlotX(i, j, x, y) === this.selectedSlot.x ||
+        this.getSlotY(i, j, x, y) === this.selectedSlot.y) &&
+        this.$store.state.game.dimmedCellsMode) ? 'TheBoard__slot--dimmed' : ''
     },
     getOnValidationClass () {
       if (!this.isFilled) {
         return ''
       }
       if (this.isValid()) {
-        return 'Board__grid--valid'
+        return 'TheBoard__grid--valid'
       } else {
-        return 'Board__grid--invalid'
+        return 'TheBoard__grid--invalid'
       }
     },
     lockSlots () { // Locks all currently filled slots
