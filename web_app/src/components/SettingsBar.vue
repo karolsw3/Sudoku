@@ -18,7 +18,7 @@ export default {
 <style scoped lang="stylus">
 .SettingsBar
   width 100%
-  margin-top 3px
+  margin-top 5px
   display flex
   font-weight 900
   font-family 'Open Sans'
@@ -38,7 +38,7 @@ export default {
   cursor pointer
   box-sizing border-box
   transition-duration .2s
-  box-shadow 0 0 3px #bbb
+  box-shadow 0 0 3px #ccc
   background white
   z-index 4
   &--switched

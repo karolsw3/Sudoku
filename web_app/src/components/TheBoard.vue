@@ -305,7 +305,6 @@ export default {
   user-select none
   &__grid
     background #cacaca
-    border-radius 9px
     box-sizing border-box
     display grid
     grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
@@ -374,7 +373,7 @@ export default {
     &--selected
       box-shadow inset 0 0 0 3px
     &--highlighted
-      background #718cfd !important
+      background #c8d3ff !important
       opacity 1 !important
     &--dimmed
       opacity .4

@@ -1,14 +1,14 @@
 # <img src="images/logo.png" height="70" alt="sudoku" />
-A modern, API-based Sudoku app.
+A modern web-based Sudoku app.
 
 ## Introduction
-
-Our goal is to make the best Sudoku app on the web.
 
 There are a lot of Sudoku games on the web, but none of them well built nor with good design.
 We want to make our take modern, secure, well-designed and open to everyone – it works well on all available platforms and screens.
 
 `Sudoku` consists of a public API, web app, and in the future – a mobile app.
+
+The web app is written in Vue.js, while the API in Rust.
 
 # ![Progress](images/progress.svg)
 
